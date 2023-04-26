@@ -9,8 +9,10 @@ import '../features/add_daily_routine_normal/add_daily_routine_normal.dart';
 import '../features/add_personal/add_personal_page.dart';
 import '../features/date_selected/date_selected_page.dart';
 import '../features/edit_daily_routine/edit_daily_routine.dart';
+import '../features/edit_personal_info/edit_personal_info_page.dart';
 import '../features/edit_timer_selected/edit_timer_selected.dart';
 import '../features/personal_enter_info/personal_enter_info_page.dart';
+import '../features/personal_time_date_selector/personal_timer_date_page.dart';
 import '../features/splash_screen/splash_screen.dart';
 import '../features/time_date_selector/time_date_selector.dart';
 import '../features/timer_selected/timer_selected_page.dart';
@@ -86,7 +88,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case Routes.addPersonalInfo:
       return FadeTransitionPageRouteBuilder(
-        page: PersonalEnterInfoPage(),
+        page: const PersonalEnterInfoPage(),
+      );
+    case Routes.editPersonalInfo:
+      return FadeTransitionPageRouteBuilder(
+        page: EditPersonalInfoPage(index: settings.arguments as int),
+      );
+      case Routes.personalTimeDateSelector:
+      return FadeTransitionPageRouteBuilder(
+        page: PersonalTimerDatePage(index: settings.arguments as int),
       );
 
     default:

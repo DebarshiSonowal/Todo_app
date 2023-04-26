@@ -12,10 +12,20 @@ class Routes {
   static const timeDatePicker = "/time_date_picker";
 
   static const timePicker = "/time_picker";
+
   static const datePicker = "/date_picker";
+
   static const editTimePicker = "/edit_time_picker";
 
   static const addPersonal = "/add_personal";
 
   static const addPersonalInfo = "/add_personal_info";
+
+  static const editPersonalInfo = "/edit_personal_info";
+
+  static const personalTimeDateSelector = "/personal_time_date_selector";
+
+  static const personalTimePicker = "/personal_time_picker";
+
+  static const personalDatePicker = "/personal_date_picker";
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/constants/routes.dart';
 
 import '../../constants/constants.dart';
 import '../../models/personal_model.dart';
@@ -43,7 +44,13 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
                 time: DateFormat("HH:MM a").format(DateTime.now()),
               ),
             );
-            Navigation.instance.goBack();
+            Navigation.instance.navigate(
+              Routes.personalTimeDateSelector,
+              args: Provider.of<Repository>(context, listen: false)
+                      .personals
+                      .length -
+                  1,
+            );
           },
         ),
       ),
@@ -73,6 +80,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
                   });
                 },
                 descriptionController: descriptionController,
+                delete: () {},
               )
             ],
           ),

@@ -19,10 +19,16 @@ class PersonalInfoPageCard extends StatefulWidget {
       {Key? key,
       required this.titleController,
       required this.imageUpdate,
-      required this.descriptionController})
+      required this.descriptionController,
+      this.dateTime,
+      this.file,
+      required this.delete})
       : super(key: key);
   final TextEditingController titleController, descriptionController;
   final Function(File) imageUpdate;
+  final String? dateTime;
+  final File? file;
+  final Function? delete;
 
   @override
   State<PersonalInfoPageCard> createState() => _PersonalInfoPageCardState();
@@ -69,7 +75,9 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                     width: 2.w,
                   ),
                   Text(
-                    DateFormat("dd MMM yyyy | HH:MM a").format(DateTime.now()),
+                    widget.dateTime ??
+                        DateFormat("dd MMM yyyy | HH:MM a")
+                            .format(DateTime.now()),
                     style: TextStyle(
                       fontFamily: "Rubik",
                       fontSize: 10.sp,
@@ -89,7 +97,8 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                 vertical: 0.5.h,
               ),
               decoration: const BoxDecoration(
-                color: Constances.selectedDateColor,
+                // color: Constances.selectedDateColor,
+                color: Constances.textFieldBackground,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               width: double.infinity,
@@ -101,14 +110,14 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                   hintText: 'Title',
                   hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
                         fontSize: 12.sp,
-                        color: Colors.black45,
+                        color: Colors.white70,
                         // fontWeight: FontWeight.bold,
                         fontFamily: "Roboto",
                       ),
                 ),
                 style: Theme.of(context).textTheme.headline4?.copyWith(
                       fontSize: 14.sp,
-                      color: Colors.black,
+                      color: Colors.white,
                       // fontWeight: FontWeight.bold,
                       fontFamily: "Roboto",
                     ),
@@ -127,7 +136,8 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                 vertical: 2.h,
               ),
               decoration: const BoxDecoration(
-                color: Constances.selectedDateColor,
+                // color: Constances.selectedDateColor,
+                color: Constances.textFieldBackground,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               width: double.infinity,
@@ -139,14 +149,14 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                   hintText: 'Description',
                   hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
                         fontSize: 12.sp,
-                        color: Colors.black45,
+                        color: Colors.white70,
                         // fontWeight: FontWeight.bold,
                         fontFamily: "Roboto",
                       ),
                 ),
                 style: Theme.of(context).textTheme.headline4?.copyWith(
                       fontSize: 14.sp,
-                      color: Colors.black,
+                      color: Colors.white,
                       // fontWeight: FontWeight.bold,
                       fontFamily: "Roboto",
                     ),
@@ -159,7 +169,7 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
               onTap: () {
                 showPhotoBottomSheet(getSelectedImage);
               },
-              child: attachment == null
+              child: (attachment == null && widget.file == null)
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: SvgPicture.asset(
@@ -170,11 +180,17 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                         width: 50.sp,
                       ),
                     )
-                  : CircleAvatar(
-                      radius: 30.sp, // Image radius
-                      backgroundImage:
-                          Image.file(File(attachment?.path ?? "")).image,
-                    ),
+                  : attachment == null
+                      ? CircleAvatar(
+                          radius: 30.sp, // Image radius
+                          backgroundImage:
+                              Image.file(File(widget.file?.path ?? "")).image,
+                        )
+                      : CircleAvatar(
+                          radius: 30.sp, // Image radius
+                          backgroundImage:
+                              Image.file(File(attachment?.path ?? "")).image,
+                        ),
             ),
             SizedBox(
               height: 2.h,
@@ -183,34 +199,34 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // decoration: const BoxDecoration(
-                  //   color: Color(0xffd8d9d9),
-                  //   borderRadius: BorderRadius.only(
-                  //     bottomLeft: Radius.circular(20),
-                  //     topRight: Radius.circular(20),
-                  //   ),
-                  // ),
-                  // padding: EdgeInsets.symmetric(
-                  //   horizontal: 3.w,
-                  //   vertical: 1.h,
-                  // ),
-                  // child: Center(
-                  //   child: Text(
-                  //     "Add Image",
-                  //     style: TextStyle(
-                  //       fontFamily: "Roboto",
-                  //       fontSize: 13.sp,
-                  //       color: Colors.black,
-                  //       fontWeight: FontWeight.normal,
-                  //     ),
-                  //   ),
-                  // ),
-                ),
+                    // decoration: const BoxDecoration(
+                    //   color: Color(0xffd8d9d9),
+                    //   borderRadius: BorderRadius.only(
+                    //     bottomLeft: Radius.circular(20),
+                    //     topRight: Radius.circular(20),
+                    //   ),
+                    // ),
+                    // padding: EdgeInsets.symmetric(
+                    //   horizontal: 3.w,
+                    //   vertical: 1.h,
+                    // ),
+                    // child: Center(
+                    //   child: Text(
+                    //     "Add Image",
+                    //     style: TextStyle(
+                    //       fontFamily: "Roboto",
+                    //       fontSize: 13.sp,
+                    //       color: Colors.black,
+                    //       fontWeight: FontWeight.normal,
+                    //     ),
+                    //   ),
+                    // ),
+                    ),
                 IconButton(
                   onPressed: () {
-                    // data.models.removeAt(widget.index);
-                    // Fluttertoast.showToast(msg: "Deleted Successfully");
-                    // Navigation.instance.navigateAndReplace(Routes.dashboard);
+                    if (widget.delete != null) {
+                      widget.delete!();
+                    }
                   },
                   icon: SvgPicture.asset(
                     Constances.trashIcon,

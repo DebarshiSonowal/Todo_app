@@ -27,76 +27,79 @@ class AppBarWidget extends StatelessWidget {
           ),
         )
       ],
-      flexibleSpace: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          SizedBox(
-            height: 2.5.h,
-          ),
-          Text(
-            DateFormat("MMM yyyy").format(DateTime.now()),
-            style: Theme.of(context).textTheme.headline3?.copyWith(
-                  color: Colors.white,
-                  // fontWeight: FontWeight.bold,
-                  fontFamily: "Roboto",
-                ),
-          ),
-          SizedBox(
-            height: 1.5.h,
-          ),
-          SizedBox(
-            height: 4.8.h,
-            width: double.infinity,
-            child: ListView.separated(
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(
-                horizontal: 2.w,
-              ),
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return SizedBox(
-                  width: 10.w,
-                  child: Column(
-                    children: [
-                      Text(
-                        DateFormat("EEE").format(
-                          DateTime.now().add(
-                            Duration(days: index),
-                          ),
-                        ),
-                        style: Theme.of(context).textTheme.headline4?.copyWith(
-                              color: Colors.white70,
-                              fontFamily: "Rubik",
-                              fontSize: 10.sp,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      Text(
-                        DateFormat("dd").format(
-                          DateTime.now().add(
-                            Duration(days: index),
-                          ),
-                        ),
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                              color: Colors.white,
-                              fontSize: 11.sp,
-                              fontFamily: "Rubik",
-                              // fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  width: 4.w,
-                );
-              },
-              itemCount: 7,
+      flexibleSpace: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: 4.h,
             ),
-          ),
-        ],
+            Text(
+              DateFormat("MMM yyyy").format(DateTime.now()),
+              style: Theme.of(context).textTheme.headline3?.copyWith(
+                    color: Colors.white,
+                    // fontWeight: FontWeight.bold,
+                    fontFamily: "Roboto",
+                  ),
+            ),
+            SizedBox(
+              height: 1.5.h,
+            ),
+            SizedBox(
+              height: 4.8.h,
+              width: double.infinity,
+              child: ListView.separated(
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 2.w,
+                ),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: 10.w,
+                    child: Column(
+                      children: [
+                        Text(
+                          DateFormat("EEE").format(
+                            DateTime.now().add(
+                              Duration(days: index),
+                            ),
+                          ),
+                          style: Theme.of(context).textTheme.headline4?.copyWith(
+                                color: Colors.white70,
+                                fontFamily: "Rubik",
+                                fontSize: 10.sp,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        Text(
+                          DateFormat("dd").format(
+                            DateTime.now().add(
+                              Duration(days: index),
+                            ),
+                          ),
+                          style: Theme.of(context).textTheme.headline5?.copyWith(
+                                color: Colors.white,
+                                fontSize: 11.sp,
+                                fontFamily: "Rubik",
+                                // fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    width: 4.w,
+                  );
+                },
+                itemCount: 7,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

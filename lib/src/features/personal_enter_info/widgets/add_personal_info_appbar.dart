@@ -85,14 +85,51 @@ class AddPeronalInfoAppbar extends StatelessWidget {
                         ],
                       ),
                     ),
+                    // SizedBox(
+                    //   height: 4.h,
+                    //   width: 20.w,
+                    //   child: DoneButton(
+                    //     color: const Color(0xff213285),
+                    //     txtColor: Colors.white,
+                    //     txt: "Save",
+                    //     onTap: ()=>savePersonal(),
+                    //   ),
+                    // ),
                     SizedBox(
-                      height: 4.h,
                       width: 20.w,
-                      child: DoneButton(
-                        color: const Color(0xff213285),
-                        txtColor: Colors.white,
-                        txt: "Save",
-                        onTap: ()=>savePersonal(),
+                      // height: 8.h,
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: ()=>savePersonal(),
+                            child: SizedBox(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Next',
+                                    style: Theme
+                                        .of(context)
+                                        .textTheme
+                                        .headline4
+                                        ?.copyWith(
+                                      fontSize: 11.2.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      // fontWeight: FontWeight.bold,
+                                      fontFamily: "Roboto",
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 16.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
