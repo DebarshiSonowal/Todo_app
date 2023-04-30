@@ -5,12 +5,14 @@ import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/widget/routine_item_widget.dart';
 
 import '../../../models/reminder_list_item.dart';
+import '../../../models/timer_section_option_model.dart';
 import '../../../repository/repository.dart';
 
 class AddBulletNoteItemListEmpty extends StatelessWidget {
   const AddBulletNoteItemListEmpty({
     super.key,
-    required this.reminders, required this.onTap,
+    required this.reminders,
+    required this.onTap,
   });
 
   final List<ReminderListItem> reminders;
@@ -30,12 +32,37 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
                     DateFormat("hh:mm a").format(DateTime.now()),
                     DateTime.now(),
                     false,
+                    TimerSelectionOptions(
+                      "NA",
+                      10,
+                      false,
+                    ),
                   )
                 : reminders[index],
             index: index,
             updateList: (string, dateTime) {
-              reminders[index] = ReminderListItem(string, "", dateTime, false);
-              onTap(ReminderListItem(string, "", dateTime, false));
+              reminders[index] = ReminderListItem(
+                string,
+                "",
+                dateTime,
+                false,
+                TimerSelectionOptions(
+                  "NA",
+                  10,
+                  false,
+                ),
+              );
+              onTap(ReminderListItem(
+                string,
+                "",
+                dateTime,
+                false,
+                TimerSelectionOptions(
+                  "NA",
+                  10,
+                  false,
+                ),
+              ));
             },
           );
         } else {
@@ -45,11 +72,34 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
               DateFormat("hh:mm a").format(DateTime.now()),
               DateTime.now(),
               false,
+              TimerSelectionOptions(
+                "NA",10,false,
+              ),
             ),
             index: index,
             updateList: (string, dateTime) {
-              reminders.add(ReminderListItem(string, "", dateTime, false));
-              onTap(ReminderListItem(string, "", dateTime, false));
+              reminders.add(ReminderListItem(
+                string,
+                "",
+                dateTime,
+                false,
+                TimerSelectionOptions(
+                  "NA",
+                  10,
+                  false,
+                ),
+              ));
+              onTap(ReminderListItem(
+                string,
+                "",
+                dateTime,
+                false,
+                TimerSelectionOptions(
+                  "NA",
+                  10,
+                  false,
+                ),
+              ));
               // setState(() {
               //   reminders.add(
               //     ReminderListItem(string, "", dateTime),

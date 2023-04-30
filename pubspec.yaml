@@ -51,6 +51,7 @@ dependencies:
   hive: ^2.2.3
   quick_actions: ^1.0.2
   flutter_slidable: ^2.0.0
+  file_picker: ^5.2.11
 
 dev_dependencies:
   hive_generator: ^1.1.1

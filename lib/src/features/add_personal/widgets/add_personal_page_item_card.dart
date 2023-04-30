@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/models/daily_routine_model.dart';
 import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 import '../../../constants/constants.dart';
@@ -16,7 +18,7 @@ class PersonalPageItemCard extends StatelessWidget {
     required this.index,
   });
 
-  final Personal data;
+  final DailyRoutineModel data;
   final int index;
 
   @override
@@ -86,15 +88,21 @@ class PersonalPageItemCard extends StatelessWidget {
               SizedBox(
                 height: 1.h,
               ),
-              Text(
-                '${data.date} | ${data.time}',
-                style: Theme.of(context).textTheme.headline6?.copyWith(
-                      fontSize: 10.sp,
-                      color: Colors.white70,
-                      fontWeight: FontWeight.w500,
-                      // fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto",
-                    ),
+              SizedBox(
+                width: 40.w,
+                child: Center(
+                  child: Text(
+                    DateFormat("dd/MM/yyyy | HH:mm a").format(data.dateTime!),
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          fontSize: 10.sp,
+                          color: Colors.white70,
+                          fontWeight: FontWeight.w500,
+                          // fontWeight: FontWeight.bold,
+                          fontFamily: "Roboto",
+                        ),
+                  ),
+                ),
               ),
             ],
           ),

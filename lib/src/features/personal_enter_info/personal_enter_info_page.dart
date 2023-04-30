@@ -8,9 +8,13 @@ import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/routes.dart';
 
 import '../../constants/constants.dart';
+import '../../models/daily_routine_model.dart';
 import '../../models/personal_model.dart';
+import '../../models/reminder_list_item.dart';
+import '../../models/timer_section_option_model.dart';
 import '../../repository/repository.dart';
 import '../../services/Navigate.dart';
+import '../../widget/alert.dart';
 import 'widgets/add_personal_info_appbar.dart';
 import 'widgets/personal_info_page_card.dart';
 
@@ -25,6 +29,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
   File? attachment;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  List<ReminderListItem> reminders = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,23 +39,36 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
         preferredSize: Size.fromHeight(9.h),
         child: AddPeronalInfoAppbar(
           savePersonal: () {
-            Provider.of<Repository>(context, listen: false).addPersonal(
-              Personal(
-                id: Random.secure().nextInt(1000),
-                title: titleController.text,
-                description: descriptionController.text,
-                image: attachment!.path,
-                date: DateFormat("dd MMM yyyy").format(DateTime.now()),
-                time: DateFormat("HH:MM a").format(DateTime.now()),
-              ),
-            );
-            Navigation.instance.navigate(
-              Routes.personalTimeDateSelector,
-              args: Provider.of<Repository>(context, listen: false)
-                      .personals
-                      .length -
-                  1,
-            );
+            if (titleController.text.isNotEmpty &&
+                reminders.isNotEmpty &&
+                attachment != null) {
+              // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
+              Provider.of<Repository>(context, listen: false)
+                  .addPersonal(DailyRoutineModel(
+                titleController.text,
+                DateFormat("hh:mm a").format(DateTime.now()),
+                DateTime.now(),
+                attachment!.path,
+                reminders,
+                // TimerSelectionOptions(
+                //   "NA",
+                //   10,
+                //   false,
+                // ),
+              ));
+              Future.delayed(const Duration(seconds: 1), () {
+                Navigation.instance.navigate(
+                  Routes.personalTimeDateSelector,
+                  args: Provider.of<Repository>(context, listen: false)
+                          .personals
+                          .length -
+                      1,
+                  // index == 1 ? "Drink lemon water" : "Shower",
+                );
+              });
+            } else {
+              showError("Enter all the details");
+            }
           },
         ),
       ),
@@ -79,13 +97,23 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
                     attachment = file;
                   });
                 },
-                descriptionController: descriptionController,
-                delete: () {},
+                // descriptionController: descriptionController,
+                delete: () {}, reminders: reminders,
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  void showError(String msg) {
+    AlertX.instance.showAlert(
+        title: "Error",
+        msg: msg,
+        positiveButtonText: "Done",
+        positiveButtonPressed: () {
+          Navigation.instance.goBack();
+        });
   }
 }

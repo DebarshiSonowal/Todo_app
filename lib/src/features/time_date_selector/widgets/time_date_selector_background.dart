@@ -1,18 +1,31 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 
+import '../../../models/reminder_list_item.dart';
 import '../../edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
 import '../time_date_selector.dart';
 
 class timeDateSelectorBackground extends StatelessWidget {
-  const timeDateSelectorBackground({
+  timeDateSelectorBackground({
     super.key,
     required this.index,
+    this.attachment,
+    required this.titleController,
+    // required this.descController,
+    required this.reminders,
+    required this.updateFile,
   });
 
+  final File? attachment;
+  final TextEditingController titleController;
+  // final TextEditingController descController;
   final int index;
+  final List<ReminderListItem> reminders;
+  final Function(File) updateFile;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +40,15 @@ class timeDateSelectorBackground extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Consumer<Repository>(builder: (context, data, _) {
-              return EditDailyRoutineNormalCard(
-                index: index,
-              );
-            })
+            EditDailyRoutineNormalCard(
+              index: index,
+              titleController: titleController,
+              reminders: reminders,
+              updateImage: (File file) {
+                updateFile(file);
+              },
+              attachment: attachment,
+            )
           ],
         ),
       ),

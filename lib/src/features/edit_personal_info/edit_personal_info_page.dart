@@ -9,6 +9,7 @@ import 'package:vishal_todo_app/src/constants/routes.dart';
 
 import '../../constants/constants.dart';
 import '../../models/personal_model.dart';
+import '../../models/reminder_list_item.dart';
 import '../../repository/repository.dart';
 import '../../services/Navigate.dart';
 import '../personal_enter_info/widgets/add_personal_info_appbar.dart';
@@ -25,9 +26,9 @@ class EditPersonalInfoPage extends StatefulWidget {
 class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
   File? attachment;
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  // final TextEditingController descriptionController = TextEditingController();
   late String dateTime;
-
+  List<ReminderListItem> reminders = [];
   @override
   void initState() {
     super.initState();
@@ -42,16 +43,16 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
         preferredSize: Size.fromHeight(9.h),
         child: AddPeronalInfoAppbar(
           savePersonal: () {
-            Provider.of<Repository>(context, listen: false).updatePersonal(
-                Personal(
-                  id: Random.secure().nextInt(1000),
-                  title: titleController.text,
-                  description: descriptionController.text,
-                  image: attachment!.path,
-                  date: DateFormat("dd MMM yyyy").format(DateTime.now()),
-                  time: DateFormat("HH:MM a").format(DateTime.now()),
-                ),
-                widget.index);
+            // Provider.of<Repository>(context, listen: false).modifyPersonals(
+            //     Personal(
+            //       id: Random.secure().nextInt(1000),
+            //       title: titleController.text,
+            //       // description: descriptionController.text,
+            //       image: attachment!.path,
+            //       date: DateFormat("dd MMM yyyy").format(DateTime.now()),
+            //       time: DateFormat("HH:MM a").format(DateTime.now()),
+            //     ),
+            //     widget.index);
             Navigation.instance.goBack();
           },
         ),
@@ -81,16 +82,16 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
                     attachment = file;
                   });
                 },
-                descriptionController: descriptionController,
+                // descriptionController: descriptionController,
                 dateTime: dateTime,
                 file: attachment,
                 delete: () {
                   Provider.of<Repository>(context, listen: false)
-                      .removePersonal(
+                      .removePersonalBy(
                           Provider.of<Repository>(context, listen: false)
                               .personals[widget.index]);
                   Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
-                },
+                }, reminders: reminders,
               )
             ],
           ),
@@ -104,16 +105,15 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
             .personals[widget.index]
             .title ??
         "";
-    descriptionController.text = Provider.of<Repository>(context, listen: false)
-            .personals[widget.index]
-            .description ??
-        "";
+    // descriptionController.text = Provider.of<Repository>(context, listen: false)
+    //         .personals[widget.index]
+    //         .description ??
+    //     "";
     attachment = File(Provider.of<Repository>(context, listen: false)
             .personals[widget.index]
             .image ??
         "");
-    dateTime =
-        "${Provider.of<Repository>(context, listen: false).personals[widget.index].date} | ${Provider.of<Repository>(context, listen: false).personals[widget.index].time}";
+    dateTime =DateFormat("dd MM yyyy | HH:mm a").format(Provider.of<Repository>(context, listen: false).personals[widget.index].dateTime!);
 
     setState(() {
       attachment = File(Provider.of<Repository>(context, listen: false)

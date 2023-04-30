@@ -11,12 +11,12 @@ class EditDailyRoutineAppBar extends StatelessWidget {
   const EditDailyRoutineAppBar({
     super.key,
     required this.isDone,
-    required this.index,
+    required this.index, this.next,
   });
 
   final bool isDone;
   final int index;
-
+  final Function? next;
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
@@ -136,11 +136,7 @@ class EditDailyRoutineAppBar extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigation.instance.navigate(
-                                    Routes.timeDatePicker,
-                                    // args: "Shower time"
-                                    args: index,
-                                  );
+                                 next!();
                                 },
                                 child: SizedBox(
                                   child: Row(

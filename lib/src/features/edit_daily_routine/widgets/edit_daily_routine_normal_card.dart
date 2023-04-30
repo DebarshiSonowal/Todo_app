@@ -22,46 +22,36 @@ import '../../../widget/bullet_note_item_list_not_empty.dart';
 import '../../../widget/image_popup_body.dart';
 import '../../../widget/routine_item_widget.dart';
 
-class EditDailyRoutineNormalCard extends StatefulWidget {
-  const EditDailyRoutineNormalCard({Key? key, required this.index})
+class EditDailyRoutineNormalCard extends StatelessWidget {
+  const EditDailyRoutineNormalCard(
+      {Key? key,
+      required this.index,
+      required this.titleController,
+      required this.reminders,
+      required this.updateImage,
+      required this.attachment})
       : super(key: key);
   final int index;
+  final TextEditingController titleController;
+  final List<ReminderListItem> reminders;
+  final Function(File) updateImage;
+  final File? attachment;
 
-  @override
-  State<EditDailyRoutineNormalCard> createState() =>
-      _EditDailyRoutineNormalCardState();
-}
+  // File? attachment;
+  // final titleController = TextEditingController();
+  // List<ReminderListItem> reminders = [];
 
-class _EditDailyRoutineNormalCardState
-    extends State<EditDailyRoutineNormalCard> {
-  File? attachment;
-  final titleController = TextEditingController();
-  final descController = TextEditingController();
-  List<ReminderListItem> reminders = [];
-
-  @override
-  void dispose() {
-    super.dispose();
-    titleController.dispose();
-    descController.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() => titleController.text =
-          Provider.of<Repository>(context, listen: false)
-                  .models[widget.index]
-                  .title ??
-              "");
-    });
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   titleController.dispose();
+  //   descController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
-      var current = data.models[widget.index];
+      var current = data.models[index];
       return Stack(
         alignment: Alignment.bottomRight,
         children: [
@@ -133,11 +123,13 @@ class _EditDailyRoutineNormalCardState
                     child: current.reminders.isNotEmpty
                         ? BulletNoteItemListNotEmpty(
                             current: current,
-                            widget: widget,
+                            index: index,
+                            type: 0,
                           )
                         : BulletNoteItemListEmpty(
                             reminders: reminders,
-                            count: widget.index,
+                            count: index,
+                            type: 0,
                           ),
                   ),
                   SizedBox(
@@ -147,7 +139,7 @@ class _EditDailyRoutineNormalCardState
                     onTap: () {
                       showPhotoBottomSheet(getSelectedImage);
                     },
-                    child: data.models[widget.index].image == null
+                    child: data.models[index].image == null
                         ? (attachment == null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
@@ -170,10 +162,10 @@ class _EditDailyRoutineNormalCardState
                             backgroundColor: Colors.transparent,
                             radius: 30.sp, // Image radius
                             backgroundImage: Image.file(
-                              File(data.models[widget.index].image!),
+                              File(data.models[index].image!),
                               errorBuilder: (error, str, _) {
                                 return Image.asset(
-                                  data.models[widget.index].image!,
+                                  data.models[index].image!,
                                   // fit: BoxFit.fill,
                                   // height: type == 1 ? 5.h : 8.h,
                                   // width: type == 1 ? 11.w : 17.w,
@@ -188,7 +180,7 @@ class _EditDailyRoutineNormalCardState
           ),
           IconButton(
             onPressed: () {
-              data.models.removeAt(widget.index);
+              data.models.removeAt(index);
               Fluttertoast.showToast(msg: "Deleted Successfully");
               Navigation.instance.navigateAndReplace(Routes.dashboard);
             },
@@ -232,9 +224,10 @@ class _EditDailyRoutineNormalCardState
         );
         if (pickedFile != null) {
           for (var i in pickedFile) {
-            setState(() {
-              attachment = File(i.path);
-            });
+            // setState(() {
+            // widget.attachment = File(i.path);
+            updateImage(File(i.path));
+            // });
           }
         }
       }
@@ -245,9 +238,7 @@ class _EditDailyRoutineNormalCardState
       } else {
         final pickedFile = await ImagesPicker.pick();
         if (pickedFile != null) {
-          setState(() {
-            attachment = File(pickedFile[0].path);
-          });
+          updateImage(File(pickedFile[0].path));
         }
       }
     }

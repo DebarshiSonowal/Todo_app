@@ -36,6 +36,7 @@ class Constances {
   static const alarmIcon = 'assets/images/img_alarm.svg';
   static const calendarWhiteIcon = 'assets/images/img_calendar_white_a700.svg';
   static const editIcon = 'assets/images/img_edit.svg';
+  static const plusIcon = 'assets/images/plus.png';
   static const addImageIcon = 'assets/images/addimage.svg';
   static const addImageImage = 'assets/images/addimage.png';
 

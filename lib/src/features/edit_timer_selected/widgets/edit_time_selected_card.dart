@@ -83,9 +83,11 @@ class _EditTimeSelectedCardState extends State<EditTimeSelectedCard> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   TimerSectionEditTimeSelected(
-                    alarmDateTime: data.models[int.parse(widget.index.split(",")[0])].reminders[int.parse(widget.index.split(",")[1])].timeDate,
+                    alarmDateTime: data.models[int.parse(widget.index.split(
+                        ",")[0])].reminders[int.parse(
+                        widget.index.split(",")[1])].timeDate,
                     index: int.parse(widget.index.split(",")[0]),
-                    num:int.parse(widget.index.split(",")[1]),
+                    num: int.parse(widget.index.split(",")[1]),
                     data: data,
                     updateParent: () {
                       setState(() {});
@@ -93,8 +95,11 @@ class _EditTimeSelectedCardState extends State<EditTimeSelectedCard> {
                   ),
                   TimerSectionEditOptions(
                     list: list,
-                    options: data.models[int.parse(widget.index.split(",")[0])].options!,
-                  //   ((item.time==""||item.time==null) ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[1]:"")a
+                    options: data.models[int.parse(widget.index.split(",")[0])].reminders[int.parse(widget.index.split(",")[1])]
+                        .options!,
+                    index1: int.parse(widget.index.split(",")[0]),
+                    index2: int.parse(widget.index.split(",")[1]),
+                    //   ((item.time==""||item.time==null) ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[1]:"")a
                   ),
                 ],
               ),

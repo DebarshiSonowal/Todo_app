@@ -41,9 +41,9 @@ class AddDailyRoutineNormal extends StatelessWidget {
                 DateTime.now(),
                 attachment!.path,
                 reminders,
-                TimerSelectionOptions(
-                  "NA",0,false,
-                ),
+                // TimerSelectionOptions(
+                //   "NA",10,false,
+                // ),
               ));
               Future.delayed(const Duration(seconds: 1), () {
                 Navigation.instance.navigate(

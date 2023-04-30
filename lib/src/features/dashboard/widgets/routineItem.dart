@@ -82,7 +82,7 @@ class routineItem extends StatelessWidget {
               children: [
                 Text(
                   txt,
-                  maxLines: 2,
+                  maxLines: 1,
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                         color: type == 1
                             ? Colors.black

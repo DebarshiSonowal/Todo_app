@@ -4,7 +4,7 @@ import 'timer_section_option_model.dart';
 class DailyRoutineModel {
   String? title, titleTime, image;
   DateTime? dateTime;
-  TimerSelectionOptions? options;
+  // TimerSelectionOptions? options;
   List<ReminderListItem> reminders = [];
 
   DailyRoutineModel(
@@ -13,7 +13,7 @@ class DailyRoutineModel {
     this.dateTime,
     this.image,
     this.reminders,
-    this.options,
+    // this.options,
   );
 
   Map<String, dynamic> toJson() => {
@@ -21,7 +21,7 @@ class DailyRoutineModel {
         'titleTime': titleTime,
         'image': image,
         'dateTime': dateTime,
-        'options': options,
+        // 'options': options,
         'reminders': reminders,
       };
 
@@ -34,6 +34,8 @@ class DailyRoutineModel {
             ? []
             : (json['reminders'] as List)
                 .map((e) => ReminderListItem.fromJson(e))
-                .toList(),
-        options = json['options'];
+                .toList()
+  // ,
+        // options = json['options']
+  ;
 }

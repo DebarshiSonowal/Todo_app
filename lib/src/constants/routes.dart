@@ -28,4 +28,14 @@ class Routes {
   static const personalTimePicker = "/personal_time_picker";
 
   static const personalDatePicker = "/personal_date_picker";
+
+  static const bookmark = "/bookmark";
+
+  static const bookmarkList = "/bookmark_list";
+
+  static const addBookmark = "/add_bookmark";
+
+  static const editBookmark = "/edit_bookmark";
+
+  static const addBookmarkSubItem = "/add_bookmark_subitem";
 }

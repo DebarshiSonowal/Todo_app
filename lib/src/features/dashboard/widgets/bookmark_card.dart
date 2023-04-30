@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 import '../../../constants/constants.dart';
+import '../../../constants/routes.dart';
+import '../../../repository/repository.dart';
 import 'image_item.dart';
 
 class BookmarkCard extends StatelessWidget {
@@ -44,15 +48,17 @@ class BookmarkCard extends StatelessWidget {
                 Text(
                   "Bookmark Ideas",
                   style: Theme.of(context).textTheme.headline4?.copyWith(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                    fontFamily: "PublicSans",
-                    fontWeight: FontWeight.bold,
-                  ),
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontFamily: "PublicSans",
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigation.instance.navigate(Routes.bookmark);
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.black54,
@@ -66,29 +72,59 @@ class BookmarkCard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: 4.w,
+                horizontal: 0.w,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  imageItem(
-                    image: Constances.internetImage,
-                    onTap: () {},
+              // child: Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     imageItem(
+              //       image: Constances.internetImage,
+              //       onTap: () {},
+              //     ),
+              //     imageItem(
+              //       image: Constances.figmaImage,
+              //       onTap: () {},
+              //     ),
+              //     imageItem(
+              //       image: Constances.studyIQImage,
+              //       onTap: () {},
+              //     ),
+              //     imageItem(
+              //       image: Constances.adobeImage,
+              //       onTap: () {},
+              //     ),
+              //   ],
+              // ),
+              child: Consumer<Repository>(builder: (context, data, _) {
+                return Container(
+                  width: double.infinity,
+                  height: 9.h,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 4.w,
                   ),
-                  imageItem(
-                    image: Constances.figmaImage,
-                    onTap: () {},
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      var item = data.bookmarks[index];
+                      return imageItem(
+                        image: item.image??"",
+                        onTap: () {
+                          Navigation.instance.navigate(Routes.bookmarkList, args: index);
+                        },
+                        text: item.title ?? "",
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: 3.w,
+                      );
+                    },
+                    itemCount: data.bookmarks.length,
                   ),
-                  imageItem(
-                    image: Constances.studyIQImage,
-                    onTap: () {},
-                  ),
-                  imageItem(
-                    image: Constances.adobeImage,
-                    onTap: () {},
-                  ),
-                ],
-              ),
+                );
+              }),
             ),
             SizedBox(
               height: 2.h,
