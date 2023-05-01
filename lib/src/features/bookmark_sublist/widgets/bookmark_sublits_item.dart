@@ -191,150 +191,150 @@ class BookmarkSublistItem extends StatelessWidget {
     );
   }
 
-  void showSpecialDialog(context) {
-    showGeneralDialog(
-      barrierLabel: "Label",
-      barrierDismissible: true,
-      // barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: 1),
-      context: context,
-      pageBuilder: (context, anim1, anim2) {
-        return const PopupMenu();
-      },
-      transitionBuilder: (context, anim1, anim2, child) {
-        return SlideTransition(
-          position:
-              Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
-          child: child,
-        );
-      },
-    );
-    // showCupertinoModalPopup<void>(
-    //   context: context,
-    //   builder: (BuildContext context) {
-    //     return Theme(
-    //       data: ThemeData.dark(),
-    //       child: CupertinoActionSheet(
-    //         // title: const Text('Title'),
-    //         // message: const Text('Message'),
-    //         actions: <CupertinoActionSheetAction>[
-    //           CupertinoActionSheetAction(
-    //             isDefaultAction: true,
-    //             onPressed: () {
-    //               Navigator.pop(context);
-    //             },
-    //             child:
-    //             Row(
-    //               children: [
-    //                 Image.asset(
-    //                   Constances.shareImage,
-    //                   color: Colors.white,
-    //                   scale: 14,
-    //                 ),
-    //                 SizedBox(
-    //                   width: 4.w,
-    //                 ),
-    //                 Text(
-    //                   "Share Via",
-    //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-    //                     color: Colors.white70,
-    //                     fontSize: 12.sp,
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //           CupertinoActionSheetAction(
-    //             onPressed: () {
-    //               Navigator.pop(context);
-    //             },
-    //             child:
-    //             Row(
-    //               children: [
-    //                 Image.asset(
-    //                   Constances.trashIcon,
-    //                   color: Colors.white,
-    //                 ),
-    //                 SizedBox(
-    //                   width: 4.w,
-    //                 ),
-    //                 Text(
-    //                   "Delete",
-    //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-    //                     color: Colors.red,
-    //                     fontSize: 12.sp,
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     );
-    //   },
-    // );
-    // showCupertinoDialog(
-    //   context: context,
-    //   builder: (context) => Align(
-    //     alignment: Alignment.centerRight,
-    //     child: Theme(
-    //       data: ThemeData.dark(),
-    //       child: CupertinoAlertDialog(
-    //         // title: Text(title),
-    //         // content: Text(content),
-    //         actions: <Widget>[
-    //           CupertinoDialogAction(
-    //             child: Row(
-    //               mainAxisAlignment: MainAxisAlignment.center,
-    //               children: [
-    //                 Image.asset(
-    //                   Constances.shareImage,
-    //                   color: Colors.white,
-    //                   fit: BoxFit.fitWidth,
-    //                   width: 12.w,
-    //                 ),
-    //                 SizedBox(
-    //                   width: 5.w,
-    //                 ),
-    //                 Text(
-    //                   "Share Via",
-    //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-    //                         color: Colors.white70,
-    //                         fontSize: 16.sp,
-    //                       ),
-    //                 ),
-    //               ],
-    //             ),
-    //             onPressed: () => Navigator.of(context).pop(false),
-    //           ),
-    //           CupertinoDialogAction(
-    //             child: Row(
-    //               mainAxisAlignment: MainAxisAlignment.center,
-    //               children: [
-    //                 Image.asset(
-    //                   Constances.deleteImage,
-    //                   color: Colors.white,
-    //                   fit: BoxFit.fitWidth,
-    //                   width: 12.w,
-    //                 ),
-    //                 SizedBox(
-    //                   width: 5.w,
-    //                 ),
-    //                 Text(
-    //                   "Delete",
-    //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-    //                         color: Colors.red,
-    //                         fontSize: 16.sp,
-    //                       ),
-    //                 ),
-    //               ],
-    //             ),
-    //             onPressed: () => Navigator.of(context).pop(false),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
-  }
+  // void showSpecialDialog(context) {
+  //   showGeneralDialog(
+  //     barrierLabel: "Label",
+  //     barrierDismissible: true,
+  //     // barrierColor: Colors.black.withOpacity(0.5),
+  //     transitionDuration: const Duration(milliseconds: 1),
+  //     context: context,
+  //     pageBuilder: (context, anim1, anim2) {
+  //       return const PopupMenu();
+  //     },
+  //     transitionBuilder: (context, anim1, anim2, child) {
+  //       return SlideTransition(
+  //         position:
+  //             Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+  //         child: child,
+  //       );
+  //     },
+  //   );
+  //   // showCupertinoModalPopup<void>(
+  //   //   context: context,
+  //   //   builder: (BuildContext context) {
+  //   //     return Theme(
+  //   //       data: ThemeData.dark(),
+  //   //       child: CupertinoActionSheet(
+  //   //         // title: const Text('Title'),
+  //   //         // message: const Text('Message'),
+  //   //         actions: <CupertinoActionSheetAction>[
+  //   //           CupertinoActionSheetAction(
+  //   //             isDefaultAction: true,
+  //   //             onPressed: () {
+  //   //               Navigator.pop(context);
+  //   //             },
+  //   //             child:
+  //   //             Row(
+  //   //               children: [
+  //   //                 Image.asset(
+  //   //                   Constances.shareImage,
+  //   //                   color: Colors.white,
+  //   //                   scale: 14,
+  //   //                 ),
+  //   //                 SizedBox(
+  //   //                   width: 4.w,
+  //   //                 ),
+  //   //                 Text(
+  //   //                   "Share Via",
+  //   //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+  //   //                     color: Colors.white70,
+  //   //                     fontSize: 12.sp,
+  //   //                   ),
+  //   //                 ),
+  //   //               ],
+  //   //             ),
+  //   //           ),
+  //   //           CupertinoActionSheetAction(
+  //   //             onPressed: () {
+  //   //               Navigator.pop(context);
+  //   //             },
+  //   //             child:
+  //   //             Row(
+  //   //               children: [
+  //   //                 Image.asset(
+  //   //                   Constances.trashIcon,
+  //   //                   color: Colors.white,
+  //   //                 ),
+  //   //                 SizedBox(
+  //   //                   width: 4.w,
+  //   //                 ),
+  //   //                 Text(
+  //   //                   "Delete",
+  //   //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+  //   //                     color: Colors.red,
+  //   //                     fontSize: 12.sp,
+  //   //                   ),
+  //   //                 ),
+  //   //               ],
+  //   //             ),
+  //   //           ),
+  //   //         ],
+  //   //       ),
+  //   //     );
+  //   //   },
+  //   // );
+  //   // showCupertinoDialog(
+  //   //   context: context,
+  //   //   builder: (context) => Align(
+  //   //     alignment: Alignment.centerRight,
+  //   //     child: Theme(
+  //   //       data: ThemeData.dark(),
+  //   //       child: CupertinoAlertDialog(
+  //   //         // title: Text(title),
+  //   //         // content: Text(content),
+  //   //         actions: <Widget>[
+  //   //           CupertinoDialogAction(
+  //   //             child: Row(
+  //   //               mainAxisAlignment: MainAxisAlignment.center,
+  //   //               children: [
+  //   //                 Image.asset(
+  //   //                   Constances.shareImage,
+  //   //                   color: Colors.white,
+  //   //                   fit: BoxFit.fitWidth,
+  //   //                   width: 12.w,
+  //   //                 ),
+  //   //                 SizedBox(
+  //   //                   width: 5.w,
+  //   //                 ),
+  //   //                 Text(
+  //   //                   "Share Via",
+  //   //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+  //   //                         color: Colors.white70,
+  //   //                         fontSize: 16.sp,
+  //   //                       ),
+  //   //                 ),
+  //   //               ],
+  //   //             ),
+  //   //             onPressed: () => Navigator.of(context).pop(false),
+  //   //           ),
+  //   //           CupertinoDialogAction(
+  //   //             child: Row(
+  //   //               mainAxisAlignment: MainAxisAlignment.center,
+  //   //               children: [
+  //   //                 Image.asset(
+  //   //                   Constances.deleteImage,
+  //   //                   color: Colors.white,
+  //   //                   fit: BoxFit.fitWidth,
+  //   //                   width: 12.w,
+  //   //                 ),
+  //   //                 SizedBox(
+  //   //                   width: 5.w,
+  //   //                 ),
+  //   //                 Text(
+  //   //                   "Delete",
+  //   //                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+  //   //                         color: Colors.red,
+  //   //                         fontSize: 16.sp,
+  //   //                       ),
+  //   //                 ),
+  //   //               ],
+  //   //             ),
+  //   //             onPressed: () => Navigator.of(context).pop(false),
+  //   //           ),
+  //   //         ],
+  //   //       ),
+  //   //     ),
+  //   //   ),
+  //   // );
+  // }
 }
