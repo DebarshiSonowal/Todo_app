@@ -117,8 +117,13 @@ class Repository extends ChangeNotifier {
     notifyListeners();
   }
   void deleteBookmarkItem(BookmarkSubItem item, int index) {
+    print(item.title);
     bookmarks[index].items!.remove(item);
+
     notifyListeners();
+  }
+  void deleteBookmarkSubItem(){
+
   }
 
   void updateReminderListItem(int index, ReminderListItem item, int num) {

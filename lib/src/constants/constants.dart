@@ -39,6 +39,7 @@ class Constances {
   static const plusIcon = 'assets/images/plus.png';
   static const addImageIcon = 'assets/images/addimage.svg';
   static const addImageImage = 'assets/images/addimage.png';
+  static const customCameraImage = 'assets/images/customCamera.png';
   static const cancelImage = 'assets/images/cancel.png';
   static const shareImage = "assets/images/share.png";
   static const deleteImage = "assets/images/delete.png";

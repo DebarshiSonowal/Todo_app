@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
 import '../../../models/bookmark.dart';
+import '../../../repository/repository.dart';
 import '../../../services/Navigate.dart';
 import 'PopupMenu.dart';
 
@@ -27,11 +29,13 @@ class BookmarkSublistItem extends StatelessWidget {
       blurSize: 0,
       menuItemExtent: 6.h,
       menuWidth: 50.w,
-      menuBoxDecoration: const BoxDecoration(
-        color: Constances.blueBackground,
-        borderRadius: BorderRadius.all(
-          Radius.circular(50.0),
-        ),
+      menuBoxDecoration: BoxDecoration(
+        // border: Border.all(
+        //   width: 0.04.h,
+        //   // assign the color to the border color
+        //   color: Colors.white,
+        // ),
+        borderRadius: BorderRadius.circular(50),
       ),
       duration: const Duration(milliseconds: 100),
       animateMenuItems: true,
@@ -44,10 +48,10 @@ class BookmarkSublistItem extends StatelessWidget {
       bottomOffsetHeight: 2.0,
       // Offset hei
       onPressed: () {},
-      menuItems: <FocusedMenuItem>[
+      menuItems: [
         // Add Each FocusedMenuItem  for Menu Options
         FocusedMenuItem(
-          backgroundColor: Constances.blueBackground,
+          backgroundColor: const Color(0xff50555c),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -55,21 +59,17 @@ class BookmarkSublistItem extends StatelessWidget {
                 Constances.shareImage,
                 color: Colors.white,
                 fit: BoxFit.fitWidth,
-                width: 7.w,
+                width: 6.w,
               ),
               SizedBox(
                 width: 5.w,
               ),
               Text(
                 "Share Via",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(
-                  color: Colors.white70,
-                  fontSize: 14.sp,
-                ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Colors.white70,
+                      fontSize: 14.sp,
+                    ),
               ),
             ],
           ),
@@ -78,7 +78,7 @@ class BookmarkSublistItem extends StatelessWidget {
           },
         ),
         FocusedMenuItem(
-          backgroundColor: Constances.blueBackground,
+          backgroundColor: const Color(0xff50555c),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -86,26 +86,36 @@ class BookmarkSublistItem extends StatelessWidget {
                 Constances.deleteImage,
                 color: Colors.white,
                 fit: BoxFit.fitWidth,
-                width: 7.w,
+                width: 6.w,
               ),
               SizedBox(
                 width: 5.w,
               ),
               Text(
                 "Delete",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(
-                  color: Colors.red,
-                  fontSize: 14.sp,
-                ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Colors.red,
+                      fontSize: 14.sp,
+                    ),
               ),
             ],
           ),
           onPressed: () {
             Navigation.instance.goBack();
+            if ((Provider.of<Repository>(context, listen: false)
+                        .bookmarks[index]
+                        .items
+                        ?.length ??
+                    0) >
+                1) {
+              Provider.of<Repository>(context, listen: false)
+                  .deleteBookmarkItem(item, index);
+            } else {
+              Provider.of<Repository>(context, listen: false).deleteBookmark(
+                  Provider.of<Repository>(context, listen: false)
+                      .bookmarks[index]);
+              Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
+            }
           },
         ),
       ],
@@ -113,14 +123,15 @@ class BookmarkSublistItem extends StatelessWidget {
         width: double.infinity,
         color: Constances.blueBackground,
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 6.w,
-            vertical: 1.h,
+          padding: EdgeInsets.only(
+            right: 6.w,
+            left: 6.w,
+            top: 1.h,
           ),
           child: Column(
             children: [
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigation.instance
                       .navigate(Routes.editBookmark, args: "$index,$index2");
                 },
@@ -129,10 +140,11 @@ class BookmarkSublistItem extends StatelessWidget {
                   children: [
                     Text(
                       item.title ?? "",
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            color: Colors.white,
-                            fontSize: 14.sp,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                              ),
                     ),
                     SvgPicture.asset(
                       Constances.editIcon,
@@ -149,30 +161,29 @@ class BookmarkSublistItem extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: 70.w,
                     child: Text(
                       item.link ?? "",
                       overflow: TextOverflow.clip,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            color: Colors.white70,
-                            fontSize: 12.sp,
-                            decoration: TextDecoration.underline,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: Colors.white70,
+                                fontSize: 12.sp,
+                                decoration: TextDecoration.underline,
+                              ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      showSpecialDialog(context);
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(1.w),
-                        child: const Icon(Icons.more_horiz)),
                   ),
                 ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                  Icon(Icons.more_horiz),
+                ],
+              )
             ],
           ),
         ),
@@ -193,7 +204,7 @@ class BookmarkSublistItem extends StatelessWidget {
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
           position:
-          Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+              Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
           child: child,
         );
       },
@@ -326,5 +337,4 @@ class BookmarkSublistItem extends StatelessWidget {
     //   ),
     // );
   }
-
 }

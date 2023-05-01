@@ -66,12 +66,12 @@ class BookmarkListItem extends StatelessWidget {
                     ).image,
                   ),
             SizedBox(
-              width: 4.w,
+              width: 5.w,
             ),
             Text(
               "${bookmark.title == null ? ((bookmark.items?.isEmpty ?? true) ? "" : (bookmark.items?.first.title ?? "")) : (bookmark.title)}",
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.white70,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    color: Colors.white,
                   ),
             ),
           ],

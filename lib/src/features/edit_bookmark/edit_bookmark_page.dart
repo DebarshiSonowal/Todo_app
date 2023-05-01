@@ -123,29 +123,29 @@ class _EditBookmarkPageState extends State<EditBookmarkPage> {
                           maxLines: 2,
                           minLines: 1,
                           decoration: InputDecoration.collapsed(
-                            hintText: 'Content Title',
+                            hintText: 'Add Title',
                             hintStyle:
-                                Theme.of(context).textTheme.headline4?.copyWith(
-                                      fontSize: 12.sp,
-                                      color: Colors.white70,
-                                      // fontWeight: FontWeight.bold,
-                                      fontFamily: "Roboto",
-                                    ),
+                            Theme.of(context).textTheme.headline4?.copyWith(
+                              fontSize: 12.sp,
+                              color: Colors.white70,
+                              // fontWeight: FontWeight.bold,
+                              fontFamily: "Roboto",
+                            ),
                           ),
                           style:
-                              Theme.of(context).textTheme.headline4?.copyWith(
-                                    fontSize: 14.sp,
-                                    color: Colors.white,
-                                    // fontWeight: FontWeight.bold,
-                                    fontFamily: "Roboto",
-                                  ),
+                          Theme.of(context).textTheme.headline4?.copyWith(
+                            fontSize: 14.sp,
+                            color: Colors.white,
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto",
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: 1.h,
+                        height: 2.7.h,
                       ),
                       Container(
-                        height: 20.h,
+                        height: 25.h,
                         padding: EdgeInsets.symmetric(
                           horizontal: 3.w,
                           vertical: 2.h,
@@ -162,24 +162,24 @@ class _EditBookmarkPageState extends State<EditBookmarkPage> {
                           decoration: InputDecoration.collapsed(
                             hintText: 'Add link',
                             hintStyle:
-                                Theme.of(context).textTheme.headline4?.copyWith(
-                                      fontSize: 12.sp,
-                                      color: Colors.white70,
-                                      // fontWeight: FontWeight.bold,
-                                      fontFamily: "Roboto",
-                                    ),
+                            Theme.of(context).textTheme.headline4?.copyWith(
+                              fontSize: 12.sp,
+                              color: Colors.white70,
+                              // fontWeight: FontWeight.bold,
+                              fontFamily: "Roboto",
+                            ),
                           ),
                           style:
-                              Theme.of(context).textTheme.headline4?.copyWith(
-                                    fontSize: 14.sp,
-                                    color: Colors.white,
-                                    // fontWeight: FontWeight.bold,
-                                    fontFamily: "Roboto",
-                                  ),
+                          Theme.of(context).textTheme.headline4?.copyWith(
+                            fontSize: 14.sp,
+                            color: Colors.white,
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto",
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: 4.h,
+                        height: 7.h,
                       ),
                     ],
                   ),

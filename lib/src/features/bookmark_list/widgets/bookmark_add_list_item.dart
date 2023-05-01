@@ -31,9 +31,9 @@ class BookmarkAddListItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: SvgPicture.asset(
-                Constances.addImageIcon,
-                color: Colors.white38,
+              child: Image.asset(
+                Constances.customCameraImage,
+                // color: Colors.white38,
                 fit: BoxFit.cover,
                 height: 50.sp,
                 width: 50.sp,
@@ -43,7 +43,7 @@ class BookmarkAddListItem extends StatelessWidget {
               width: 4.w,
             ),
             Text(
-              "Add title",
+              "Add File",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Colors.white70,
               ),

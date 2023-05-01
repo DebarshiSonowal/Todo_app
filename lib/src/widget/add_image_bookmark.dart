@@ -29,7 +29,7 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Constances.gradientColor1.withOpacity(0.3),
+      backgroundColor: Constances.gradientColor2,
       title: const Center(
         child: Text(
           "",
@@ -109,7 +109,7 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
               height: 3.h,
             ),
             const Text(
-              "Title",
+              "",
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16,color: Colors.white70),
             ),
             SizedBox(
@@ -117,8 +117,8 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
             ),
             Container(
               padding: EdgeInsets.symmetric(
-                horizontal: 2.w,
-                vertical: 0.5.h,
+                horizontal: 2.7.w,
+                vertical: 1.h,
               ),
               decoration: const BoxDecoration(
                 color: Constances.textFieldBackground,
@@ -130,16 +130,17 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
                 maxLines: 2,
                 minLines: 1,
                 decoration: InputDecoration.collapsed(
-                  hintText: 'Add title',
+
+                  hintText: 'File name',
                   hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
-                        fontSize: 9.sp,
+                        fontSize: 11.sp,
                         color: Colors.white54,
                         // fontWeight: FontWeight.bold,
                         fontFamily: "Roboto",
                       ),
                 ),
                 style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 13.sp,
+                      fontSize: 14.sp,
                       color: Colors.white,
                       // fontWeight: FontWeight.bold,
                       fontFamily: "Roboto",
@@ -147,7 +148,7 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
               ),
             ),
             SizedBox(
-              height: 2.h,
+              height: 4.h,
             ),
             DoneButton(
               txt: "Save",

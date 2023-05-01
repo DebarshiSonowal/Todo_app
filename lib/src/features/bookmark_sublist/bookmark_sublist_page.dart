@@ -41,6 +41,7 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
         width: double.infinity,
         padding: EdgeInsets.symmetric(
           vertical: 1.h,
+          horizontal: 1.w,
         ),
         child: Consumer<Repository>(builder: (context, data, _) {
           return Column(
@@ -64,7 +65,10 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return Container();
+                  return    Divider(
+                    thickness: 0.04.h,
+                    color: Colors.white54,
+                  );
                 },
                 itemCount: data.bookmarks[widget.index].items?.length ?? 0,
               ),

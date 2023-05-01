@@ -96,7 +96,7 @@ class AddBookmarkPage extends StatelessWidget {
                           maxLines: 2,
                           minLines: 1,
                           decoration: InputDecoration.collapsed(
-                            hintText: 'Content Title',
+                            hintText: 'Add Title',
                             hintStyle:
                                 Theme.of(context).textTheme.headline4?.copyWith(
                                       fontSize: 12.sp,
@@ -115,10 +115,10 @@ class AddBookmarkPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 1.h,
+                        height: 2.7.h,
                       ),
                       Container(
-                        height: 20.h,
+                        height: 25.h,
                         padding: EdgeInsets.symmetric(
                           horizontal: 3.w,
                           vertical: 2.h,
@@ -152,7 +152,7 @@ class AddBookmarkPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 4.h,
+                        height: 7.h,
                       ),
                     ],
                   ),

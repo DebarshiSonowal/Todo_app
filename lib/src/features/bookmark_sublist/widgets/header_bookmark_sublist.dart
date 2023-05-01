@@ -32,9 +32,9 @@ class HeaderBookmarkSublist extends StatelessWidget {
                     data.bookmarks[index].image == "")
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: SvgPicture.asset(
-                      Constances.addImageIcon,
-                      color: Colors.white38,
+                    child: Image.asset(
+                      Constances.customCameraImage,
+                      // color: Colors.white38,
                       fit: BoxFit.cover,
                       height: 50.sp,
                       width: 50.sp,
@@ -50,7 +50,7 @@ class HeaderBookmarkSublist extends StatelessWidget {
               height: 1.h,
             ),
             Text(
-              data.bookmarks[index].title ?? "Add Title",
+              data.bookmarks[index].title ?? "File name",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white54,
                   ),

@@ -48,15 +48,15 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
               child: Consumer<Repository>(builder: (context, data, _) {
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    return (data.bookmarks.isEmpty || index == 0)
+                    return (data.bookmarks.isEmpty&&index == 0)
                         ? BookmarkAddListItem(
                             onTap: () {
                               Navigation.instance.navigate(Routes.addBookmark);
                             },
                           )
                         : BookmarkListItem(
-                            bookmark: data.bookmarks[index - 1],
-                            index: index - 1,
+                            bookmark: data.bookmarks[index],
+                            index: index,
                           );
                   },
                   separatorBuilder: (context, index) {
@@ -64,7 +64,7 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
                       height: 1.h,
                     );
                   },
-                  itemCount: data.bookmarks.length + 1,
+                  itemCount: data.bookmarks.isEmpty?1:data.bookmarks.length,
                 );
               }),
             ),
