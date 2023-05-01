@@ -39,6 +39,9 @@ class Constances {
   static const plusIcon = 'assets/images/plus.png';
   static const addImageIcon = 'assets/images/addimage.svg';
   static const addImageImage = 'assets/images/addimage.png';
+  static const cancelImage = 'assets/images/cancel.png';
+  static const shareImage = "assets/images/share.png";
+  static const deleteImage = "assets/images/delete.png";
 
   //second
   static const backgroundImage = 'assets/images/background_blurr.png';
@@ -129,4 +132,6 @@ class Constances {
   static const editTimeSelectedCardTextColor = Color(0xffa1a5ab);
 
   static const splashScreenAnimation = "assets/animations/splash.gif";
+
+
 }

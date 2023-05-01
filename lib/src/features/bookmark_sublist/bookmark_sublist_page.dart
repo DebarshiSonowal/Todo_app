@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/constants.dart';
@@ -12,6 +15,7 @@ import 'package:vishal_todo_app/src/services/Navigate.dart';
 import '../../constants/routes.dart';
 import '../../widget/add_image_bookmark.dart';
 import '../bookmark_list/widgets/bookmark_appbar.dart';
+import 'widgets/bookmark_sublits_item.dart';
 import 'widgets/header_bookmark_sublist.dart';
 
 class BookmarkSublistPage extends StatefulWidget {
@@ -23,7 +27,6 @@ class BookmarkSublistPage extends StatefulWidget {
 }
 
 class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +47,6 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeaderBookmarkSublist(
-
                 index: widget.index,
               ),
               Divider(
@@ -62,10 +64,7 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return Divider(
-                    thickness: 0.04.h,
-                    color: Colors.white54,
-                  );
+                  return Container();
                 },
                 itemCount: data.bookmarks[widget.index].items?.length ?? 0,
               ),
@@ -98,75 +97,4 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
   }
 }
 
-class BookmarkSublistItem extends StatelessWidget {
-  const BookmarkSublistItem({
-    super.key,
-    required this.item,
-    required this.index,
-    required this.index2,
-  });
 
-  final BookmarkSubItem item;
-  final int index, index2;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigation.instance
-            .navigate(Routes.editBookmark, args: "$index,$index2");
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 6.w,
-        ),
-        width: double.infinity,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  item.title ?? "",
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
-                        fontSize: 14.sp,
-                      ),
-                ),
-                SvgPicture.asset(
-                  Constances.editIcon,
-                  color: Colors.white,
-                  fit: BoxFit.fill,
-                  height: 14.sp,
-                  width: 14.sp,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(
-                  width: 70.w,
-                  child: Text(
-                    item.link ?? "",
-                    overflow: TextOverflow.clip,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: Colors.white70,
-                          fontSize: 12.sp,
-                          decoration: TextDecoration.underline,
-                        ),
-                  ),
-                ),
-                const Icon(Icons.more_horiz)
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
