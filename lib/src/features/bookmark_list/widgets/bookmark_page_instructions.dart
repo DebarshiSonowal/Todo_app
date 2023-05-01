@@ -19,9 +19,9 @@ class BookmarkPageInstructions extends StatelessWidget {
             children: [
               Container(
                 height: 39.h,
-                width: 79.w,
+                width: 84.w,
                 margin: EdgeInsets.only(
-                  right: 1.w,
+                  right: 0.5.w,
                   bottom: 2.h,
                 ),
                 padding: EdgeInsets.all(8.5.w,),
@@ -53,7 +53,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                   ?.copyWith(
                                     color: Colors.black,
                                     fontFamily: "Roboto",
-                                    fontSize: 13.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -85,7 +85,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                     .bodyMedium
                                     ?.copyWith(
                                       color: Colors.black,
-                                      fontSize: 9.sp,
+                                      fontSize: 10.sp,
                                       fontFamily: "ABeeZee",
                                     ),
                               ),
@@ -96,7 +96,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                     .bodyMedium
                                     ?.copyWith(
                                       color: Colors.black,
-                                      fontSize: 9.sp,
+                                  fontSize: 10.sp,
                                       fontFamily: "ABeeZee",
                                     ),
                               ),
@@ -107,7 +107,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                     .bodyMedium
                                     ?.copyWith(
                                       color: Colors.black,
-                                      fontSize: 9.sp,
+                                  fontSize: 10.sp,
                                       fontFamily: "ABeeZee",
                                     ),
                               ),
@@ -120,7 +120,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                       .bodyMedium
                                       ?.copyWith(
                                         color: Colors.black,
-                                        fontSize: 9.sp,
+                                    fontSize: 10.sp,
                                         fontFamily: "ABeeZee",
                                       ),
 
@@ -132,7 +132,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                           .bodyMedium
                                           ?.copyWith(
                                             color: Colors.black,
-                                            fontSize: 9.sp,
+                                        fontSize: 10.sp,
                                             fontFamily: "ABeeZee",
                                           ),
                                     ),
@@ -143,7 +143,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                           .bodyMedium
                                           ?.copyWith(
                                             color: Colors.green,
-                                            fontSize: 9.sp,
+                                        fontSize: 10.sp,
                                             fontFamily: "ABeeZee",
                                           ),
                                     ),
@@ -154,7 +154,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                           .bodyMedium
                                           ?.copyWith(
                                             color: Colors.black,
-                                            fontSize: 9.sp,
+                                        fontSize: 10.sp,
                                             fontFamily: "ABeeZee",
                                           ),
                                     ),
@@ -170,7 +170,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                       .bodyMedium
                                       ?.copyWith(
                                         color: Colors.black,
-                                        fontSize: 9.sp,
+                                    fontSize: 10.sp,
                                         fontFamily: "ABeeZee",
                                       ),
 
@@ -182,7 +182,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                           .bodyMedium
                                           ?.copyWith(
                                             color: Colors.red,
-                                            fontSize: 9.sp,
+                                        fontSize: 10.sp,
                                             fontFamily: "ABeeZee",
                                           ),
                                     ),
@@ -193,7 +193,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                           .bodyMedium
                                           ?.copyWith(
                                             color: Colors.black,
-                                            fontSize: 9.sp,
+                                        fontSize: 10.sp,
                                             fontFamily: "ABeeZee",
                                           ),
                                     ),
@@ -204,7 +204,7 @@ class BookmarkPageInstructions extends StatelessWidget {
                                           .bodyMedium
                                           ?.copyWith(
                                             color: Colors.blue,
-                                            fontSize: 9.sp,
+                                        fontSize: 10.sp,
                                             fontFamily: "ABeeZee",
                                           ),
                                     ),
@@ -255,8 +255,8 @@ class BookmarkPageInstructions extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(
-                  right: 48.w,
-                  bottom: 2.h,
+                  right: 52.w,
+                  bottom: 2.5.h,
                 ),
                 child: IconButton(
                   onPressed: () {
