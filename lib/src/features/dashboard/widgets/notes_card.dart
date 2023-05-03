@@ -53,7 +53,7 @@ class notesCard extends StatelessWidget {
                         name,
                         style: Theme.of(context).textTheme.headline4?.copyWith(
                               color: Colors.black,
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontFamily: "PublicSans",
                               fontWeight: FontWeight.bold,
                             ),
@@ -64,7 +64,7 @@ class notesCard extends StatelessWidget {
                         icon: Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.black54,
-                          size: 12.sp,
+                          size: 11.sp,
                         ),
                       ),
                     ],

@@ -37,7 +37,7 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
         ),
       ),
       content: SizedBox(
-        height: 27.h,
+        height: 28.h,
         child: Column(
           children: [
             attachment == null

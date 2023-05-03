@@ -27,7 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(10.h),
+        preferredSize: Size.fromHeight(10.5.h),
         child: const AppBarWidget(),
       ),
       body: Container(
@@ -81,7 +81,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         CustomNote(title: "Oil", amount: "1 ltr"),
                       ],
                       onTap: () {},
-                      name: "Notes",
+                      name: "Essentials",
                     ),
                     notesCard(
                       image: Constances.handImage,

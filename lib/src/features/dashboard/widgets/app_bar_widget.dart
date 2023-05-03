@@ -23,7 +23,7 @@ class AppBarWidget extends StatelessWidget {
           icon: Icon(
             Icons.calendar_month,
             color: Colors.white,
-            size: 22.sp,
+            size: 21.sp,
           ),
         )
       ],
@@ -33,7 +33,7 @@ class AppBarWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
-              height: 4.h,
+              height: 4.5.h,
             ),
             Text(
               DateFormat("MMM yyyy").format(DateTime.now()),
@@ -44,10 +44,10 @@ class AppBarWidget extends StatelessWidget {
                   ),
             ),
             SizedBox(
-              height: 1.5.h,
+              height: 2.4.h,
             ),
             SizedBox(
-              height: 4.8.h,
+              height: 4.9.h,
               width: double.infinity,
               child: ListView.separated(
                 shrinkWrap: true,

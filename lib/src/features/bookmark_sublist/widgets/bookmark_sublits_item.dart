@@ -138,13 +138,17 @@ class BookmarkSublistItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      item.title ?? "",
-                      style:
-                          Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                color: Colors.white,
-                                fontSize: 14.sp,
-                              ),
+                    SizedBox(
+                      width:50.w,
+                      child: Text(
+                        item.title ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                ),
+                      ),
                     ),
                     SvgPicture.asset(
                       Constances.editIcon,

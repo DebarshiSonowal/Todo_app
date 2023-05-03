@@ -22,15 +22,14 @@ class imageItem extends StatelessWidget {
       onTap: () => onTap(),
       child: Column(
         children: [
-          (image == null||image=="")
+          (image == null || image == "")
               ? Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.black87,
-                    )
-                  ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                        color: Colors.black87,
+                      )),
                   padding: EdgeInsets.all(4.4.w),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
@@ -43,23 +42,40 @@ class imageItem extends StatelessWidget {
                     ),
                   ),
                 )
-              : Image.file(
-                  File(image),
-                  fit: BoxFit.fill,
-                  height: 6.h,
-                  width: 13.w,
+              : Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                      color: Colors.black87,
+                    ),
+                  ),
+                  // padding: EdgeInsets.all(4.4.w),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.file(
+                      File(image),
+                      fit: BoxFit.fill,
+                      height: 6.5.h,
+                      width: 14.w,
+                    ),
+                  ),
                 ),
           SizedBox(
+            height: 0.5.h,
+          ),
+          SizedBox(
             width: 20.w,
-            height: 3.h,
+            // height: 2.5.h,
             child: Column(
               children: [
                 Text(
                   text,
                   maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 12.5.sp,
                         fontFamily: "PublicSans",
                         // fontWeight: FontWeight.bold,
                         // fontWeight: FontWeight.bold,

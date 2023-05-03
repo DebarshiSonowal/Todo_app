@@ -23,7 +23,7 @@ class BookmarkCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 1.w,
-          vertical: 1.h,
+          vertical: 0.5.h,
         ),
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -68,7 +68,7 @@ class BookmarkCard extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 0.5.h,
+              height: 0.3.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -98,7 +98,7 @@ class BookmarkCard extends StatelessWidget {
               child: Consumer<Repository>(builder: (context, data, _) {
                 return Container(
                   width: double.infinity,
-                  height: 9.h,
+                  height: 10.h,
                   padding: EdgeInsets.symmetric(
                     horizontal: 4.w,
                   ),
@@ -109,9 +109,10 @@ class BookmarkCard extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var item = data.bookmarks[index];
                       return imageItem(
-                        image: item.image??"",
+                        image: item.image ?? "",
                         onTap: () {
-                          Navigation.instance.navigate(Routes.bookmarkList, args: index);
+                          Navigation.instance
+                              .navigate(Routes.bookmarkList, args: index);
                         },
                         text: item.title ?? "",
                       );
@@ -125,9 +126,6 @@ class BookmarkCard extends StatelessWidget {
                   ),
                 );
               }),
-            ),
-            SizedBox(
-              height: 2.h,
             ),
           ],
         ),
