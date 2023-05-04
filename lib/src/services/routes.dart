@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_todo_app/src/features/dashboard/dashboard_screen.dart';
+import 'package:vishal_todo_app/src/features/essential_list/essential_list_page.dart';
+import 'package:vishal_todo_app/src/features/essentials_edit_page.dart';
 import '../constants/constants.dart';
 import '../constants/routes.dart';
 
@@ -8,6 +10,7 @@ import '../features/add_bookmark/add_bookmark_page.dart';
 import '../features/add_bookmark_sublist_item/add_bookmark_list_item.dart';
 import '../features/add_daily_routine/add_daily_routine.dart';
 import '../features/add_daily_routine_normal/add_daily_routine_normal.dart';
+import '../features/add_essential/add_essential_page.dart';
 import '../features/add_personal/add_personal_page.dart';
 import '../features/bookmark_list/bookmark_list_page.dart';
 import '../features/bookmark_sublist/bookmark_sublist_page.dart';
@@ -131,6 +134,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         page: EditBookmarkPage(index: settings.arguments as String),
       );
 
+    //essential
+    case Routes.addEssentialPage:
+      return FadeTransitionPageRouteBuilder(
+        page: const AddEssentialPage(),
+      );
+    case Routes.essentialsList:
+      return FadeTransitionPageRouteBuilder(page: const EssentialListPage());
+    case Routes.essentialsEdit:
+      return FadeTransitionPageRouteBuilder(
+          page: EssentialEditPage(index: settings.arguments as int));
     default:
       return FadeTransitionPageRouteBuilder(
         page: Container(),

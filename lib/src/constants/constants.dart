@@ -134,5 +134,7 @@ class Constances {
 
   static const splashScreenAnimation = "assets/animations/splash.gif";
 
+  static const essentialItemColor = Color(0xffa8b4e0);
+
 
 }

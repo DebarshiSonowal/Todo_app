@@ -38,4 +38,10 @@ class Routes {
   static const editBookmark = "/edit_bookmark";
 
   static const addBookmarkSubItem = "/add_bookmark_subitem";
+
+  static const addEssentialPage = "/add_essentials";
+
+  static const essentialsList = "/essentials_list";
+
+  static const essentialsEdit = "/essentials_edit";
 }

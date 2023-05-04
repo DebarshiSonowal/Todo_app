@@ -7,90 +7,48 @@ import 'package:vishal_todo_app/src/models/timer_section_option_model.dart';
 
 import '../models/bookmark.dart';
 import '../models/daily_routine_model.dart';
+import '../models/essential_note.dart';
 
 class Repository extends ChangeNotifier {
-  List<DailyRoutineModel> models = [
-        // DailyRoutineModel(
-        //   "Drink Lemon Tea",
-        //   "6:30 PM",
-        //   DateTime.now().subtract(
-        //     const Duration(
-        //       days: 1,
-        //       hours: 2,
-        //     ),
-        //   ),
-        //   Constances.coffeeImage,
-        //   [],
-        //   TimerSelectionOptions("buzz", 40, false),
-        // ),
-        // DailyRoutineModel(
-        //   "Shower",
-        //   "3:30 PM",
-        //   DateTime.now().subtract(
-        //     const Duration(
-        //       days: 4,
-        //       hours: 1,
-        //     ),
-        //   ),
-        //   Constances.bathtubImage,
-        //   [
-        //     ReminderListItem(
-        //       "Morning Shower",
-        //       "9:30 AM",
-        //       DateTime.now().subtract(
-        //         const Duration(
-        //           days: 4,
-        //           hours: 4,
-        //         ),
-        //       ),
-        //       false,
-        //     ),
-        //     ReminderListItem(
-        //       "Afternoon Shower",
-        //       "3:30 PM",
-        //       DateTime.now().subtract(
-        //         const Duration(
-        //           days: 4,
-        //           hours: 4,
-        //         ),
-        //       ),
-        //       false,
-        //     ),
-        //   ],
-        //   TimerSelectionOptions("ring", 50, true),
-        // )
-      ],
-      personals = [];
+  List<DailyRoutineModel> models = [], personals = [];
 
-  // List<Personal> personals=[];
+  List<Bookmark> bookmarks = [];
 
-  // void addPersonal(Personal data){
-  //   personals.add(data);
-  //   notifyListeners();
-  // }
-  //
-  // void updatePersonal(Personal data,int index){
-  //   personals[index] = data;
-  //   notifyListeners();
-  // }
-  //
-  // void removePersonal(Personal data){
-  //   personals.remove(data);
-  //   notifyListeners();
-  // }
+  List<EssentialNotes> essentials = [];
 
-  List<Bookmark> bookmarks = [
-    // Bookmark(
-    //   title: "Adobe",
-    //   image: Constances.adobeImage,
-    //   items: [
-    //     BookmarkSubItem(
-    //       title: "My favorite",
-    //       link: "https://major-project-backend-m8rs.onrender.com"
-    //     ),
-    //   ]
-    // ),
-  ];
+  void addEssential(EssentialNotes list) {
+    essentials.add(list);
+    notifyListeners();
+  }
+
+  void removeEssential(EssentialNotes list) {
+    essentials.remove(list);
+    notifyListeners();
+  }
+  void updateEssentials(EssentialNotes list,int index){
+    essentials[index] = list;
+    notifyListeners();
+  }
+
+  void addEssentialItem(int index, EssentialNote item) {
+    essentials[index].notes.add(item);
+    notifyListeners();
+  }
+
+  void removeEssentialItem(int index, EssentialNote item) {
+    essentials[index].notes.remove(item);
+    notifyListeners();
+  }
+
+  void addNewEssentialItem(EssentialNote item) {
+    essentials.add(
+      EssentialNotes(
+        [item],
+        DateFormat("dd MMM yyyy").format(DateTime.now()),
+      ),
+    );
+    notifyListeners();
+  }
 
   void addBookmark(Bookmark bookmark) {
     bookmarks.add(bookmark);
@@ -112,19 +70,19 @@ class Repository extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateBookmarkItem(BookmarkSubItem item, int index,int index2) {
+  updateBookmarkItem(BookmarkSubItem item, int index, int index2) {
     bookmarks[index].items![index2] = item;
     notifyListeners();
   }
+
   void deleteBookmarkItem(BookmarkSubItem item, int index) {
     print(item.title);
     bookmarks[index].items!.remove(item);
 
     notifyListeners();
   }
-  void deleteBookmarkSubItem(){
 
-  }
+  void deleteBookmarkSubItem() {}
 
   void updateReminderListItem(int index, ReminderListItem item, int num) {
     models[index].reminders[num] = item;

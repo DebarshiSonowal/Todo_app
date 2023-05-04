@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/repository/repository.dart';
 
 import '../../../constants/constants.dart';
 import '../../../models/reminder_list_item.dart';
@@ -143,7 +145,9 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+
+          },
           icon: SvgPicture.asset(
             Constances.trashIcon,
             fit: BoxFit.fill,

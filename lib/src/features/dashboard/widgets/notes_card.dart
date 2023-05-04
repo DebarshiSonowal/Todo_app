@@ -11,11 +11,14 @@ class notesCard extends StatelessWidget {
     required this.list,
     required this.onTap,
     required this.name,
+    required this.onArrowClick,
+    this.widget,
   });
 
   final String image, name;
   final List<CustomNote> list;
-  final Function onTap;
+  final Widget? widget;
+  final Function onTap, onArrowClick;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,7 @@ class notesCard extends StatelessWidget {
                       ),
                       const Spacer(),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => onArrowClick(),
                         icon: Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.black54,
@@ -71,48 +74,52 @@ class notesCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        var item = list[index];
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              item.title ?? "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  ?.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 11.sp,
-                                    fontFamily: "PublicSans",
-                                    // fontWeight: FontWeight.bold,
+                    child: widget == null
+                        ? ListView.separated(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              var item = list[index];
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    item.title ?? "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline4
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                          fontSize: 11.sp,
+                                          fontFamily: "PublicSans",
+                                          // fontWeight: FontWeight.bold,
+                                        ),
                                   ),
-                            ),
-                            Text(
-                              item.amount ?? "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  ?.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 11.sp,
-                                    fontFamily: "PublicSans",
-                                    // fontWeight: FontWeight.bold,
+                                  Text(
+                                    item.amount ?? "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline4
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                          fontSize: 11.sp,
+                                          fontFamily: "PublicSans",
+                                          // fontWeight: FontWeight.bold,
+                                        ),
                                   ),
-                            ),
-                          ],
-                        );
-                      },
-                      itemCount: list.length,
-                      separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(
-                          height: 0.4.h,
-                        );
-                      },
-                    ),
+                                ],
+                              );
+                            },
+                            itemCount: list.length,
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return SizedBox(
+                                height: 0.4.h,
+                              );
+                            },
+                          )
+                        : widget,
                   ),
                 ],
               ),
