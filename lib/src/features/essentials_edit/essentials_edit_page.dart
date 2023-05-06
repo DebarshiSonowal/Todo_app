@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/models/essential_note.dart';
 
-import '../constants/constants.dart';
-import '../constants/routes.dart';
-import '../repository/repository.dart';
-import '../services/Navigate.dart';
-import 'add_essential/Widgets/add_essential_page_empty_item.dart';
-import 'add_essential/Widgets/add_essential_page_item.dart';
-import 'add_essential/Widgets/essential_appbar.dart';
+import '../../constants/constants.dart';
+import '../../constants/routes.dart';
+import '../../repository/repository.dart';
+import '../../services/Navigate.dart';
+import '../add_essential/Widgets/add_essential_page_empty_item.dart';
+import '../add_essential/Widgets/add_essential_page_item.dart';
+import '../add_essential/Widgets/essential_appbar.dart';
 
 class EssentialEditPage extends StatefulWidget {
   const EssentialEditPage({Key? key, required this.index}) : super(key: key);
@@ -27,7 +27,7 @@ class _EssentialEditPageState extends State<EssentialEditPage> {
   void initState() {
     super.initState();
     Future.delayed(
-        Duration(
+        const Duration(
           milliseconds: 10,
         ), () {
       setState(() {

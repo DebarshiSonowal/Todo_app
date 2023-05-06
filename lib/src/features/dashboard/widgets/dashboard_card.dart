@@ -105,7 +105,7 @@ class DashboardCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 1.5.h,
+              height: 1.1.h,
             ),
             Consumer<Repository>(builder: (context, data, _) {
               return Container(
@@ -152,7 +152,7 @@ class DashboardCard extends StatelessWidget {
                   );
             }),
             SizedBox(
-              height: 1.h,
+              height: 0.5.h,
             ),
           ],
         ),

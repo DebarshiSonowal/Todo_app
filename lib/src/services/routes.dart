@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_todo_app/src/features/dashboard/dashboard_screen.dart';
 import 'package:vishal_todo_app/src/features/essential_list/essential_list_page.dart';
-import 'package:vishal_todo_app/src/features/essentials_edit_page.dart';
+import 'package:vishal_todo_app/src/features/essentials_edit/essentials_edit_page.dart';
 import '../constants/constants.dart';
 import '../constants/routes.dart';
 
@@ -12,15 +12,18 @@ import '../features/add_daily_routine/add_daily_routine.dart';
 import '../features/add_daily_routine_normal/add_daily_routine_normal.dart';
 import '../features/add_essential/add_essential_page.dart';
 import '../features/add_personal/add_personal_page.dart';
+import '../features/add_quick_notes/add_quick_notes_page.dart';
 import '../features/bookmark_list/bookmark_list_page.dart';
 import '../features/bookmark_sublist/bookmark_sublist_page.dart';
 import '../features/date_selected/date_selected_page.dart';
 import '../features/edit_bookmark/edit_bookmark_page.dart';
 import '../features/edit_daily_routine/edit_daily_routine.dart';
 import '../features/edit_personal_info/edit_personal_info_page.dart';
+import '../features/edit_quick_notes/edit_quick_notes_page.dart';
 import '../features/edit_timer_selected/edit_timer_selected.dart';
 import '../features/personal_enter_info/personal_enter_info_page.dart';
 import '../features/personal_time_date_selector/personal_timer_date_page.dart';
+import '../features/quick_notes/quick_notes_page.dart';
 import '../features/splash_screen/splash_screen.dart';
 import '../features/time_date_selector/time_date_selector.dart';
 import '../features/timer_selected/timer_selected_page.dart';
@@ -144,6 +147,22 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case Routes.essentialsEdit:
       return FadeTransitionPageRouteBuilder(
           page: EssentialEditPage(index: settings.arguments as int));
+
+    //quick
+    case Routes.addQuickPage:
+      return FadeTransitionPageRouteBuilder(
+        page: AddQuickNotesPage(),
+      );
+    case Routes.quickNotesList:
+      return FadeTransitionPageRouteBuilder(
+        page: const QuickNotesPage(),
+      );
+    case Routes.editQuickNotes:
+      return FadeTransitionPageRouteBuilder(
+        page: EditQuickNotesPage(
+          index: settings.arguments as int,
+        ),
+      );
     default:
       return FadeTransitionPageRouteBuilder(
         page: Container(),

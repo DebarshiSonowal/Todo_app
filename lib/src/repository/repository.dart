@@ -8,6 +8,7 @@ import 'package:vishal_todo_app/src/models/timer_section_option_model.dart';
 import '../models/bookmark.dart';
 import '../models/daily_routine_model.dart';
 import '../models/essential_note.dart';
+import '../models/quick_note.dart';
 
 class Repository extends ChangeNotifier {
   List<DailyRoutineModel> models = [], personals = [];
@@ -15,6 +16,22 @@ class Repository extends ChangeNotifier {
   List<Bookmark> bookmarks = [];
 
   List<EssentialNotes> essentials = [];
+
+  List<QuickNote> quickNotes = [];
+
+  void addQuickNote(QuickNote quickNote){
+    quickNotes.add(quickNote);
+    notifyListeners();
+  }
+
+  void deleteQuickNote(QuickNote quickNote){
+    quickNotes.remove(quickNote);
+    notifyListeners();
+  }
+  void updateQuickNote(QuickNote quickNote,int index){
+    quickNotes[index] = quickNote;
+    notifyListeners();
+  }
 
   void addEssential(EssentialNotes list) {
     essentials.add(list);

@@ -44,4 +44,10 @@ class Routes {
   static const essentialsList = "/essentials_list";
 
   static const essentialsEdit = "/essentials_edit";
+
+  static const addQuickPage = "/add_quick_page";
+
+  static const quickNotesList = "/quick_notes_list";
+
+  static const editQuickNotes = "/edit_quick_notes";
 }

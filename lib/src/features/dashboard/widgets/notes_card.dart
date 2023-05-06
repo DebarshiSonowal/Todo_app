@@ -74,8 +74,7 @@ class notesCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: widget == null
-                        ? ListView.separated(
+                    child: widget ?? ListView.separated(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
@@ -118,8 +117,7 @@ class notesCard extends StatelessWidget {
                                 height: 0.4.h,
                               );
                             },
-                          )
-                        : widget,
+                          ),
                   ),
                 ],
               ),

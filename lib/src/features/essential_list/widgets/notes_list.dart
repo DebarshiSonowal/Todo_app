@@ -43,7 +43,7 @@ class NotesList extends StatelessWidget {
               icon: SvgPicture.asset(
                 Constances.trashIcon,
                 fit: BoxFit.fill,
-                color: Colors.red,
+                color: const Color(0xff50555C),
                 height: 15.sp,
               ),
             ),

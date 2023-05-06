@@ -31,7 +31,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(10.5.h),
+        preferredSize: Size.fromHeight(9.5.h),
         child: const AppBarWidget(),
       ),
       body: Container(
@@ -59,22 +59,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
               SizedBox(
-                height: 1.5.h,
+                height: 1.h,
               ),
               PersonalCard(
                 type: "Personal",
                 onTapItem: (int val) {},
               ),
               SizedBox(
-                height: 1.5.h,
+                height: 1.h,
               ),
               const BookmarkCard(),
               SizedBox(
-                height: 1.5.h,
+                height: 1.h,
               ),
               Consumer<Repository>(builder: (context, data, _) {
                 return SizedBox(
-                  height: 18.h,
+                  height: 21.5.h,
                   child: Row(
                     children: [
                       notesCard(
@@ -100,10 +100,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       notesCard(
                         image: Constances.handImage,
-                        list: [],
-                        onTap: () {},
+                        list: data.quickNotes.isEmpty ? [] : [],
+                        onTap: () {
+                          Navigation.instance.navigate(Routes.quickNotesList);
+                        },
                         name: "Quick",
-                        onArrowClick: () {},
+                        onArrowClick: () {
+                          Navigation.instance.navigate(Routes.addQuickPage);
+                        },
+                        widget: Text(
+                          "${data.quickNotes.isEmpty ? "" : data.quickNotes.first.description}",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 6,
+                          style:
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 11.sp,
+                                    fontFamily: "PublicSans",
+                                    // fontWeight: FontWeight.bold,
+                                  ),
+                        ),
                       ),
                     ],
                   ),

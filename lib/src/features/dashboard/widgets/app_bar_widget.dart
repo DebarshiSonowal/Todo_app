@@ -33,7 +33,7 @@ class AppBarWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
-              height: 4.5.h,
+              height: 3.85.h,
             ),
             Text(
               DateFormat("MMM yyyy").format(DateTime.now()),
@@ -44,7 +44,7 @@ class AppBarWidget extends StatelessWidget {
                   ),
             ),
             SizedBox(
-              height: 2.4.h,
+              height: 2.h,
             ),
             SizedBox(
               height: 4.9.h,

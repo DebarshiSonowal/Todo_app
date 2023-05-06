@@ -8,6 +8,7 @@ import '../../constants/constants.dart';
 import '../../models/essential_note.dart';
 import '../../repository/repository.dart';
 import '../../services/Navigate.dart';
+import '../../widget/alert.dart';
 import '../../widget/done_button.dart';
 import 'Widgets/add_essential_page_empty_item.dart';
 import 'Widgets/add_essential_page_item.dart';
@@ -30,8 +31,12 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
         preferredSize: Size.fromHeight(9.h),
         child: EssentialAppbar(
           onTap: () {
-            Provider.of<Repository>(context, listen: false).addEssential(item!);
-            Navigation.instance.navigateAndReplace(Routes.essentialsList);
+            if (item.notes.isNotEmpty) {
+              Provider.of<Repository>(context, listen: false).addEssential(item!);
+              Navigation.instance.navigateAndReplace(Routes.essentialsList);
+            } else {
+              showError("Cannot add empty list");
+            }
           },
         ),
       ),
@@ -54,7 +59,7 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                   horizontal: 4.w,
                   vertical: 1.h,
                 ),
-                height: 40.h,
+                height: 46.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -62,14 +67,14 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                 width: double.infinity,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
-                    if (index != item!.notes.length) {
+                    if (index != item.notes.length) {
                       return AddEssentialPageItem(
                         index: index,
-                        item: item!.notes[index],
+                        item: item.notes[index],
                         update: (String val) {
                           setState(() {
-                            item!.notes[index].title = val;
-                            item!.notes[index].isCompleted = false;
+                            item.notes[index].title = val;
+                            item.notes[index].isCompleted = false;
                           });
                         },
                       );
@@ -78,11 +83,11 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                         index: index,
                         update: (String val) {
                           setState(() {
-                            item!.notes.add(EssentialNote(
+                            item.notes.add(EssentialNote(
                               val,
                               false,
                             ));
-                            item!.date = DateFormat("dd MMM yyyy")
+                            item.date = DateFormat("dd MMM yyyy")
                                 .format(DateTime.now());
                           });
                         },
@@ -94,7 +99,7 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                       height: 1.h,
                     );
                   },
-                  itemCount: item!.notes.length + 1,
+                  itemCount: item.notes.length + 1,
                 ),
               ),
             ),
@@ -102,5 +107,14 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
         ),
       ),
     );
+  }
+  void showError(String msg) {
+    AlertX.instance.showAlert(
+        title: "Error",
+        msg: msg,
+        positiveButtonText: "Done",
+        positiveButtonPressed: () {
+          Navigation.instance.goBack();
+        });
   }
 }
