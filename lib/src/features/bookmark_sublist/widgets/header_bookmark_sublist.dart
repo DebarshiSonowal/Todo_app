@@ -50,7 +50,7 @@ class HeaderBookmarkSublist extends StatelessWidget {
               height: 1.h,
             ),
             Text(
-              data.bookmarks[index].title ?? "File name",
+              (data.bookmarks[index].title==""||data.bookmarks[index].title==null)?"File name":"${data.bookmarks[index].title}",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white54,
                   ),

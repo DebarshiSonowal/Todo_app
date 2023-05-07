@@ -7,12 +7,14 @@ import 'package:vishal_todo_app/src/constants/routes.dart';
 import 'package:vishal_todo_app/src/features/dashboard/widgets/bookmark_card.dart';
 import 'package:vishal_todo_app/src/features/dashboard/widgets/custom_bottom_app_bar.dart';
 import 'package:vishal_todo_app/src/models/essential_note.dart';
+import 'package:vishal_todo_app/src/models/quick_note.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 import '../../constants/constants.dart';
 import '../../models/custom_note.dart';
 import 'widgets/app_bar_widget.dart';
+import 'widgets/card_section.dart';
 import 'widgets/dashboard_card.dart';
 import 'widgets/essential_demo_list.dart';
 import 'widgets/notes_card.dart';
@@ -42,6 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           vertical: 0.5.h,
         ),
         child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Column(
             // mainAxisSize: MainAxisSize.max,
             children: [
@@ -59,70 +62,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
               SizedBox(
-                height: 1.h,
+                height: 0.5.h,
               ),
               PersonalCard(
                 type: "Personal",
                 onTapItem: (int val) {},
               ),
               SizedBox(
-                height: 1.h,
+                height: 0.5.h,
               ),
               const BookmarkCard(),
               SizedBox(
-                height: 1.h,
+                height: 0.5.h,
               ),
               Consumer<Repository>(builder: (context, data, _) {
-                return SizedBox(
-                  height: 21.5.h,
-                  child: Row(
-                    children: [
-                      notesCard(
-                        image: Constances.notesImage,
-                        list: data.essentials.isEmpty ? [] : [],
-                        widget: data.essentials.isEmpty
-                            ? Container()
-                            : EssentialDemoList(
-                                essential: data.essentials[0],
-                              ),
-                        onTap: () {
-                          if (data.essentials.isEmpty) {
-                            Navigation.instance
-                                .navigate(Routes.addEssentialPage);
-                          } else {
-                            Navigation.instance.navigate(Routes.essentialsList);
-                          }
-                        },
-                        name: "Essentials",
-                        onArrowClick: () {
-                          Navigation.instance.navigate(Routes.addEssentialPage);
-                        },
-                      ),
-                      notesCard(
-                        image: Constances.handImage,
-                        list: data.quickNotes.isEmpty ? [] : [],
-                        onTap: () {
-                          Navigation.instance.navigate(Routes.quickNotesList);
-                        },
-                        name: "Quick",
-                        onArrowClick: () {
-                          Navigation.instance.navigate(Routes.addQuickPage);
-                        },
-                        widget: Text(
-                          "${data.quickNotes.isEmpty ? "" : data.quickNotes.first.description}",
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 6,
-                          style:
-                              Theme.of(context).textTheme.headline4?.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 11.sp,
-                                    fontFamily: "PublicSans",
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
+                return CardSection(
+                  essentials: data.essentials,
+                  quickNotes: data.quickNotes,
                 );
               }),
             ],
@@ -133,3 +89,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
+
+

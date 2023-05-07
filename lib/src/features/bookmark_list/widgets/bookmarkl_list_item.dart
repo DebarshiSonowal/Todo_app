@@ -58,7 +58,7 @@ class BookmarkListItem extends StatelessWidget {
                   )
                 : CircleAvatar(
                     radius: 24.sp, // Image radius
-                    backgroundImage:Image.file(
+                    backgroundImage: Image.file(
                       File(bookmark.image ?? ""),
                       errorBuilder: (error, _, __) {
                         return Image.asset(bookmark.image ?? "");
@@ -71,7 +71,7 @@ class BookmarkListItem extends StatelessWidget {
             SizedBox(
               width: 60.w,
               child: Text(
-                "${bookmark.title == null ? ((bookmark.items?.isEmpty ?? true) ? "" : (bookmark.items?.first.title ?? "")) : (bookmark.title)}",
+                "${bookmark.title == null ? ((bookmark.items?.isEmpty ?? true) ? "" : (bookmark.items?.first.title ?? "")) : (bookmark.title == "" ? "Add File" : bookmark.title)}",
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: Colors.white,
                     ),

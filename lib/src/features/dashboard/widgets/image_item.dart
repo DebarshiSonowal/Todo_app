@@ -22,14 +22,15 @@ class imageItem extends StatelessWidget {
       onTap: () => onTap(),
       child: Column(
         children: [
-          (image == null || image == "")
+          (image == "")
               ? Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(
-                        color: Colors.black87,
-                      )),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                      color: Colors.black87,
+                    ),
+                  ),
                   padding: EdgeInsets.all(4.4.w),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),

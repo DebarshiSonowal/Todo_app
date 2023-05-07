@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/constants.dart';
+import 'package:vishal_todo_app/src/constants/routes.dart';
+import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
@@ -18,7 +20,8 @@ class AppBarWidget extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-            showCalendar(context);
+            // showCalendar(context);
+            Navigation.instance.navigate(Routes.showCalendar);
           },
           icon: Icon(
             Icons.calendar_month,
@@ -66,12 +69,13 @@ class AppBarWidget extends StatelessWidget {
                               Duration(days: index),
                             ),
                           ),
-                          style: Theme.of(context).textTheme.headline4?.copyWith(
-                                color: Colors.white70,
-                                fontFamily: "Rubik",
-                                fontSize: 10.sp,
-                                // fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    color: Colors.white70,
+                                    fontFamily: "Rubik",
+                                    fontSize: 10.sp,
+                                    // fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         Text(
                           DateFormat("dd").format(
@@ -79,12 +83,13 @@ class AppBarWidget extends StatelessWidget {
                               Duration(days: index),
                             ),
                           ),
-                          style: Theme.of(context).textTheme.headline5?.copyWith(
-                                color: Colors.white,
-                                fontSize: 11.sp,
-                                fontFamily: "Rubik",
-                                // fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.headline5?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 11.sp,
+                                    fontFamily: "Rubik",
+                                    // fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ],
                     ),
@@ -107,6 +112,7 @@ class AppBarWidget extends StatelessWidget {
   void showCalendar(context) {
     DateTime defaultTime = DateTime.now();
     showDialog(
+        // barrierColor: Constances.blueBackground,
         context: context,
         barrierDismissible: true,
         builder: (BuildContext context) {
@@ -126,7 +132,7 @@ class AppBarWidget extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   height: 40.h,
-                  width: 85.w,
+                  width: 100.w,
                   padding: EdgeInsets.symmetric(
                     horizontal: 4.w,
                     vertical: 1.5.h,
@@ -238,11 +244,6 @@ class AppBarWidget extends StatelessWidget {
   }
 
   checkIfHoliday(DateTime dateTime) {
-    // if (DateFormat("MMM").format(dateTime)==DateFormat("MMM").format(DateTime.now())) {
-    //
-    // }else{
-    //   return true;
-    // }
     switch (DateFormat("EEE").format(dateTime)) {
       case "Sat":
         return true;

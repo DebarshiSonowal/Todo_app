@@ -11,11 +11,13 @@ import 'routineItem.dart';
 class PersonalCard extends StatelessWidget {
   const PersonalCard({
     super.key,
-    required this.type, required this.onTapItem,
+    required this.type,
+    required this.onTapItem,
   });
 
   final String type;
   final Function(int) onTapItem;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,7 +28,7 @@ class PersonalCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 1.w,
-          vertical: 0.5.h,
+          vertical: 1.h,
         ),
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -36,6 +38,7 @@ class PersonalCard extends StatelessWidget {
         ),
         width: double.infinity,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
@@ -80,42 +83,47 @@ class PersonalCard extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: 4.w,
                   ),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      var item = data.personals[index];
-                      return routineItem(
-                        img: item.image!,
-                        txt: item.title!,
-                        type: 1,
-                        onTap: () => onTapItem(index),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        width: 2.w,
-                      );
-                    },
-                    itemCount: data.personals.length,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ListView.separated(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          var item = data.personals[index];
+                          return routineItem(
+                            img: item.image!,
+                            txt: item.title!,
+                            type: 1,
+                            onTap: () => onTapItem(index),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(
+                            width: 2.w,
+                          );
+                        },
+                        itemCount: data.personals.length,
+                      ),
+                    ],
                   )
-                // child: Row(
-                //   children: [
-                //     routineItem(
-                //       img: Constances.coffeeImage,
-                //       txt: "Drink lemon water",
-                //       type: 1,
-                //       onTap: () => onTapItem(1),
-                //     ),
-                //     routineItem(
-                //       img: Constances.bathtubImage,
-                //       txt: "Shower",
-                //       type: 1,
-                //       onTap: () => onTapItem(1),
-                //     ),
-                //   ],
-                // ),
-              );
+                  // child: Row(
+                  //   children: [
+                  //     routineItem(
+                  //       img: Constances.coffeeImage,
+                  //       txt: "Drink lemon water",
+                  //       type: 1,
+                  //       onTap: () => onTapItem(1),
+                  //     ),
+                  //     routineItem(
+                  //       img: Constances.bathtubImage,
+                  //       txt: "Shower",
+                  //       type: 1,
+                  //       onTap: () => onTapItem(1),
+                  //     ),
+                  //   ],
+                  // ),
+                  );
             }),
           ],
         ),

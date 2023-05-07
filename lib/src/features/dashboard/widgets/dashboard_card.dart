@@ -110,7 +110,7 @@ class DashboardCard extends StatelessWidget {
             Consumer<Repository>(builder: (context, data, _) {
               return Container(
                   width: double.infinity,
-                  height: 10.h,
+                  height: 11.h,
                   padding: EdgeInsets.symmetric(
                     horizontal: 4.w,
                   ),
@@ -151,9 +151,6 @@ class DashboardCard extends StatelessWidget {
                   // ),
                   );
             }),
-            SizedBox(
-              height: 0.5.h,
-            ),
           ],
         ),
       ),

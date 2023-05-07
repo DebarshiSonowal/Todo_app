@@ -25,7 +25,7 @@ class EssentialDemoList extends StatelessWidget {
           "${index + 1}. ${current.title}",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Colors.black,
-            fontSize: 13.sp,
+            fontSize: 10.sp,
           ),
         );
       },
@@ -34,7 +34,7 @@ class EssentialDemoList extends StatelessWidget {
           : essential.notes.length,
       separatorBuilder: (BuildContext context, int index) {
         return SizedBox(
-          height: 1.h,
+          height: 0.5.h,
         );
       },
     );

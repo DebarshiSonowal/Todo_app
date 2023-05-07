@@ -49,7 +49,7 @@ class AddQuickNotesPage extends StatelessWidget {
           onFieldSubmitted: (val) {
             if (val.isNotEmpty) {}
           },
-          minLines: null,
+          maxLines: null,
           // initialValue: "${item.title}",
           decoration: InputDecoration.collapsed(
             hintText: 'Text',

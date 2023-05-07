@@ -50,4 +50,6 @@ class Routes {
   static const quickNotesList = "/quick_notes_list";
 
   static const editQuickNotes = "/edit_quick_notes";
+
+  static const showCalendar = "/show_calendar";
 }

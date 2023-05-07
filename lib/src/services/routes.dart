@@ -15,6 +15,7 @@ import '../features/add_personal/add_personal_page.dart';
 import '../features/add_quick_notes/add_quick_notes_page.dart';
 import '../features/bookmark_list/bookmark_list_page.dart';
 import '../features/bookmark_sublist/bookmark_sublist_page.dart';
+import '../features/dashboard/widgets/show_calendar.dart';
 import '../features/date_selected/date_selected_page.dart';
 import '../features/edit_bookmark/edit_bookmark_page.dart';
 import '../features/edit_daily_routine/edit_daily_routine.dart';
@@ -46,6 +47,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return FadeTransitionPageRouteBuilder(
         page: const DashboardScreen(),
       );
+    case Routes.showCalendar:
+      return FadeTransitionPageRouteBuilder(page: const ShowCalendar());
 
     //routine
     case Routes.dailyRoutine:

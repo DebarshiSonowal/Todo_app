@@ -20,83 +20,78 @@ class routineItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onTap(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            radius: 21, // Image radius
-            backgroundImage: type != 1
-                ? Image.asset(
-                    img,
-                    fit: BoxFit.fill,
-                    height: type == 1 ? 5.h : 8.h,
-                    width: type == 1 ? 11.w : 17.w,
-                    errorBuilder: (error, str, _) {
-                      return Image.file(
-                        File(img),
-                        fit: BoxFit.fill,
-                        height: type == 1 ? 5.h : 8.h,
-                        width: type == 1 ? 11.w : 17.w,
-                      );
-                    },
-                  ).image
-                : Image.file(
-                    File(img),
-                    fit: BoxFit.fill,
-                    height: type == 1 ? 5.h : 8.h,
-                    width: type == 1 ? 11.w : 17.w,
-                    errorBuilder: (error, str, _) {
-                      return Image.asset(
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  color: Colors.grey,
+                ),
+              ),
+              child: CircleAvatar(
+                radius: 20.sp, // Image radius
+                backgroundImage: type != 1
+                    ? Image.asset(
                         img,
                         fit: BoxFit.fill,
-                        height: type == 1 ? 5.h : 8.h,
+                        height: type == 1 ? 6.h : 6.h,
                         width: type == 1 ? 11.w : 17.w,
-                      );
-                    },
-                  ).image,
-          ),
-          // SizedBox(
-          //   width: 20.w,
-          //   child: Center(
-          //     child: Image.file(
-          //       File(img),
-          //       fit: BoxFit.fill,
-          //       height: type == 1 ? 5.h : 8.h,
-          //       width: type == 1 ? 11.w : 17.w,
-          //       errorBuilder: (error,str,_){
-          //         return Image.asset(
-          //           img,
-          //           fit: BoxFit.fill,
-          //           height: type == 1 ? 5.h : 8.h,
-          //           width: type == 1 ? 11.w : 17.w,
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
-          SizedBox(
-            width: type == 1 ? 20.w : 25.w,
-            height: type == 1 ? 5.h : 3.h,
-            child: Column(
-              children: [
-                Text(
-                  txt,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                        color: type == 1
-                            ? Colors.black
-                            : Theme.of(context).primaryColor,
-                        fontSize: type != 1 ? 12.sp : 10.sp,
-                        fontFamily: "PublicSans",
-                        // fontWeight: FontWeight.bold,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                ),
-              ],
+                        errorBuilder: (error, str, _) {
+                          return Image.file(
+                            File(img),
+                            fit: BoxFit.fill,
+                            height: type == 1 ? 5.h : 8.h,
+                            width: type == 1 ? 11.w : 17.w,
+                          );
+                        },
+                      ).image
+                    : Image.file(
+                        File(img),
+                        fit: BoxFit.fill,
+                        height: type == 1 ? 6.h : 8.h,
+                        width: type == 1 ? 11.w : 17.w,
+                        errorBuilder: (error, str, _) {
+                          return Image.asset(
+                            img,
+                            fit: BoxFit.fill,
+                            height: type == 1 ? 5.h : 8.h,
+                            width: type == 1 ? 11.w : 17.w,
+                          );
+                        },
+                      ).image,
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              width: type == 1 ? 20.w : 25.w,
+              height: type == 1 ? 3.h : 3.h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    txt,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          color: type == 1
+                              ? Colors.black
+                              : Theme.of(context).primaryColor,
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: type != 1 ? 12.sp : 10.sp,
+                          fontFamily: "PublicSans",
+                          // fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
