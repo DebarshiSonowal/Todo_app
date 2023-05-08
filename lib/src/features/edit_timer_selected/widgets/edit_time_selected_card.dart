@@ -24,9 +24,11 @@ class EditTimeSelectedCard extends StatefulWidget {
   const EditTimeSelectedCard({
     super.key,
     required this.index,
+    this.type,
   });
 
   final String index;
+  final int? type;
 
   @override
   State<EditTimeSelectedCard> createState() => _EditTimeSelectedCardState();
@@ -45,6 +47,7 @@ class _EditTimeSelectedCardState extends State<EditTimeSelectedCard> {
     //       .models[widget.index]
     //       .dateTime;
     // });
+
   }
 
   @override
@@ -56,7 +59,7 @@ class _EditTimeSelectedCardState extends State<EditTimeSelectedCard> {
             sigmaX: 3,
             sigmaY: 3,
           ),
-          child: Container(
+          child: SizedBox(
             height: 100.h,
             width: 100.w,
           ),
@@ -83,22 +86,29 @@ class _EditTimeSelectedCardState extends State<EditTimeSelectedCard> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   TimerSectionEditTimeSelected(
-                    alarmDateTime: data.models[int.parse(widget.index.split(
-                        ",")[0])].reminders[int.parse(
-                        widget.index.split(",")[1])].timeDate,
+                    alarmDateTime:
+                        (widget.type == null ? data.models : data.personals)[
+                                int.parse(widget.index.split(",")[0])]
+                            .reminders[int.parse(widget.index.split(",")[1])]
+                            .timeDate,
                     index: int.parse(widget.index.split(",")[0]),
                     num: int.parse(widget.index.split(",")[1]),
                     data: data,
                     updateParent: () {
                       setState(() {});
                     },
+                    type: widget.type,
                   ),
                   TimerSectionEditOptions(
                     list: list,
-                    options: data.models[int.parse(widget.index.split(",")[0])].reminders[int.parse(widget.index.split(",")[1])]
-                        .options!,
+                    options:
+                        (widget.type == null ? data.models : data.personals)[
+                                int.parse(widget.index.split(",")[0])]
+                            .reminders[int.parse(widget.index.split(",")[1])]
+                            .options!,
                     index1: int.parse(widget.index.split(",")[0]),
                     index2: int.parse(widget.index.split(",")[1]),
+                    type: widget.type,
                     //   ((item.time==""||item.time==null) ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[1]:"")a
                   ),
                 ],

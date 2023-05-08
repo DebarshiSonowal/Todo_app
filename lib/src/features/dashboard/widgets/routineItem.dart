@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class routineItem extends StatelessWidget {
-  const routineItem({
+class RoutineItem extends StatelessWidget {
+  const RoutineItem({
     super.key,
     required this.img,
     required this.txt,
@@ -68,26 +68,23 @@ class routineItem extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: type == 1 ? 20.w : 25.w,
+              width: type == 1 ? 20.w : 22.w,
               height: type == 1 ? 3.h : 3.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    txt,
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.headline6?.copyWith(
-                          color: type == 1
-                              ? Colors.black
-                              : Theme.of(context).primaryColor,
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: type != 1 ? 12.sp : 10.sp,
-                          fontFamily: "PublicSans",
-                          // fontWeight: FontWeight.bold,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
+              child: Center(
+                child: Text(
+                  txt,
+                  maxLines: 1,
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: type == 1
+                            ? Colors.black
+                            : Theme.of(context).primaryColor,
+                        overflow: TextOverflow.fade,
+                        fontSize: type != 1 ? 12.sp : 10.sp,
+                        fontFamily: "PublicSans",
+                        // fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
             ),
           ],

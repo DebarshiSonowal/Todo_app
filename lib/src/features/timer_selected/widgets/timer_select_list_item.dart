@@ -16,8 +16,10 @@ class TimerSelectListItem extends StatelessWidget {
     required this.item,
     required this.index,
     required this.num,
+    this.type,
   });
 
+  final int? type;
   final int index, num;
   final ReminderListItem item;
 
@@ -29,7 +31,17 @@ class TimerSelectListItem extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigation.instance.navigate(Routes.editTimePicker, args: "$index,$num",);
+              if (type == null) {
+                Navigation.instance.navigate(
+                  Routes.editTimePicker,
+                  args: "$index,$num",
+                );
+              } else {
+                Navigation.instance.navigate(
+                  Routes.editTimePickerPersonal,
+                  args: "$index,$num",
+                );
+              }
             },
             child: Text(
               'Edit',
@@ -45,7 +57,9 @@ class TimerSelectListItem extends StatelessWidget {
             width: 8.w,
           ),
           Text(
-          ((item.time==""||item.time==null) ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[0]:"${item.time}"),
+            ((item.time == "" || item.time == null)
+                ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[0]
+                : "${item.time}"),
             style: Theme.of(context).textTheme.headline4?.copyWith(
                   fontSize: 16.sp,
                   color: item.isEnabled ? Colors.white : Colors.white38,
@@ -57,8 +71,9 @@ class TimerSelectListItem extends StatelessWidget {
             width: 1.w,
           ),
           Text(
-            ((item.time==""||item.time==null) ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[1]:"")
-                ,
+            ((item.time == "" || item.time == null)
+                ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[1]
+                : ""),
             style: Theme.of(context).textTheme.headline4?.copyWith(
                   fontSize: 12.sp,
                   color: item.isEnabled ? Colors.white : Colors.white38,
@@ -71,10 +86,18 @@ class TimerSelectListItem extends StatelessWidget {
             activeColor: Constances.switchActiveColor,
             value: item.isEnabled,
             onChanged: (bool value) {
-              Provider.of<Repository>(
-                context,
-                listen: false,
-              ).updateReminderListItemReminder(index, value, num);
+              debugPrint("${type}");
+              if (type == null) {
+                Provider.of<Repository>(
+                  context,
+                  listen: false,
+                ).updateReminderListItemReminder(index, value, num);
+              } else {
+                Provider.of<Repository>(
+                  context,
+                  listen: false,
+                ).updateReminderListItemReminderPersonal(index, value, num);
+              }
             },
           ),
         ],

@@ -7,9 +7,9 @@ import 'package:vishal_todo_app/src/models/reminder_list_item.dart';
 import '../../../repository/repository.dart';
 
 class DateViewerDaily extends StatefulWidget {
-  DateViewerDaily({Key? key, required this.index}) : super(key: key);
+  DateViewerDaily({Key? key, required this.index, this.type}) : super(key: key);
   final int index;
-
+  final int? type;
   @override
   State<DateViewerDaily> createState() => _DateViewerDailyState();
 }
@@ -21,6 +21,9 @@ class _DateViewerDailyState extends State<DateViewerDaily> {
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
       return Container(
+        padding: EdgeInsets.only(
+          top: widget.type==null?0:2.w,
+        ),
         decoration: BoxDecoration(
           borderRadius: (selected == widget.index)
               ? const BorderRadius.all(
@@ -38,7 +41,7 @@ class _DateViewerDailyState extends State<DateViewerDaily> {
                   ),
                 ),
         ),
-        width: 8.w,
+        width: widget.type==null?8.w:9.w,
         child: Column(
           children: [
             Text(

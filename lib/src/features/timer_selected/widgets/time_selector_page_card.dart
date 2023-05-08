@@ -56,7 +56,11 @@ class TimeSelectorPageCard extends StatelessWidget {
                 itemBuilder: (context, num) {
                   var item = data.models[index].reminders[num];
                   return TimerSelectListItem(
-                      item: item, index: index, num: num);
+                    item: item,
+                    index: index,
+                    num: num,
+                    // type: 1,
+                  );
                 },
                 separatorBuilder: (context, index) {
                   return const CustomDivider();

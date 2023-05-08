@@ -29,6 +29,8 @@ class Routes {
 
   static const personalDatePicker = "/personal_date_picker";
 
+  static const editTimePickerPersonal = "/edit_time_picker_personal";
+
   static const bookmark = "/bookmark";
 
   static const bookmarkList = "/bookmark_list";
@@ -52,4 +54,8 @@ class Routes {
   static const editQuickNotes = "/edit_quick_notes";
 
   static const showCalendar = "/show_calendar";
+
+  static const addQuickNoteFromDate = "/add_quick_note_from_date";
+
+  static const personalDetails = "/personal_details";
 }

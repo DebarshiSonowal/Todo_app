@@ -8,6 +8,7 @@ import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/routes.dart';
 
 import '../../constants/constants.dart';
+import '../../models/daily_routine_model.dart';
 import '../../models/personal_model.dart';
 import '../../models/reminder_list_item.dart';
 import '../../repository/repository.dart';
@@ -26,9 +27,11 @@ class EditPersonalInfoPage extends StatefulWidget {
 class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
   File? attachment;
   final TextEditingController titleController = TextEditingController();
+
   // final TextEditingController descriptionController = TextEditingController();
   late String dateTime;
   List<ReminderListItem> reminders = [];
+
   @override
   void initState() {
     super.initState();
@@ -43,17 +46,28 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
         preferredSize: Size.fromHeight(9.h),
         child: AddPeronalInfoAppbar(
           savePersonal: () {
-            // Provider.of<Repository>(context, listen: false).modifyPersonals(
-            //     Personal(
-            //       id: Random.secure().nextInt(1000),
-            //       title: titleController.text,
-            //       // description: descriptionController.text,
-            //       image: attachment!.path,
-            //       date: DateFormat("dd MMM yyyy").format(DateTime.now()),
-            //       time: DateFormat("HH:MM a").format(DateTime.now()),
-            //     ),
-            //     widget.index);
-            Navigation.instance.goBack();
+            Provider.of<Repository>(context, listen: false).modifyPersonals(
+                widget.index,
+                DailyRoutineModel(
+                  titleController.text,
+                  DateFormat("hh:mm a").format(DateTime.now()),
+                  DateTime.now(),
+                  attachment!.path,
+                  reminders,
+                  // TimerSelectionOptions(
+                  //   "NA",10,false,
+                  // ),
+                ));
+            Future.delayed(const Duration(seconds: 1), () {
+              Navigation.instance.navigate(
+                Routes.personalTimeDateSelector,
+                args: Provider.of<Repository>(context, listen: false)
+                        .personals
+                        .length -
+                    1,
+                // index == 1 ? "Drink lemon water" : "Shower",
+              );
+            });
           },
         ),
       ),
@@ -91,7 +105,8 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
                           Provider.of<Repository>(context, listen: false)
                               .personals[widget.index]);
                   Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
-                }, reminders: reminders,
+                },
+                reminders: reminders,
               )
             ],
           ),
@@ -105,6 +120,7 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
             .personals[widget.index]
             .title ??
         "";
+
     // descriptionController.text = Provider.of<Repository>(context, listen: false)
     //         .personals[widget.index]
     //         .description ??
@@ -113,8 +129,14 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
             .personals[widget.index]
             .image ??
         "");
-    dateTime =DateFormat("dd MM yyyy | HH:mm a").format(Provider.of<Repository>(context, listen: false).personals[widget.index].dateTime!);
-
+    dateTime = DateFormat("dd MM yyyy | HH:mm a").format(
+        Provider.of<Repository>(context, listen: false)
+            .personals[widget.index]
+            .dateTime!);
+    reminders = Provider.of<Repository>(context, listen: false)
+            .personals[widget.index]
+            .reminders ??
+        [];
     setState(() {
       attachment = File(Provider.of<Repository>(context, listen: false)
               .personals[widget.index]

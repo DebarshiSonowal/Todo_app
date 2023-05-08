@@ -15,7 +15,7 @@ import '../../services/Navigate.dart';
 import '../../widget/alert.dart';
 import '../personal_enter_info/widgets/personal_info_page_card.dart';
 import 'widgets/personal_time_date_appbar.dart';
-import 'widgets/stacked_time_selector.dart';
+import 'widgets/personal_stacked_time_selector.dart';
 
 class PersonalTimerDatePage extends StatefulWidget {
   const PersonalTimerDatePage({Key? key, required this.index})
@@ -30,14 +30,14 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
   File? attachment;
   List<ReminderListItem> reminders = [];
   final TextEditingController titleController = TextEditingController();
+
   // final TextEditingController descriptionController = TextEditingController();
   late String dateTime;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1),(){
-      loadDataIntoFields();
-    });
+    loadDataIntoFields();
   }
 
   @override
@@ -51,23 +51,21 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
                 reminders.isNotEmpty &&
                 attachment != null) {
               // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
-              Provider.of<Repository>(context, listen: false)
-                  .addPersonal(DailyRoutineModel(
-                titleController.text,
-                DateFormat("hh:mm a").format(DateTime.now()),
-                DateTime.now(),
-                attachment!.path,
-                reminders,
-                // TimerSelectionOptions(
-                //   "NA",10,false,
-                // ),
-              ));
+              Provider.of<Repository>(context, listen: false).modifyPersonals(
+                  widget.index,
+                  DailyRoutineModel(
+                    titleController.text,
+                    DateFormat("hh:mm a").format(DateTime.now()),
+                    DateTime.now(),
+                    attachment!.path,
+                    reminders,
+                    // TimerSelectionOptions(
+                    //   "NA",10,false,
+                    // ),
+                  ));
               Future.delayed(const Duration(seconds: 1), () {
                 Navigation.instance.navigate(
-                  Routes.personalTimeDateSelector,
-                  args: Provider.of<Repository>(context, listen: false)
-                      .models
-                      .length-1,
+                  Routes.dashboard,
                   // index == 1 ? "Drink lemon water" : "Shower",
                 );
               });
@@ -114,11 +112,29 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
                         });
                       },
                       // descriptionController: descriptionController,
+                      dateTime: dateTime,
+                      file: attachment,
                       delete: () {
-
+                        Provider.of<Repository>(context, listen: false)
+                            .removePersonalBy(
+                            Provider.of<Repository>(context, listen: false)
+                                .personals[widget.index]);
+                        Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
                       },
-                      file: attachment, reminders: reminders,
+                      reminders: reminders,
                     ),
+                    // PersonalInfoPageCard(
+                    //   titleController: titleController,
+                    //   imageUpdate: (File file) {
+                    //     setState(() {
+                    //       attachment = file;
+                    //     });
+                    //   },
+                    //   // descriptionController: descriptionController,
+                    //   delete: () {},
+                    //   file: attachment,
+                    //   reminders: reminders,
+                    // ),
                   ],
                 ),
               ),
@@ -131,21 +147,30 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
       ),
     );
   }
+
+
   void loadDataIntoFields() async {
     titleController.text = Provider.of<Repository>(context, listen: false)
         .personals[widget.index]
         .title ??
         "";
+
     // descriptionController.text = Provider.of<Repository>(context, listen: false)
-    //     .personals[widget.index]
-    //     .description ??
+    //         .personals[widget.index]
+    //         .description ??
     //     "";
     attachment = File(Provider.of<Repository>(context, listen: false)
         .personals[widget.index]
         .image ??
         "");
-    dateTime =DateFormat("dd MM yyyy | HH:mm a").format(Provider.of<Repository>(context, listen: false).personals[widget.index].dateTime!);
-
+    dateTime = DateFormat("dd MM yyyy | HH:mm a").format(
+        Provider.of<Repository>(context, listen: false)
+            .personals[widget.index]
+            .dateTime!);
+    reminders = Provider.of<Repository>(context, listen: false)
+        .personals[widget.index]
+        .reminders ??
+        [];
     setState(() {
       attachment = File(Provider.of<Repository>(context, listen: false)
           .personals[widget.index]
@@ -153,6 +178,7 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
           "");
     });
   }
+
   void showError(String msg) {
     AlertX.instance.showAlert(
         title: "Error",

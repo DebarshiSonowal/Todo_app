@@ -50,14 +50,14 @@ class PersonalTimerSelectorPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, num) {
-                  var item = data.models[index].reminders[num];
+                  var item = data.personals[index].reminders[num];
                   return TimerSelectListItem(
-                      item: item, index: index, num: num);
+                      item: item, index: index, num: num,type: 1,);
                 },
                 separatorBuilder: (context, index) {
                   return const CustomDivider();
                 },
-                itemCount: data.models[index].reminders.length,
+                itemCount: data.personals[index].reminders.length,
               ),
               SizedBox(
                 height: 3.h,

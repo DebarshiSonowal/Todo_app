@@ -53,16 +53,13 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
+
       return Card(
         elevation: 7,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Container(
-          // padding: EdgeInsets.symmetric(
-          //           horizontal: 5.w,
-          //           vertical: 3.h,
-          //         ),
           width: double.infinity,
           decoration: const BoxDecoration(
             // gradient: Constances.gradient,
@@ -74,34 +71,6 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
               SizedBox(
                 height: 1.h,
               ),
-              //  showPhotoBottomSheet(getSelectedImage);
-              // Padding(
-              //   padding: EdgeInsets.symmetric(
-              //     vertical: 1.h,
-              //     horizontal: 5.w,
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       SvgPicture.asset(
-              //         Constances.calendarIcon,
-              //       ),
-              //       SizedBox(
-              //         width: 2.w,
-              //       ),
-              //       Text(
-              //         widget.dateTime ??
-              //             DateFormat("dd MMM yyyy | HH:MM a")
-              //                 .format(DateTime.now()),
-              //         style: TextStyle(
-              //           fontFamily: "Rubik",
-              //           fontSize: 10.sp,
-              //           fontWeight: FontWeight.normal,
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-
               Container(
                 margin: EdgeInsets.symmetric(
                   horizontal: 5.w,
@@ -141,42 +110,6 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
               SizedBox(
                 height: 1.h,
               ),
-              // Container(
-              //   height: 25.h,
-              //   margin: EdgeInsets.symmetric(
-              //     horizontal: 5.w,
-              //   ),
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 3.w,
-              //     vertical: 2.h,
-              //   ),
-              //   decoration: const BoxDecoration(
-              //     // color: Constances.selectedDateColor,
-              //     color: Constances.textFieldBackground,
-              //     borderRadius: BorderRadius.all(Radius.circular(5)),
-              //   ),
-              //   width: double.infinity,
-              //   // child: TextFormField(
-              //   //   controller: widget.descriptionController,
-              //   //   maxLines: 2,
-              //   //   minLines: 1,
-              //   //   decoration: InputDecoration.collapsed(
-              //   //     hintText: 'Description',
-              //   //     hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
-              //   //           fontSize: 12.sp,
-              //   //           color: Colors.white70,
-              //   //           // fontWeight: FontWeight.bold,
-              //   //           fontFamily: "Roboto",
-              //   //         ),
-              //   //   ),
-              //   //   style: Theme.of(context).textTheme.headline4?.copyWith(
-              //   //         fontSize: 14.sp,
-              //   //         color: Colors.white,
-              //   //         // fontWeight: FontWeight.bold,
-              //   //         fontFamily: "Roboto",
-              //   //       ),
-              //   // ),
-              // ),
               widget.index != null
                   ? Container(
                       height: 30.h,
@@ -189,9 +122,9 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                       ),
                       width: double.infinity,
-                      child: data.personals[widget.index!].reminders.isNotEmpty
+                      child:data.personals[widget.index??0].reminders.isNotEmpty
                           ? BulletNoteItemListNotEmpty(
-                              current: data.personals[widget.index!],
+                              current: data.personals[widget.index??0],
                               index: widget.index ?? 0,
                               type: 1,
                             )
@@ -258,30 +191,7 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                      // decoration: const BoxDecoration(
-                      //   color: Color(0xffd8d9d9),
-                      //   borderRadius: BorderRadius.only(
-                      //     bottomLeft: Radius.circular(20),
-                      //     topRight: Radius.circular(20),
-                      //   ),
-                      // ),
-                      // padding: EdgeInsets.symmetric(
-                      //   horizontal: 3.w,
-                      //   vertical: 1.h,
-                      // ),
-                      // child: Center(
-                      //   child: Text(
-                      //     "Add Image",
-                      //     style: TextStyle(
-                      //       fontFamily: "Roboto",
-                      //       fontSize: 13.sp,
-                      //       color: Colors.black,
-                      //       fontWeight: FontWeight.normal,
-                      //     ),
-                      //   ),
-                      // ),
-                      ),
+                  Container(),
                   IconButton(
                     onPressed: () {
                       if (widget.delete != null) {

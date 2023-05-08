@@ -63,7 +63,8 @@ class PersonalCard extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Navigation.instance.navigate(Routes.addPersonal);
+                    // Navigation.instance.navigate(Routes.addPersonal);
+                    Navigation.instance.navigate(Routes.addPersonalInfo);
                   },
                   icon: Icon(
                     Icons.arrow_forward_ios,
@@ -78,52 +79,36 @@ class PersonalCard extends StatelessWidget {
             ),
             Consumer<Repository>(builder: (context, data, _) {
               return Container(
-                  width: double.infinity,
-                  height: 10.h,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 4.w,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ListView.separated(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          var item = data.personals[index];
-                          return routineItem(
-                            img: item.image!,
-                            txt: item.title!,
-                            type: 1,
-                            onTap: () => onTapItem(index),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                            width: 2.w,
-                          );
-                        },
-                        itemCount: data.personals.length,
-                      ),
-                    ],
-                  )
-                  // child: Row(
-                  //   children: [
-                  //     routineItem(
-                  //       img: Constances.coffeeImage,
-                  //       txt: "Drink lemon water",
-                  //       type: 1,
-                  //       onTap: () => onTapItem(1),
-                  //     ),
-                  //     routineItem(
-                  //       img: Constances.bathtubImage,
-                  //       txt: "Shower",
-                  //       type: 1,
-                  //       onTap: () => onTapItem(1),
-                  //     ),
-                  //   ],
-                  // ),
-                  );
+                width: double.infinity,
+                height: 10.h,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 4.w,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ListView.separated(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        var item = data.personals[index];
+                        return RoutineItem(
+                          img: item.image!,
+                          txt: item.title!,
+                          type: 1,
+                          onTap: () => onTapItem(index),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          width: 2.w,
+                        );
+                      },
+                      itemCount: data.personals.length,
+                    ),
+                  ],
+                ),
+              );
             }),
           ],
         ),

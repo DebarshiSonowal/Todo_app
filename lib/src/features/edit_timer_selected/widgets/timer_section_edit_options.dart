@@ -21,9 +21,10 @@ class TimerSectionEditOptions extends StatefulWidget {
     required this.list,
     required this.options,
     required this.index1,
-    required this.index2,
+    required this.index2, this.type,
   });
 
+  final int? type;
   final int index1, index2;
   final List<String> list;
   final TimerSelectionOptions options;
@@ -77,15 +78,16 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
                       children: [
                         Text(
                           widget.list[index],
-                          style: Theme.of(context)
+                          style: Theme
+                              .of(context)
                               .textTheme
                               .headline4
                               ?.copyWith(
-                                fontSize: 14.sp,
-                                color: Constances.editTimeSelectedCardTextColor,
-                                fontFamily: "PublicSans",
-                                // fontWeight: FontWeight.bold,
-                              ),
+                            fontSize: 14.sp,
+                            color: Constances.editTimeSelectedCardTextColor,
+                            fontFamily: "PublicSans",
+                            // fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Row(
                           children: [
@@ -94,37 +96,38 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
                               children: [
                                 Text(
                                   getCorrectValue(index, widget.options)
-                                              .length >
-                                          20
+                                      .length >
+                                      20
                                       ? getCorrectValue(index, widget.options)
-                                          .substring(0, 20)
+                                      .substring(0, 20)
                                       : getCorrectValue(index, widget.options),
-                                  style: Theme.of(context)
+                                  style: Theme
+                                      .of(context)
                                       .textTheme
                                       .headline4
                                       ?.copyWith(
-                                        overflow: TextOverflow.ellipsis,
-                                        fontSize: 14.sp,
-                                        color: Colors.white,
-                                        fontFamily: "PublicSans",
-                                        // fontWeight: FontWeight.bold,
-                                      ),
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                    fontFamily: "PublicSans",
+                                    // fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
                             index == 1
                                 ? SizedBox(
-                                    width: 1.w,
-                                  )
+                              width: 1.w,
+                            )
                                 : Container(),
                             index == 1
                                 ? Image.asset(
-                                    Constances.speakerImage,
-                                    // color: Colors.white,
-                                    fit: BoxFit.fill,
-                                    height: 12.sp,
-                                    width: 12.sp,
-                                  )
+                              Constances.speakerImage,
+                              // color: Colors.white,
+                              fit: BoxFit.fill,
+                              height: 12.sp,
+                              width: 12.sp,
+                            )
                                 : Container(),
                             Image.asset(
                               Constances.nextImage,
@@ -146,7 +149,7 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
             DoneButton(
               txt: "Save",
               onTap: () {
-                saveData(widget.index1,widget.index2);
+                saveData(widget.index1, widget.index2, widget.type);
                 // Navigation.instance.goBack();
               },
             ),
@@ -159,14 +162,16 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
   String getCorrectValue(int index, TimerSelectionOptions options) {
     switch (index) {
       case 2:
-        return (vibration??(options.vibration ?? false)) ? "On" : "Off";
+        return (vibration ?? (options.vibration ?? false)) ? "On" : "Off";
 
       case 1:
-        return "${volume??options.volume}";
+        return "${volume ?? options.volume}";
       default:
         return pickedFile == null
             ? ((options.ringtone ?? "").capitalize())
-            : ((pickedFile!.path) ?? "").split("/").last;
+            : ((pickedFile!.path) ?? "")
+            .split("/")
+            .last;
     }
   }
 
@@ -180,21 +185,32 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
     });
   }
 
-  void saveData(int index,int index2) {
-    Provider.of<Repository>(context, listen: false).updateTimerOptions(
-      TimerSelectionOptions(pickedFile?.path ?? "NA", volume ?? 10, vibration),
-      index,
-      index2,
-    );
+  void saveData(int index, int index2, int? type) {
+    if (type == null) {
+      Provider.of<Repository>(context, listen: false).updateTimerOptions(
+        TimerSelectionOptions(
+            pickedFile?.path ?? "NA", volume ?? 10, vibration),
+        index,
+        index2,
+      );
+    } else {
+      Provider.of<Repository>(context, listen: false).updateTimerOptionsPersonal(
+        TimerSelectionOptions(
+            pickedFile?.path ?? "NA", volume ?? 10, vibration),
+        index,
+        index2,
+      );
+    }
     Navigation.instance.goBack();
   }
 
   void _volumeUpdate(context) async {
     final result = await showDialog<double>(
       context: context,
-      builder: (context) => VolumeDialog(
-        initialVolume: widget.options.volume ?? 10,
-      ),
+      builder: (context) =>
+          VolumeDialog(
+            initialVolume: widget.options.volume ?? 10,
+          ),
     );
     if (result != null) {
       setState(() {
@@ -206,9 +222,10 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
   void _updateVibrations(context) async {
     final result = await showDialog<bool>(
       context: context,
-      builder: (context) => VibrationDialog(
-        initialVibration: widget.options.vibration ?? false,
-      ),
+      builder: (context) =>
+          VibrationDialog(
+            initialVibration: widget.options.vibration ?? false,
+          ),
     );
     if (result != null) {
       setState(() {

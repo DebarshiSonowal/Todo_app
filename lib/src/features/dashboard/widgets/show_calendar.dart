@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/constants.dart';
+import 'package:vishal_todo_app/src/constants/routes.dart';
+import 'package:vishal_todo_app/src/features/dashboard/widgets/cell_builder_item.dart';
+import 'package:vishal_todo_app/src/services/Navigate.dart';
+
+import '../../../widget/alert.dart';
+import 'calendar_header.dart';
+import 'create_button.dart';
 
 class ShowCalendar extends StatefulWidget {
   const ShowCalendar({Key? key}) : super(key: key);
@@ -13,7 +20,8 @@ class ShowCalendar extends StatefulWidget {
 
 class _ShowCalendarState extends State<ShowCalendar> {
   DateTime defaultTime = DateTime.now();
-  DateTime? selected;
+  DateTime? selected = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,51 +79,27 @@ class _ShowCalendarState extends State<ShowCalendar> {
                             defaultTime = dateTime;
                           });
                         },
-                        onCellTap: (list,item){
-                          setState(() {
-                            selected = item;
-                          });
+                        onCellTap: (list, item) {
+                          if (selected != item) {
+                            setState(() {
+                              selected = item;
+                            });
+                          } else {
+                            setState(() {
+                              selected = null;
+                            });
+                          }
                         },
                         headerBuilder: (dateTime) {
-                          return Container(
-                            child: Center(
-                              child: Text(
-                                DateFormat("MMM").format(dateTime),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline3
-                                    ?.copyWith(
-                                      color: Colors.white,
-                                      fontFamily: "Rubik",
-                                      // fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ),
+                          return CalendarHeader(
+                            dateTime: dateTime,
                           );
                         },
                         cellBuilder: (dateTime, events, val1, val2) {
                           return checkThisMonth(dateTime, defaultTime)
-                              ? Container(
-                                  color: selected != dateTime?(checkIfHoliday(dateTime)
-                                      ? Constances.calendarCellColor2
-                                      : Constances.calendarCellColor1):Constances.blueBackground,
-                                  height: 1.h,
-                                  width: 2.w,
-                                  child: Center(
-                                    child: Text(
-                                      "${dateTime.day}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline5
-                                          ?.copyWith(
-                                            color: selected != dateTime?(checkIfHoliday(dateTime)
-                                                ? Constances.cellTextColor
-                                                : Colors.white):Colors.white,
-                                            fontFamily: "Rubik",
-                                            // fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ),
+                              ? CellBuilderItem(
+                                  dateTime: dateTime,
+                                  selected: selected,
                                 )
                               : Container();
                         },
@@ -153,26 +137,17 @@ class _ShowCalendarState extends State<ShowCalendar> {
                         horizontal: 2.w,
                         // vertical: 1.h,
                       ),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: EdgeInsets.all(
-                            1.5.w,
-                          ),
-                          child: Text(
-                            "Create",
-                            style:
-                                Theme.of(context).textTheme.headline3?.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 12.5.sp,
-                                      fontFamily: "Rubik",
-                                      // fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                        ),
+                      child: CreateButton(
+                        onTap: () {
+                          if (selected != null) {
+                            Navigation.instance.navigateAndReplace(
+                              Routes.addQuickNoteFromDate,
+                              args: DateFormat("dd MMM yyyy").format(selected!),
+                            );
+                          } else {
+                            showError("Please Pick One Date");
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -183,6 +158,16 @@ class _ShowCalendarState extends State<ShowCalendar> {
         ],
       ),
     );
+  }
+
+  void showError(String msg) {
+    AlertX.instance.showAlert(
+        title: "Error",
+        msg: msg,
+        positiveButtonText: "Done",
+        positiveButtonPressed: () {
+          Navigation.instance.goBack();
+        });
   }
 
   checkThisMonth(DateTime dateTime, DateTime defaultTime) {

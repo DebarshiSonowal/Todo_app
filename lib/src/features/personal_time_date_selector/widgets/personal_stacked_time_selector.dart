@@ -41,7 +41,8 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigation.instance.navigate(Routes.timePicker, args: index);
+                Navigation.instance
+                    .navigate(Routes.personalTimePicker, args: index);
               },
               child: Container(
                 decoration: const BoxDecoration(
@@ -65,11 +66,11 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
                     Text(
                       'Timer',
                       style: Theme.of(context).textTheme.headline4?.copyWith(
-                        fontSize: 11.2.sp,
-                        color: Colors.black,
-                        fontFamily: "PublicSans",
-                        // fontWeight: FontWeight.bold,
-                      ),
+                            fontSize: 11.2.sp,
+                            color: Colors.black,
+                            fontFamily: "PublicSans",
+                            // fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ],
                 ),
@@ -105,11 +106,11 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
                     Text(
                       'Daily',
                       style: Theme.of(context).textTheme.headline4?.copyWith(
-                        fontSize: 11.2.sp,
-                        color: Colors.black,
-                        fontFamily: "PublicSans",
-                        // fontWeight: FontWeight.bold,
-                      ),
+                            fontSize: 11.2.sp,
+                            color: Colors.black,
+                            fontFamily: "PublicSans",
+                            // fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ],
                 ),

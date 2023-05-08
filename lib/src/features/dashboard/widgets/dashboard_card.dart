@@ -119,7 +119,7 @@ class DashboardCard extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       var item = data.models[index];
-                      return routineItem(
+                      return RoutineItem(
                         img: item.image!,
                         txt: item.title!,
                         type: 1,

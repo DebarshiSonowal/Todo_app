@@ -23,9 +23,9 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
     required this.alarmDateTime,
     required this.index,
     required this.data,
-    required this.updateParent, required this.num,
+    required this.updateParent, required this.num, this.type,
   });
-
+  final int? type;
   final DateTime? alarmDateTime;
   final int index,num;
   final Repository data;
@@ -36,8 +36,13 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
     timePicked = newTime;
     // alarmDateTime = timePicked!.toDateTime();
     MaterialLocalizations.of(context).formatTimeOfDay(timePicked!);
-    Provider.of<Repository>(context, listen: false)
-        .updateTimeSelection(index,num, timePicked!.toDateTime());
+    if (type==null) {
+      Provider.of<Repository>(context, listen: false)
+              .updateTimeSelection(index,num, timePicked!.toDateTime());
+    } else {
+      Provider.of<Repository>(context, listen: false)
+          .updateTimeSelectionPersonal(index,num, timePicked!.toDateTime());
+    }
     updateParent();
   }
 
@@ -105,7 +110,8 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
                     ),
                     child: Text(
                       DateFormat("hh:mm").format(
-                          alarmDateTime ?? data.models[index].reminders[num].timeDate!),
+                          alarmDateTime ?? (type==null?data
+                              .models:data.personals)[index].reminders[num].timeDate!),
                       style: Theme.of(context).textTheme.headline4?.copyWith(
                             fontSize: 16.sp,
                             color: Constances.editTimeSelectedCardTextColor,
@@ -136,7 +142,8 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
                         AmPmSwitch(
                           value: DateFormat("a")
                                       .format(alarmDateTime ??
-                                          data.models[index].dateTime!)
+                              (type==null?data
+                                  .models:data.personals)[index].dateTime!)
                                       .toUpperCase() ==
                                   "AM"
                               ? true
@@ -146,7 +153,8 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
                         AmPmSwitch(
                           value: DateFormat("a")
                               .format(alarmDateTime ??
-                              data.models[index].dateTime!)
+                              (type==null?data
+                                  .models:data.personals)[index].dateTime!)
                               .toUpperCase() ==
                               "PM"
                               ? true

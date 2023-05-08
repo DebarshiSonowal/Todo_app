@@ -74,27 +74,6 @@ class BookmarkCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: 0.w,
               ),
-              // child: Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     imageItem(
-              //       image: Constances.internetImage,
-              //       onTap: () {},
-              //     ),
-              //     imageItem(
-              //       image: Constances.figmaImage,
-              //       onTap: () {},
-              //     ),
-              //     imageItem(
-              //       image: Constances.studyIQImage,
-              //       onTap: () {},
-              //     ),
-              //     imageItem(
-              //       image: Constances.adobeImage,
-              //       onTap: () {},
-              //     ),
-              //   ],
-              // ),
               child: Consumer<Repository>(builder: (context, data, _) {
                 return Container(
                   width: double.infinity,

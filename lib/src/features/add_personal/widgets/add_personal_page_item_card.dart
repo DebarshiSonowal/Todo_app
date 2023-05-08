@@ -25,7 +25,8 @@ class PersonalPageItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigation.instance.navigate(Routes.editPersonalInfo,args: index);
+        //Navigation.instance.navigate(Routes.editPersonalInfo,args: index);
+        Navigation.instance.navigate(Routes.personalDetails,args: index);
       },
       child: Card(
         elevation: 7,
@@ -92,7 +93,7 @@ class PersonalPageItemCard extends StatelessWidget {
                 width: 40.w,
                 child: Center(
                   child: Text(
-                    DateFormat("dd/MM/yyyy | HH:mm a").format(data.dateTime!),
+                    DateFormat("dd MMM yyyy | HH:mm a").format(data.dateTime!),
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontSize: 10.sp,

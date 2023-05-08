@@ -12,6 +12,7 @@ import '../features/add_daily_routine/add_daily_routine.dart';
 import '../features/add_daily_routine_normal/add_daily_routine_normal.dart';
 import '../features/add_essential/add_essential_page.dart';
 import '../features/add_personal/add_personal_page.dart';
+import '../features/add_quick_note_from_date/add_quick_note_from_date.dart';
 import '../features/add_quick_notes/add_quick_notes_page.dart';
 import '../features/bookmark_list/bookmark_list_page.dart';
 import '../features/bookmark_sublist/bookmark_sublist_page.dart';
@@ -21,9 +22,12 @@ import '../features/edit_bookmark/edit_bookmark_page.dart';
 import '../features/edit_daily_routine/edit_daily_routine.dart';
 import '../features/edit_personal_info/edit_personal_info_page.dart';
 import '../features/edit_quick_notes/edit_quick_notes_page.dart';
+import '../features/edit_time_picker_personal/edit_time_date_selected_personal.dart';
 import '../features/edit_timer_selected/edit_timer_selected.dart';
+import '../features/personal_details/personal_details.dart';
 import '../features/personal_enter_info/personal_enter_info_page.dart';
 import '../features/personal_time_date_selector/personal_timer_date_page.dart';
+import '../features/personal_timer_selected/personal_timer_selected_page.dart';
 import '../features/quick_notes/quick_notes_page.dart';
 import '../features/splash_screen/splash_screen.dart';
 import '../features/time_date_selector/time_date_selector.dart';
@@ -104,7 +108,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return FadeTransitionPageRouteBuilder(
         page: const PersonalEnterInfoPage(),
       );
-
+    case Routes.personalDetails:
+      return FadeTransitionPageRouteBuilder(
+        page: PersonalDetails(index: settings.arguments as int,),
+      );
     case Routes.editPersonalInfo:
       return FadeTransitionPageRouteBuilder(
         page: EditPersonalInfoPage(index: settings.arguments as int),
@@ -112,6 +119,18 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case Routes.personalTimeDateSelector:
       return FadeTransitionPageRouteBuilder(
         page: PersonalTimerDatePage(index: settings.arguments as int),
+      );
+    case Routes.editTimePickerPersonal:
+      return FadeTransitionPageRouteBuilder(
+        page: EditTimerSelectedPersonal(
+          index: settings.arguments as String,
+        ),
+      );
+    case Routes.personalTimePicker:
+      return FadeTransitionPageRouteBuilder(
+        page: PersonalTimerSelectedPage(
+          index: settings.arguments as int,
+        ),
       );
 
     //bookmark
@@ -166,6 +185,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           index: settings.arguments as int,
         ),
       );
+    case Routes.addQuickNoteFromDate:
+      return FadeTransitionPageRouteBuilder(
+        page: AddQuickNoteFromDate(dateTime: settings.arguments as String,),
+      );
+
+
     default:
       return FadeTransitionPageRouteBuilder(
         page: Container(),

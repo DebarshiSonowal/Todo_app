@@ -120,7 +120,7 @@ class _DailyRoutineAddCardState extends State<DailyRoutineAddCard> {
               height: 1.h,
             ),
             SizedBox(
-              height: 5.h,
+              height: 7.h,
               width: double.infinity,
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
