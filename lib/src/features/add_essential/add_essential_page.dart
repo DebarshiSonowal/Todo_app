@@ -13,6 +13,7 @@ import '../../widget/done_button.dart';
 import 'Widgets/add_essential_page_empty_item.dart';
 import 'Widgets/add_essential_page_item.dart';
 import 'Widgets/essential_appbar.dart';
+import 'Widgets/essential_page_instructions.dart';
 
 class AddEssentialPage extends StatefulWidget {
   const AddEssentialPage({Key? key}) : super(key: key);
@@ -25,6 +26,14 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
   EssentialNotes item = EssentialNotes([], "");
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 0), () {
+      showMyDialog(context);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -32,7 +41,8 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
         child: EssentialAppbar(
           onTap: () {
             if (item.notes.isNotEmpty) {
-              Provider.of<Repository>(context, listen: false).addEssential(item!);
+              Provider.of<Repository>(context, listen: false)
+                  .addEssential(item!);
               Navigation.instance.navigateAndReplace(Routes.essentialsList);
             } else {
               showError("Cannot add empty list");
@@ -108,6 +118,7 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
       ),
     );
   }
+
   void showError(String msg) {
     AlertX.instance.showAlert(
         title: "Error",
@@ -116,5 +127,31 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
         positiveButtonPressed: () {
           Navigation.instance.goBack();
         });
+  }
+
+  void showMyDialog(BuildContext context) {
+    // showDialog(
+    //     barrierDismissible: true,
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return const BookmarkPageInstructions();
+    //     });
+    showGeneralDialog(
+      barrierLabel: "Label",
+      barrierDismissible: true,
+      // barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 1),
+      context: context,
+      pageBuilder: (context, anim1, anim2) {
+        return const EssentialPageInstructions();
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0))
+              .animate(anim1),
+          child: child,
+        );
+      },
+    );
   }
 }

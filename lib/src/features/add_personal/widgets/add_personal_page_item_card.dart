@@ -78,6 +78,7 @@ class PersonalPageItemCard extends StatelessWidget {
               ),
               Text(
                 data.title ?? "",
+                maxLines: 1,
                 style: Theme.of(context).textTheme.headline4?.copyWith(
                       fontSize: 12.sp,
                       color: Colors.white54,

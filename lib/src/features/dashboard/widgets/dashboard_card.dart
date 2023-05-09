@@ -109,47 +109,31 @@ class DashboardCard extends StatelessWidget {
             ),
             Consumer<Repository>(builder: (context, data, _) {
               return Container(
-                  width: double.infinity,
-                  height: 11.h,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 4.w,
-                  ),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      var item = data.models[index];
-                      return RoutineItem(
-                        img: item.image!,
-                        txt: item.title!,
-                        type: 1,
-                        onTap: () => onTapItem(index),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        width: 2.w,
-                      );
-                    },
-                    itemCount: data.models.length,
-                  )
-                  // child: Row(
-                  //   children: [
-                  //     routineItem(
-                  //       img: Constances.coffeeImage,
-                  //       txt: "Drink lemon water",
-                  //       type: 1,
-                  //       onTap: () => onTapItem(1),
-                  //     ),
-                  //     routineItem(
-                  //       img: Constances.bathtubImage,
-                  //       txt: "Shower",
-                  //       type: 1,
-                  //       onTap: () => onTapItem(1),
-                  //     ),
-                  //   ],
-                  // ),
-                  );
+                width: double.infinity,
+                height: 11.h,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 4.w,
+                ),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    var item = data.models[index];
+                    return RoutineItem(
+                      img: item.image!,
+                      txt: item.title!,
+                      type: 1,
+                      onTap: () => onTapItem(index),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 2.w,
+                    );
+                  },
+                  itemCount: data.models.length,
+                ),
+              );
             }),
           ],
         ),

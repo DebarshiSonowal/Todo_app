@@ -70,21 +70,27 @@ class RoutineItem extends StatelessWidget {
             SizedBox(
               width: type == 1 ? 20.w : 22.w,
               height: type == 1 ? 3.h : 3.h,
-              child: Center(
-                child: Text(
-                  txt,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                        color: type == 1
-                            ? Colors.black
-                            : Theme.of(context).primaryColor,
-                        overflow: TextOverflow.fade,
-                        fontSize: type != 1 ? 12.sp : 10.sp,
-                        fontFamily: "PublicSans",
-                        // fontWeight: FontWeight.bold,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Text(
+                      txt,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                            color: type == 1
+                                ? Colors.black
+                                : Theme.of(context).primaryColor,
+                            overflow: TextOverflow.fade,
+                            fontSize: type != 1 ? 12.sp : 10.sp,
+                            fontFamily: "PublicSans",
+                            // fontWeight: FontWeight.bold,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

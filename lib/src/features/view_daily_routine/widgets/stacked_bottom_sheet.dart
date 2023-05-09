@@ -19,6 +19,7 @@ class StackedBottomSheet extends StatelessWidget {
         ),
       ),
       child: Container(
+        // height: 60.h,
         width: 80.w,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(

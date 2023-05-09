@@ -84,29 +84,24 @@ class PersonalCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                   horizontal: 4.w,
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ListView.separated(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var item = data.personals[index];
-                        return RoutineItem(
-                          img: item.image!,
-                          txt: item.title!,
-                          type: 1,
-                          onTap: () => onTapItem(index),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          width: 2.w,
-                        );
-                      },
-                      itemCount: data.personals.length,
-                    ),
-                  ],
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    var item = data.personals[index];
+                    return RoutineItem(
+                      img: item.image!,
+                      txt: item.title!,
+                      type: 1,
+                      onTap: () => onTapItem(index),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 1.w,
+                    );
+                  },
+                  itemCount: data.personals.length,
                 ),
               );
             }),

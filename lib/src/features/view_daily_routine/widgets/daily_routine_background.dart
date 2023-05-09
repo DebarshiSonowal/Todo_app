@@ -31,7 +31,7 @@ class DailyRoutineBackground extends StatelessWidget {
       ),
       color: Colors.transparent,
       child: SingleChildScrollView(
-        // physics: NeverScrollableScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             Row(
@@ -77,27 +77,31 @@ class DailyRoutineBackground extends StatelessWidget {
                 )
               ],
             ),
-            Consumer<Repository>(builder: (context, data, _) {
-              return data.models.isNotEmpty
-                  ? ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        var item = data.models[index];
-                        return DailyRoutineEditCard(
-                          item: item,
-                          index: index,
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          height: 1.h,
-                        );
-                      },
-                      itemCount: data.models.length,
-                    )
-                  : const EmptyAddNewCard();
-            }),
+            SizedBox(
+              height: 42.8.h,
+              width: double.infinity,
+              child: Consumer<Repository>(builder: (context, data, _) {
+                return data.models.isNotEmpty
+                    ? ListView.separated(
+                        // shrinkWrap: true,
+                        // physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          var item = data.models[index];
+                          return DailyRoutineEditCard(
+                            item: item,
+                            index: index,
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(
+                            height: 1.h,
+                          );
+                        },
+                        itemCount: data.models.length,
+                      )
+                    : const EmptyAddNewCard();
+              }),
+            ),
             SizedBox(
               height: 50.h,
             ),
