@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vishal_todo_app/src/models/essential_note.dart';
 
 import '../../constants/constants.dart';
 import '../../constants/routes.dart';
+import '../../models/essential_note.dart';
 import '../../repository/repository.dart';
 import '../../services/Navigate.dart';
+import '../../widget/alert.dart';
 import '../add_essential/Widgets/add_essential_page_empty_item.dart';
 import '../add_essential/Widgets/add_essential_page_item.dart';
 import '../add_essential/Widgets/essential_appbar.dart';
 
-class EssentialEditPage extends StatefulWidget {
-  const EssentialEditPage({Key? key, required this.index}) : super(key: key);
+class EditEssentialPage extends StatefulWidget {
+  const EditEssentialPage({Key? key, required this.index}) : super(key: key);
   final int index;
 
   @override
-  State<EssentialEditPage> createState() => _EssentialEditPageState();
+  State<EditEssentialPage> createState() => _EditEssentialPageState();
 }
 
-class _EssentialEditPageState extends State<EssentialEditPage> {
+class _EditEssentialPageState extends State<EditEssentialPage> {
   EssentialNotes? essentialNotes;
 
   @override
@@ -69,29 +70,22 @@ class _EssentialEditPageState extends State<EssentialEditPage> {
                   horizontal: 4.w,
                   vertical: 1.h,
                 ),
-                height: 40.h,
+                height: 46.h,
                 decoration: BoxDecoration(
-                  color: Constances.essentialEditBg,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 width: double.infinity,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
                     if (index != essentialNotes!.notes.length) {
-                      return EditEssentialPageItem(
+                      return AddEssentialPageItem(
                         index: index,
                         item: essentialNotes!.notes[index],
                         update: (String val) {
                           setState(() {
                             essentialNotes!.notes[index].title = val;
                             essentialNotes!.notes[index].isCompleted = false;
-                          });
-                        },
-                        updateCheckBox: (bool val) {
-                          setState(() {
-                            Provider.of<Repository>(context, listen: false)
-                                .updateEssentialCompleted(
-                                    val, widget.index, index);
                           });
                         },
                       );
@@ -112,9 +106,8 @@ class _EssentialEditPageState extends State<EssentialEditPage> {
                     }
                   },
                   separatorBuilder: (context, index) {
-                    return Divider(
-                      thickness: 0.01.h,
-                      color: Colors.black54,
+                    return SizedBox(
+                      height: 1.h,
                     );
                   },
                   itemCount: essentialNotes!.notes.length + 1,
@@ -125,5 +118,15 @@ class _EssentialEditPageState extends State<EssentialEditPage> {
         ),
       ),
     );
+  }
+
+  void showError(String msg) {
+    AlertX.instance.showAlert(
+        title: "Error",
+        msg: msg,
+        positiveButtonText: "Done",
+        positiveButtonPressed: () {
+          Navigation.instance.goBack();
+        });
   }
 }

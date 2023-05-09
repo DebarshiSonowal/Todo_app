@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_todo_app/src/features/dashboard/dashboard_screen.dart';
 import 'package:vishal_todo_app/src/features/essential_list/essential_list_page.dart';
-import 'package:vishal_todo_app/src/features/essentials_edit/essentials_edit_page.dart';
+// import 'package:vishal_todo_app/src/features/essentials_edit/essentials_details_page.dart';
 import '../constants/constants.dart';
 import '../constants/routes.dart';
 
@@ -24,6 +24,8 @@ import '../features/edit_personal_info/edit_personal_info_page.dart';
 import '../features/edit_quick_notes/edit_quick_notes_page.dart';
 import '../features/edit_time_picker_personal/edit_time_date_selected_personal.dart';
 import '../features/edit_timer_selected/edit_timer_selected.dart';
+import '../features/essentials_details/essentials_details_page.dart';
+import '../features/essentials_edit/essentials_edit_page.dart';
 import '../features/personal_details/personal_details.dart';
 import '../features/personal_enter_info/personal_enter_info_page.dart';
 import '../features/personal_time_date_selector/personal_timer_date_page.dart';
@@ -110,7 +112,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case Routes.personalDetails:
       return FadeTransitionPageRouteBuilder(
-        page: PersonalDetails(index: settings.arguments as int,),
+        page: PersonalDetails(
+          index: settings.arguments as int,
+        ),
       );
     case Routes.editPersonalInfo:
       return FadeTransitionPageRouteBuilder(
@@ -166,9 +170,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case Routes.essentialsList:
       return FadeTransitionPageRouteBuilder(page: const EssentialListPage());
+    case Routes.essentialsDetails:
+      return FadeTransitionPageRouteBuilder(
+          page: EssentialDetailsPage(index: settings.arguments as int));
     case Routes.essentialsEdit:
       return FadeTransitionPageRouteBuilder(
-          page: EssentialEditPage(index: settings.arguments as int));
+          page: EditEssentialPage(index: settings.arguments as int));
 
     //quick
     case Routes.addQuickPage:
@@ -187,9 +194,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case Routes.addQuickNoteFromDate:
       return FadeTransitionPageRouteBuilder(
-        page: AddQuickNoteFromDate(dateTime: settings.arguments as String,),
+        page: AddQuickNoteFromDate(
+          dateTime: settings.arguments as String,
+        ),
       );
-
 
     default:
       return FadeTransitionPageRouteBuilder(

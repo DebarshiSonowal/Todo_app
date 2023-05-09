@@ -58,4 +58,6 @@ class Routes {
   static const addQuickNoteFromDate = "/add_quick_note_from_date";
 
   static const personalDetails = "/personal_details";
+
+  static const essentialsDetails="/essential_details";
 }

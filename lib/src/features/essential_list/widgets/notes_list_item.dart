@@ -18,7 +18,7 @@ class NotesListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigation.instance.navigateAndReplace(Routes.essentialsEdit,args: index);
+        Navigation.instance.navigateAndReplace(Routes.essentialsDetails,args: index);
       },
       child: Card(
         shape: RoundedRectangleBorder(

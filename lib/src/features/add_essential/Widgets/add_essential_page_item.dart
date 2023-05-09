@@ -57,8 +57,8 @@ class AddEssentialPageItem extends StatelessWidget {
   }
 }
 
-class EditEssentialPageItem extends StatelessWidget {
-  const EditEssentialPageItem({
+class DetailsEssentialPageItem extends StatelessWidget {
+  const DetailsEssentialPageItem({
     super.key,
     required this.item,
     required this.index,
@@ -74,50 +74,61 @@ class EditEssentialPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          "${index + 1}. ",
-          style: Theme.of(context).textTheme.headline4?.copyWith(
-                fontSize: 12.sp,
-                color: Colors.black54,
-                fontFamily: "Roboto",
-              ),
-        ),
-        Expanded(
-          child: TextFormField(
-            maxLines: 1,
-            onFieldSubmitted: (val) {
-              if (val.isNotEmpty) {
-                update(val);
-              }
-            },
-            initialValue: "${item.title}",
-            minLines: 1,
-            decoration: InputDecoration.collapsed(
-              hintText: '${index + 1}.',
-              hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontSize: 12.sp,
-                    color: Colors.black54,
-                    // fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto",
-                  ),
-            ),
+    return GestureDetector(
+      onTap:()=>updateCheckBox(!(item.isCompleted ?? false)),
+      child: Row(
+        children: [
+          Text(
+            "${index + 1}. ",
             style: Theme.of(context).textTheme.headline4?.copyWith(
                   fontSize: 12.sp,
-                  color: Colors.black,
+                  color: Colors.black54,
                   fontFamily: "Roboto",
                 ),
           ),
-        ),
-        SizedBox(
-          height: 1.h,
-          child: Checkbox(
-              splashRadius: 2.w,
-              value: item.isCompleted ?? false,
-              onChanged: (val) => updateCheckBox(val ?? false)),
-        ),
-      ],
+          Expanded(
+            child: Text(
+              "${item.title}",
+              style: Theme.of(context).textTheme.headline4?.copyWith(
+                    fontSize: 12.sp,
+                    color: Colors.black,
+                    fontFamily: "Roboto",
+                  ),
+            ),
+            // child: TextFormField(
+            //   maxLines: 1,
+            //   onFieldSubmitted: (val) {
+            //     if (val.isNotEmpty) {
+            //       update(val);
+            //     }
+            //   },
+            //   initialValue: "${item.title}",
+            //   minLines: 1,
+            //   decoration: InputDecoration.collapsed(
+            //     hintText: '${index + 1}.',
+            //     hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
+            //           fontSize: 12.sp,
+            //           color: Colors.black54,
+            //           // fontWeight: FontWeight.bold,
+            //           fontFamily: "Roboto",
+            //         ),
+            //   ),
+            //   style: Theme.of(context).textTheme.headline4?.copyWith(
+            //         fontSize: 12.sp,
+            //         color: Colors.black,
+            //         fontFamily: "Roboto",
+            //       ),
+            // ),
+          ),
+          SizedBox(
+            height: 1.h,
+            child: Checkbox(
+                splashRadius: 2.w,
+                value: item.isCompleted ?? false,
+                onChanged: (val) => updateCheckBox(val ?? false)),
+          ),
+        ],
+      ),
     );
   }
 }
