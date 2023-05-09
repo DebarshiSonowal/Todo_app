@@ -23,6 +23,8 @@ class EssentialDemoList extends StatelessWidget {
         var current = essential.notes[index];
         return Text(
           "${index + 1}. ${current.title}",
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Colors.black,
             fontSize: 10.sp,

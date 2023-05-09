@@ -22,7 +22,11 @@ class NotesList extends StatelessWidget {
     return GridView.builder(
       itemCount: essentials.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 4.0, mainAxisSpacing: 4.0),
+        crossAxisCount: 2,
+        crossAxisSpacing: 4.0,
+        mainAxisSpacing: 4.0,
+        childAspectRatio: 4/(4.5),
+      ),
       itemBuilder: (BuildContext context, int index) {
         var item = essentials[index];
         return Stack(

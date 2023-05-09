@@ -136,5 +136,5 @@ class Constances {
 
   static const essentialItemColor = Color(0xffa8b4e0);
 
-
+  static const essentialEditBg = Color(0xffa6b4e0);
 }

@@ -19,16 +19,17 @@ class Repository extends ChangeNotifier {
 
   List<QuickNote> quickNotes = [];
 
-  void addQuickNote(QuickNote quickNote){
+  void addQuickNote(QuickNote quickNote) {
     quickNotes.add(quickNote);
     notifyListeners();
   }
 
-  void deleteQuickNote(QuickNote quickNote){
+  void deleteQuickNote(QuickNote quickNote) {
     quickNotes.remove(quickNote);
     notifyListeners();
   }
-  void updateQuickNote(QuickNote quickNote,int index){
+
+  void updateQuickNote(QuickNote quickNote, int index) {
     quickNotes[index] = quickNote;
     notifyListeners();
   }
@@ -42,8 +43,17 @@ class Repository extends ChangeNotifier {
     essentials.remove(list);
     notifyListeners();
   }
-  void updateEssentials(EssentialNotes list,int index){
+
+  void updateEssentials(EssentialNotes list, int index) {
     essentials[index] = list;
+    notifyListeners();
+  }
+
+  void updateEssentialCompleted(bool val, int index, int index2) {
+    debugPrint(
+        "${essentials[index].notes[index2].title} ${essentials[index].notes[index2].isCompleted} ${val}");
+    essentials[index].notes[index2].isCompleted = val;
+
     notifyListeners();
   }
 

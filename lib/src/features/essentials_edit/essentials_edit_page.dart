@@ -71,20 +71,27 @@ class _EssentialEditPageState extends State<EssentialEditPage> {
                 ),
                 height: 40.h,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Constances.essentialEditBg,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 width: double.infinity,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
                     if (index != essentialNotes!.notes.length) {
-                      return AddEssentialPageItem(
+                      return EditEssentialPageItem(
                         index: index,
                         item: essentialNotes!.notes[index],
                         update: (String val) {
                           setState(() {
                             essentialNotes!.notes[index].title = val;
                             essentialNotes!.notes[index].isCompleted = false;
+                          });
+                        },
+                        updateCheckBox: (bool val) {
+                          setState(() {
+                            Provider.of<Repository>(context, listen: false)
+                                .updateEssentialCompleted(
+                                    val, widget.index, index);
                           });
                         },
                       );
@@ -105,8 +112,9 @@ class _EssentialEditPageState extends State<EssentialEditPage> {
                     }
                   },
                   separatorBuilder: (context, index) {
-                    return SizedBox(
-                      height: 1.h,
+                    return Divider(
+                      thickness: 0.01.h,
+                      color: Colors.black54,
                     );
                   },
                   itemCount: essentialNotes!.notes.length + 1,

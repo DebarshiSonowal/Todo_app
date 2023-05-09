@@ -6,7 +6,9 @@ class DailyRoutineModel {
   DateTime? dateTime;
   // TimerSelectionOptions? options;
   List<ReminderListItem> reminders = [];
-
+  bool? isTimer,isDaily;
+  List<int> weekDays=[];
+  List<DateTime> monthly=[];
   DailyRoutineModel(
     this.title,
     this.titleTime,

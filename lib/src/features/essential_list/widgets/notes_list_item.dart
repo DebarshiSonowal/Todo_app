@@ -54,6 +54,8 @@ class NotesListItem extends StatelessWidget {
                   var current = item.notes[index];
                   return Text(
                     "${index + 1}. ${current.title}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.black,
                       fontSize: 13.sp,
@@ -61,7 +63,7 @@ class NotesListItem extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: item.notes.length > 5 ? 5 : item.notes.length,
+                itemCount: item.notes.length > 4 ? 4 : item.notes.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
                     height: 1.h,
