@@ -59,10 +59,11 @@ class BookmarkCard extends StatelessWidget {
                   onPressed: () {
                     Navigation.instance.navigate(Routes.bookmark);
                   },
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.black54,
-                    size: 12.sp,
+                  icon: Image.asset(
+                    Constances.arrowImage,
+                    // color: Colors.black54,
+                    height: 10.sp,
+                    width: 10.sp,
                   ),
                 ),
               ],
@@ -79,7 +80,7 @@ class BookmarkCard extends StatelessWidget {
                   width: double.infinity,
                   height: 10.h,
                   padding: EdgeInsets.symmetric(
-                    horizontal: 4.w,
+                    horizontal: 2.w,
                   ),
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
@@ -98,7 +99,7 @@ class BookmarkCard extends StatelessWidget {
                     },
                     separatorBuilder: (context, index) {
                       return SizedBox(
-                        width: 3.w,
+                        width: 2.w,
                       );
                     },
                     itemCount: data.bookmarks.length,

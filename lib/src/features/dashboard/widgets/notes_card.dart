@@ -64,10 +64,11 @@ class notesCard extends StatelessWidget {
                       const Spacer(),
                       IconButton(
                         onPressed: () => onArrowClick(),
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.black54,
-                          size: 11.sp,
+                        icon: Image.asset(
+                          Constances.arrowImage,
+                          // color: Colors.black54,
+                          height: 10.sp,
+                          width: 10.sp,
                         ),
                       ),
                     ],

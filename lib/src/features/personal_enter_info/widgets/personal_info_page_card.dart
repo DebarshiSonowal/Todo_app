@@ -53,7 +53,6 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
-
       return Card(
         elevation: 7,
         shape: RoundedRectangleBorder(
@@ -94,7 +93,7 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                     hintText: 'Title',
                     hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
                           fontSize: 12.sp,
-                          color: Colors.white70,
+                          color: Colors.white30,
                           // fontWeight: FontWeight.bold,
                           fontFamily: "Roboto",
                         ),
@@ -122,17 +121,18 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                       ),
                       width: double.infinity,
-                      child:data.personals[widget.index??0].reminders.isNotEmpty
-                          ? BulletNoteItemListNotEmpty(
-                              current: data.personals[widget.index??0],
-                              index: widget.index ?? 0,
-                              type: 1,
-                            )
-                          : BulletNoteItemListEmpty(
-                              reminders: widget.reminders,
-                              count: widget.index ?? 0,
-                              type: 1,
-                            ),
+                      child:
+                          data.personals[widget.index ?? 0].reminders.isNotEmpty
+                              ? BulletNoteItemListNotEmpty(
+                                  current: data.personals[widget.index ?? 0],
+                                  index: widget.index ?? 0,
+                                  type: 1,
+                                )
+                              : BulletNoteItemListEmpty(
+                                  reminders: widget.reminders,
+                                  count: widget.index ?? 0,
+                                  type: 1,
+                                ),
                     )
                   : Container(
                       height: 30.h,
@@ -153,6 +153,7 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                         onTap: (val) {
                           setState(() {});
                         },
+                        remove: (index) {},
                       ),
                     ),
               SizedBox(
@@ -165,9 +166,9 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                 child: (attachment == null && widget.file == null)
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: SvgPicture.asset(
-                          Constances.addImageIcon,
-                          color: Colors.white38,
+                        child: Image.asset(
+                          Constances.customCameraImage,
+                          // color: Colors.white38,
                           fit: BoxFit.cover,
                           height: 50.sp,
                           width: 50.sp,

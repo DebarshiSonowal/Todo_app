@@ -37,7 +37,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
-        child: AddPeronalInfoAppbar(
+        child: AddPersonalInfoAppbar(
           savePersonal: () {
             if (titleController.text.isNotEmpty &&
                 reminders.isNotEmpty &&

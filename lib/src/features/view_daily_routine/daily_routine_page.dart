@@ -32,7 +32,6 @@ class DailyRoutinePage extends StatelessWidget {
           ),
         ),
         child: Stack(
-
           alignment: Alignment.bottomCenter,
           children: [
             DailyRoutineBackground(),

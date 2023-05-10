@@ -28,7 +28,7 @@ class imageItem extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(
-                      color: Colors.black87,
+                      color: Colors.grey,
                     ),
                   ),
                   padding: EdgeInsets.all(4.4.w),
@@ -48,7 +48,7 @@ class imageItem extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(
-                      color: Colors.black87,
+                      color: Colors.grey,
                     ),
                   ),
                   // padding: EdgeInsets.all(4.4.w),
@@ -57,8 +57,8 @@ class imageItem extends StatelessWidget {
                     child: Image.file(
                       File(image),
                       fit: BoxFit.fill,
-                      height: 6.5.h,
-                      width: 14.w,
+                      height: 37.sp,
+                      width: 37.sp,
                     ),
                   ),
                 ),
@@ -70,13 +70,26 @@ class imageItem extends StatelessWidget {
             // height: 2.5.h,
             child: Column(
               children: [
+                // Text(
+                //   text,
+                //   maxLines: 1,
+                //   overflow: TextOverflow.ellipsis,
+                //   style: Theme.of(context).textTheme.headline6?.copyWith(
+                //         color: Colors.black,
+                //         fontSize: 11.sp,
+                //         fontFamily: "PublicSans",
+                //         // fontWeight: FontWeight.bold,
+                //         // fontWeight: FontWeight.bold,
+                //       ),
+                // ),
                 Text(
                   text,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                         color: Colors.black,
-                        fontSize: 12.5.sp,
+                        overflow: TextOverflow.fade,
+                        fontSize: 11.sp,
                         fontFamily: "PublicSans",
                         // fontWeight: FontWeight.bold,
                         // fontWeight: FontWeight.bold,

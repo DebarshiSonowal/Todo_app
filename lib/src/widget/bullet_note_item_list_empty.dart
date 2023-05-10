@@ -10,14 +10,16 @@ import '../models/timer_section_option_model.dart';
 import '../repository/repository.dart';
 
 class BulletNoteItemListEmpty extends StatelessWidget {
-  const BulletNoteItemListEmpty({
+  BulletNoteItemListEmpty({
     super.key,
     required this.reminders,
-    required this.count, required this.type,
+    required this.count,
+    required this.type,
   });
 
   final List<ReminderListItem> reminders;
   final int count, type;
+  final focus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +29,19 @@ class BulletNoteItemListEmpty extends StatelessWidget {
         // var item = reminders[index];
         if (index != reminders.length) {
           return RoutineItemWidget(
+            // focusNode: focus,
             item: reminders.isEmpty
                 ? ReminderListItem(
-              "",
-              DateFormat("hh:mm a").format(DateTime.now()),
-              DateTime.now(),
-              false,
-              TimerSelectionOptions(
-                "NA",10,false,
-              ),
-            )
+                    "",
+                    DateFormat("hh:mm a").format(DateTime.now()),
+                    DateTime.now(),
+                    false,
+                    TimerSelectionOptions(
+                      "NA",
+                      10,
+                      false,
+                    ),
+                  )
                 : reminders[index],
             index: index,
             updateList: (string, dateTime) {
@@ -54,7 +59,9 @@ class BulletNoteItemListEmpty extends StatelessWidget {
                     dateTime,
                     false,
                     TimerSelectionOptions(
-                      "NA",10,false,
+                      "NA",
+                      10,
+                      false,
                     ),
                   ),
                   index,
@@ -69,23 +76,30 @@ class BulletNoteItemListEmpty extends StatelessWidget {
                     dateTime,
                     false,
                     TimerSelectionOptions(
-                      "NA",10,false,
+                      "NA",
+                      10,
+                      false,
                     ),
                   ),
                   index,
                 );
               }
+              FocusScope.of(context).requestFocus(focus);
             },
+            remove: () {},
           );
         } else {
           return RoutineItemWidget(
+            // focusNode: focus,
             item: ReminderListItem(
               "",
               DateFormat("hh:mm a").format(DateTime.now()),
               DateTime.now(),
               false,
               TimerSelectionOptions(
-                "NA",10,false,
+                "NA",
+                10,
+                false,
               ),
             ),
             index: index,
@@ -95,7 +109,7 @@ class BulletNoteItemListEmpty extends StatelessWidget {
               //     ReminderListItem(string, "", dateTime),
               //   );
               // });
-              if (type==0) {
+              if (type == 0) {
                 Provider.of<Repository>(context, listen: false)
                     .addReminderListItem(
                   count,
@@ -105,7 +119,9 @@ class BulletNoteItemListEmpty extends StatelessWidget {
                     dateTime,
                     false,
                     TimerSelectionOptions(
-                      "NA",10,false,
+                      "NA",
+                      10,
+                      false,
                     ),
                   ),
                 );
@@ -119,12 +135,15 @@ class BulletNoteItemListEmpty extends StatelessWidget {
                     dateTime,
                     false,
                     TimerSelectionOptions(
-                      "NA",10,false,
+                      "NA",
+                      10,
+                      false,
                     ),
                   ),
                 );
               }
             },
+            remove: () {},
           );
         }
       },

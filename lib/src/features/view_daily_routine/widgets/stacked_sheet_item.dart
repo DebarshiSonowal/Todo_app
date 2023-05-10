@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../constants/constants.dart';
 import '../../../models/stacked_list_item_model.dart';
 
 class StackedSheetItem extends StatelessWidget {
@@ -35,10 +36,10 @@ class StackedSheetItem extends StatelessWidget {
         const Spacer(),
         GestureDetector(
           onTap: ()=>onTap(),
-          child: Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.white70,
-            size: 14.sp,
+          child: Image.asset(
+            Constances.arrowNextImage,
+            fit: BoxFit.fill,
+            scale: Constances.arrowScale2,
           ),
         ),
       ],

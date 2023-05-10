@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../constants/constants.dart';
 import '../../../services/Navigate.dart';
 
 class PersonalTimerSelectedAppbar extends StatelessWidget {
-  const PersonalTimerSelectedAppbar({Key? key, required this.showDelete}) : super(key: key);
-
+  const PersonalTimerSelectedAppbar({Key? key, required this.showDelete})
+      : super(key: key);
 
   final bool showDelete;
 
@@ -31,62 +32,63 @@ class PersonalTimerSelectedAppbar extends StatelessWidget {
                 child: SizedBox(
                   child: showDelete
                       ? Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Cancel',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4
-                            ?.copyWith(
-                          fontSize: 13.sp,
-                          color: Colors.white,
-                          fontFamily: "PublicSans",
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  )
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Cancel',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4
+                                  ?.copyWith(
+                                    fontSize: 13.sp,
+                                    color: Colors.white,
+                                    fontFamily: "PublicSans",
+                                    // fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        )
                       : Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 16.sp,
-                      ),
-                      Text(
-                        'Back',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4
-                            ?.copyWith(
-                          fontSize: 11.2.sp,
-                          color: Colors.white,
-                          fontFamily: "PublicSans",
-                          // fontWeight: FontWeight.bold,
+                          children: [
+                            Image.asset(
+                              Constances.arrowBackImage,
+                              fit: BoxFit.fill,
+                              scale: Constances.arrowScale,
+                            ),
+                            Text(
+                              'Back',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4
+                                  ?.copyWith(
+                                    fontSize: 11.2.sp,
+                                    color: Colors.white,
+                                    fontFamily: "PublicSans",
+                                    // fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
               showDelete
                   ? GestureDetector(
-                onTap: () {
-                  Navigation.instance.goBack();
-                },
-                child: SizedBox(
-                  child: Text(
-                    'Delete',
-                    style:
-                    Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 13.sp,
-                      color: Colors.red,
-                      fontFamily: "PublicSans",
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              )
+                      onTap: () {
+                        Navigation.instance.goBack();
+                      },
+                      child: SizedBox(
+                        child: Text(
+                          'Delete',
+                          style:
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    fontSize: 13.sp,
+                                    color: Colors.red,
+                                    fontFamily: "PublicSans",
+                                    // fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                    )
                   : Container()
             ],
           ),

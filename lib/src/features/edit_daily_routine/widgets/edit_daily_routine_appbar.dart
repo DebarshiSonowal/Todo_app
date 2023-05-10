@@ -56,9 +56,10 @@ class EditDailyRoutineAppBar extends StatelessWidget {
                           child: SizedBox(
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.arrow_back_ios_new,
-                                  size: 16.sp,
+                                Image.asset(
+                                  Constances.arrowBackImage,
+                                  fit: BoxFit.fill,
+                                  scale: Constances.arrowScale,
                                 ),
                                 Text(
                                   'Back',

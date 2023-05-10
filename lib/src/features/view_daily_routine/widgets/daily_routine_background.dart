@@ -78,7 +78,7 @@ class DailyRoutineBackground extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 42.8.h,
+              height: 100.h,
               width: double.infinity,
               child: Consumer<Repository>(builder: (context, data, _) {
                 return data.models.isNotEmpty

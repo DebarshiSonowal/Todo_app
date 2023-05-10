@@ -44,7 +44,7 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
-        child: AddPeronalInfoAppbar(
+        child: AddPersonalInfoAppbar(
           savePersonal: () {
             Provider.of<Repository>(context, listen: false).modifyPersonals(
                 widget.index,

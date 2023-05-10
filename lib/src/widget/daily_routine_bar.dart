@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/constants/constants.dart';
 
 import '../services/Navigate.dart';
 
@@ -44,9 +45,10 @@ class DailyRoutineAppBar extends StatelessWidget {
                         child: SizedBox(
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.arrow_back_ios_new,
-                                size: 16.sp,
+                              Image.asset(
+                               Constances.arrowBackImage,
+                                fit: BoxFit.fill,
+                                scale: Constances.arrowScale,
                               ),
                               Text(
                                 'Back',
@@ -96,9 +98,10 @@ class DailyRoutineAppBar extends StatelessWidget {
                                   // fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16.sp,
+                              Image.asset(
+                                Constances.arrowNextImage,
+                                fit: BoxFit.fill,
+                                scale: Constances.arrowScale,
                               ),
                             ],
                           ),

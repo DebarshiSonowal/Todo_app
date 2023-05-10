@@ -10,8 +10,8 @@ import 'package:vishal_todo_app/src/widget/done_button.dart';
 import '../../../constants/constants.dart';
 import '../../../services/Navigate.dart';
 
-class AddPeronalInfoAppbar extends StatelessWidget {
-  const AddPeronalInfoAppbar({Key? key, required this.savePersonal}) : super(key: key);
+class AddPersonalInfoAppbar extends StatelessWidget {
+  const AddPersonalInfoAppbar({Key? key, required this.savePersonal}) : super(key: key);
   final Function savePersonal;
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,10 @@ class AddPeronalInfoAppbar extends StatelessWidget {
                             child: SizedBox(
                               child: Row(
                                 children: [
-                                  Icon(
-                                    Icons.arrow_back_ios_new,
-                                    size: 16.sp,
+                                  Image.asset(
+                                    Constances.arrowBackImage,
+                                    fit: BoxFit.fill,
+                                    scale: Constances.arrowScale,
                                   ),
                                   Text(
                                     'Back',
@@ -121,9 +122,10 @@ class AddPeronalInfoAppbar extends StatelessWidget {
                                       // fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16.sp,
+                                  Image.asset(
+                                    Constances.arrowNextImage,
+                                    fit: BoxFit.fill,
+                                    scale: Constances.arrowScale,
                                   ),
                                 ],
                               ),

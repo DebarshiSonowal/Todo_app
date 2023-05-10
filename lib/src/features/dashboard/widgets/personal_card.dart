@@ -28,7 +28,7 @@ class PersonalCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 1.w,
-          vertical: 1.h,
+          vertical: 0.5.h,
         ),
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -66,10 +66,11 @@ class PersonalCard extends StatelessWidget {
                     // Navigation.instance.navigate(Routes.addPersonal);
                     Navigation.instance.navigate(Routes.addPersonalInfo);
                   },
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.black54,
-                    size: 11.sp,
+                  icon: Image.asset(
+                    Constances.arrowImage,
+                    // color: Colors.black54,
+                    height: 10.sp,
+                    width: 10.sp,
                   ),
                 ),
               ],
@@ -82,7 +83,7 @@ class PersonalCard extends StatelessWidget {
                 width: double.infinity,
                 height: 10.h,
                 padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
+                  horizontal: 2.w,
                 ),
                 child: ListView.separated(
                   shrinkWrap: true,
@@ -98,7 +99,7 @@ class PersonalCard extends StatelessWidget {
                   },
                   separatorBuilder: (context, index) {
                     return SizedBox(
-                      width: 1.w,
+                      width: 2.w,
                     );
                   },
                   itemCount: data.personals.length,

@@ -54,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
               SizedBox(
-                height: 0.5.h,
+                height: 1.h,
               ),
               PersonalCard(
                 type: "Personal",
@@ -64,11 +64,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
               SizedBox(
-                height: 0.5.h,
+                height: 1.h,
               ),
               const BookmarkCard(),
               SizedBox(
-                height: 0.5.h,
+                height: 1.h,
               ),
               Consumer<Repository>(builder: (context, data, _) {
                 return CardSection(

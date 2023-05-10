@@ -18,11 +18,16 @@ import '../../../widget/image_popup_body.dart';
 import 'add_bullet_note_list_empty.dart';
 
 class AddDailyRoutineNormalCard extends StatefulWidget {
-  const AddDailyRoutineNormalCard({Key? key, required this.titleController, required this.reminders, required this.imageUpdate})
+  const AddDailyRoutineNormalCard(
+      {Key? key,
+      required this.titleController,
+      required this.reminders,
+      required this.imageUpdate})
       : super(key: key);
   final TextEditingController titleController;
   final List<ReminderListItem> reminders;
   final Function(File) imageUpdate;
+
   @override
   State<AddDailyRoutineNormalCard> createState() =>
       _AddDailyRoutineNormalCardState();
@@ -30,7 +35,6 @@ class AddDailyRoutineNormalCard extends StatefulWidget {
 
 class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
   File? attachment;
-
 
   // @override
   // void dispose() {
@@ -81,7 +85,7 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                       hintStyle:
                           Theme.of(context).textTheme.headline4?.copyWith(
                                 fontSize: 12.sp,
-                                color: Colors.white70,
+                                color: Colors.white30,
                                 // fontWeight: FontWeight.bold,
                                 fontFamily: "Roboto",
                               ),
@@ -109,11 +113,15 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                   ),
                   width: double.infinity,
                   child: AddBulletNoteItemListEmpty(
-                    reminders: widget.reminders, onTap: (val) {
-                      setState(() {
-
-                      });
-                  },
+                    reminders: widget.reminders,
+                    onTap: (val) {
+                      setState(() {});
+                    },
+                    remove: (index) {
+                      // Provider.of<Repository>(context, listen: false)
+                      //     .removeDailyReminder(index);
+                      setState(() {});
+                    },
                   ),
                 ),
                 SizedBox(
@@ -124,16 +132,27 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                     showPhotoBottomSheet(getSelectedImage);
                   },
                   child: attachment == null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: SvgPicture.asset(
-                            Constances.addImageIcon,
-                            color: Colors.white38,
-                            fit: BoxFit.cover,
-                            height: 50.sp,
-                            width: 50.sp,
-                          ),
-                        )
+                      ?
+                  // ClipRRect(
+                  //         borderRadius: BorderRadius.circular(100),
+                  //         child: SvgPicture.asset(
+                  //           Constances.customCameraImage,
+                  //           color: Colors.white38,
+                  //           fit: BoxFit.cover,
+                  //           height: 50.sp,
+                  //           width: 50.sp,
+                  //         ),
+                  //       )
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.asset(
+                      Constances.customCameraImage,
+                      // color: Colors.white38,
+                      fit: BoxFit.cover,
+                      height: 50.sp,
+                      width: 50.sp,
+                    ),
+                  )
                       : CircleAvatar(
                           radius: 30.sp, // Image radius
                           backgroundImage:
@@ -144,16 +163,14 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
             ),
           ),
         ),
-        IconButton(
-          onPressed: () {
-
-          },
-          icon: SvgPicture.asset(
-            Constances.trashIcon,
-            fit: BoxFit.fill,
-            height: 15.sp,
-          ),
-        ),
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: SvgPicture.asset(
+        //     Constances.trashIcon,
+        //     fit: BoxFit.fill,
+        //     height: 15.sp,
+        //   ),
+        // ),
       ],
     );
   }

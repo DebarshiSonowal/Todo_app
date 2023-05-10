@@ -38,81 +38,102 @@ class DashboardCard extends StatelessWidget {
         ),
         width: double.infinity,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: Constances.primaryColor,
-                // border: Border.all(),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                // shape: BoxShape.circle,
-              ),
-              padding: EdgeInsets.only(
-                top: 0.5.h,
-                left: 1.w,
-                right: 1.w,
-                bottom: 0.5.h,
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    "Today's Plan",
-                    style: Theme.of(context).textTheme.headline4?.copyWith(
-                          color: Constances.specialTextColor,
-                          fontSize: 9.5.sp,
-                          fontFamily: "PublicSans",
-                          fontWeight: FontWeight.bold,
-                        ),
+            Stack(
+              alignment: Alignment.topRight,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Constances.primaryColor,
+                    // border: Border.all(),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    // shape: BoxShape.circle,
                   ),
-                  SizedBox(
-                    height: 3.5.h,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          Constances.clockImage,
-                          height: 4.7.h,
-                          width: 7.5.w,
-                          fit: BoxFit.fill,
+                  padding: EdgeInsets.only(
+                    top: 0.5.h,
+                    left: 1.w,
+                    right: 1.w,
+                    bottom: 0.5.h,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Today's Plan",
+                        style: Theme.of(context).textTheme.headline4?.copyWith(
+                              color: Constances.specialTextColor,
+                              fontSize: 9.5.sp,
+                              fontFamily: "PublicSans",
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      SizedBox(
+                        height: 3.h,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Constances.clockImage,
+                              height: 4.h,
+                              width: 6.5.w,
+                              fit: BoxFit.fill,
+                            ),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Text(
+                              type,
+                              style:
+                                  Theme.of(context).textTheme.headline4?.copyWith(
+                                        color: Colors.black,
+                                        fontSize: 14.sp,
+                                        fontFamily: "PublicSans",
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                            ),
+                            // const Spacer(),
+                            // IconButton(
+                            //   onPressed: () => onTapArrow(),
+                            //   icon: Icon(
+                            //     Icons.arrow_forward_ios,
+                            //     color: Colors.black54,
+                            //     size: 11.sp,
+                            //   ),
+                            // ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 2.w,
-                        ),
-                        Text(
-                          type,
-                          style:
-                              Theme.of(context).textTheme.headline4?.copyWith(
-                                    color: Colors.black,
-                                    fontSize: 14.sp,
-                                    fontFamily: "PublicSans",
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        const Spacer(),
-                        IconButton(
-                          onPressed: () => onTapArrow(),
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.black54,
-                            size: 11.sp,
-                          ),
-                        ),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 2.5.sp,
+                    right: 3.sp,
+                  ),
+                  child: IconButton(
+                    onPressed: () => onTapArrow(),
+                    icon: Image.asset(
+                      Constances.arrowImage,
+                      // color: Colors.black54,
+                      height: 10.sp,
+                      width: 10.sp,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(
-              height: 1.1.h,
+              height: 0.5.h,
             ),
             Consumer<Repository>(builder: (context, data, _) {
               return Container(
                 width: double.infinity,
-                height: 11.h,
+                height: 10.5.h,
                 padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
+                  horizontal: 2.5.w,
                 ),
                 child: ListView.separated(
                   shrinkWrap: true,

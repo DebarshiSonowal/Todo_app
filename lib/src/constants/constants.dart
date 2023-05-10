@@ -52,6 +52,9 @@ class Constances {
   //arrow
   static const arrow1Image = "assets/images/play_1.png";
   static const arrow2Image = "assets/images/play_2.png";
+  static const arrowImage = "assets/images/home_arrow.png";
+  static const arrowNextImage = "assets/images/arrow_next.png";
+  static const arrowBackImage = "assets/images/arrow_back.png";
 
   //colors
   static const blueBackground = Color(0xff101939);
@@ -137,4 +140,8 @@ class Constances {
   static const essentialItemColor = Color(0xffa8b4e0);
 
   static const essentialEditBg = Color(0xffa6b4e0);
+
+  static const arrowScale = 16.0;
+
+  static var arrowScale2 = 20.0;
 }

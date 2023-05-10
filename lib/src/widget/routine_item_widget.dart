@@ -15,15 +15,22 @@ extension TOD on TimeOfDay {
 }
 
 class RoutineItemWidget extends StatefulWidget {
-  const RoutineItemWidget(
-      {Key? key,
-      required this.index,
-      required this.item,
-      required this.updateList})
-      : super(key: key);
+  const RoutineItemWidget({
+    Key? key,
+    required this.index,
+    required this.item,
+    required this.updateList,
+    required this.remove,
+    this.autofocus,
+    // required this.focusNode,
+  }) : super(key: key);
   final int index;
   final ReminderListItem item;
   final Function(String, DateTime) updateList;
+  final Function remove;
+  final bool? autofocus;
+
+  // final FocusNode? focusNode;
 
   @override
   State<RoutineItemWidget> createState() => _RoutineItemWidgetState();
@@ -38,12 +45,13 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
   void initState() {
     super.initState();
     quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(type: 'delete', localizedTitle: 'Main view', icon: 'icon_main'),
+      const ShortcutItem(
+          type: 'delete', localizedTitle: 'Main view', icon: 'icon_main'),
       // const ShortcutItem(type: 'action_help', localizedTitle: 'Help', icon: 'icon_help')
     ]);
     quickActions.initialize((shortcutType) {
       if (shortcutType == 'action_main') {
-        print('The user tapped on the "Main view" action.');
+        debugPrint('The user tapped on the "Main view" action.');
       }
       // More handling code...
     });
@@ -64,10 +72,22 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
       // height: 4.h,
       child: Row(
         children: [
+          Text(
+            "${widget.index + 1}. ",
+            style: Theme.of(context).textTheme.headline4?.copyWith(
+                  fontSize: 12.sp,
+                  color: Colors.white30,
+                  fontFamily: "Roboto",
+                ),
+          ),
           Expanded(
             flex: 3,
             child: TextFormField(
+              autofocus: widget.autofocus ?? false,
+              // focusNode: widget.focusNode??null,
               maxLines: 1,
+
+              onEditingComplete: () {},
               onFieldSubmitted: (val) {
                 if (val.isNotEmpty) {
                   setState(() {
@@ -78,12 +98,14 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
                       timePicked == null
                           ? widget.item.timeDate!
                           : timePicked!.toDateTime());
+                } else {
+                  widget.remove();
                 }
               },
               minLines: 1,
               initialValue: "${widget.item.title}",
               decoration: InputDecoration.collapsed(
-                hintText: '${widget.index + 1}.',
+                hintText: '',
                 hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
                       fontSize: 12.sp,
                       color: Colors.white60,

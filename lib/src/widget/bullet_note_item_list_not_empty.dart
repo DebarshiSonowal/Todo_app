@@ -11,7 +11,7 @@ import '../models/timer_section_option_model.dart';
 import '../repository/repository.dart';
 
 class BulletNoteItemListNotEmpty extends StatelessWidget {
-  const BulletNoteItemListNotEmpty({
+  BulletNoteItemListNotEmpty({
     super.key,
     required this.current,
     required this.index,
@@ -25,7 +25,7 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
   final int type;
 
   // final EditDailyRoutineNormalCard widget;
-
+  final focus = FocusNode();
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -34,6 +34,7 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
         // var item = current.reminders[index];
         if (count != current.reminders.length) {
           return RoutineItemWidget(
+            // focusNode: focus,
             item: current.reminders.isEmpty
                 ? ReminderListItem(
                     "",
@@ -63,10 +64,13 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
                 ),
                 count,
               );
+              FocusScope.of(context).requestFocus(focus);
             },
+            remove: (){},
           );
         } else {
           return RoutineItemWidget(
+            // focusNode: focus,
             item: ReminderListItem(
               "",
               "",
@@ -113,7 +117,9 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
                   ),
                 );
               }
+              FocusScope.of(context).requestFocus(focus);
             },
+            remove: (){},
           );
         }
       },
