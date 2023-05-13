@@ -3,29 +3,25 @@ import 'package:sizer/sizer.dart';
 
 import '../../../constants/constants.dart';
 import '../../../services/Navigate.dart';
-import '../../bookmark_list/widgets/popup_body.dart';
-import 'pop_up_body_essential.dart';
+import 'pop_body_bookmark_idea.dart';
 
-class EssentialPageInstructions extends StatelessWidget {
-  const EssentialPageInstructions({Key? key}) : super(key: key);
+class AddPersonalPageInstructions extends StatelessWidget {
+  const AddPersonalPageInstructions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: Align(
-          alignment: Alignment.center,
+          alignment: Alignment.bottomRight,
           child: Stack(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.topLeft,
             children: [
-              const PopUpBodyEssential(),
+              const PopUpBodyPersonal(),
               Container(
                 margin: EdgeInsets.only(
-                  // right: 52.w,
-                  bottom: 1.h,
-                ),
-                padding: EdgeInsets.only(
-                  bottom: 1.5.h,
+                  right: 52.w,
+                  bottom: 2.5.h,
                 ),
                 child: IconButton(
                   onPressed: () {

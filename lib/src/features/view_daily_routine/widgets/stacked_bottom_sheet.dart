@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/constants.dart';
+import '../../../constants/routes.dart';
 import '../../../repository/repository.dart';
+import '../../../services/Navigate.dart';
 import 'stacked_sheet_item.dart';
 
 class StackedBottomSheet extends StatelessWidget {
@@ -22,7 +24,7 @@ class StackedBottomSheet extends StatelessWidget {
           ),
         ),
         child: Container(
-          height: getHeight(data.models.length),
+          // height: getHeight(data.models.length),
           width: 80.w,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -41,7 +43,9 @@ class StackedBottomSheet extends StatelessWidget {
               var item = Constances.listOptions[index];
               return StackedSheetItem(
                 item: item,
-                onTap: () {},
+                onTap: () {
+                  Navigation.instance.navigate(Routes.addDailyRoutineNormal);
+                },
               );
             },
             separatorBuilder: (context, index) {
@@ -61,12 +65,5 @@ class StackedBottomSheet extends StatelessWidget {
     });
   }
 
-  getHeight(int length) {
-    if (length <= 2) {
-      return 37.h;
-    } else if (length == 3) {
-      return 22.5.h;
-    }
-    return 12.h;
-  }
+
 }

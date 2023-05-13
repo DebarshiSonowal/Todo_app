@@ -109,114 +109,114 @@ class AppBarWidget extends StatelessWidget {
     );
   }
 
-  void showCalendar(context) {
-    DateTime defaultTime = DateTime.now();
-    showDialog(
-        // barrierColor: Constances.blueBackground,
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            alignment: Alignment.topCenter,
-            child: StatefulBuilder(builder: (context, setState) {
-              return Card(
-                elevation: 7,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    // color: Constances.blueBackground,
-                    gradient: Constances.gradient,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  height: 40.h,
-                  width: 100.w,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 4.w,
-                    vertical: 1.5.h,
-                  ),
-                  child: MonthView(
-                      cellAspectRatio: 3 / 3,
-                      onPageChange: (dateTime, index) {
-                        setState(() {
-                          defaultTime = dateTime;
-                        });
-                      },
-                      headerBuilder: (dateTime) {
-                        return Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 0.5.h,
-                          ),
-                          child: Center(
-                            child: Text(
-                              DateFormat("MMM").format(dateTime),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline3
-                                  ?.copyWith(
-                                    color: Colors.white,
-                                    fontFamily: "Rubik",
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          ),
-                        );
-                      },
-                      cellBuilder: (dateTime, events, val1, val2) {
-                        return checkThisMonth(dateTime, defaultTime)
-                            ? Container(
-                                color: checkIfHoliday(dateTime)
-                                    ? Constances.calendarCellColor2
-                                    : Constances.calendarCellColor1,
-                                height: 1.h,
-                                width: 2.w,
-                                child: Center(
-                                  child: Text(
-                                    "${dateTime.day}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline5
-                                        ?.copyWith(
-                                          color: checkIfHoliday(dateTime)
-                                              ? Constances.cellTextColor
-                                              : Colors.white,
-                                          fontFamily: "Rubik",
-                                          // fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                              )
-                            : Container();
-                      },
-                      borderColor: Colors.transparent,
-                      weekDayBuilder: (index) {
-                        return Container(
-                          padding: EdgeInsets.only(
-                            bottom: 0.5.h,
-                          ),
-                          child: Center(
-                            child: Text(
-                              nameOfDay(index),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5
-                                  ?.copyWith(
-                                    color: Colors.white70,
-                                    fontFamily: "PublicSans",
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          ),
-                        );
-                      }),
-                ),
-              );
-            }),
-          );
-        });
-  }
+  // void showCalendar(context) {
+  //   DateTime defaultTime = DateTime.now();
+  //   showDialog(
+  //       // barrierColor: Constances.blueBackground,
+  //       context: context,
+  //       barrierDismissible: true,
+  //       builder: (BuildContext context) {
+  //         return Dialog(
+  //           backgroundColor: Colors.transparent,
+  //           alignment: Alignment.topCenter,
+  //           child: StatefulBuilder(builder: (context, setState) {
+  //             return Card(
+  //               elevation: 7,
+  //               shape: RoundedRectangleBorder(
+  //                 borderRadius: BorderRadius.circular(20.0),
+  //               ),
+  //               child: Container(
+  //                 decoration: const BoxDecoration(
+  //                   // color: Constances.blueBackground,
+  //                   gradient: Constances.gradient,
+  //                   borderRadius: BorderRadius.all(Radius.circular(20)),
+  //                 ),
+  //                 height: 40.h,
+  //                 width: 100.w,
+  //                 padding: EdgeInsets.symmetric(
+  //                   horizontal: 4.w,
+  //                   vertical: 1.5.h,
+  //                 ),
+  //                 child: MonthView(
+  //                     cellAspectRatio: 3 / 3,
+  //                     onPageChange: (dateTime, index) {
+  //                       setState(() {
+  //                         defaultTime = dateTime;
+  //                       });
+  //                     },
+  //                     headerBuilder: (dateTime) {
+  //                       return Container(
+  //                         padding: EdgeInsets.symmetric(
+  //                           vertical: 0.5.h,
+  //                         ),
+  //                         child: Center(
+  //                           child: Text(
+  //                             DateFormat("MMM").format(dateTime),
+  //                             style: Theme.of(context)
+  //                                 .textTheme
+  //                                 .headline3
+  //                                 ?.copyWith(
+  //                                   color: Colors.white,
+  //                                   fontFamily: "Rubik",
+  //                                   // fontWeight: FontWeight.bold,
+  //                                 ),
+  //                           ),
+  //                         ),
+  //                       );
+  //                     },
+  //                     cellBuilder: (dateTime, events, val1, val2) {
+  //                       return checkThisMonth(dateTime, defaultTime)
+  //                           ? Container(
+  //                               color: checkIfHoliday(dateTime)
+  //                                   ? Constances.calendarCellColor2
+  //                                   : Constances.calendarCellColor1,
+  //                               height: 1.h,
+  //                               width: 2.w,
+  //                               child: Center(
+  //                                 child: Text(
+  //                                   "${dateTime.day}",
+  //                                   style: Theme.of(context)
+  //                                       .textTheme
+  //                                       .headline5
+  //                                       ?.copyWith(
+  //                                         color: checkIfHoliday(dateTime)
+  //                                             ? Constances.cellTextColor
+  //                                             : Colors.white,
+  //                                         fontFamily: "Rubik",
+  //                                         // fontWeight: FontWeight.bold,
+  //                                       ),
+  //                                 ),
+  //                               ),
+  //                             )
+  //                           : Container();
+  //                     },
+  //                     borderColor: Colors.transparent,
+  //                     weekDayBuilder: (index) {
+  //                       return Container(
+  //                         padding: EdgeInsets.only(
+  //                           bottom: 0.5.h,
+  //                         ),
+  //                         child: Center(
+  //                           child: Text(
+  //                             nameOfDay(index),
+  //                             style: Theme.of(context)
+  //                                 .textTheme
+  //                                 .headline5
+  //                                 ?.copyWith(
+  //                                   color: Colors.white70,
+  //                                   fontFamily: "PublicSans",
+  //                                   // fontWeight: FontWeight.bold,
+  //                                 ),
+  //                           ),
+  //                         ),
+  //                       );
+  //                     }),
+  //               ),
+  //             );
+  //           }),
+  //         );
+  //       });
+  // }
 
   String nameOfDay(int index) {
     switch (index) {

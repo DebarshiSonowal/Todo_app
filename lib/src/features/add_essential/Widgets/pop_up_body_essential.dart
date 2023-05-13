@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class PopUpBody extends StatelessWidget {
-  const PopUpBody({
+class PopUpBodyEssential extends StatelessWidget {
+  const PopUpBodyEssential({
     super.key,
   });
 
@@ -12,6 +12,7 @@ class PopUpBody extends StatelessWidget {
       height: 39.h,
       width: 84.w,
       margin: EdgeInsets.only(
+        top: 0.9.h,
         right: 0.5.w,
         bottom: 2.h,
       ),
@@ -37,7 +38,7 @@ class PopUpBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "Bookmark ideas",
+                    "Essentials",
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall
@@ -117,7 +118,7 @@ class PopUpBody extends StatelessWidget {
 
                         children: <TextSpan>[
                           TextSpan(
-                            text: "Ex You can place-",
+                            text: "Ex -",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -128,7 +129,7 @@ class PopUpBody extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "Important links",
+                            text: "Groceries",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -139,7 +140,7 @@ class PopUpBody extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "/",
+                            text: "",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -167,7 +168,7 @@ class PopUpBody extends StatelessWidget {
 
                         children: <TextSpan>[
                           TextSpan(
-                            text: "website",
+                            text: "Kitchen",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -189,7 +190,7 @@ class PopUpBody extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: " shortcut",
+                            text: " Bathroom",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -225,7 +226,7 @@ class PopUpBody extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "keep adding",
+                    "keep adding!",
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall

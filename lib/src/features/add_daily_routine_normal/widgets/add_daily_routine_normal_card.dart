@@ -133,26 +133,26 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                   },
                   child: attachment == null
                       ?
-                  // ClipRRect(
-                  //         borderRadius: BorderRadius.circular(100),
-                  //         child: SvgPicture.asset(
-                  //           Constances.customCameraImage,
-                  //           color: Colors.white38,
-                  //           fit: BoxFit.cover,
-                  //           height: 50.sp,
-                  //           width: 50.sp,
-                  //         ),
-                  //       )
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.asset(
-                      Constances.customCameraImage,
-                      // color: Colors.white38,
-                      fit: BoxFit.cover,
-                      height: 50.sp,
-                      width: 50.sp,
-                    ),
-                  )
+                      // ClipRRect(
+                      //         borderRadius: BorderRadius.circular(100),
+                      //         child: SvgPicture.asset(
+                      //           Constances.customCameraImage,
+                      //           color: Colors.white38,
+                      //           fit: BoxFit.cover,
+                      //           height: 50.sp,
+                      //           width: 50.sp,
+                      //         ),
+                      //       )
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset(
+                            Constances.customCameraImage,
+                            // color: Colors.white38,
+                            fit: BoxFit.cover,
+                            height: 50.sp,
+                            width: 50.sp,
+                          ),
+                        )
                       : CircleAvatar(
                           radius: 30.sp, // Image radius
                           backgroundImage:

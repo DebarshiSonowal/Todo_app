@@ -35,6 +35,19 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
         child: const BookmarkAppbar(),
       ),
       // backgroundColor: Constances.blueBackground,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigation.instance.navigate(
+      //       Routes.addBookmarkSubItem,
+      //       args: widget.index,
+      //     );
+      //   },
+      //   child: Icon(
+      //     Icons.add,
+      //     color: Colors.white,
+      //     size: 18.sp,
+      //   ),
+      // ),
       body: Container(
         color: Constances.blueBackground,
         height: double.infinity,
@@ -44,61 +57,62 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
           horizontal: 1.w,
         ),
         child: Consumer<Repository>(builder: (context, data, _) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              HeaderBookmarkSublist(
-                index: widget.index,
-              ),
-              Divider(
-                thickness: 0.04.h,
-                color: Colors.white54,
-              ),
-              ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  var item = data.bookmarks[widget.index].items![index];
-                  return BookmarkSublistItem(
-                    item: item,
-                    index: widget.index,
-                    index2: index,
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return    Divider(
-                    thickness: 0.04.h,
-                    color: Colors.white54,
-                  );
-                },
-                itemCount: data.bookmarks[widget.index].items?.length ?? 0,
-              ),
-              Divider(
-                thickness: 0.04.h,
-                color: Colors.white54,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigation.instance.navigate(
-                          Routes.addBookmarkSubItem,
-                          args: widget.index,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 18.sp,
-                      )),
-                ],
-              ),
-            ],
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HeaderBookmarkSublist(
+                  index: widget.index,
+                ),
+                Divider(
+                  thickness: 0.04.h,
+                  color: Colors.white54,
+                ),
+                ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    var item = data.bookmarks[widget.index].items![index];
+                    return BookmarkSublistItem(
+                      item: item,
+                      index: widget.index,
+                      index2: index,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      thickness: 0.04.h,
+                      color: Colors.white54,
+                    );
+                  },
+                  itemCount: data.bookmarks[widget.index].items?.length ?? 0,
+                ),
+                Divider(
+                  thickness: 0.04.h,
+                  color: Colors.white54,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigation.instance.navigate(
+                            Routes.addBookmarkSubItem,
+                            args: widget.index,
+                          );
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 18.sp,
+                        )),
+                  ],
+                ),
+              ],
+            ),
           );
         }),
       ),
     );
   }
 }
-
-

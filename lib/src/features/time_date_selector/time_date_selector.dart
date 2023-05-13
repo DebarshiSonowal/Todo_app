@@ -36,7 +36,7 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       titleController.text = Provider.of<Repository>(context, listen: false)
               .models[widget.index]
               .title ??

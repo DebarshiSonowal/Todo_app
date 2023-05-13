@@ -30,8 +30,15 @@ class _ShowCalendarState extends State<ShowCalendar> {
       width: double.infinity,
       child: Column(
         children: [
-          SizedBox(
-            height: 14.h,
+          GestureDetector(
+            onTap: () {
+              Navigation.instance.goBack();
+            },
+            child: Container(
+              color: Colors.transparent,
+              height: 14.h,
+              width: double.infinity,
+            ),
           ),
           Container(
             width: double.infinity,
@@ -153,6 +160,16 @@ class _ShowCalendarState extends State<ShowCalendar> {
                   ],
                 ),
               ],
+            ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                Navigation.instance.goBack();
+              },
+              child: Container(
+                color: Colors.transparent,
+              ),
             ),
           ),
         ],

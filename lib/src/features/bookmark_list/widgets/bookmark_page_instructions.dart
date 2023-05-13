@@ -31,8 +31,8 @@ class BookmarkPageInstructions extends StatelessWidget {
                   },
                   icon: Image.asset(
                     Constances.cancelImage,
-                    color: Colors.black45,
-                    scale: 10,
+                    // color: Colors.black45,
+                    scale: 18,
                   ),
                 ),
               )

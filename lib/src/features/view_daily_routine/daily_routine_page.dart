@@ -31,12 +31,15 @@ class DailyRoutinePage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            DailyRoutineBackground(),
-            const StackedBottomSheet(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            // alignment: Alignment.bottomCenter,
+            children: [
+              DailyRoutineBackground(),
+              const StackedBottomSheet(),
+            ],
+          ),
         ),
       ),
     );

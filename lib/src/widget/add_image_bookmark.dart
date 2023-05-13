@@ -33,12 +33,13 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
       title: const Center(
         child: Text(
           "",
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 5),
         ),
       ),
-      content: SizedBox(
-        height: 28.h,
+      content: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             attachment == null
                 ? Row(

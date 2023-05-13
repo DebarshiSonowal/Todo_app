@@ -15,6 +15,7 @@ import '../../models/timer_section_option_model.dart';
 import '../../repository/repository.dart';
 import '../../services/Navigate.dart';
 import '../../widget/alert.dart';
+import '../add_personal/widgets/add_personal_page_instructions.dart';
 import 'widgets/add_personal_info_appbar.dart';
 import 'widgets/personal_info_page_card.dart';
 
@@ -30,6 +31,12 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   List<ReminderListItem> reminders = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,4 +123,6 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
           Navigation.instance.goBack();
         });
   }
+
+
 }
