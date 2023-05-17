@@ -58,6 +58,7 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
         ),
         child: Consumer<Repository>(builder: (context, data, _) {
           return SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -68,44 +69,47 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                   thickness: 0.04.h,
                   color: Colors.white54,
                 ),
-                ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    var item = data.bookmarks[widget.index].items![index];
-                    return BookmarkSublistItem(
-                      item: item,
-                      index: widget.index,
-                      index2: index,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      thickness: 0.04.h,
-                      color: Colors.white54,
-                    );
-                  },
-                  itemCount: data.bookmarks[widget.index].items?.length ?? 0,
+                SizedBox(
+                  height: 68.9.h,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      var item = data.bookmarks[widget.index].items![index];
+                      return BookmarkSublistItem(
+                        item: item,
+                        index: widget.index,
+                        index2: index,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        thickness: 0.04.h,
+                        color: Colors.white54,
+                      );
+                    },
+                    itemCount: data.bookmarks[widget.index].items?.length ?? 0,
+                  ),
                 ),
-                Divider(
-                  thickness: 0.04.h,
-                  color: Colors.white54,
-                ),
+                // Divider(
+                //   thickness: 0.04.h,
+                //   color: Colors.white54,
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          Navigation.instance.navigate(
-                            Routes.addBookmarkSubItem,
-                            args: widget.index,
-                          );
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 18.sp,
-                        )),
+                      onPressed: () {
+                        Navigation.instance.navigate(
+                          Routes.addBookmarkSubItem,
+                          args: widget.index,
+                        );
+                      },
+                      icon: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 18.sp,
+                      ),
+                    ),
                   ],
                 ),
               ],

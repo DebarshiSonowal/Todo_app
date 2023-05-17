@@ -90,7 +90,11 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
                   index,
                   ReminderListItem(
                     string,
-                    DateFormat("hh:mm a").format(dateTime),
+                    // DateFormat("hh:mm a").format(dateTime),
+                    DateFormat("hh:mm a").format(
+                      DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, 12, 0),
+                    ),
                     dateTime,
                     false,
                     TimerSelectionOptions(
@@ -106,7 +110,11 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
                   index,
                   ReminderListItem(
                     string,
-                    DateFormat("hh:mm a").format(dateTime),
+                    // DateFormat("hh:mm a").format(dateTime),
+                    DateFormat("hh:mm a").format(
+                      DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, 12, 0),
+                    ),
                     dateTime,
                     false,
                     TimerSelectionOptions(

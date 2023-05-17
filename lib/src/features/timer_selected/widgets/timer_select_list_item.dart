@@ -25,83 +25,85 @@ class TimerSelectListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () {
-              if (type == null) {
-                Navigation.instance.navigate(
-                  Routes.editTimePicker,
-                  args: "$index,$num",
-                );
-              } else {
-                Navigation.instance.navigate(
-                  Routes.editTimePickerPersonal,
-                  args: "$index,$num",
-                );
-              }
-            },
-            child: Text(
-              'Edit',
-              style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontSize: 12.sp,
-                    color: Colors.white,
-                    fontFamily: "PublicSans",
-                    // fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ),
-          SizedBox(
-            width: 8.w,
-          ),
-          Text(
-            ((item.time == "" || item.time == null)
-                ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[0]
-                : "${item.time}"),
-            style: Theme.of(context).textTheme.headline4?.copyWith(
-                  fontSize: 16.sp,
-                  color: item.isEnabled ? Colors.white : Colors.white38,
-                  fontFamily: "PublicSans",
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          SizedBox(
-            width: 1.w,
-          ),
-          Text(
-            ((item.time == "" || item.time == null)
-                ? DateFormat("hh:mm a").format(item.timeDate!).split(" ")[1]
-                : ""),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+          onTap: () {
+            if (type == null) {
+              Navigation.instance.navigate(
+                Routes.editTimePicker,
+                args: "$index,$num",
+              );
+            } else {
+              Navigation.instance.navigate(
+                Routes.editTimePickerPersonal,
+                args: "$index,$num",
+              );
+            }
+          },
+          child: Text(
+            'Edit',
             style: Theme.of(context).textTheme.headline4?.copyWith(
                   fontSize: 12.sp,
-                  color: item.isEnabled ? Colors.white : Colors.white38,
+                  color: Colors.white,
                   fontFamily: "PublicSans",
                   // fontWeight: FontWeight.bold,
                 ),
           ),
-          const Spacer(),
-          CupertinoSwitch(
-            activeColor: Constances.switchActiveColor,
-            value: item.isEnabled,
-            onChanged: (bool value) {
-              debugPrint("${type}");
-              if (type == null) {
-                Provider.of<Repository>(
-                  context,
-                  listen: false,
-                ).updateReminderListItemReminder(index, value, num);
-              } else {
-                Provider.of<Repository>(
-                  context,
-                  listen: false,
-                ).updateReminderListItemReminderPersonal(index, value, num);
-              }
-            },
+        ),
+        SizedBox(
+          width: 8.w,
+        ),
+        SizedBox(
+          width: 16.w,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                DateFormat("hh:mm").format(item.timeDate!),
+                style: Theme.of(context).textTheme.headline4?.copyWith(
+                      fontSize: 16.sp,
+                      color: item.isEnabled ? Colors.white : Colors.white38,
+                      fontFamily: "PublicSans",
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        SizedBox(
+          width: 1.w,
+        ),
+        Text(
+          DateFormat("a").format(item.timeDate!),
+          style: Theme.of(context).textTheme.headline4?.copyWith(
+                fontSize: 12.sp,
+                color: item.isEnabled ? Colors.white : Colors.white38,
+                fontFamily: "PublicSans",
+                // fontWeight: FontWeight.bold,
+              ),
+        ),
+        const Spacer(),
+        CupertinoSwitch(
+          activeColor: Constances.switchActiveColor,
+          value: item.isEnabled,
+          onChanged: (bool value) {
+            debugPrint("${type}");
+            if (type == null) {
+              Provider.of<Repository>(
+                context,
+                listen: false,
+              ).updateReminderListItemReminder(index, value, num);
+            } else {
+              Provider.of<Repository>(
+                context,
+                listen: false,
+              ).updateReminderListItemReminderPersonal(index, value, num);
+            }
+          },
+        ),
+      ],
     );
   }
 }

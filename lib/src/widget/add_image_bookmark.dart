@@ -14,10 +14,10 @@ import 'alert.dart';
 import 'done_button.dart';
 
 class AddImageTitleBookmark extends StatefulWidget {
-  const AddImageTitleBookmark({Key? key, required this.index})
+  const AddImageTitleBookmark({Key? key, required this.index, required this.title})
       : super(key: key);
   final int index;
-
+  final String title;
   @override
   State<AddImageTitleBookmark> createState() => _AddImageTitleBookmarkState();
 }
@@ -25,6 +25,12 @@ class AddImageTitleBookmark extends StatefulWidget {
 class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
   File? attachment;
   final titleController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    titleController.text = widget.title;
+  }
 
   @override
   Widget build(BuildContext context) {

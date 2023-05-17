@@ -68,12 +68,15 @@ class _EditTimeSelectedCardState extends State<EditTimeSelectedCard> {
           color: Constances.gradientColor1.withOpacity(0.3),
           // color: Colors.transparent,
           elevation: 7,
+          margin: EdgeInsets.symmetric(
+            horizontal: 5.w,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Consumer<Repository>(builder: (context, data, _) {
             return Container(
-              height: 35.h,
+              height: 42.h,
               decoration: const BoxDecoration(
                 // gradient: Constances.gradient,
                 color: Colors.transparent,

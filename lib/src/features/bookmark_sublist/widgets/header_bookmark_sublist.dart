@@ -24,7 +24,7 @@ class HeaderBookmarkSublist extends StatelessWidget {
     return Consumer<Repository>(builder: (context, data, _) {
       return GestureDetector(
         onTap: () {
-          updateHeader(context, index);
+          updateHeader(context, index, data.bookmarks[index].title ?? "");
         },
         child: Column(
           children: [
@@ -50,9 +50,12 @@ class HeaderBookmarkSublist extends StatelessWidget {
               height: 1.h,
             ),
             Text(
-              (data.bookmarks[index].title==""||data.bookmarks[index].title==null)?"File name":"${data.bookmarks[index].title}",
+              (data.bookmarks[index].title == "" ||
+                      data.bookmarks[index].title == null)
+                  ? "File name"
+                  : "${data.bookmarks[index].title}",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.white54,
+                    color: Colors.white,
                   ),
             ),
           ],
@@ -61,13 +64,14 @@ class HeaderBookmarkSublist extends StatelessWidget {
     });
   }
 
-  void updateHeader(context, index) {
+  void updateHeader(context, index, title) {
     showDialog(
         barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return AddImageTitleBookmark(
             index: index,
+            title: title,
           );
         });
   }

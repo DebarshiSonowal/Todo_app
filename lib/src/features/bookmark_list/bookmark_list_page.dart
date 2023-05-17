@@ -48,7 +48,7 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
               child: Consumer<Repository>(builder: (context, data, _) {
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    return (data.bookmarks.isEmpty&&index == 0)
+                    return (data.bookmarks.isEmpty && index == 0)
                         ? BookmarkAddListItem(
                             onTap: () {
                               Navigation.instance.navigate(Routes.addBookmark);
@@ -64,7 +64,7 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
                       height: 1.h,
                     );
                   },
-                  itemCount: data.bookmarks.isEmpty?1:data.bookmarks.length,
+                  itemCount: data.bookmarks.isEmpty ? 1 : data.bookmarks.length,
                 );
               }),
             ),
@@ -82,36 +82,23 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 1), () {
       showMyDialog(context);
     });
   }
 
   void showMyDialog(BuildContext context) {
-    // showDialog(
-    //     barrierDismissible: true,
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return const BookmarkPageInstructions();
-    //     });
-    showGeneralDialog(
-      barrierLabel: "Label",
+    showDialog(
+      useRootNavigator: true,
+      barrierLabel: "ads",
       barrierDismissible: true,
       // barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: 1),
+      // transitionDuration: const Duration(milliseconds: 1),
       context: context,
-      pageBuilder: (context, anim1, anim2) {
+
+      builder: (BuildContext context) {
         return const BookmarkPageInstructions();
-      },
-      transitionBuilder: (context, anim1, anim2, child) {
-        return SlideTransition(
-          position:
-              Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
-          child: child,
-        );
       },
     );
   }
 }
-
-

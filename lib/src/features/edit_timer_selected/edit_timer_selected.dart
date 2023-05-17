@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../constants/constants.dart';
 import '../../repository/repository.dart';
 import '../timer_selected/widgets/timer_selected_appbar.dart';
+import 'widgets/edit_time_selected_appbar.dart';
 import 'widgets/edit_time_selected_card.dart';
 
 class EditTimerSelected extends StatelessWidget {
@@ -18,8 +19,10 @@ class EditTimerSelected extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
-        child: const TimerSelectAppbar(
-          showDelete: true,
+        child: EditTimerSelectAppbar(
+          // type: 1,
+          index: int.parse(index.split(",")[0]),
+          num: int.parse(index.split(",")[1]),
         ),
       ),
       body: Container(

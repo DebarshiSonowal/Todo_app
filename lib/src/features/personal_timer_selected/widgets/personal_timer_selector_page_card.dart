@@ -34,17 +34,20 @@ class PersonalTimerSelectorPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     IconButton(
+              //       onPressed: () {},
+              //       icon: const Icon(
+              //         Icons.add,
+              //         color: Colors.white,
+              //       ),
+              //     )
+              //   ],
+              // ),
+              SizedBox(
+                height: 2.h,
               ),
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),

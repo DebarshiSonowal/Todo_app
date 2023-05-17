@@ -76,7 +76,7 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
             "${widget.index + 1}. ",
             style: Theme.of(context).textTheme.headline4?.copyWith(
                   fontSize: 12.sp,
-                  color: Colors.white30,
+                  color: Colors.white,
                   fontFamily: "Roboto",
                 ),
           ),
@@ -104,6 +104,7 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
               },
               minLines: 1,
               initialValue: "${widget.item.title}",
+              cursorColor: Colors.white,
               decoration: InputDecoration.collapsed(
                 hintText: '',
                 hintStyle: Theme.of(context).textTheme.headline4?.copyWith(

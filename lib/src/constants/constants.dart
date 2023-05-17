@@ -31,6 +31,7 @@ class Constances {
   static const contactImage = 'assets/images/img_contacts.png';
   static const catImage = 'assets/images/img_catfootprint.png';
   static const calendarIcon = 'assets/images/img_calendar_white_a700.svg';
+  static const calendarImage = 'assets/images/img_calendaricon.png';
   static const trashIcon = 'assets/images/img_trash.svg';
   static const addPhotoIcon = 'assets/images/photo.png';
   static const alarmIcon = 'assets/images/img_alarm.svg';
@@ -126,7 +127,7 @@ class Constances {
   static const AmPmSwitchGradient = LinearGradient(
       colors: [
         Color(0xff838592),
-        Color(0xff0E121C),
+        Color(0xff000001),
       ],
       begin: FractionalOffset(0.0, 0.0),
       end: FractionalOffset(1.0, 1.0),
@@ -141,7 +142,9 @@ class Constances {
 
   static const essentialEditBg = Color(0xffa6b4e0);
 
-  static const arrowScale = 16.0;
+  static const arrowScale = 18.0;
 
   static var arrowScale2 = 20.0;
+
+  static const timerColor = Color(0xff596077);
 }

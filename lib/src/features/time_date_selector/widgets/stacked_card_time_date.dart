@@ -93,11 +93,10 @@ class StackedCardTimeDate extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SvgPicture.asset(
-                      Constances.calendarWhiteIcon,
-                      fit: BoxFit.cover,
-                      color: Colors.black,
-                      width: 7.w,
+                   Image.asset(
+                      Constances.calendarImage,
+                     fit: BoxFit.fill,
+                     width: 7.6.w,
                     ),
                     SizedBox(
                       height: 0.4.h,

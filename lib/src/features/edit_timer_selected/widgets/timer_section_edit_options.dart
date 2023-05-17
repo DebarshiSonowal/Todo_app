@@ -16,7 +16,7 @@ import '../../../widget/done_button.dart';
 import '../../timer_selected/widgets/time_selector_page_card.dart';
 
 class TimerSectionEditOptions extends StatefulWidget {
-  TimerSectionEditOptions({
+  const TimerSectionEditOptions({
     super.key,
     required this.list,
     required this.options,
@@ -42,11 +42,12 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: 5,
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(
           horizontal: 5.w,
-          vertical: 1.h,
+          vertical: 2.h,
         ),
         decoration: BoxDecoration(
           color: const Color(0xff3c404f).withOpacity(0.6),
@@ -152,6 +153,9 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
                 saveData(widget.index1, widget.index2, widget.type);
                 // Navigation.instance.goBack();
               },
+            ),
+            SizedBox(
+              height: 1.h,
             ),
           ],
         ),

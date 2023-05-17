@@ -29,8 +29,8 @@ class AmPmSwitch extends StatelessWidget {
           child: Text(
             text,
             style: Theme.of(context).textTheme.headline4?.copyWith(
-                  fontSize: 16.sp,
-                  color: Constances.editTimeSelectedCardTextColor,
+                  fontSize: 14.sp,
+                  color: Colors.white,
                   fontFamily: "RobotoFlex",
                   // fontWeight: FontWeight.bold,
                 ),

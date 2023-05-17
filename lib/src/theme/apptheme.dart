@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../constants/constants.dart';
+
 class AppTheme {
   static ThemeData getTheme() {
     // primaryColor: const Color(0xff7881a7),
     // accentColor: const Color(0xff2252b2),
+    timePickerTheme:
+    TimePickerThemeData(
+      hourMinuteTextStyle: TextStyle(
+        color: Constances.blueBackground,
+        // fontWeight: FontWeight.bold,
+        fontSize: 20.sp,
+      ),
+    );
     Color primaryColor = const Color(0xff7882a7);
     Color secondaryColor = const Color(0xff2252b2);
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(

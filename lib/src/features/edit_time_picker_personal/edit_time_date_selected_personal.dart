@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/constants.dart';
+import '../edit_timer_selected/widgets/edit_time_selected_appbar.dart';
 import '../edit_timer_selected/widgets/edit_time_selected_card.dart';
 import '../timer_selected/widgets/timer_selected_appbar.dart';
 
 class EditTimerSelectedPersonal extends StatelessWidget {
-  const EditTimerSelectedPersonal({Key? key, required this.index}) : super(key: key);
+  const EditTimerSelectedPersonal({Key? key, required this.index})
+      : super(key: key);
   final String index;
 
   @override
@@ -16,8 +18,10 @@ class EditTimerSelectedPersonal extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
-        child: const TimerSelectAppbar(
-          showDelete: true,
+        child: EditTimerSelectAppbar(
+          type: 1,
+          index: int.parse(index.split(",")[0]),
+          num: int.parse(index.split(",")[1]),
         ),
       ),
       body: Container(
@@ -43,7 +47,7 @@ class EditTimerSelectedPersonal extends StatelessWidget {
                 sigmaY: 6,
               ),
               child: Container(
-                height:100.h,
+                height: 100.h,
                 width: 100.w,
               ),
             ),
@@ -53,7 +57,7 @@ class EditTimerSelectedPersonal extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    EditTimeSelectedCard(index: index,type:1),
+                    EditTimeSelectedCard(index: index, type: 1),
                   ],
                 ),
               ),

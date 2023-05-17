@@ -53,8 +53,12 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
               Provider.of<Repository>(context, listen: false)
                   .addPersonal(DailyRoutineModel(
                 titleController.text,
-                DateFormat("hh:mm a").format(DateTime.now()),
-                DateTime.now(),
+                DateFormat("hh:mm a").format(
+                  DateTime(DateTime.now().year, DateTime.now().month,
+                      DateTime.now().day, 12, 0),
+                ),
+                DateTime(DateTime.now().year, DateTime.now().month,
+                    DateTime.now().day, 12, 0),
                 attachment!.path,
                 reminders,
                 // TimerSelectionOptions(

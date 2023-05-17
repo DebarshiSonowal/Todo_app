@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,7 +25,7 @@ import '../../../widget/image_popup_body.dart';
 import '../../../widget/routine_item_widget.dart';
 
 class EditDailyRoutineNormalCard extends StatelessWidget {
-  const EditDailyRoutineNormalCard(
+  EditDailyRoutineNormalCard(
       {Key? key,
       required this.index,
       required this.titleController,
@@ -36,7 +38,8 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
   final List<ReminderListItem> reminders;
   final Function(File) updateImage;
   final File? attachment;
-
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  final ImagePicker picker = ImagePicker();
   // File? attachment;
   // final titleController = TextEditingController();
   // List<ReminderListItem> reminders = [];
@@ -178,18 +181,18 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
               ),
             ),
           ),
-          IconButton(
-            onPressed: () {
-              data.models.removeAt(index);
-              Fluttertoast.showToast(msg: "Deleted Successfully");
-              Navigation.instance.navigateAndReplace(Routes.dashboard);
-            },
-            icon: SvgPicture.asset(
-              Constances.trashIcon,
-              fit: BoxFit.fill,
-              height: 15.sp,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     data.models.removeAt(index);
+          //     Fluttertoast.showToast(msg: "Deleted Successfully");
+          //     Navigation.instance.navigateAndReplace(Routes.dashboard);
+          //   },
+          //   icon: SvgPicture.asset(
+          //     Constances.trashIcon,
+          //     fit: BoxFit.fill,
+          //     height: 15.sp,
+          //   ),
+          // ),
         ],
       );
     });
@@ -232,13 +235,27 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
         }
       }
     } else {
-      var status = await Permission.storage.request();
-      if (status.isDenied) {
-        showError("Permission Denied");
+      var result = await deviceInfo.androidInfo;
+      debugPrint(result.version.release);
+      if (result.version.sdkInt < 33) {
+        var status = await Permission.storage.request();
+        if (status.isDenied) {
+          showError("Permission Denied");
+        } else {
+          final pickedFile = await ImagesPicker.pick();
+          if (pickedFile != null) {
+            updateImage(File(pickedFile[0].path));
+          }
+        }
       } else {
-        final pickedFile = await ImagesPicker.pick();
-        if (pickedFile != null) {
-          updateImage(File(pickedFile[0].path));
+        var status = await Permission.photos.request();
+        if (status.isDenied) {
+          showError("Permission Denied");
+        } else {
+          final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+          if (pickedFile != null) {
+            updateImage(File(pickedFile.path));
+          }
         }
       }
     }

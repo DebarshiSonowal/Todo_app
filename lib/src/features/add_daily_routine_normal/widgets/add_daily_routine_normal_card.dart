@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +37,8 @@ class AddDailyRoutineNormalCard extends StatefulWidget {
 
 class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
   File? attachment;
-
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  final ImagePicker picker = ImagePicker();
   // @override
   // void dispose() {
   //   super.dispose();
@@ -80,6 +83,7 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                     controller: widget.titleController,
                     maxLines: 2,
                     minLines: 1,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration.collapsed(
                       hintText: 'Title',
                       hintStyle:
@@ -93,6 +97,7 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                     style: Theme.of(context).textTheme.headline4?.copyWith(
                           fontSize: 14.sp,
                           color: Colors.white,
+
                           // fontWeight: FontWeight.bold,
                           fontFamily: "Roboto",
                         ),
@@ -198,35 +203,52 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
       if (status.isDenied) {
         showError("Permission Denied");
       } else {
-        final pickedFile = await ImagesPicker.openCamera(
-          pickType: PickType.image,
-          quality: 0.7,
-        );
+        final pickedFile = await picker.pickImage(source: ImageSource.camera);
         if (pickedFile != null) {
-          for (var i in pickedFile) {
+          setState(() {
+            attachment = File(pickedFile.path);
+          });
+          widget.imageUpdate(attachment!);
+        }
+      }
+    } else {
+      var result = await deviceInfo.androidInfo;
+      debugPrint("Release ${result.version.release}");
+      if (int.parse(result.version.release) < 13) {
+        var status = await Permission.storage.request();
+        if (status.isDenied) {
+          showError("Permission Denied");
+        } else {
+          final pickedFile = await ImagesPicker.pick(
+            count: 1,
+            pickType: PickType.image,
+          );
+          if (pickedFile != null) {
             setState(() {
-              attachment = File(i.path);
+              attachment = File(pickedFile[0].path);
+            });
+            widget.imageUpdate(attachment!);
+          }
+        }
+      } else {
+        var status = await Permission.storage.request();
+        if (status.isDenied) {
+          showError("Permission Denied");
+        } else {
+          // final pickedFile = await ImagesPicker.pick(
+          //   count: 1,
+          //   pickType: PickType.image,
+          // );
+          final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+          if (pickedFile != null) {
+            setState(() {
+              attachment = File(pickedFile.path);
             });
             widget.imageUpdate(attachment!);
           }
         }
       }
-    } else {
-      var status = await Permission.storage.request();
-      if (status.isDenied) {
-        showError("Permission Denied");
-      } else {
-        final pickedFile = await ImagesPicker.pick(
-          count: 1,
-          pickType: PickType.image,
-        );
-        if (pickedFile != null) {
-          setState(() {
-            attachment = File(pickedFile[0].path);
-          });
-          widget.imageUpdate(attachment!);
-        }
-      }
+
     }
   }
 

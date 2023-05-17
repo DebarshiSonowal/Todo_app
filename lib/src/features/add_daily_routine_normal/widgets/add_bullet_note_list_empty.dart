@@ -33,8 +33,13 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
             item: reminders.isEmpty
                 ? ReminderListItem(
                     "",
-                    DateFormat("hh:mm a").format(DateTime.now()),
-                    DateTime.now(),
+                    // DateFormat("hh:mm a").format(DateTime.now()),
+                    DateFormat("hh:mm a").format(
+                      DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, 12, 0),
+                    ),
+                    DateTime(DateTime.now().year, DateTime.now().month,
+                        DateTime.now().day, 12, 0),
                     false,
                     TimerSelectionOptions(
                       "NA",
@@ -67,7 +72,6 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
                   false,
                 ),
               ));
-              FocusScope.of(context).requestFocus(focus);
             },
             remove: () {
               reminders.removeAt(index);
@@ -81,8 +85,13 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
             autofocus: true,
             item: ReminderListItem(
               "",
-              DateFormat("hh:mm a").format(DateTime.now()),
-              DateTime.now(),
+              // DateFormat("hh:mm a").format(DateTime.now()),
+              DateFormat("hh:mm a").format(
+                DateTime(DateTime.now().year, DateTime.now().month,
+                    DateTime.now().day, 12, 0),
+              ),
+              DateTime(DateTime.now().year, DateTime.now().month,
+                  DateTime.now().day, 12, 0),
               false,
               TimerSelectionOptions(
                 "NA",
@@ -114,6 +123,7 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
                   false,
                 ),
               ));
+              FocusScope.of(context).requestFocus(focus);
             },
             remove: () {
               debugPrint("2nd event");

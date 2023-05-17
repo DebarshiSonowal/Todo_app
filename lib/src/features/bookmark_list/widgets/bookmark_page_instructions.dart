@@ -12,32 +12,35 @@ class BookmarkPageInstructions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Align(
-          alignment: Alignment.bottomRight,
-          child: Stack(
-            alignment: Alignment.topLeft,
-            children: [
-              const PopUpBody(),
-              Container(
-                margin: EdgeInsets.only(
-                  right: 52.w,
-                  bottom: 2.5.h,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    Navigation.instance.goBack();
-                  },
-                  icon: Image.asset(
-                    Constances.cancelImage,
-                    // color: Colors.black45,
-                    scale: 18,
+    return GestureDetector(
+      onTap: ()=>Navigation.instance.goBack(),
+      child: Material(
+        color: Colors.transparent,
+        child: Align(
+            alignment: Alignment.bottomRight,
+            child: Stack(
+              alignment: Alignment.topLeft,
+              children: [
+                const PopUpBody(),
+                Container(
+                  margin: EdgeInsets.only(
+                    right: 52.w,
+                    bottom: 2.5.h,
                   ),
-                ),
-              )
-            ],
-          )),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigation.instance.goBack();
+                    },
+                    icon: Image.asset(
+                      Constances.cancelImage,
+                      // color: Colors.black45,
+                      scale: 18,
+                    ),
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 }

@@ -43,6 +43,7 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
         child: PersonalDateTimeAppBar(
@@ -55,8 +56,12 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
                   widget.index,
                   DailyRoutineModel(
                     titleController.text,
-                    DateFormat("hh:mm a").format(DateTime.now()),
-                    DateTime.now(),
+                    DateFormat("hh:mm a").format(
+                      DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, 12, 0),
+                    ),
+                    DateTime(DateTime.now().year, DateTime.now().month,
+                        DateTime.now().day, 12, 0),
                     attachment!.path,
                     reminders,
                     // TimerSelectionOptions(
@@ -117,24 +122,13 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
                       delete: () {
                         Provider.of<Repository>(context, listen: false)
                             .removePersonalBy(
-                            Provider.of<Repository>(context, listen: false)
-                                .personals[widget.index]);
-                        Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
+                                Provider.of<Repository>(context, listen: false)
+                                    .personals[widget.index]);
+                        Navigation.instance
+                            .navigateAndRemoveUntil(Routes.dashboard);
                       },
                       reminders: reminders,
                     ),
-                    // PersonalInfoPageCard(
-                    //   titleController: titleController,
-                    //   imageUpdate: (File file) {
-                    //     setState(() {
-                    //       attachment = file;
-                    //     });
-                    //   },
-                    //   // descriptionController: descriptionController,
-                    //   delete: () {},
-                    //   file: attachment,
-                    //   reminders: reminders,
-                    // ),
                   ],
                 ),
               ),
@@ -148,11 +142,10 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
     );
   }
 
-
   void loadDataIntoFields() async {
     titleController.text = Provider.of<Repository>(context, listen: false)
-        .personals[widget.index]
-        .title ??
+            .personals[widget.index]
+            .title ??
         "";
 
     // descriptionController.text = Provider.of<Repository>(context, listen: false)
@@ -160,21 +153,21 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
     //         .description ??
     //     "";
     attachment = File(Provider.of<Repository>(context, listen: false)
-        .personals[widget.index]
-        .image ??
+            .personals[widget.index]
+            .image ??
         "");
     dateTime = DateFormat("dd MM yyyy | HH:mm a").format(
         Provider.of<Repository>(context, listen: false)
             .personals[widget.index]
             .dateTime!);
     reminders = Provider.of<Repository>(context, listen: false)
-        .personals[widget.index]
-        .reminders ??
+            .personals[widget.index]
+            .reminders ??
         [];
     setState(() {
       attachment = File(Provider.of<Repository>(context, listen: false)
-          .personals[widget.index]
-          .image ??
+              .personals[widget.index]
+              .image ??
           "");
     });
   }

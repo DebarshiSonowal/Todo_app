@@ -42,7 +42,7 @@ class EditDailyRoutineAppBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 20.w,
+                    width: 25.w,
                     // height: 8.h,
                     child: Column(
                       children: [
@@ -53,30 +53,29 @@ class EditDailyRoutineAppBar extends StatelessWidget {
                           onTap: () {
                             Navigation.instance.goBack();
                           },
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  Constances.arrowBackImage,
-                                  fit: BoxFit.fill,
-                                  scale: Constances.arrowScale,
-                                ),
-                                Text(
-                                  'Back',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4
-                                      ?.copyWith(
-                                        fontSize: 11.2.sp,
-                                        color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    // fontWeight: FontWeight.bold,
-                                    fontFamily: "Roboto",
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                Constances.arrowBackImage,
+                                fit: BoxFit.contain,
+                                scale: Constances.arrowScale,
+                              ),
+                              Text(
+                                'Back',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4
+                                    ?.copyWith(
+                                      fontSize: 12.2.sp,
+                                      color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: "Rubik",
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -154,9 +153,10 @@ class EditDailyRoutineAppBar extends StatelessWidget {
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 16.sp,
+                                      Image.asset(
+                                        Constances.arrowNextImage,
+                                        // fit: BoxFit.fill,
+                                        scale: Constances.arrowScale,
                                       ),
                                     ],
                                   ),

@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -49,6 +51,8 @@ class PersonalInfoPageCard extends StatefulWidget {
 
 class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
   File? attachment;
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  final ImagePicker picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +161,7 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                       ),
                     ),
               SizedBox(
-                height: 2.h,
+                height: 1.h,
               ),
               GestureDetector(
                 onTap: () {
@@ -187,26 +191,26 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                           ),
               ),
               SizedBox(
-                height: 2.h,
+                height: 1.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(),
-                  IconButton(
-                    onPressed: () {
-                      if (widget.delete != null) {
-                        widget.delete!();
-                      }
-                    },
-                    icon: SvgPicture.asset(
-                      Constances.trashIcon,
-                      fit: BoxFit.fill,
-                      height: 13.sp,
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(),
+              //     IconButton(
+              //       onPressed: () {
+              //         if (widget.delete != null) {
+              //           widget.delete!();
+              //         }
+              //       },
+              //       icon: SvgPicture.asset(
+              //         Constances.trashIcon,
+              //         fit: BoxFit.fill,
+              //         height: 13.sp,
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -231,39 +235,93 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
     }
   }
 
+  // Future<void> getSelectedImage(int index) async {
+  //   if (index == 0) {
+  //     var status = await Permission.camera.request();
+  //     if (status.isDenied) {
+  //       showError("Permission Denied");
+  //     } else {
+  //       final pickedFile = await ImagesPicker.openCamera(
+  //         pickType: PickType.image,
+  //         quality: 0.7,
+  //       );
+  //       if (pickedFile != null) {
+  //         for (var i in pickedFile) {
+  //           setState(() {
+  //             attachment = File(i.path);
+  //           });
+  //           widget.imageUpdate(attachment!);
+  //         }
+  //       }
+  //     }
+  //   } else {
+  //     var status = await Permission.storage.request();
+  //     if (status.isDenied) {
+  //       showError("Permission Denied");
+  //     } else {
+  //       final pickedFile = await ImagesPicker.pick(
+  //         count: 1,
+  //         pickType: PickType.image,
+  //       );
+  //       if (pickedFile != null) {
+  //         setState(() {
+  //           attachment = File(pickedFile[0].path);
+  //         });
+  //         widget.imageUpdate(attachment!);
+  //       }
+  //     }
+  //   }
+  // }
   Future<void> getSelectedImage(int index) async {
     if (index == 0) {
       var status = await Permission.camera.request();
       if (status.isDenied) {
         showError("Permission Denied");
       } else {
-        final pickedFile = await ImagesPicker.openCamera(
-          pickType: PickType.image,
-          quality: 0.7,
-        );
+        final pickedFile = await picker.pickImage(source: ImageSource.camera);
         if (pickedFile != null) {
-          for (var i in pickedFile) {
+          setState(() {
+            attachment = File(pickedFile.path);
+          });
+          widget.imageUpdate(attachment!);
+        }
+      }
+    } else {
+      var result = await deviceInfo.androidInfo;
+      debugPrint("Release ${result.version.release}");
+      if (int.parse(result.version.release) < 13) {
+        var status = await Permission.storage.request();
+        if (status.isDenied) {
+          showError("Permission Denied");
+        } else {
+          final pickedFile = await ImagesPicker.pick(
+            count: 1,
+            pickType: PickType.image,
+          );
+          if (pickedFile != null) {
             setState(() {
-              attachment = File(i.path);
+              attachment = File(pickedFile[0].path);
             });
             widget.imageUpdate(attachment!);
           }
         }
-      }
-    } else {
-      var status = await Permission.storage.request();
-      if (status.isDenied) {
-        showError("Permission Denied");
       } else {
-        final pickedFile = await ImagesPicker.pick(
-          count: 1,
-          pickType: PickType.image,
-        );
-        if (pickedFile != null) {
-          setState(() {
-            attachment = File(pickedFile[0].path);
-          });
-          widget.imageUpdate(attachment!);
+        var status = await Permission.storage.request();
+        if (status.isDenied) {
+          showError("Permission Denied");
+        } else {
+          // final pickedFile = await ImagesPicker.pick(
+          //   count: 1,
+          //   pickType: PickType.image,
+          // );
+          final pickedFile =
+              await picker.pickImage(source: ImageSource.gallery);
+          if (pickedFile != null) {
+            setState(() {
+              attachment = File(pickedFile.path);
+            });
+            widget.imageUpdate(attachment!);
+          }
         }
       }
     }
