@@ -18,11 +18,12 @@ class DailyRoutineAppBar extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Daily Routine',
+              ''
+                  'Daily Routine',
               style: Theme.of(context).textTheme.headline4?.copyWith(
                 fontSize: 15.sp,
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
                 // fontWeight: FontWeight.bold,
                 fontFamily: "Roboto",
               ),
@@ -36,7 +37,7 @@ class DailyRoutineAppBar extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 1.h,
+                        height: 1.5.h,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -44,11 +45,15 @@ class DailyRoutineAppBar extends StatelessWidget {
                         },
                         child: SizedBox(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Image.asset(
-                               Constances.arrowBackImage,
-                                fit: BoxFit.fill,
+                                Constances.arrowBackImage,
+                                fit: BoxFit.contain,
                                 scale: Constances.arrowScale,
+                              ),
+                              SizedBox(
+                                width: 0.5.w,
                               ),
                               Text(
                                 'Back',
@@ -56,10 +61,11 @@ class DailyRoutineAppBar extends StatelessWidget {
                                     .textTheme
                                     .headline4
                                     ?.copyWith(
-                                  fontSize: 11.2.sp,
+                                  fontSize: 12.2.sp,
                                   color: Colors.white,
-                                  // fontWeight: FontWeight.w800,
-                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.w500,
+                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: "Rubik",
                                   // fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -76,7 +82,7 @@ class DailyRoutineAppBar extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 1.h,
+                        height: 1.5.h,
                       ),
                       onTap!=null?GestureDetector(
                         onTap: () {
@@ -91,16 +97,18 @@ class DailyRoutineAppBar extends StatelessWidget {
                                     .textTheme
                                     .headline4
                                     ?.copyWith(
-                                  fontSize: 11.2.sp,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12.2.sp,
                                   color: Colors.white,
-                                  fontFamily: "Roboto",
-                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: "PublicSans",
+                                  fontWeight: FontWeight.bold,
                                 ),
+                              ),
+                              SizedBox(
+                                width: 0.5.w,
                               ),
                               Image.asset(
                                 Constances.arrowNextImage,
-                                fit: BoxFit.fill,
+                                // fit: BoxFit.fill,
                                 scale: Constances.arrowScale,
                               ),
                             ],

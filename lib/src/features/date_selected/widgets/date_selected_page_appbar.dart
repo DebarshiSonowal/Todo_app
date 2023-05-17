@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../constants/constants.dart';
 import '../../../services/Navigate.dart';
 
 class DateSelectedPageAppbar extends StatelessWidget {
@@ -18,16 +19,8 @@ class DateSelectedPageAppbar extends StatelessWidget {
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
-              Text(
-                ''
-                ' ',
-                style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 15.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      // fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto",
-                    ),
+              SizedBox(
+                height: 3.5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,10 +39,15 @@ class DateSelectedPageAppbar extends StatelessWidget {
                           },
                           child: SizedBox(
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(
-                                  Icons.arrow_back_ios_new,
-                                  size: 16.sp,
+                                Image.asset(
+                                  Constances.arrowBackImage,
+                                  fit: BoxFit.contain,
+                                  scale: Constances.arrowScale,
+                                ),
+                                SizedBox(
+                                  width: 0.5.w,
                                 ),
                                 Text(
                                   'Back',
@@ -57,11 +55,11 @@ class DateSelectedPageAppbar extends StatelessWidget {
                                       .textTheme
                                       .headline4
                                       ?.copyWith(
-                                        fontSize: 11.2.sp,
+                                        fontSize: 12.2.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
                                         // fontWeight: FontWeight.bold,
-                                        fontFamily: "Roboto",
+                                        fontFamily: "Rubik",
                                         // fontWeight: FontWeight.bold,
                                       ),
                                 ),

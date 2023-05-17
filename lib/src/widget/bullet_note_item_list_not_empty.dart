@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/widget/routine_item_widget.dart';
 
-import '../features/edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
+import '../features/daily_routine/edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
 import '../models/daily_routine_model.dart';
 import '../models/reminder_list_item.dart';
 import '../models/timer_section_option_model.dart';

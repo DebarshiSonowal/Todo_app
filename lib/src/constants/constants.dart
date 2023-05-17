@@ -142,7 +142,7 @@ class Constances {
 
   static const essentialEditBg = Color(0xffa6b4e0);
 
-  static const arrowScale = 18.0;
+  static const arrowScale = 17.0;
 
   static var arrowScale2 = 20.0;
 

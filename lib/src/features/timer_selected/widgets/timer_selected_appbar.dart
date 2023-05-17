@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../constants/constants.dart';
 import '../../../services/Navigate.dart';
 
 class TimerSelectAppbar extends StatelessWidget {
@@ -13,24 +14,23 @@ class TimerSelectAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          SizedBox(
-            height: 4.5.h,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigation.instance.goBack();
-                },
-                child: SizedBox(
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.only(top: 1.5.h, right: 2.w, left: 2.w),
+        color: Theme.of(context).primaryColor,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 4.5.h,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigation.instance.goBack();
+                  },
                   child: showDelete
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -51,9 +51,13 @@ class TimerSelectAppbar extends StatelessWidget {
                         )
                       : Row(
                           children: [
-                            Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 16.sp,
+                            Image.asset(
+                              Constances.arrowBackImage,
+                              fit: BoxFit.contain,
+                              scale: Constances.arrowScale,
+                            ),
+                            SizedBox(
+                              width: 0.5.w,
                             ),
                             Text(
                               'Back',
@@ -61,42 +65,41 @@ class TimerSelectAppbar extends StatelessWidget {
                                   .textTheme
                                   .headline4
                                   ?.copyWith(
-                                    fontSize: 11.2.sp,
+                                    fontSize: 12.2.sp,
                                     color: Colors.white,
-                                    fontFamily: "PublicSans",
+                                    fontWeight: FontWeight.w500,
+                                    // fontWeight: FontWeight.bold,
+                                    fontFamily: "Rubik",
                                     // fontWeight: FontWeight.bold,
                                   ),
                             ),
                           ],
                         ),
                 ),
-              ),
-              showDelete
-                  ? GestureDetector(
-                      onTap: () {
-                        Navigation.instance.goBack();
-                      },
-                      child: SizedBox(
-                        child: Text(
-                          'Delete',
-                          style:
-                              Theme.of(context).textTheme.headline4?.copyWith(
-                                    fontSize: 13.sp,
-                                    color: Colors.red,
-                                    fontFamily: "PublicSans",
-                                    // fontWeight: FontWeight.bold,
-                                  ),
+                showDelete
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigation.instance.goBack();
+                        },
+                        child: SizedBox(
+                          child: Text(
+                            'Delete',
+                            style:
+                                Theme.of(context).textTheme.headline4?.copyWith(
+                                      fontSize: 13.sp,
+                                      color: Colors.red,
+                                      fontFamily: "PublicSans",
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                          ),
                         ),
-                      ),
-                    )
-                  : Container()
-            ],
-          ),
-        ],
+                      )
+                    : Container()
+              ],
+            ),
+          ],
+        ),
       ),
-      // actions: [
-
-      // ],
     );
   }
 }

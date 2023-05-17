@@ -7,8 +7,8 @@ import 'package:vishal_todo_app/src/repository/repository.dart';
 
 import '../../constants/constants.dart';
 import '../../models/reminder_list_item.dart';
-import '../edit_daily_routine/widgets/edit_daily_routine_appbar.dart';
-import '../edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
+import '../daily_routine/edit_daily_routine/widgets/edit_daily_routine_appbar.dart';
+import '../daily_routine/edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
 import 'widgets/stacked_card_time_date.dart';
 import 'widgets/time_date_selector_background.dart';
 

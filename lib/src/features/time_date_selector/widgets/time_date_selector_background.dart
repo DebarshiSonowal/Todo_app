@@ -6,7 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 
 import '../../../models/reminder_list_item.dart';
-import '../../edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
+import '../../daily_routine/edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
 import '../time_date_selector.dart';
 
 class timeDateSelectorBackground extends StatelessWidget {
