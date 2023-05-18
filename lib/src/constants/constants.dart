@@ -61,6 +61,11 @@ class Constances {
   static const blueBackground = Color(0xff101939);
   static const textFieldBackground = Color(0xff232c44);
 
+  //volume
+  static const fullVolume = "assets/images/full_volume.png";
+  static const mute = "assets/images/mute.png";
+  static const personalArrow = "assets/images/personal_arrow.png";
+
   static final listOptions = [
     StackedListItemModel(
       name: "Medicine",

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_todo_app/src/features/dashboard/dashboard_screen.dart';
 import 'package:vishal_todo_app/src/features/essential/essential_list/essential_list_page.dart';
+import 'package:vishal_todo_app/src/features/ringtone_picker/ringtone_picker.dart';
+
 // import 'package:vishal_todo_app/src/features/essentials_edit/essentials_details_page.dart';
 import '../constants/constants.dart';
 import '../constants/routes.dart';
@@ -196,6 +198,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return FadeTransitionPageRouteBuilder(
         page: AddQuickNoteFromDate(
           dateTime: settings.arguments as String,
+        ),
+      );
+
+    //ringtone
+    case Routes.ringTonePicker:
+      return FadeTransitionPageRouteBuilder(
+        page: RingtonePickerScreen(
+          input: settings.arguments as String,
         ),
       );
 

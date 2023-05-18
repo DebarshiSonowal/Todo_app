@@ -60,4 +60,6 @@ class Routes {
   static const personalDetails = "/personal_details";
 
   static const essentialsDetails="/essential_details";
+
+  static const ringTonePicker="/ring_tone_picker";
 }
