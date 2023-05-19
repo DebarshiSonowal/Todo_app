@@ -68,7 +68,7 @@ class PersonalDetailsCard extends StatelessWidget {
                         color: Colors.white,
                         overflow: TextOverflow.fade,
                         fontSize: 14.sp,
-                        fontFamily: "PublicSans",
+                        fontFamily: "RobotoFlex",
                         // fontWeight: FontWeight.bold,
                         // fontWeight: FontWeight.bold,
                       ),
@@ -83,7 +83,7 @@ class PersonalDetailsCard extends StatelessWidget {
                         color: Colors.white54,
                         overflow: TextOverflow.fade,
                         fontSize: 11.sp,
-                        fontFamily: "PublicSans",
+                        fontFamily: "Rubik",
                         // fontWeight: FontWeight.bold,
                         // fontWeight: FontWeight.bold,
                       ),
@@ -115,8 +115,8 @@ class PersonalDetailsCard extends StatelessWidget {
                                   .headline4
                                   ?.copyWith(
                                     fontSize: 10.sp,
-                                    color: Colors.white70,
-                                    fontFamily: "Roboto",
+                                    color: Colors.white,
+                                    fontFamily: "RobotoFlex",
                                   ),
                             ),
                           ),
@@ -128,8 +128,8 @@ class PersonalDetailsCard extends StatelessWidget {
                                   .headline4
                                   ?.copyWith(
                                     fontSize: 10.sp,
-                                    color: Colors.white70,
-                                    fontFamily: "Roboto",
+                                    color: Colors.white,
+                                    fontFamily: "RobotoFlex",
                                     // fo ntWeight: FontWeight.bold,
                                   ),
                             ),
@@ -201,7 +201,7 @@ class PersonalDetailsCard extends StatelessWidget {
                       color: const Color(0xffFFC700),
                       overflow: TextOverflow.fade,
                       fontSize: 9.sp,
-                      fontFamily: "PublicSans",
+                      fontFamily: "Rubik",
                       // fontWeight: FontWeight.bold,
                       // fontWeight: FontWeight.bold,
                     ),

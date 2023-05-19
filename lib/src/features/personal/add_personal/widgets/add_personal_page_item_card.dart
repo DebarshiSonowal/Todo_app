@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/models/daily_routine_model.dart';
+import 'package:vishal_todo_app/src/repository/repository.dart';
 import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 import '../../../../constants/constants.dart';
@@ -49,15 +51,31 @@ class PersonalPageItemCard extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    Constances.editIcon,
+                  GestureDetector(
+                    onTap: () {
+                      Provider.of<Repository>(context,listen: false).removePersonal(index);
+                      Navigation.instance.goBack();
+                    },
+                    child: Image.asset(
+                      Constances.deleteImage,
+                      scale: 28,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigation.instance
+                          .navigate(Routes.editPersonalInfo, args: index);
+                    },
+                    child: SvgPicture.asset(
+                      Constances.editIcon,
+                    ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 1.h,
+                height: 0.5.h,
               ),
               data.image == null
                   ? SvgPicture.asset(

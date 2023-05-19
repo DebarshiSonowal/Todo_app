@@ -34,16 +34,10 @@ class PersonalDetails extends StatelessWidget {
         ),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigation.instance
-                    .navigate(Routes.editPersonalInfo, args: index);
-              },
-              child: Consumer<Repository>(builder: (context, data, _) {
-                var item = data.personals[index];
-                return PersonalDetailsCard(item: item);
-              }),
-            ),
+            Consumer<Repository>(builder: (context, data, _) {
+              var item = data.personals[index];
+              return PersonalDetailsCard(item: item);
+            }),
           ],
         ),
       ),

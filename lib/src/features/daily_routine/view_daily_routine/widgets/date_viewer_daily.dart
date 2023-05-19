@@ -10,6 +10,7 @@ class DateViewerDaily extends StatefulWidget {
   DateViewerDaily({Key? key, required this.index, this.type}) : super(key: key);
   final int index;
   final int? type;
+
   @override
   State<DateViewerDaily> createState() => _DateViewerDailyState();
 }
@@ -22,7 +23,7 @@ class _DateViewerDailyState extends State<DateViewerDaily> {
     return Consumer<Repository>(builder: (context, data, _) {
       return Container(
         padding: EdgeInsets.only(
-          top: widget.type==null?0:2.w,
+          top: widget.type == null ? 0 : 2.w,
         ),
         decoration: BoxDecoration(
           borderRadius: (selected == widget.index)
@@ -41,7 +42,7 @@ class _DateViewerDailyState extends State<DateViewerDaily> {
                   ),
                 ),
         ),
-        width: widget.type==null?8.w:9.w,
+        width: widget.type == null ? 8.w : 9.w,
         child: Column(
           children: [
             Text(
@@ -52,10 +53,12 @@ class _DateViewerDailyState extends State<DateViewerDaily> {
                     ),
                   )
                   .substring(0, 1),
-              style: Theme.of(context).textTheme.headline5?.copyWith(
-                    color: Colors.white70,
-                    // fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  ?.copyWith(color: Colors.white70, fontFamily: "Rubik"
+                      // fontWeight: FontWeight.bold,
+                      ),
             ),
             Text(
               DateFormat("dd").format(
@@ -66,6 +69,7 @@ class _DateViewerDailyState extends State<DateViewerDaily> {
               style: Theme.of(context).textTheme.headline5?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontFamily: "Rubik",
                   ),
             ),
           ],

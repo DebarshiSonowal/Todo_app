@@ -64,7 +64,7 @@ class PersonalCard extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     // Navigation.instance.navigate(Routes.addPersonal);
-                    Navigation.instance.navigate(Routes.addPersonalInfo);
+                    Navigation.instance.navigate(Routes.addPersonal);
                   },
                   icon: Image.asset(
                     Constances.arrowImage,

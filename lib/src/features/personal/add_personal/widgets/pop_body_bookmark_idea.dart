@@ -114,13 +114,17 @@ class PopUpBodyPersonal extends StatelessWidget {
                     SizedBox(
                       height: 0.5.h,
                     ),
-                    Text(
-                      "e.g. Tuition,Coaching,OnlineCourses",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.black,
-                            fontSize: 9.sp,
-                            fontFamily: "ABeeZee",
-                          ),
+                    Row(
+                      children: [
+                        Text(
+                          "e.g. Tuition,Coaching,OnlineCourses",
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.black,
+                                fontSize: 9.sp,
+                                fontFamily: "ABeeZee",
+                              ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 1.h,
@@ -136,13 +140,17 @@ class PopUpBodyPersonal extends StatelessWidget {
                     SizedBox(
                       height: 0.5.h,
                     ),
-                    Text(
-                      "e.g. Online meeting,private,meeting",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.black,
-                            fontSize: 9.sp,
-                            fontFamily: "ABeeZee",
-                          ),
+                    Row(
+                      children: [
+                        Text(
+                          "e.g. Online meeting,private,meeting",
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.black,
+                                fontSize: 9.sp,
+                                fontFamily: "ABeeZee",
+                              ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 1.h,
@@ -158,13 +166,17 @@ class PopUpBodyPersonal extends StatelessWidget {
                     SizedBox(
                       height: 0.5.h,
                     ),
-                    Text(
-                      "e.g. Project,plan,Development,deadline",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.black,
-                            fontSize: 9.sp,
-                            fontFamily: "ABeeZee",
-                          ),
+                    Row(
+                      children: [
+                        Text(
+                          "e.g. Project,plan,Development,deadline",
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.black,
+                                fontSize: 9.sp,
+                                fontFamily: "ABeeZee",
+                              ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 1.h,
@@ -173,20 +185,24 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "Bills",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Color(0xffC0292C),
-                            fontSize: 10.sp,
+                            fontSize: 11.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
                     SizedBox(
                       height: 0.5.h,
                     ),
-                    Text(
-                      "e.g. Rent, electricity, water",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.black,
-                            fontSize: 9.sp,
-                            fontFamily: "ABeeZee",
-                          ),
+                    Row(
+                      children: [
+                        Text(
+                          "e.g. Rent, electricity, water",
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.black,
+                                fontSize: 10.sp,
+                                fontFamily: "ABeeZee",
+                              ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

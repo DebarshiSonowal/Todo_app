@@ -103,10 +103,10 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
             Container(
               height: 100.h,
               width: 100.w,
-              padding: EdgeInsets.symmetric(
-                horizontal: 4.w,
-                vertical: 2.h,
-              ),
+              // padding: EdgeInsets.symmetric(
+              //   horizontal: 4.w,
+              //   vertical: 2.h,
+              // ),
               color: Colors.transparent,
               child: SingleChildScrollView(
                 child: Column(

@@ -40,7 +40,7 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
         width: double.infinity,
         padding: EdgeInsets.symmetric(
           vertical: 1.h,
-          horizontal: 1.w,
+          // horizontal: 1.w,
         ),
         child: Consumer<Repository>(builder: (context, data, _) {
           return SingleChildScrollView(
@@ -61,10 +61,56 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       var item = data.bookmarks[widget.index].items![index];
-                      return BookmarkSublistItem(
-                        item: item,
-                        index: widget.index,
-                        index2: index,
+                      return Column(
+                        children: [
+                          BookmarkSublistItem(
+                            item: item,
+                            index: widget.index,
+                            index2: index,
+                          ),
+                          (index) ==
+                                  ((data.bookmarks[widget.index].items
+                                              ?.length ??
+                                          0) -
+                                      1)
+                              ? Divider(
+                                  thickness: 0.04.h,
+                                  color: Colors.white54,
+                                )
+                              : Container(),
+                          index ==
+                                  ((data.bookmarks[widget.index].items
+                                              ?.length ??
+                                          0) -
+                                      1)
+                              ? Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 3.w,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigation.instance.navigate(
+                                            Routes.addBookmarkSubItem,
+                                            args: widget.index,
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 18.sp,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 3.w,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : Container(),
+                        ],
                       );
                     },
                     separatorBuilder: (context, index) {
@@ -75,28 +121,6 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                     },
                     itemCount: data.bookmarks[widget.index].items?.length ?? 0,
                   ),
-                ),
-                // Divider(
-                //   thickness: 0.04.h,
-                //   color: Colors.white54,
-                // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigation.instance.navigate(
-                          Routes.addBookmarkSubItem,
-                          args: widget.index,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 18.sp,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

@@ -46,11 +46,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Navigation.instance.navigate(Routes.dailyRoutine);
                 },
                 onTapItem: (index) {
-                  Navigation.instance.navigate(
-                    Routes.editDailyRoutineNormal,
-                    args: index,
-                    // index == 1 ? "Drink lemon water" : "Shower",
-                  );
+                  // Navigation.instance.navigate(
+                  //   Routes.editDailyRoutineNormal,
+                  //   args: index,
+                  //   // index == 1 ? "Drink lemon water" : "Shower",
+                  // );
+                  Navigation.instance.navigate(Routes.dailyRoutine);
                 },
               ),
               SizedBox(
@@ -62,6 +63,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   // Navigation.instance.navigate
                   Navigation.instance.navigate(Routes.addPersonal);
                 },
+
               ),
               SizedBox(
                 height: 1.h,
