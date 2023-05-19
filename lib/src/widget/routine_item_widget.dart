@@ -9,8 +9,14 @@ import '../models/reminder_list_item.dart';
 
 extension TOD on TimeOfDay {
   DateTime toDateTime() {
-    return DateTime(DateTime.now().year, DateTime.now().month,
-        DateTime.now().day, hour, minute);
+    return DateTime(DateTime
+        .now()
+        .year, DateTime
+        .now()
+        .month,
+        DateTime
+            .now()
+            .day, hour, minute);
   }
 }
 
@@ -40,7 +46,7 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
   Time? timePicked;
   String? txt;
   final QuickActions quickActions = const QuickActions();
-
+  final textEditingController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -55,6 +61,7 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
       }
       // More handling code...
     });
+    textEditingController.text = widget.item.title ?? "";
   }
 
   void onTimeChanged(Time newTime, String txt) {
@@ -74,11 +81,15 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
         children: [
           Text(
             "${widget.index + 1}. ",
-            style: Theme.of(context).textTheme.headline4?.copyWith(
-                  fontSize: 12.sp,
-                  color: Colors.white,
-                  fontFamily: "Roboto",
-                ),
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline4
+                ?.copyWith(
+              fontSize: 12.sp,
+              color: Colors.white,
+              fontFamily: "Roboto",
+            ),
           ),
           Expanded(
             flex: 3,
@@ -86,8 +97,13 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
               autofocus: widget.autofocus ?? false,
               // focusNode: widget.focusNode??null,
               maxLines: 1,
-
-              onEditingComplete: () {},
+              controller: textEditingController,
+              onEditingComplete: () {
+                // debugPrint("onEditingComplete1");
+                if (textEditingController.text.isEmpty) {
+                  widget.remove();
+                }
+              },
               onFieldSubmitted: (val) {
                 if (val.isNotEmpty) {
                   setState(() {
@@ -103,22 +119,30 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
                 }
               },
               minLines: 1,
-              initialValue: "${widget.item.title}",
+              // initialValue: "${widget.item.title}",
               cursorColor: Colors.white,
               decoration: InputDecoration.collapsed(
                 hintText: '',
-                hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 12.sp,
-                      color: Colors.white60,
-                      // fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto",
-                    ),
+                hintStyle: Theme
+                    .of(context)
+                    .textTheme
+                    .headline4
+                    ?.copyWith(
+                  fontSize: 12.sp,
+                  color: Colors.white60,
+                  // fontWeight: FontWeight.bold,
+                  fontFamily: "Roboto",
+                ),
               ),
-              style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontSize: 12.sp,
-                    color: Colors.white,
-                    fontFamily: "Roboto",
-                  ),
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4
+                  ?.copyWith(
+                fontSize: 12.sp,
+                color: Colors.white,
+                fontFamily: "Roboto",
+              ),
             ),
           ),
           // Expanded(

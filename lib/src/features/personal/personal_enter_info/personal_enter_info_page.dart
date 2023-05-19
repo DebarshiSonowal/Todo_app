@@ -60,7 +60,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
                 DateTime(DateTime.now().year, DateTime.now().month,
                     DateTime.now().day, 12, 0),
                 attachment!.path,
-                reminders,
+                reminders,1
                 // TimerSelectionOptions(
                 //   "NA",
                 //   10,

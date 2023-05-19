@@ -93,136 +93,175 @@ class EditQuickNotesAppbar extends StatelessWidget {
                       child: PopupMenuButton(
                         itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                           PopupMenuItem(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 3.w,
-                              vertical: 0.1.h,
-                            ),
+                            height: 3.h,
+                            // padding: EdgeInsets.symmetric(
+                            //   horizontal: 2.w,
+                            //   vertical: 0.1.h,
+                            // ),
                             value: 1,
                             onTap: () => onTapOptions(1),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Change Date",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(
-                                        color: Colors.white70,
-                                        fontSize: 16.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                const Icon(
-                                  Icons.calendar_today_outlined,
-                                  color: Colors.white,
-                                  // fit: BoxFit.fitWidth,
-                                  // width: 6.w,
-                                ),
-                              ],
+                            child: SizedBox(
+                              width: 45.w,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 39.w,
+                                    child: Text(
+                                      "Change Date",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall
+                                          ?.copyWith(
+                                            color: Colors.white70,
+                                            fontSize: 12.sp,
+                                            fontFamily: "PlusJakarta",
+                                          ),
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   width: 5.w,
+                                  // ),
+                                  const Icon(
+                                    Icons.calendar_today_outlined,
+                                    color: Colors.white,
+                                    // fit: BoxFit.fitWidth,
+                                    // width: 6.w,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           PopupMenuDivider(
                             height: 2.5.h,
                           ),
                           PopupMenuItem(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 3.w,
-                              vertical: 0.1.h,
-                            ),
+                            height: 3.h,
+                            // padding: EdgeInsets.symmetric(
+                            //   horizontal: 2.w,
+                            //   vertical: 0.1.h,
+                            // ),
                             value: 2,
                             onTap: () => onTapOptions(2),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Timer",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(
-                                        color: Colors.white70,
-                                        fontSize: 16.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 26.5.w,
-                                ),
-                                const Icon(
-                                  Icons.alarm,
-                                  color: Colors.white,
-                                  // fit: BoxFit.fitWidth,
-                                  // width: 6.w,
-                                ),
-                              ],
+                            child: SizedBox(
+                              width: 45.w,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 39.w,
+                                    child: Text(
+                                      "Timer",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall
+                                          ?.copyWith(
+                                            color: Colors.white70,
+                                            fontSize: 12.sp,
+                                            fontFamily: "PlusJakarta",
+                                          ),
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   width: 21.5.w,
+                                  // ),
+                                  const Icon(
+                                    Icons.alarm,
+                                    color: Colors.white,
+                                    // fit: BoxFit.fitWidth,
+                                    // width: 6.w,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           PopupMenuDivider(
                             height: 2.5.h,
                           ),
                           PopupMenuItem(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 3.w,
-                              vertical: 0.1.h,
-                            ),
+                            height: 3.h,
+                            // padding: EdgeInsets.symmetric(
+                            //   horizontal: 2.w,
+                            //   vertical: 0.1.h,
+                            // ),
                             value: 3,
                             onTap: () => onTapOptions(3),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Share",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(
-                                        color: Colors.white70,
-                                        fontSize: 16.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 26.5.w,
-                                ),
-                                const Icon(
-                                  Icons.ios_share,
-                                  color: Colors.white,
-                                  // fit: BoxFit.fitWidth,
-                                  // width: 6.w,
-                                ),
-                              ],
+                            child: Container(
+                              width: 45.w,
+                              // padding: EdgeInsets.only(
+                              //   left: 4.w,
+                              // ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 39.w,
+                                    child: Text(
+                                      "Share",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall
+                                          ?.copyWith(
+                                            color: Colors.white70,
+                                            fontSize: 12.sp,
+                                            fontFamily: "PlusJakarta",
+                                          ),
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   width: 21.5.w,
+                                  // ),
+                                  const Icon(
+                                    Icons.ios_share,
+                                    color: Colors.white,
+                                    // fit: BoxFit.fitWidth,
+                                    // width: 6.w,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           PopupMenuDivider(
                             height: 2.5.h,
                           ),
                           PopupMenuItem(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 3.w,
-                              vertical: 0.1.h,
-                            ),
+                            height: 3.h,
+                            // padding: EdgeInsets.symmetric(
+                            //   horizontal: 2.w,
+                            //   vertical: 0.1.h,
+                            // ),
                             onTap: () => onTapOptions(4),
                             value: 4,
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Delete",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(
-                                        color: Colors.red,
-                                        fontSize: 16.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 25.5.w,
-                                ),
-                                Image.asset(
-                                  Constances.deleteImage,
-                                  color: Colors.white,
-                                  fit: BoxFit.fitWidth,
-                                  width: 6.w,
-                                ),
-                              ],
+                            child: SizedBox(
+                              width: 45.w,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 39.w,
+                                    child: Text(
+                                      "Delete",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall
+                                          ?.copyWith(
+                                            color: Colors.red,
+                                            fontSize: 12.sp,
+                                            fontFamily: "PlusJakarta",
+                                          ),
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   width: 19.w,
+                                  // ),
+                                  Image.asset(
+                                    Constances.deleteImage,
+                                    color: Colors.white,
+                                    fit: BoxFit.fitWidth,
+                                    width: 6.w,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

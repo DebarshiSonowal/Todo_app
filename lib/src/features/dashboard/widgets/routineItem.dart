@@ -35,8 +35,9 @@ class RoutineItem extends StatelessWidget {
                 ),
               ),
               child: CircleAvatar(
+                backgroundColor: Colors.transparent,
                 radius: 20.sp, // Image radius
-                backgroundImage: type != 1
+                backgroundImage: img.contains("assets")
                     ? Image.asset(
                         img,
                         fit: BoxFit.fill,

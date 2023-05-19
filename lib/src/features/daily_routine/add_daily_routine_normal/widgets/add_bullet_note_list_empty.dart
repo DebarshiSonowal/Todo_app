@@ -123,7 +123,7 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
                   false,
                 ),
               ));
-              FocusScope.of(context).requestFocus(focus);
+              // FocusScope.of(context).requestFocus(focus);
             },
             remove: () {
               debugPrint("2nd event");

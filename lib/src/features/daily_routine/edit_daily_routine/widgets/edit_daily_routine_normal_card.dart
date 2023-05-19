@@ -40,6 +40,7 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
   final File? attachment;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   final ImagePicker picker = ImagePicker();
+
   // File? attachment;
   // final titleController = TextEditingController();
   // List<ReminderListItem> reminders = [];
@@ -161,21 +162,28 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                                     Image.file(File(attachment?.path ?? ""))
                                         .image,
                               ))
-                        : CircleAvatar(
+                        : (CircleAvatar(
                             backgroundColor: Colors.transparent,
                             radius: 30.sp, // Image radius
-                            backgroundImage: Image.file(
-                              File(data.models[index].image!),
-                              errorBuilder: (error, str, _) {
-                                return Image.asset(
-                                  data.models[index].image!,
-                                  // fit: BoxFit.fill,
-                                  // height: type == 1 ? 5.h : 8.h,
-                                  // width: type == 1 ? 11.w : 17.w,
-                                );
-                              },
-                            ).image,
-                          ),
+                            backgroundImage: (data.models[index].type == 1
+                                    ? Image.file(
+                                        File(data.models[index].image!),
+                                        errorBuilder: (error, str, _) {
+                                          return Image.asset(
+                                            data.models[index].image!,
+                                          );
+                                        },
+                                      )
+                                    : Image.asset(
+                                        data.models[index].image!,
+                                        errorBuilder: (error, str, _) {
+                                          return Image.asset(
+                                            data.models[index].image!,
+                                          );
+                                        },
+                                      ))
+                                .image,
+                          )),
                   )
                 ],
               ),
@@ -252,7 +260,8 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
         if (status.isDenied) {
           showError("Permission Denied");
         } else {
-          final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+          final pickedFile =
+              await picker.pickImage(source: ImageSource.gallery);
           if (pickedFile != null) {
             updateImage(File(pickedFile.path));
           }

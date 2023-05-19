@@ -9,12 +9,14 @@ class DailyRoutineModel {
   bool? isTimer,isDaily;
   List<int> weekDays=[];
   List<DateTime> monthly=[];
+  int? type;
   DailyRoutineModel(
     this.title,
     this.titleTime,
     this.dateTime,
     this.image,
     this.reminders,
+    this.type,
     // this.options,
   );
 

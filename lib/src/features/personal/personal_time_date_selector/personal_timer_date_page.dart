@@ -64,6 +64,7 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
                       DateTime.now().day, 12, 0),
                   attachment!.path,
                   reminders,
+                  1,
                   // TimerSelectionOptions(
                   //   "NA",10,false,
                   // ),

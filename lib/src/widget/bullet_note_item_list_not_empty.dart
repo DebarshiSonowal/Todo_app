@@ -64,9 +64,11 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
                 ),
                 count,
               );
-              FocusScope.of(context).requestFocus(focus);
+              // FocusScope.of(context).requestFocus(focus);
             },
-            remove: (){},
+            remove: (){
+              debugPrint("Removing1");
+            },
           );
         } else {
           return RoutineItemWidget(
@@ -127,7 +129,9 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
               }
               FocusScope.of(context).requestFocus(focus);
             },
-            remove: (){},
+            remove: (){
+              debugPrint("Removing2");
+            },
           );
         }
       },
