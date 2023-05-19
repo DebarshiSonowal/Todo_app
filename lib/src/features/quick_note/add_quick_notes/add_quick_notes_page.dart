@@ -27,6 +27,7 @@ class AddQuickNotesPage extends StatelessWidget {
                   .addQuickNote(QuickNote(
                 controller.text,
                 DateFormat("dd MMM yyyy").format(DateTime.now()),
+                DateFormat("HH:mm a").format(DateTime.now()),
               ));
               Navigation.instance.navigateAndReplace(Routes.quickNotesList);
             } else {
@@ -69,6 +70,7 @@ class AddQuickNotesPage extends StatelessWidget {
       ),
     );
   }
+
   void showError(String msg) {
     AlertX.instance.showAlert(
         title: "Error",

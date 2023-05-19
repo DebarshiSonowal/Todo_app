@@ -19,7 +19,7 @@ class QuickNotesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(8.h),
+        preferredSize: Size.fromHeight(9.h),
         child: QuickNotesListAppbar(
           onTap: () {},
         ),

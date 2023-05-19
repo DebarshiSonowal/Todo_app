@@ -10,6 +10,8 @@ import 'package:vishal_todo_app/src/services/Navigate.dart';
 import '../../../../constants/constants.dart';
 import '../../../../constants/routes.dart';
 import '../../../../models/personal_model.dart';
+import '../../../../widget/personal_date_viewer_daily.dart';
+import '../../../daily_routine/view_daily_routine/widgets/date_viewer_daily.dart';
 
 class PersonalPageItemCard extends StatelessWidget {
   const PersonalPageItemCard({
@@ -24,9 +26,9 @@ class PersonalPageItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         //Navigation.instance.navigate(Routes.editPersonalInfo,args: index);
-        Navigation.instance.navigate(Routes.personalDetails,args: index);
+        Navigation.instance.navigate(Routes.personalDetails, args: index);
       },
       child: Card(
         elevation: 7,
@@ -35,7 +37,7 @@ class PersonalPageItemCard extends StatelessWidget {
         ),
         child: Container(
           padding: EdgeInsets.symmetric(
-            vertical: 1.5.h,
+            vertical: 1.h,
             horizontal: 3.w,
           ),
           decoration: const BoxDecoration(
@@ -53,6 +55,9 @@ class PersonalPageItemCard extends StatelessWidget {
                     Constances.editIcon,
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 1.h,
               ),
               data.image == null
                   ? SvgPicture.asset(
@@ -74,17 +79,17 @@ class PersonalPageItemCard extends StatelessWidget {
                       ),
                     ),
               SizedBox(
-                height: 1.h,
+                height: 0.5.h,
               ),
               Text(
                 data.title ?? "",
                 maxLines: 1,
                 style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 12.sp,
-                      color: Colors.white54,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 12.5.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                       // fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto",
+                      fontFamily: "RobotoFlex",
                     ),
               ),
               SizedBox(
@@ -97,13 +102,39 @@ class PersonalPageItemCard extends StatelessWidget {
                     DateFormat("dd MMM yyyy | HH:mm a").format(data.dateTime!),
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headline6?.copyWith(
-                          fontSize: 10.sp,
-                          color: Colors.white70,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 9.5.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
                           // fontWeight: FontWeight.bold,
-                          fontFamily: "Roboto",
+                          fontFamily: "Rubik",
                         ),
                   ),
+                ),
+              ),
+              SizedBox(
+                height: 1.h,
+              ),
+              SizedBox(
+                height: 3.h,
+                width: double.infinity,
+                child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  // padding: EdgeInsets.symmetric(
+                  //   horizontal: 1.w,
+                  // ),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return PersonalDateViewerDaily(
+                      index: index,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 1.5.w,
+                    );
+                  },
+                  itemCount: 7,
                 ),
               ),
             ],

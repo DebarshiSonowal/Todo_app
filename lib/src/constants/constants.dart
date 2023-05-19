@@ -44,6 +44,7 @@ class Constances {
   static const cancelImage = 'assets/images/cancel.png';
   static const shareImage = "assets/images/share.png";
   static const deleteImage = "assets/images/delete.png";
+  static const personalLineImage = "assets/images/personal_lines.png";
 
   //second
   static const backgroundImage = 'assets/images/background_blurr.png';
@@ -152,4 +153,6 @@ class Constances {
   static var arrowScale2 = 20.0;
 
   static const timerColor = Color(0xff596077);
+
+  static const optionImage = "assets/images/img_iconoirmorehorizcircle.svg";
 }

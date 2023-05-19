@@ -327,7 +327,7 @@ class _RingtonePickerScreenState extends State<RingtonePickerScreen> {
     if (parse == 1) {
       return data.models[parse2].reminders[parse3].options?.vibration ?? false;
     }
-    return data.personals[parse2].reminders[parse3].isEnabled;
+    return data.personals[parse2].reminders[parse3].options?.vibration ?? false;
   }
 
   getValueOfSlider(int parse, int parse2, int parse3, Repository data) {

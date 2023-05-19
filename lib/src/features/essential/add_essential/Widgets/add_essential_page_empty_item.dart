@@ -10,6 +10,14 @@ class AddEssentialPageEmptyItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Text(
+          "${index + 1}. ",
+          style: Theme.of(context).textTheme.headline4?.copyWith(
+            fontSize: 12.sp,
+            color: Colors.black,
+            fontFamily: "Roboto",
+          ),
+        ),
         Expanded(
           flex: 3,
           child: TextFormField(
@@ -22,7 +30,7 @@ class AddEssentialPageEmptyItem extends StatelessWidget {
             minLines: 1,
             // initialValue: "${item.title}",
             decoration: InputDecoration.collapsed(
-              hintText: '${index + 1}.',
+              hintText: 'Write Something',
               hintStyle: Theme.of(context)
                   .textTheme
                   .headline4

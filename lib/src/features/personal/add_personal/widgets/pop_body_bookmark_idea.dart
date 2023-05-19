@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../constants/constants.dart';
+
 class PopUpBodyPersonal extends StatelessWidget {
   const PopUpBodyPersonal({
     super.key,
@@ -55,7 +57,7 @@ class PopUpBodyPersonal extends StatelessWidget {
                 horizontal: 5.w,
               ),
               child: Divider(
-                thickness: 0.05.h,
+                thickness: 0.07.h,
                 color: Colors.black87,
               ),
             ),
@@ -93,7 +95,13 @@ class PopUpBodyPersonal extends StatelessWidget {
                           ),
                     ),
                     SizedBox(
-                      height: 3.h,
+                      height:4.h,
+                      child: Center(
+                        child: Image.asset(
+                          Constances.personalLineImage,
+                          scale: 3,
+                        ),
+                      ),
                     ),
                     Text(
                       "Classes",

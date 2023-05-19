@@ -189,6 +189,10 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
   }
 
   void saveData(int index, int index2, int? type) {
+
+    Navigation.instance.goBack();
+  }
+  void goBack(int index, int index2, int? type){
     if (type == null) {
       Provider.of<Repository>(context, listen: false).updateTimerOptions(
         TimerSelectionOptions(
@@ -205,7 +209,6 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
         index2,
       );
     }
-    Navigation.instance.goBack();
   }
 
   void _volumeUpdate(context) async {

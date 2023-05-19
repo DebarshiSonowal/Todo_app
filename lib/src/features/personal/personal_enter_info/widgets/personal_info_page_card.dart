@@ -21,7 +21,6 @@ import '../../../../widget/bullet_note_item_list_not_empty.dart';
 import '../../../../widget/image_popup_body.dart';
 import '../../../daily_routine/add_daily_routine_normal/widgets/add_bullet_note_list_empty.dart';
 
-
 class PersonalInfoPageCard extends StatefulWidget {
   const PersonalInfoPageCard({
     Key? key,
@@ -236,43 +235,6 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
     }
   }
 
-  // Future<void> getSelectedImage(int index) async {
-  //   if (index == 0) {
-  //     var status = await Permission.camera.request();
-  //     if (status.isDenied) {
-  //       showError("Permission Denied");
-  //     } else {
-  //       final pickedFile = await ImagesPicker.openCamera(
-  //         pickType: PickType.image,
-  //         quality: 0.7,
-  //       );
-  //       if (pickedFile != null) {
-  //         for (var i in pickedFile) {
-  //           setState(() {
-  //             attachment = File(i.path);
-  //           });
-  //           widget.imageUpdate(attachment!);
-  //         }
-  //       }
-  //     }
-  //   } else {
-  //     var status = await Permission.storage.request();
-  //     if (status.isDenied) {
-  //       showError("Permission Denied");
-  //     } else {
-  //       final pickedFile = await ImagesPicker.pick(
-  //         count: 1,
-  //         pickType: PickType.image,
-  //       );
-  //       if (pickedFile != null) {
-  //         setState(() {
-  //           attachment = File(pickedFile[0].path);
-  //         });
-  //         widget.imageUpdate(attachment!);
-  //       }
-  //     }
-  //   }
-  // }
   Future<void> getSelectedImage(int index) async {
     if (index == 0) {
       var status = await Permission.camera.request();

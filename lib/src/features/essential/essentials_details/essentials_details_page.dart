@@ -45,8 +45,10 @@ class _EssentialDetailsPageState extends State<EssentialDetailsPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
-        child: EssentialDetailsAppbar(index: widget.index,item:Provider.of<Repository>(context, listen: false)
-            .essentials[widget.index]),
+        child: EssentialDetailsAppbar(
+            index: widget.index,
+            item: Provider.of<Repository>(context, listen: false)
+                .essentials[widget.index]),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -148,9 +150,14 @@ class _EssentialDetailsPageState extends State<EssentialDetailsPage> {
                             }
                           },
                           separatorBuilder: (context, index) {
-                            return Divider(
-                              thickness: 0.05.h,
-                              color: Colors.black54,
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 0.5.h,
+                              ),
+                              child: Divider(
+                                thickness: 0.05.h,
+                                color: Colors.black54,
+                              ),
                             );
                           },
                           itemCount: essentialNotes!.notes.length,
@@ -165,9 +172,8 @@ class _EssentialDetailsPageState extends State<EssentialDetailsPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigation.instance.navigate(
-                        Routes.essentialsEdit,
-                        args: widget.index);
+                    Navigation.instance
+                        .navigate(Routes.essentialsEdit, args: widget.index);
                   },
                   child: Container(
                     margin: EdgeInsets.only(

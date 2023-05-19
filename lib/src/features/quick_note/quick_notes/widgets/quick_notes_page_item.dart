@@ -13,11 +13,13 @@ import '../../../../services/Navigate.dart';
 class QuickNotePageItem extends StatelessWidget {
   const QuickNotePageItem({
     super.key,
-    required this.item, required this.index,
+    required this.item,
+    required this.index,
   });
 
   final QuickNote item;
   final int index;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,7 +27,7 @@ class QuickNotePageItem extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Navigation.instance.navigate(Routes.editQuickNotes,args: index);
+            Navigation.instance.navigate(Routes.editQuickNotes, args: index);
           },
           child: Card(
             shape: RoundedRectangleBorder(
@@ -41,11 +43,13 @@ class QuickNotePageItem extends StatelessWidget {
                 horizontal: 2.w,
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "${item.date}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.black,
+                          fontFamily: "Rubik",
                         ),
                   ),
                   Divider(
@@ -57,107 +61,221 @@ class QuickNotePageItem extends StatelessWidget {
                     maxLines: 9,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.black,
-                        ),
+                        color: Colors.black, fontFamily: "PublicSans"),
                   ),
                 ],
               ),
             ),
           ),
         ),
-        FocusedMenuHolder(
-          blurSize: 0,
-          menuItemExtent: 6.h,
-          menuWidth: 40.w,
-          menuBoxDecoration: BoxDecoration(
-            // border: Border.all(
-            //   width: 0.04.h,
-            //   // assign the color to the border color
-            //   color: Colors.white,
-            // ),
-            borderRadius: BorderRadius.circular(50),
+        // FocusedMenuHolder(
+        //   blurSize: 0,
+        //   menuItemExtent: 6.h,
+        //   menuWidth: 40.w,
+        //   menuBoxDecoration: BoxDecoration(
+        //     // border: Border.all(
+        //     //   width: 0.04.h,
+        //     //   // assign the color to the border color
+        //     //   color: Colors.white,
+        //     // ),
+        //     borderRadius: BorderRadius.circular(50),
+        //   ),
+        //   duration: const Duration(milliseconds: 100),
+        //   animateMenuItems: true,
+        //   blurBackgroundColor: Colors.transparent,
+        //   openWithTap: true,
+        //   // Open Focused-Menu on Tap rather than Long Press
+        //   menuOffset: 10.0,
+        //
+        //   // Offset value to show menuItem from the selected item
+        //   bottomOffsetHeight: 2.0,
+        //   // Offset hei
+        //   onPressed: () {},
+        //   menuItems: [
+        //     // Add Each FocusedMenuItem  for Menu Options
+        //     FocusedMenuItem(
+        //       backgroundColor: const Color(0xff50555c),
+        //       title: Row(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           Image.asset(
+        //             Constances.shareImage,
+        //             color: Colors.white,
+        //             fit: BoxFit.fitWidth,
+        //             width: 6.w,
+        //           ),
+        //           SizedBox(
+        //             width: 5.w,
+        //           ),
+        //           Text(
+        //             "Share Via",
+        //             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+        //                   color: Colors.white70,
+        //                   fontSize: 14.sp,
+        //                 ),
+        //           ),
+        //         ],
+        //       ),
+        //       onPressed: () {
+        //         Navigation.instance.goBack();
+        //       },
+        //     ),
+        //     FocusedMenuItem(
+        //       backgroundColor: const Color(0xff50555c),
+        //       title: Row(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           Image.asset(
+        //             Constances.deleteImage,
+        //             color: Colors.white,
+        //             fit: BoxFit.fitWidth,
+        //             width: 6.w,
+        //           ),
+        //           SizedBox(
+        //             width: 5.w,
+        //           ),
+        //           Text(
+        //             "Delete",
+        //             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+        //                   color: Colors.red,
+        //                   fontSize: 14.sp,
+        //                 ),
+        //           ),
+        //         ],
+        //       ),
+        //       onPressed: () {
+        //         Navigation.instance.goBack();
+        //         Provider.of<Repository>(context, listen: false)
+        //             .deleteQuickNote(item);
+        //         if (Provider.of<Repository>(context, listen: false)
+        //             .quickNotes
+        //             .isEmpty) {
+        //           Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
+        //         }
+        //       },
+        //     ),
+        //   ],
+        //   child: Container(
+        //     margin: EdgeInsets.only(
+        //       right: 2.w,
+        //       top: 0.5.h,
+        //     ),
+        //     child: Icon(
+        //       Icons.more_horiz,
+        //       color: Colors.white,
+        //       size: 22.sp,
+        //     ),
+        //   ),
+        // )
+        Theme(
+          data: Theme.of(context).copyWith(
+            dividerTheme: const DividerThemeData(
+              color: Colors.white,
+            ),
+            // iconTheme: IconThemeData(color: Colors.white),
+            // textTheme: TextTheme().apply(bodyColor: Colors.white),
           ),
-          duration: const Duration(milliseconds: 100),
-          animateMenuItems: true,
-          blurBackgroundColor: Colors.transparent,
-          openWithTap: true,
-          // Open Focused-Menu on Tap rather than Long Press
-          menuOffset: 10.0,
-
-          // Offset value to show menuItem from the selected item
-          bottomOffsetHeight: 2.0,
-          // Offset hei
-          onPressed: () {},
-          menuItems: [
-            // Add Each FocusedMenuItem  for Menu Options
-            FocusedMenuItem(
-              backgroundColor: const Color(0xff50555c),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    Constances.shareImage,
-                    color: Colors.white,
-                    fit: BoxFit.fitWidth,
-                    width: 6.w,
-                  ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Share Via",
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: Colors.white70,
-                          fontSize: 14.sp,
-                        ),
-                  ),
-                ],
+          child: PopupMenuButton(
+            offset: const Offset(
+              0,
+              4,
+            ),
+            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+              PopupMenuItem(
+                value: 1,
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Image.asset(
+                      Constances.shareImage,
+                      color: Colors.white,
+                      fit: BoxFit.fitWidth,
+                      width: 6.w,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Text(
+                      "Share Via",
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: Colors.white70,
+                                fontSize: 14.sp,
+                              ),
+                    ),
+                  ],
+                ),
               ),
-              onPressed: () {
-                Navigation.instance.goBack();
-              },
-            ),
-            FocusedMenuItem(
-              backgroundColor: const Color(0xff50555c),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    Constances.deleteImage,
-                    color: Colors.white,
-                    fit: BoxFit.fitWidth,
-                    width: 6.w,
-                  ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Delete",
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: Colors.red,
-                          fontSize: 14.sp,
-                        ),
-                  ),
-                ],
+              PopupMenuDivider(
+                height: 2.5.h,
               ),
-              onPressed: () {
-                Navigation.instance.goBack();
-                Provider.of<Repository>(context, listen: false)
-                    .deleteQuickNote(item);
-                if (Provider.of<Repository>(context, listen: false)
-                    .quickNotes
-                    .isEmpty) {
-                  Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
-                }
-              },
-            ),
-          ],
-          child: Container(
-            margin: EdgeInsets.only(
-              right: 2.w,
-              top: 0.5.h,
-            ),
-            child: Icon(
+              // PopupMenuItem(
+              //   value: 2,
+              //   onTap: () {},
+              //   child: Row(
+              //     children: [
+              //       Image.asset(
+              //         Constances.shareImage,
+              //         color: Colors.white,
+              //         fit: BoxFit.fitWidth,
+              //         width: 6.w,
+              //       ),
+              //       SizedBox(
+              //         width: 2.w,
+              //       ),
+              //       Text(
+              //         "Share Via",
+              //         style:
+              //             Theme.of(context).textTheme.headlineSmall?.copyWith(
+              //                   color: Colors.white70,
+              //                   fontSize: 14.sp,
+              //                 ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // PopupMenuDivider(
+              //   height: 2.5.h,
+              // ),
+              PopupMenuItem(
+                onTap: () {
+                  Navigation.instance.goBack();
+                  Provider.of<Repository>(context, listen: false)
+                      .deleteQuickNote(item);
+                  if (Provider.of<Repository>(context, listen: false)
+                      .quickNotes
+                      .isEmpty) {
+                    Navigation.instance
+                        .navigateAndRemoveUntil(Routes.dashboard);
+                  }
+                },
+                value: 3,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      Constances.deleteImage,
+                      color: Colors.white,
+                      fit: BoxFit.fitWidth,
+                      width: 6.w,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Text(
+                      "Delete",
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: Colors.red,
+                                fontSize: 14.sp,
+                              ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            // onSelected: (int value) {},
+            color: Color(0xff50555d),
+            icon: Icon(
               Icons.more_horiz,
               color: Colors.white,
               size: 22.sp,

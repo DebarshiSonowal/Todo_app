@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +15,12 @@ import 'alert.dart';
 import 'done_button.dart';
 
 class AddImageTitleBookmark extends StatefulWidget {
-  const AddImageTitleBookmark({Key? key, required this.index, required this.title})
+  const AddImageTitleBookmark(
+      {Key? key, required this.index, required this.title})
       : super(key: key);
   final int index;
   final String title;
+
   @override
   State<AddImageTitleBookmark> createState() => _AddImageTitleBookmarkState();
 }
@@ -25,7 +28,7 @@ class AddImageTitleBookmark extends StatefulWidget {
 class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
   File? attachment;
   final titleController = TextEditingController();
-
+  final ImagePicker picker = ImagePicker();
   @override
   void initState() {
     super.initState();
@@ -117,7 +120,10 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
             ),
             const Text(
               "",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16,color: Colors.white70),
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Colors.white70),
             ),
             SizedBox(
               height: 1.h,
@@ -137,7 +143,6 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
                 maxLines: 2,
                 minLines: 1,
                 decoration: InputDecoration.collapsed(
-
                   hintText: 'File name',
                   hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
                         fontSize: 11.sp,
@@ -184,16 +189,16 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
       if (status.isDenied) {
         showError("Permission Denied");
       } else {
-        final pickedFile = await ImagesPicker.openCamera(
-          pickType: PickType.image,
-          quality: 0.7,
-        );
+        final pickedFile = await picker.pickImage(source: ImageSource.camera);
         if (pickedFile != null) {
-          for (var i in pickedFile) {
-            setState(() {
-              attachment = File(i.path);
-            });
-          }
+          // for (var i in pickedFile) {
+          //   setState(() {
+          //     attachment = File(i.path);
+          //   });
+          // }
+          setState(() {
+            attachment = File(pickedFile.path);
+          });
         }
       }
     } else {
@@ -201,13 +206,10 @@ class _AddImageTitleBookmarkState extends State<AddImageTitleBookmark> {
       if (status.isDenied) {
         showError("Permission Denied");
       } else {
-        final pickedFile = await ImagesPicker.pick(
-          count: 1,
-          pickType: PickType.image,
-        );
+        final pickedFile = await picker.pickImage(source: ImageSource.gallery);
         if (pickedFile != null) {
           setState(() {
-            attachment = File(pickedFile[0].path);
+            attachment = File(pickedFile.path);
           });
         }
       }

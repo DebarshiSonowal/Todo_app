@@ -30,4 +30,11 @@ class Navigation {
       debugPrint(e.toString());
     }
   }
+  goBackWithArgs({Object? args}) {
+    try {
+      return navigatorKey.currentState?.pop(args);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 }

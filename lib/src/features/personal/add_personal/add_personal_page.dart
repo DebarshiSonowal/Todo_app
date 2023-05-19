@@ -6,7 +6,10 @@ import 'package:vishal_todo_app/src/constants/constants.dart';
 import 'package:vishal_todo_app/src/features/personal/add_personal/widgets/add_personal_page_appbar.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 
+import '../../../constants/routes.dart';
 import '../../../models/personal_model.dart';
+import '../../../services/Navigate.dart';
+import '../../../widget/add_button.dart';
 import 'widgets/add_card_personal_page.dart';
 import 'widgets/add_personal_page_instructions.dart';
 import 'widgets/add_personal_page_item_card.dart';
@@ -27,27 +30,40 @@ class _AddPersonalPageState extends State<AddPersonalPage> {
         preferredSize: Size.fromHeight(9.h),
         child: const AddPersonalPageAppbar(),
       ),
-      body: Container(
-        height: 100.h,
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(
-          horizontal: 3.w,
-          vertical: 0.5.h,
-        ),
-        child: Consumer<Repository>(builder: (context, data, _) {
-          return GridView.builder(
-              itemCount: data.personals.length + 1,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 4.0,
-                  mainAxisSpacing: 4.0),
-              itemBuilder: (context, index) {
-                return index == 0
-                    ? const AddCardPersonalPage()
-                    : PersonalPageItemCard(
-                        index: index - 1, data: data.personals[index - 1]);
-              });
-        }),
+      body: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          Container(
+            height: 100.h,
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(
+              // horizontal: 2.w,
+              vertical: 0.5.h,
+            ),
+            child: Consumer<Repository>(builder: (context, data, _) {
+              return GridView.builder(
+                  itemCount: data.personals.isNotEmpty
+                      ? data.personals.length
+                      : data.personals.length + 1,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 1.0,
+                      mainAxisSpacing: 2.0,
+                      childAspectRatio: 4 / 4.2),
+                  itemBuilder: (context, index) {
+                    return data.personals.isEmpty
+                        ? const AddCardPersonalPage()
+                        : PersonalPageItemCard(
+                            index: index, data: data.personals[index]);
+                  });
+            }),
+          ),
+          AddButton(
+            onTap: () {
+              Navigation.instance.navigate(Routes.addPersonalInfo);
+            },
+          ),
+        ],
       ),
     );
   }
@@ -61,6 +77,12 @@ class _AddPersonalPageState extends State<AddPersonalPage> {
   }
 
   void showMyDialog(BuildContext context) {
+    // showDialog(
+    //   context: context,
+    //   builder: (context) {
+    //     return const AddPersonalPageInstructions();
+    //   },
+    // );
     showGeneralDialog(
       barrierLabel: "Label",
       barrierDismissible: true,

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../constants/constants.dart';
 import '../../../../services/Navigate.dart';
 
 class QuickNotesListAppbar extends StatelessWidget {
   const QuickNotesListAppbar({
-    super.key, required this.onTap,
+    super.key,
+    required this.onTap,
   });
+
   final Function onTap;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,14 +24,14 @@ class QuickNotesListAppbar extends StatelessWidget {
             children: [
               Text(
                 ''
-                    'Quick Note',
+                'Quick Note',
                 style: Theme.of(context).textTheme.headline4?.copyWith(
-                  fontSize: 15.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  // fontWeight: FontWeight.bold,
-                  fontFamily: "Roboto",
-                ),
+                      fontSize: 15.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      // fontWeight: FontWeight.bold,
+                      fontFamily: "Roboto",
+                    ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,19 +41,24 @@ class QuickNotesListAppbar extends StatelessWidget {
                     // height: 8.h,
                     child: Column(
                       children: [
-                        // SizedBox(
-                        //   height: 1.h,
-                        // ),
+                        SizedBox(
+                          height: 1.5.h,
+                        ),
                         GestureDetector(
                           onTap: () {
                             Navigation.instance.goBack();
                           },
                           child: SizedBox(
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(
-                                  Icons.arrow_back_ios_new,
-                                  size: 16.sp,
+                                Image.asset(
+                                  Constances.arrowBackImage,
+                                  fit: BoxFit.contain,
+                                  scale: Constances.arrowScale,
+                                ),
+                                SizedBox(
+                                  width: 0.5.w,
                                 ),
                                 Text(
                                   'Back',
@@ -57,13 +66,13 @@ class QuickNotesListAppbar extends StatelessWidget {
                                       .textTheme
                                       .headline4
                                       ?.copyWith(
-                                    fontSize: 11.2.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    // fontWeight: FontWeight.bold,
-                                    fontFamily: "Roboto",
-                                    // fontWeight: FontWeight.bold,
-                                  ),
+                                        fontSize: 12.2.sp,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        // fontWeight: FontWeight.bold,
+                                        fontFamily: "Rubik",
+                                        // fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                               ],
                             ),

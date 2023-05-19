@@ -27,6 +27,13 @@ class AddQuickNoteFromDate extends StatelessWidget {
                   .addQuickNote(QuickNote(
                 controller.text,
                 dateTime,
+                DateFormat("HH:mm a").format(DateTime(
+                  DateTime.now().year,
+                  DateTime.now().month,
+                  DateTime.now().day,
+                  12,
+                  00,
+                )),
               ));
               Navigation.instance.goBack();
             } else {
