@@ -82,7 +82,7 @@ class BookmarkSublistItem extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    _launchUrl(Uri.parse("https://${item.link ?? ""}"));
+                    _launchUrl(Uri.parse(item.link ?? ""));
                   },
                   child: SizedBox(
                     width: 70.w,

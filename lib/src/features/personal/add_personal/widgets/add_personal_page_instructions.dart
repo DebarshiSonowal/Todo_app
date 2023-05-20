@@ -20,7 +20,7 @@ class AddPersonalPageInstructions extends StatelessWidget {
               const PopUpBodyPersonal(),
               Container(
                 margin: EdgeInsets.only(
-                  right: 52.w,
+                  right: 45.w,
                   bottom: 2.5.h,
                 ),
                 child: IconButton(

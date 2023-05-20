@@ -29,7 +29,7 @@ class PopupMenuBookmarkSublistItem extends StatelessWidget {
         // textTheme: TextTheme().apply(bodyColor: Colors.white),
       ),
       child: PopupMenuButton(
-        splashRadius: 10.sp,
+        splashRadius: 5.sp,
         itemBuilder: (BuildContext context) => <PopupMenuEntry>[
           PopupMenuItem(
             height: 3.h,
@@ -46,7 +46,7 @@ class PopupMenuBookmarkSublistItem extends StatelessWidget {
                   Constances.shareImage,
                   color: Colors.white,
                   fit: BoxFit.fitWidth,
-                  width: 6.w,
+                  width: 4.w,
                 ),
                 SizedBox(
                   width: 5.w,
@@ -55,7 +55,7 @@ class PopupMenuBookmarkSublistItem extends StatelessWidget {
                   "Share Via",
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white70,
-                    fontSize: 14.sp,
+                    fontSize: 10.sp,
                   ),
                 ),
               ],
@@ -95,16 +95,23 @@ class PopupMenuBookmarkSublistItem extends StatelessWidget {
                   Constances.deleteImage,
                   color: Colors.white,
                   fit: BoxFit.fitWidth,
-                  width: 6.w,
+                  width: 4.w,
                 ),
                 SizedBox(
-                  width: 10.w,
+                  width: 5.w,
                 ),
-                Text(
-                  "Delete",
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.red,
-                    fontSize: 14.sp,
+                SizedBox(
+                  width: 14.w,
+                  child: Row(
+                    children: [
+                      Text(
+                        "Delete",
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: Colors.red,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

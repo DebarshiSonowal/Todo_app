@@ -11,8 +11,8 @@ class PopUpBodyPersonal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 52.h,
-      width: 84.w,
+      height: 55.h,
+      width: 95.w,
       margin: EdgeInsets.only(
         right: 0.w,
         bottom: 0.5.h,
@@ -74,7 +74,7 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "Create what you're",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Colors.black,
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
@@ -82,7 +82,7 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "looking for more",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Colors.black,
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
@@ -90,12 +90,12 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "quick and easily",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Colors.black,
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
                     SizedBox(
-                      height:4.h,
+                      height: 4.h,
                       child: Center(
                         child: Image.asset(
                           Constances.personalLineImage,
@@ -107,7 +107,7 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "Classes",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Color(0xff8338A8),
-                            fontSize: 10.sp,
+                            fontSize: 11.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
@@ -118,11 +118,12 @@ class PopUpBodyPersonal extends StatelessWidget {
                       children: [
                         Text(
                           "e.g. Tuition,Coaching,OnlineCourses",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black,
-                                fontSize: 9.sp,
-                                fontFamily: "ABeeZee",
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 11.sp,
+                                    fontFamily: "ABeeZee",
+                                  ),
                         ),
                       ],
                     ),
@@ -133,7 +134,7 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "Meeting",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Color(0xffFF72B6),
-                            fontSize: 10.sp,
+                            fontSize: 11.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
@@ -144,11 +145,12 @@ class PopUpBodyPersonal extends StatelessWidget {
                       children: [
                         Text(
                           "e.g. Online meeting,private,meeting",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black,
-                                fontSize: 9.sp,
-                                fontFamily: "ABeeZee",
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 11.sp,
+                                    fontFamily: "ABeeZee",
+                                  ),
                         ),
                       ],
                     ),
@@ -159,7 +161,7 @@ class PopUpBodyPersonal extends StatelessWidget {
                       "Task",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Color(0xff5D96EA),
-                            fontSize: 10.sp,
+                            fontSize: 11.sp,
                             fontFamily: "ABeeZee",
                           ),
                     ),
@@ -170,11 +172,12 @@ class PopUpBodyPersonal extends StatelessWidget {
                       children: [
                         Text(
                           "e.g. Project,plan,Development,deadline",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black,
-                                fontSize: 9.sp,
-                                fontFamily: "ABeeZee",
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 11.sp,
+                                    fontFamily: "ABeeZee",
+                                  ),
                         ),
                       ],
                     ),
@@ -196,11 +199,12 @@ class PopUpBodyPersonal extends StatelessWidget {
                       children: [
                         Text(
                           "e.g. Rent, electricity, water",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black,
-                                fontSize: 10.sp,
-                                fontFamily: "ABeeZee",
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 11.sp,
+                                    fontFamily: "ABeeZee",
+                                  ),
                         ),
                       ],
                     ),

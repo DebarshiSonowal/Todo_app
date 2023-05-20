@@ -21,7 +21,7 @@ class AddButton extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: Constances.blueBackground,
+            color: Constances.lightBlueBackground,
             borderRadius: BorderRadius.circular(20),
           ),
           width: 20.w,
