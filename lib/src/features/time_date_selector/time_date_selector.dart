@@ -42,6 +42,8 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
               .title ??
           "";
     });
+    Future.delayed(const Duration(seconds: 0),
+        () => FocusManager.instance.primaryFocus!.unfocus());
   }
 
   @override

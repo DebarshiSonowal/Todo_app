@@ -37,7 +37,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
     super.initState();
 
   }
-
+  bool isDone = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

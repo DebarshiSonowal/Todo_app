@@ -8,6 +8,7 @@ import '../features/daily_routine/edit_daily_routine/widgets/edit_daily_routine_
 import '../models/reminder_list_item.dart';
 import '../models/timer_section_option_model.dart';
 import '../repository/repository.dart';
+import 'routine_item_non_empty.dart';
 
 class BulletNoteItemListEmpty extends StatelessWidget {
   BulletNoteItemListEmpty({
@@ -28,7 +29,7 @@ class BulletNoteItemListEmpty extends StatelessWidget {
       itemBuilder: (context, index) {
         // var item = reminders[index];
         if (index != reminders.length) {
-          return RoutineItemWidget(
+          return RoutineItemNonEmptyWidget(
             // focusNode: focus,
             item: reminders.isEmpty
                 ? ReminderListItem(
@@ -102,7 +103,7 @@ class BulletNoteItemListEmpty extends StatelessWidget {
           );
         } else {
           return RoutineItemWidget(
-            // focusNode: focus,
+            focusNode: focus,
             item: ReminderListItem(
               "",
               // DateFormat("hh:mm a").format(DateTime.now()),

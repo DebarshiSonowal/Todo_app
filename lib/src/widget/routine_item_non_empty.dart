@@ -14,15 +14,15 @@ extension TOD on TimeOfDay {
   }
 }
 
-class RoutineItemWidget extends StatefulWidget {
-  const RoutineItemWidget({
+class RoutineItemNonEmptyWidget extends StatefulWidget {
+  const RoutineItemNonEmptyWidget({
     Key? key,
     required this.index,
     required this.item,
     required this.updateList,
     required this.remove,
     this.autofocus,
-    required this.focusNode,
+    // required this.focusNode,
   }) : super(key: key);
   final int index;
   final ReminderListItem item;
@@ -30,13 +30,13 @@ class RoutineItemWidget extends StatefulWidget {
   final Function remove;
   final bool? autofocus;
 
-  final FocusNode? focusNode;
+  // final FocusNode? focusNode;
 
   @override
-  State<RoutineItemWidget> createState() => _RoutineItemWidgetState();
+  State<RoutineItemNonEmptyWidget> createState() => _RoutineItemNonEmptyWidgetState();
 }
 
-class _RoutineItemWidgetState extends State<RoutineItemWidget> {
+class _RoutineItemNonEmptyWidgetState extends State<RoutineItemNonEmptyWidget> {
   Time? timePicked;
   String? txt;
   final QuickActions quickActions = const QuickActions();
@@ -77,18 +77,19 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
           Text(
             "${widget.index + 1}. ",
             style: Theme.of(context).textTheme.headline4?.copyWith(
-                  fontSize: 12.sp,
-                  color: Colors.white,
-                  fontFamily: "Roboto",
-                ),
+              fontSize: 12.sp,
+              color: Colors.white,
+              fontFamily: "Roboto",
+            ),
           ),
           Expanded(
             flex: 3,
             child: TextFormField(
-              autofocus: true,
-              focusNode: widget.focusNode??FocusNode(),
+              autofocus: false,
+              // focusNode: widget.focusNode??null,
               maxLines: 1,
               controller: textEditingController,
+              textInputAction: TextInputAction.next,
               onEditingComplete: () {
                 // debugPrint("onEditingComplete1");
                 if (textEditingController.text.isEmpty) {
@@ -115,17 +116,17 @@ class _RoutineItemWidgetState extends State<RoutineItemWidget> {
               decoration: InputDecoration.collapsed(
                 hintText: '',
                 hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 12.sp,
-                      color: Colors.white60,
-                      // fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto",
-                    ),
+                  fontSize: 12.sp,
+                  color: Colors.white60,
+                  // fontWeight: FontWeight.bold,
+                  fontFamily: "Roboto",
+                ),
               ),
               style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontSize: 12.sp,
-                    color: Colors.white,
-                    fontFamily: "Roboto",
-                  ),
+                fontSize: 12.sp,
+                color: Colors.white,
+                fontFamily: "Roboto",
+              ),
             ),
           ),
         ],

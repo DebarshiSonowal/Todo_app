@@ -35,22 +35,23 @@ class AddDailyRoutineNormal extends StatelessWidget {
                 attachment != null) {
               // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
               Provider.of<Repository>(context, listen: false).addDailyReminder(
-                  DailyRoutineModel(
-                      titleController.text,
-                      // DateFormat("hh:mm a").format(DateTime.now()),
-                      DateFormat("hh:mm a").format(
-                        DateTime(DateTime.now().year, DateTime.now().month,
-                            DateTime.now().day, 12, 0),
-                      ),
+                DailyRoutineModel(
+                    titleController.text,
+                    // DateFormat("hh:mm a").format(DateTime.now()),
+                    DateFormat("hh:mm a").format(
                       DateTime(DateTime.now().year, DateTime.now().month,
                           DateTime.now().day, 12, 0),
-                      attachment!.path,
-                      reminders,
-                      1
-                      // TimerSelectionOptions(
-                      //   "NA",10,false,
-                      // ),
-                      ));
+                    ),
+                    DateTime(DateTime.now().year, DateTime.now().month,
+                        DateTime.now().day, 12, 0),
+                    attachment!.path,
+                    reminders,
+                    1
+                    // TimerSelectionOptions(
+                    //   "NA",10,false,
+                    // ),
+                    ),
+              );
               Future.delayed(const Duration(seconds: 1), () {
                 Navigation.instance.navigate(
                   Routes.timeDatePicker,

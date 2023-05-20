@@ -38,6 +38,8 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
   void initState() {
     super.initState();
     loadDataIntoFields();
+    Future.delayed(const Duration(seconds: 0),
+            () => FocusManager.instance.primaryFocus!.unfocus());
   }
 
   @override

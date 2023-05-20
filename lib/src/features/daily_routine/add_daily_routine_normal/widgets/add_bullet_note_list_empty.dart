@@ -7,6 +7,7 @@ import 'package:vishal_todo_app/src/widget/routine_item_widget.dart';
 import '../../../../models/reminder_list_item.dart';
 import '../../../../models/timer_section_option_model.dart';
 import '../../../../repository/repository.dart';
+import '../../../../widget/routine_item_non_empty.dart';
 
 class AddBulletNoteItemListEmpty extends StatelessWidget {
   AddBulletNoteItemListEmpty({
@@ -28,12 +29,11 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
       itemBuilder: (context, index) {
         // var item = reminders[index];
         if (index != reminders.length) {
-          return RoutineItemWidget(
+          return RoutineItemNonEmptyWidget(
             autofocus: false,
             item: reminders.isEmpty
                 ? ReminderListItem(
                     "",
-                    // DateFormat("hh:mm a").format(DateTime.now()),
                     DateFormat("hh:mm a").format(
                       DateTime(DateTime.now().year, DateTime.now().month,
                           DateTime.now().day, 12, 0),
@@ -61,17 +61,21 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
                   false,
                 ),
               );
-              onTap(ReminderListItem(
-                string,
-                "",
-                dateTime,
-                false,
-                TimerSelectionOptions(
-                  "NA",
-                  10,
+              onTap(
+                ReminderListItem(
+                  string,
+                  "",
+                  dateTime,
                   false,
+                  TimerSelectionOptions(
+                    "NA",
+                    10,
+                    false,
+                  ),
                 ),
-              ));
+              );
+              Future.delayed(const Duration(seconds: 2),
+                  () => FocusScope.of(context).requestFocus(focus));
             },
             remove: () {
               reminders.removeAt(index);
@@ -81,7 +85,7 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
           );
         } else {
           return RoutineItemWidget(
-            // focusNode: focus,
+            focusNode: focus,
             autofocus: true,
             item: ReminderListItem(
               "",
@@ -138,5 +142,29 @@ class AddBulletNoteItemListEmpty extends StatelessWidget {
       },
       itemCount: reminders.length + 1,
     );
+  }
+}
+
+extension Utility on BuildContext {
+  void nextBlankTextFocus() {
+    var startingTextField;
+    do {
+      // Set starting text field so we can check if we've come back to where we started
+      if (startingTextField == null) {
+        startingTextField = FocusScope.of(this).focusedChild!.context!.widget;
+      } else if (startingTextField ==
+          FocusScope.of(this).focusedChild!.context!.widget) {
+        // Back to where we started - stop as there are no more blank text fields
+        break;
+      }
+
+      FocusScope.of(this).nextFocus();
+    } while (
+        FocusScope.of(this).focusedChild!.context!.widget is EditableText &&
+            (FocusScope.of(this).focusedChild!.context!.widget as EditableText)
+                .controller
+                .text
+                .trim()
+                .isNotEmpty);
   }
 }

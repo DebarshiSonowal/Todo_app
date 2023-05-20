@@ -53,6 +53,7 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
   File? attachment;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   final ImagePicker picker = ImagePicker();
+  bool isDone = false;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,13 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
                 ),
                 width: double.infinity,
                 child: TextFormField(
+                  autofocus: isDone ? false : true,
                   controller: widget.titleController,
+                  onTapOutside: (event) {
+                    debugPrint("debugTappedOutside ${event.down}");
+                    isDone = true;
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
                   maxLines: 2,
                   minLines: 1,
                   decoration: InputDecoration.collapsed(
@@ -113,53 +120,28 @@ class _PersonalInfoPageCardState extends State<PersonalInfoPageCard> {
               SizedBox(
                 height: 1.h,
               ),
-              widget.index != null
-                  ? Container(
-                      height: 30.h,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 3.w,
-                        vertical: 2.h,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Constances.textFieldBackground,
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      width: double.infinity,
-                      child:
-                          data.personals[widget.index ?? 0].reminders.isNotEmpty
-                              ? BulletNoteItemListNotEmpty(
-                                  current: data.personals[widget.index ?? 0],
-                                  index: widget.index ?? 0,
-                                  type: 1,
-                                )
-                              : BulletNoteItemListEmpty(
-                                  reminders: widget.reminders,
-                                  count: widget.index ?? 0,
-                                  type: 1,
-                                ),
-                    )
-                  : Container(
-                      height: 30.h,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 5.w,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 3.w,
-                        vertical: 2.h,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Constances.textFieldBackground,
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      width: double.infinity,
-                      child: AddBulletNoteItemListEmpty(
-                        reminders: widget.reminders,
-                        onTap: (val) {
-                          setState(() {});
-                        },
-                        remove: (index) {},
-                      ),
-                    ),
+              Container(
+                height: 30.h,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 3.w,
+                  vertical: 2.h,
+                ),
+                decoration: const BoxDecoration(
+                  color: Constances.textFieldBackground,
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+                width: double.infinity,
+                child: AddBulletNoteItemListEmpty(
+                  reminders: widget.reminders,
+                  onTap: (val) {
+                    setState(() {});
+                  },
+                  remove: (index) {},
+                ),
+              ),
               SizedBox(
                 height: 1.h,
               ),

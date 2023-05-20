@@ -39,12 +39,14 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
   File? attachment;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   final ImagePicker picker = ImagePicker();
+
   // @override
   // void dispose() {
   //   super.dispose();
   //   titleController.dispose();
   //   descController.dispose();
   // }
+  bool isDone = false;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +82,13 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                   ),
                   width: double.infinity,
                   child: TextFormField(
+                    autofocus: isDone ? false : true,
                     controller: widget.titleController,
+                    onTapOutside: (event) {
+                      debugPrint("debugTappedOutside ${event.down}");
+                      isDone = true;
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
                     maxLines: 2,
                     minLines: 1,
                     cursorColor: Colors.white,
@@ -239,7 +247,8 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
           //   count: 1,
           //   pickType: PickType.image,
           // );
-          final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+          final pickedFile =
+              await picker.pickImage(source: ImageSource.gallery);
           if (pickedFile != null) {
             setState(() {
               attachment = File(pickedFile.path);
@@ -248,7 +257,6 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
           }
         }
       }
-
     }
   }
 

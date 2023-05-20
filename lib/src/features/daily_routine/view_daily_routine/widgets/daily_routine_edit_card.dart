@@ -68,13 +68,16 @@ class DailyRoutineEditCard extends StatelessWidget {
                   SizedBox(
                     width: 1.h,
                   ),
-                  Text(
-                    item.title ?? "",
-                    style: Theme.of(context).textTheme.headline4?.copyWith(
-                          fontSize: 12.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  SizedBox(
+                    width: 40.w,
+                    child: Text(
+                      item.title ?? "",
+                      style: Theme.of(context).textTheme.headline4?.copyWith(
+                            fontSize: 12.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
                   const Spacer(),
                   item.reminders.isNotEmpty

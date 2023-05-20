@@ -85,7 +85,7 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                                       1)
                               ? Padding(
                                   padding: EdgeInsets.only(
-                                    right: 3.w,
+                                    right: 2.w,
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -102,9 +102,6 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                                           color: Colors.white,
                                           size: 18.sp,
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 3.w,
                                       ),
                                     ],
                                   ),
