@@ -23,6 +23,7 @@ class EditEssentialPage extends StatefulWidget {
 
 class _EditEssentialPageState extends State<EditEssentialPage> {
   EssentialNotes? essentialNotes;
+  final scrollController = ScrollController();
 
   @override
   void initState() {
@@ -36,6 +37,8 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
             .essentials[widget.index];
       });
     });
+    Future.delayed(
+        const Duration(seconds: 1), () => _scrollDown());
   }
 
   @override
@@ -68,7 +71,7 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
               child: Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 4.w,
-                  vertical: 1.h,
+                  vertical: 2.h,
                 ),
                 height: 46.h,
                 decoration: BoxDecoration(
@@ -77,6 +80,8 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
                 ),
                 width: double.infinity,
                 child: ListView.separated(
+                  controller: scrollController,
+                  shrinkWrap: true,
                   itemBuilder: (context, index) {
                     if (index != essentialNotes!.notes.length) {
                       return AddEssentialPageItem(
@@ -87,6 +92,8 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
                             essentialNotes!.notes[index].title = val;
                             essentialNotes!.notes[index].isCompleted = false;
                           });
+                          Future.delayed(
+                              const Duration(seconds: 1), () => _scrollDown());
                         },
                       );
                     } else {
@@ -101,6 +108,8 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
                             essentialNotes!.date = DateFormat("dd MMM yyyy")
                                 .format(DateTime.now());
                           });
+                          Future.delayed(
+                              const Duration(seconds: 1), () => _scrollDown());
                         },
                       );
                     }
@@ -129,4 +138,9 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
           Navigation.instance.goBack();
         });
   }
+
+  void _scrollDown() {
+    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+  }
+
 }

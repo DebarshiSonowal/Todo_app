@@ -69,17 +69,20 @@ class _EditQuickNotesPageState extends State<EditQuickNotesPage> {
                 ),
                 child: Row(
                   children: [
-                    Text(
-                      time == null
-                          ? (data.quickNotes[widget.index].time ?? "")
-                          : DateFormat("hh:mm a").format(time!),
-                      style: Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 12.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: "Rubik",
-                          ),
+                    SizedBox(
+                      width:15.w,
+                      child: Text(
+                        time == null
+                            ? ("")
+                            : DateFormat("hh:mm a").format(time!),
+                        style: Theme.of(context).textTheme.headline4?.copyWith(
+                              fontSize: 12.sp,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              // fontWeight: FontWeight.bold,
+                              fontFamily: "Rubik",
+                            ),
+                      ),
                     ),
                     SizedBox(
                       width: 18.w,

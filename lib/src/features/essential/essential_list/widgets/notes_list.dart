@@ -36,21 +36,21 @@ class NotesList extends StatelessWidget {
               item: item,
               index: index,
             ),
-            IconButton(
-              onPressed: () {
-                Provider.of<Repository>(context, listen: false)
-                    .removeEssential(item);
-                if (essentials.isEmpty) {
-                  Navigation.instance.goBack();
-                }
-              },
-              icon: SvgPicture.asset(
-                Constances.trashIcon,
-                fit: BoxFit.fill,
-                color: const Color(0xff50555C),
-                height: 15.sp,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     Provider.of<Repository>(context, listen: false)
+            //         .removeEssential(item);
+            //     if (essentials.isEmpty) {
+            //       Navigation.instance.goBack();
+            //     }
+            //   },
+            //   icon: SvgPicture.asset(
+            //     Constances.trashIcon,
+            //     fit: BoxFit.fill,
+            //     color: const Color(0xff50555C),
+            //     height: 15.sp,
+            //   ),
+            // ),
           ],
         );
       },

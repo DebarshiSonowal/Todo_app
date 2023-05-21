@@ -10,7 +10,7 @@ import '../constants/routes.dart';
 // import '../features/daily_routine/daily_routine_page.dart';
 import '../features/bookmark/add_bookmark/add_bookmark_page.dart';
 import '../features/bookmark/add_bookmark_sublist_item/add_bookmark_list_item.dart';
-import '../features/daily_routine/add_daily_routine/add_daily_routine.dart';
+// import '../features/daily_routine/add_daily_routine/add_daily_routine.dart';
 import '../features/daily_routine/add_daily_routine_normal/add_daily_routine_normal.dart';
 import '../features/essential/add_essential/add_essential_page.dart';
 import '../features/personal/add_personal/add_personal_page.dart';
@@ -63,10 +63,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return FadeTransitionPageRouteBuilder(
         page: const DailyRoutinePage(),
       );
-    case Routes.addDailyRoutine:
-      return FadeTransitionPageRouteBuilder(
-        page: const AddDailyRoutine(),
-      );
+    // case Routes.addDailyRoutine:
+    //   return FadeTransitionPageRouteBuilder(
+    //     page: const AddDailyRoutine(),
+    //   );
     case Routes.addDailyRoutineNormal:
       return FadeTransitionPageRouteBuilder(
         page: AddDailyRoutineNormal(),

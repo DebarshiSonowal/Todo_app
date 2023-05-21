@@ -36,7 +36,7 @@ class StackedBottomSheet extends StatelessWidget {
           ),
           padding: EdgeInsets.symmetric(
             horizontal: 3.w,
-            vertical: 2.h,
+            vertical: 1.h,
           ),
           child: ListView.separated(
             shrinkWrap: true,
@@ -59,9 +59,19 @@ class StackedBottomSheet extends StatelessWidget {
                             DateTime.now().day, 12, 0),
                         item.image,
                         [],
-                        2
-                        ),
+                        2),
                   );
+                  Future.delayed(
+                      const Duration(seconds: 0),
+                      () => Navigation.instance.navigate(
+                            Routes.editDailyRoutineNormal,
+                            args:
+                                Provider.of<Repository>(context, listen: false)
+                                        .models
+                                        .length -
+                                    1,
+                            // index == 1 ? "Drink lemon water" : "Shower",
+                          ));
                   // Navigation.instance.navigate(Routes.addDailyRoutineNormal);
                 },
               );

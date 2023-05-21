@@ -124,6 +124,7 @@ class DetailsEssentialPageItem extends StatelessWidget {
             height: 1.h,
             child: Checkbox(
                 splashRadius: 2.w,
+                activeColor: Colors.green,
                 value: item.isCompleted ?? false,
                 onChanged: (val) => updateCheckBox(val ?? false)),
           ),

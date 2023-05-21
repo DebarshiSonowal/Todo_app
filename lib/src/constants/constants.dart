@@ -155,4 +155,5 @@ class Constances {
   static const timerColor = Color(0xff596077);
 
   static const optionImage = "assets/images/img_iconoirmorehorizcircle.svg";
+  static const bellImage = "assets/images/bell.png";
 }

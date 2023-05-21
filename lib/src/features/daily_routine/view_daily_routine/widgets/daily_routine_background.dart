@@ -36,22 +36,25 @@ class DailyRoutineBackground extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigation.instance.navigate(Routes.addDailyRoutineNormal);
-                      },
-                      child: const AddNewCard(),
-                    )
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         Navigation.instance.navigate(Routes.addDailyRoutineNormal);
+                //       },
+                //       child: const AddNewCard(),
+                //     )
+                //   ],
+                // ),
                 data.models.isNotEmpty
                     ? SizedBox(
                         height: 74.h,
                         width: double.infinity,
                         child: ListView.separated(
+                          padding: EdgeInsets.only(
+                            bottom: 4.h
+                          ),
                           shrinkWrap: true,
                           // padding: EdgeInsets.only(
                           //   // bottom: 20.h,
@@ -86,10 +89,10 @@ class DailyRoutineBackground extends StatelessWidget {
 
   getHeight(int length) {
     if (length <= 2) {
-      return 50.h;
+      return 46.h;
     } else if (length == 3) {
-      return 65.h;
+      return 61.h;
     }
-    return 75.h;
+    return 71.h;
   }
 }

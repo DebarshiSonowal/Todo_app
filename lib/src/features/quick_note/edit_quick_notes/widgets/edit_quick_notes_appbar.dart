@@ -91,6 +91,9 @@ class EditQuickNotesAppbar extends StatelessWidget {
                         // textTheme: TextTheme().apply(bodyColor: Colors.white),
                       ),
                       child: PopupMenuButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                           PopupMenuItem(
                             height: 3.h,

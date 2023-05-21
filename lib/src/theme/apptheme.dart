@@ -8,6 +8,7 @@ class AppTheme {
     // primaryColor: const Color(0xff7881a7),
     // accentColor: const Color(0xff2252b2),
     timePickerTheme:
+
     TimePickerThemeData(
       hourMinuteTextStyle: TextStyle(
         color: Constances.blueBackground,
@@ -23,6 +24,7 @@ class AppTheme {
     );
     final ThemeData base = ThemeData.dark();
     return base.copyWith(
+      dividerColor:Colors.white,
       colorScheme: colorScheme,
       primaryColor: primaryColor,
       buttonColor: primaryColor,

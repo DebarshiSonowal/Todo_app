@@ -79,6 +79,7 @@ class AddQuickNotesAppbar extends StatelessWidget {
                       ],
                     ),
                   ),
+
                   SizedBox(
                     height: 4.h,
                     width: 20.w,
