@@ -34,24 +34,41 @@ class AddDailyRoutineNormal extends StatelessWidget {
                 reminders.isNotEmpty &&
                 attachment != null) {
               // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
-              Provider.of<Repository>(context, listen: false).addDailyReminder(
-                DailyRoutineModel(
-                    titleController.text,
-                    // DateFormat("hh:mm a").format(DateTime.now()),
-                    DateFormat("hh:mm a").format(
-                      DateTime(DateTime.now().year, DateTime.now().month,
-                          DateTime.now().day, 12, 0),
-                    ),
-                    DateTime(DateTime.now().year, DateTime.now().month,
-                        DateTime.now().day, 12, 0),
-                    attachment!.path,
-                    reminders,
-                    1
-                    // TimerSelectionOptions(
-                    //   "NA",10,false,
-                    // ),
-                    ),
+              var item = DailyRoutineModel(
+                titleController.text,
+                // DateFormat("hh:mm a").format(DateTime.now()),
+                DateFormat("hh:mm a").format(
+                  DateTime(DateTime.now().year, DateTime.now().month,
+                      DateTime.now().day, 12, 0),
+                ),
+                DateTime(DateTime.now().year, DateTime.now().month,
+                    DateTime.now().day, 12, 0),
+                attachment!.path,
+                reminders,
+                1,
               );
+              Provider.of<Repository>(context, listen: false)
+                  .addDailyReminder(
+                item,
+              );
+              // if (Provider.of<Repository>(context, listen: false)
+              //     .models
+              //     .contains(
+              //       item,
+              //     )) {
+              //   Provider.of<Repository>(context, listen: false)
+              //       .modifyDailyReminder(
+              //     Provider.of<Repository>(context, listen: false)
+              //         .models
+              //         .indexOf(item),
+              //     item,
+              //   );
+              // } else {
+              //   Provider.of<Repository>(context, listen: false)
+              //       .addDailyReminder(
+              //     item,
+              //   );
+              // }
               Future.delayed(const Duration(seconds: 1), () {
                 Navigation.instance.navigate(
                   Routes.timeDatePicker,

@@ -58,10 +58,13 @@ class _AddPersonalPageState extends State<AddPersonalPage> {
                   });
             }),
           ),
-          AddButton(
-            onTap: () {
-              Navigation.instance.navigate(Routes.addPersonalInfo);
-            },
+          Container(
+            margin: EdgeInsets.only(right: 3.w,bottom: 2.h,),
+            child: AddButton(
+              onTap: () {
+                Navigation.instance.navigate(Routes.addPersonalInfo);
+              },
+            ),
           ),
         ],
       ),

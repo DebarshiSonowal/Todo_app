@@ -25,7 +25,7 @@ class EditDailyRoutineAppBar extends StatelessWidget {
       preferredSize: Size.fromHeight(9.h),
       child: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(top: 1.5.h, right: 2.w, left: 2.w),
+          padding: EdgeInsets.only(top: 1.h, right: 2.w, left: 2.w,bottom: 0.5.h),
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
@@ -42,6 +42,7 @@ class EditDailyRoutineAppBar extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: 25.w,

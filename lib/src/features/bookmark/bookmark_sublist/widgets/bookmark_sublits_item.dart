@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:focused_menu/focused_menu.dart';
-import 'package:focused_menu/modals.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,8 +10,6 @@ import '../../../../constants/routes.dart';
 import '../../../../models/bookmark.dart';
 import '../../../../repository/repository.dart';
 import '../../../../services/Navigate.dart';
-import 'PopupMenu.dart';
-import 'popup_bookmark_sublist_item.dart';
 
 class BookmarkSublistItem extends StatelessWidget {
   const BookmarkSublistItem({

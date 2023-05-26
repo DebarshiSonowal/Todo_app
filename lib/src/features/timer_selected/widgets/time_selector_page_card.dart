@@ -75,7 +75,7 @@ class TimeSelectorPageCard extends StatelessWidget {
               ),
               DoneButton(
                 onTap: () {
-                  Navigation.instance.navigateAndReplace(Routes.dashboard);
+                  Navigation.instance.goBack();
                 },
               ),
               SizedBox(

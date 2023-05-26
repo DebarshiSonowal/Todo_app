@@ -25,6 +25,7 @@ class StackedCardTimeDate extends StatelessWidget {
       ),
       child: Container(
         width: 100.w,
+        // height: 25.h,
         decoration: const BoxDecoration(
           gradient: Constances.gradient,
           borderRadius: BorderRadius.only(

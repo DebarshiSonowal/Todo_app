@@ -162,28 +162,33 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                                     Image.file(File(attachment?.path ?? ""))
                                         .image,
                               ))
-                        : (CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            radius: 30.sp, // Image radius
-                            backgroundImage: (data.models[index].type == 1
-                                    ? Image.file(
-                                        File(data.models[index].image!),
-                                        errorBuilder: (error, str, _) {
-                                          return Image.asset(
-                                            data.models[index].image!,
-                                          );
-                                        },
-                                      )
-                                    : Image.asset(
-                                        data.models[index].image!,
-                                        errorBuilder: (error, str, _) {
-                                          return Image.asset(
-                                            data.models[index].image!,
-                                          );
-                                        },
-                                      ))
-                                .image,
-                          )),
+                        : (data.models[index].type == 1
+                            ? CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: 30.sp, // Image radius
+                                backgroundImage: (Image.file(
+                                  File(data.models[index].image!),
+                                  errorBuilder: (error, str, _) {
+                                    return Image.asset(
+                                      data.models[index].image!,
+                                    );
+                                  },
+                                )).image,
+                              )
+                            : Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: const Color(0xff50555C))),
+                                child: Image.asset(
+                                  data.models[index].image!,
+                                  errorBuilder: (error, str, _) {
+                                    return Image.asset(
+                                      data.models[index].image!,
+                                    );
+                                  },
+                                ),
+                              )),
                   )
                 ],
               ),

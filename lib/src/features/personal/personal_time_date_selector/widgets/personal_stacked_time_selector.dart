@@ -94,11 +94,10 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SvgPicture.asset(
-                      Constances.calendarWhiteIcon,
-                      fit: BoxFit.cover,
-                      color: Colors.black,
-                      width: 7.w,
+                    Image.asset(
+                      Constances.calendarImage,
+                      fit: BoxFit.fill,
+                      width: 7.6.w,
                     ),
                     SizedBox(
                       height: 0.4.h,
@@ -106,11 +105,11 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
                     Text(
                       'Daily',
                       style: Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 11.2.sp,
-                            color: Colors.black,
-                            fontFamily: "PublicSans",
-                            // fontWeight: FontWeight.bold,
-                          ),
+                        fontSize: 11.2.sp,
+                        color: Colors.black,
+                        fontFamily: "PublicSans",
+                        // fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

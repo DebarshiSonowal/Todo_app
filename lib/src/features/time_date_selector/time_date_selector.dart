@@ -32,6 +32,8 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
 
   // final descController = TextEditingController();
   List<ReminderListItem> reminders = [];
+  bool _isStackedItemVisible = true;
+  double _designatedHeight = 400.0; // Height at which the transition should stop
 
   @override
   void initState() {
@@ -42,8 +44,12 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
               .title ??
           "";
     });
-    Future.delayed(const Duration(seconds: 0),
-        () => FocusManager.instance.primaryFocus!.unfocus());
+    Future.delayed(const Duration(seconds: 0), () {
+      FocusManager.instance.primaryFocus!.unfocus();
+      setState(() {
+        _isStackedItemVisible = !_isStackedItemVisible;
+      });
+    });
   }
 
   @override
@@ -82,8 +88,17 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
                 });
               },
             ),
-            StackedCardTimeDate(
-              index: widget.index,
+
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeIn,
+              bottom: _isStackedItemVisible ? -100 : MediaQuery.of(context).size.height -870,
+              left: 0.0,
+              right: 0.0,
+              height: 25.h,
+              child: StackedCardTimeDate(
+                index: widget.index,
+              ),
             ),
           ],
         ),

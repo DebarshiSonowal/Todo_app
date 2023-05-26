@@ -16,6 +16,7 @@ import '../../../widget/alert.dart';
 import '../personal_enter_info/widgets/personal_info_page_card.dart';
 import 'widgets/personal_time_date_appbar.dart';
 import 'widgets/personal_stacked_time_selector.dart';
+import 'widgets/personal_time_date_routine_normal_card.dart';
 
 class PersonalTimerDatePage extends StatefulWidget {
   const PersonalTimerDatePage({Key? key, required this.index})
@@ -39,7 +40,7 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
     super.initState();
     loadDataIntoFields();
     Future.delayed(const Duration(seconds: 0),
-            () => FocusManager.instance.primaryFocus!.unfocus());
+        () => FocusManager.instance.primaryFocus!.unfocus());
   }
 
   @override
@@ -113,25 +114,28 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    PersonalInfoPageCard(
-                      titleController: titleController,
-                      imageUpdate: (File file) {
-                        setState(() {
-                          attachment = file;
-                        });
-                      },
-                      // descriptionController: descriptionController,
-                      dateTime: dateTime,
-                      file: attachment,
-                      delete: () {
-                        Provider.of<Repository>(context, listen: false)
-                            .removePersonalBy(
-                                Provider.of<Repository>(context, listen: false)
-                                    .personals[widget.index]);
-                        Navigation.instance
-                            .navigateAndRemoveUntil(Routes.dashboard);
-                      },
-                      reminders: reminders,
+                    // PersonalInfoPageCard(
+                    //   titleController: titleController,
+                    //   imageUpdate: (File file) {
+                    //     setState(() {
+                    //       attachment = file;
+                    //     });
+                    //   },
+                    //   // descriptionController: descriptionController,
+                    //   dateTime: dateTime,
+                    //   file: attachment,
+                    //   delete: () {
+                    //     Provider.of<Repository>(context, listen: false)
+                    //         .removePersonalBy(
+                    //             Provider.of<Repository>(context, listen: false)
+                    //                 .personals[widget.index]);
+                    //     Navigation.instance
+                    //         .navigateAndRemoveUntil(Routes.dashboard);
+                    //   },
+                    //   reminders: reminders,
+                    // ),
+                    PersonalTimeDateRoutineNormalCard(
+                      index: widget.index,
                     ),
                   ],
                 ),

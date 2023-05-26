@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:focused_menu/focused_menu.dart';
-import 'package:focused_menu/modals.dart';
-import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/models/essential_note.dart';
@@ -10,9 +8,7 @@ import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
 import '../../../repository/repository.dart';
 import '../../../services/Navigate.dart';
-import '../add_essential/Widgets/add_essential_page_empty_item.dart';
 import '../add_essential/Widgets/add_essential_page_item.dart';
-import '../add_essential/Widgets/essential_appbar.dart';
 import 'widgets/essentials_details_appbar.dart';
 
 class EssentialDetailsPage extends StatefulWidget {

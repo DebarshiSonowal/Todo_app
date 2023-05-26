@@ -19,7 +19,7 @@ class PersonalDateTimeAppBar extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(top: 1.h, right: 2.w, left: 2.w),
+            padding: EdgeInsets.only(top: 1.3.h, right: 2.w, left: 2.w),
             color: Theme.of(context).primaryColor,
             child: Column(
               children: [
@@ -34,66 +34,71 @@ class PersonalDateTimeAppBar extends StatelessWidget {
                         fontFamily: "Roboto",
                       ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 20.w,
-                      // height: 8.h,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 1.2.h,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigation.instance.goBack();
-                            },
-                            child: SizedBox(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Image.asset(
-                                    Constances.arrowBackImage,
-                                    fit: BoxFit.contain,
-                                    scale: Constances.arrowScale,
-                                  ),
-                                  SizedBox(
-                                    width: 0.5.w,
-                                  ),
-                                  Text(
-                                    'Back',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline4
-                                        ?.copyWith(
-                                      fontSize: 12.2.sp,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      // fontWeight: FontWeight.bold,
-                                      fontFamily: "Rubik",
-                                      // fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 4.h,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 20.w,
+                        // height: 8.h,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 1.2.h,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigation.instance.goBack();
+                              },
+                              child: SizedBox(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      Constances.arrowBackImage,
+                                      fit: BoxFit.contain,
+                                      scale: Constances.arrowScale,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 0.5.w,
+                                    ),
+                                    Text(
+                                      'Back',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          ?.copyWith(
+                                        fontSize: 12.2.sp,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        // fontWeight: FontWeight.bold,
+                                        fontFamily: "Rubik",
+                                        // fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3.5.h,
+                        width: 18.w,
+                        child: Center(
+                          child: DoneButton(
+                            color: const Color(0xff213285),
+                            txtColor: Colors.white,
+                            txt: "Done",
+                            onTap: () => savePersonal(),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-
-                    SizedBox(
-                      height: 4.h,
-                      width: 20.w,
-                      child: DoneButton(
-                        color: const Color(0xff213285),
-                        txtColor: Colors.white,
-                        txt: "Done",
-                        onTap: () => savePersonal(),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

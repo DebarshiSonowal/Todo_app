@@ -8,6 +8,7 @@ import 'package:vishal_todo_app/src/repository/repository.dart';
 import '../../../models/reminder_list_item.dart';
 import '../../daily_routine/edit_daily_routine/widgets/edit_daily_routine_normal_card.dart';
 import '../time_date_selector.dart';
+import 'time_date_routine_normal_card.dart';
 
 class timeDateSelectorBackground extends StatelessWidget {
   timeDateSelectorBackground({
@@ -22,6 +23,7 @@ class timeDateSelectorBackground extends StatelessWidget {
 
   final File? attachment;
   final TextEditingController titleController;
+
   // final TextEditingController descController;
   final int index;
   final List<ReminderListItem> reminders;
@@ -40,15 +42,18 @@ class timeDateSelectorBackground extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            EditDailyRoutineNormalCard(
+            // EditDailyRoutineNormalCard(
+            //   index: index,
+            //   titleController: titleController,
+            //   reminders: reminders,
+            //   updateImage: (File file) {
+            //     updateFile(file);
+            //   },
+            //   attachment: attachment,
+            // )
+            TimeDateRoutineNormalCard(
               index: index,
-              titleController: titleController,
-              reminders: reminders,
-              updateImage: (File file) {
-                updateFile(file);
-              },
-              attachment: attachment,
-            )
+            ),
           ],
         ),
       ),

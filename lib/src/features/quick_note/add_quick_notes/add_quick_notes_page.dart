@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:time_picker_sheet/widget/sheet.dart';
 import 'package:time_picker_sheet/widget/time_picker.dart';
-import 'package:vishal_todo_app/src/features/quick_note/add_quick_notes/widgets/add_quick_notes_appbar.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 
 import '../../../constants/constants.dart';
@@ -37,7 +36,9 @@ class _AddQuickNotesPageState extends State<AddQuickNotesPage> {
               Provider.of<Repository>(context, listen: false)
                   .addQuickNote(QuickNote(
                 controller.text,
-                date==null?DateFormat("dd MMM yyyy").format(DateTime.now()):DateFormat("dd MMM yyyy").format(date!),
+                date == null
+                    ? DateFormat("dd MMM yyyy").format(DateTime.now())
+                    : DateFormat("dd MMM yyyy").format(date!),
                 time == null ? "" : DateFormat("HH:mm a").format(time!),
               ));
               Navigation.instance.navigateAndReplace(Routes.quickNotesList);
@@ -176,19 +177,6 @@ class _AddQuickNotesPageState extends State<AddQuickNotesPage> {
         });
       }
     });
-    // DateTime? pickedDate2 = await showDatePicker(
-    //     context: context,
-    //     initialDate: DateTime.now(),
-    //     //get today's date
-    //     firstDate: DateTime(DateTime.now().year),
-    //     //DateTime.now() - not to allow to choose before today.
-    //     lastDate: DateTime(DateTime.now().year + 10));
-    // if (pickedDate2 != null) {
-    //   if (!context.mounted) return;
-    //   setState(() {
-    //     pickedDate = pickedDate2;
-    //   });
-    // }
   }
 
   void pickTime(BuildContext context) async {

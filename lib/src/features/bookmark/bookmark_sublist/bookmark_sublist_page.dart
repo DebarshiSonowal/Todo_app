@@ -1,19 +1,13 @@
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:focused_menu/focused_menu.dart';
-import 'package:focused_menu/modals.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/constants.dart';
-import 'package:vishal_todo_app/src/models/bookmark.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 import '../../../constants/routes.dart';
-import '../../../widget/add_image_bookmark.dart';
 import '../bookmark_list/widgets/bookmark_appbar.dart';
 import 'widgets/bookmark_sublits_item.dart';
 import 'widgets/header_bookmark_sublist.dart';
