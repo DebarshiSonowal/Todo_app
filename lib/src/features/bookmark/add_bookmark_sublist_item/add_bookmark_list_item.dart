@@ -24,13 +24,23 @@ class AddBookmarkSubItemPage extends StatelessWidget {
           saveBookmark: () {
             if (titleController.text.isNotEmpty &&
                 describeController.text.isNotEmpty) {
-              Provider.of<Repository>(context, listen: false).addBookmarkItem(
-                BookmarkSubItem(
-                  title: titleController.text,
-                  link: describeController.text,
-                ),
-                index,
+              var item = BookmarkSubItem(
+                title: titleController.text,
+                link: describeController.text,
               );
+              if (Provider.of<Repository>(context, listen: false)
+                  .bookmarks
+                  .isNotEmpty) {
+                Provider.of<Repository>(context, listen: false).addBookmarkItem(
+                  item,
+                  index,
+                );
+              } else {
+                Provider.of<Repository>(context, listen: false)
+                    .addBookmark(Bookmark(
+                  items: [item],
+                ));
+              }
               Navigation.instance.goBack();
             } else {
               showError("Title and link are required");
@@ -92,20 +102,20 @@ class AddBookmarkSubItemPage extends StatelessWidget {
                           decoration: InputDecoration.collapsed(
                             hintText: 'Add title',
                             hintStyle:
-                            Theme.of(context).textTheme.headline4?.copyWith(
-                              fontSize: 12.sp,
-                              color: Colors.white70,
-                              // fontWeight: FontWeight.bold,
-                              fontFamily: "Roboto",
-                            ),
+                                Theme.of(context).textTheme.headline4?.copyWith(
+                                      fontSize: 12.sp,
+                                      color: Colors.white70,
+                                      // fontWeight: FontWeight.bold,
+                                      fontFamily: "Roboto",
+                                    ),
                           ),
                           style:
-                          Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 14.sp,
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: "Roboto",
-                          ),
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                    // fontWeight: FontWeight.bold,
+                                    fontFamily: "Roboto",
+                                  ),
                         ),
                       ),
                       SizedBox(
@@ -129,20 +139,20 @@ class AddBookmarkSubItemPage extends StatelessWidget {
                           decoration: InputDecoration.collapsed(
                             hintText: 'Add link',
                             hintStyle:
-                            Theme.of(context).textTheme.headline4?.copyWith(
-                              fontSize: 12.sp,
-                              color: Colors.white70,
-                              // fontWeight: FontWeight.bold,
-                              fontFamily: "Roboto",
-                            ),
+                                Theme.of(context).textTheme.headline4?.copyWith(
+                                      fontSize: 12.sp,
+                                      color: Colors.white70,
+                                      // fontWeight: FontWeight.bold,
+                                      fontFamily: "Roboto",
+                                    ),
                           ),
                           style:
-                          Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 14.sp,
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: "Roboto",
-                          ),
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                    // fontWeight: FontWeight.bold,
+                                    fontFamily: "Roboto",
+                                  ),
                         ),
                       ),
                       SizedBox(

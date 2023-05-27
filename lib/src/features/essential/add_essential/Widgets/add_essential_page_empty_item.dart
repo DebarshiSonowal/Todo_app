@@ -30,7 +30,7 @@ class AddEssentialPageEmptyItem extends StatelessWidget {
             minLines: 1,
             // initialValue: "${item.title}",
             decoration: InputDecoration.collapsed(
-              hintText: 'Write Something',
+              hintText: index==0?'Necessary Item':'',
               hintStyle: Theme.of(context)
                   .textTheme
                   .headline4

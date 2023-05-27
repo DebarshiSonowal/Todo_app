@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,73 +50,115 @@ class _BookmarkSublistPageState extends State<BookmarkSublistPage> {
                 ),
                 SizedBox(
                   height: 67.h,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      var item = data.bookmarks[widget.index].items![index];
-                      return Column(
-                        children: [
-                          BookmarkSublistItem(
-                            item: item,
-                            index: widget.index,
-                            index2: index,
-                          ),
-                          (index) ==
-                                  ((data.bookmarks[widget.index].items
-                                              ?.length ??
-                                          0) -
-                                      1)
-                              ? Divider(
-                                  thickness: 0.04.h,
-                                  color: Colors.white54,
-                                )
-                              : Container(),
-                          index ==
-                                  ((data.bookmarks[widget.index].items
-                                              ?.length ??
-                                          0) -
-                                      1)
-                              ? Padding(
-                                  padding: EdgeInsets.only(
-                                    right: 2.w,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          Navigation.instance.navigate(
-                                            Routes.addBookmarkSubItem,
-                                            args: widget.index,
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.add,
-                                          color: Colors.white,
-                                          size: 18.sp,
+                  child: data.bookmarks.isEmpty
+                      ? EmptyList()
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            var item =
+                                data.bookmarks[widget.index].items![index];
+                            return Column(
+                              children: [
+                                BookmarkSublistItem(
+                                  item: item,
+                                  index: widget.index,
+                                  index2: index,
+                                ),
+                                (index) ==
+                                        ((data.bookmarks[widget.index].items
+                                                    ?.length ??
+                                                0) -
+                                            1)
+                                    ? Divider(
+                                        thickness: 0.04.h,
+                                        color: Colors.white54,
+                                      )
+                                    : Container(),
+                                index ==
+                                        ((data.bookmarks[widget.index].items
+                                                    ?.length ??
+                                                0) -
+                                            1)
+                                    ? Padding(
+                                        padding: EdgeInsets.only(
+                                          right: 2.w,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Container(),
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        thickness: 0.04.h,
-                        color: Colors.white54,
-                      );
-                    },
-                    itemCount: data.bookmarks[widget.index].items?.length ?? 0,
-                  ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                Navigation.instance.navigate(
+                                                  Routes.addBookmarkSubItem,
+                                                  args: widget.index,
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 18.sp,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : Container(),
+                              ],
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return Divider(
+                              thickness: 0.04.h,
+                              color: Colors.white54,
+                            );
+                          },
+                          itemCount: data.bookmarks.isEmpty
+                              ? 0
+                              : (data.bookmarks[widget.index].items?.length) ??
+                                  0,
+                        ),
                 ),
               ],
             ),
           );
         }),
       ),
+    );
+  }
+
+  Column EmptyList() {
+    return Column(
+      children: [
+        // Divider(
+        //   thickness: 0.04.h,
+        //   color: Colors.white54,
+        // ),
+        Padding(
+          padding: EdgeInsets.only(
+            right: 2.w,
+          ),
+          child: Row(
+            mainAxisAlignment:
+            MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigation.instance.navigate(
+                    Routes.addBookmarkSubItem,
+                    args: widget.index,
+                  );
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 18.sp,
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

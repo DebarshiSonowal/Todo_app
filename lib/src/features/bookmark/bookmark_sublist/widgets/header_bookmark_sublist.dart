@@ -28,7 +28,7 @@ class HeaderBookmarkSublist extends StatelessWidget {
         },
         child: Column(
           children: [
-            (data.bookmarks[index].image == null ||
+            (data.bookmarks.isEmpty || data.bookmarks[index].image == null ||
                     data.bookmarks[index].image == "")
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(100),
@@ -50,7 +50,7 @@ class HeaderBookmarkSublist extends StatelessWidget {
               height: 1.h,
             ),
             Text(
-              (data.bookmarks[index].title == "" ||
+              (data.bookmarks.isEmpty|| data.bookmarks[index].title == "" ||
                       data.bookmarks[index].title == null)
                   ? "File name"
                   : "${data.bookmarks[index].title}",

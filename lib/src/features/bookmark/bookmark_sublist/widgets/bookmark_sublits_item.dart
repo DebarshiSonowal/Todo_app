@@ -133,7 +133,7 @@ class BookmarkSublistItem extends StatelessWidget {
       PopupMenuItem<String>(
         value: 'item1',
         padding: EdgeInsets.symmetric(
-          horizontal: 4.w,
+          horizontal: 2.7.w,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -142,7 +142,7 @@ class BookmarkSublistItem extends StatelessWidget {
               Constances.shareImage,
               color: Colors.white,
               fit: BoxFit.fitWidth,
-              width: 7.w,
+              width: 6.w,
             ),
             SizedBox(
               width: 2.w,
@@ -163,7 +163,7 @@ class BookmarkSublistItem extends StatelessWidget {
       PopupMenuItem<String>(
         value: 'item2',
         padding: EdgeInsets.symmetric(
-          horizontal: 4.w,
+          horizontal: 2.7.w,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -172,7 +172,7 @@ class BookmarkSublistItem extends StatelessWidget {
               Constances.deleteImage,
               color: Colors.white,
               fit: BoxFit.fitWidth,
-              width: 7.w,
+              width: 6.w,
             ),
             SizedBox(
               width: 2.w,
@@ -221,7 +221,7 @@ class BookmarkSublistItem extends StatelessWidget {
         case 'item2':
           // Handle item 2 selection
           if (!context.mounted) return;
-          Navigation.instance.goBack();
+          // Navigation.instance.goBack();
           if ((Provider.of<Repository>(context, listen: false)
                       .bookmarks[index]
                       .items
@@ -234,7 +234,7 @@ class BookmarkSublistItem extends StatelessWidget {
             Provider.of<Repository>(context, listen: false).deleteBookmark(
                 Provider.of<Repository>(context, listen: false)
                     .bookmarks[index]);
-            Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
+            // Navigation.instance.navigateAndRemoveUntil(Routes.dashboard);
           }
           // Navigation.instance.goBack();
           break;

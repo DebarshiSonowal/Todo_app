@@ -68,10 +68,13 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
                 );
               }),
             ),
-            AddButton(
-              onTap: () {
-                Navigation.instance.navigate(Routes.addBookmark);
-              },
+            Container(
+              margin: EdgeInsets.only(right: 2.w,bottom: 1.h,),
+              child: AddButton(
+                onTap: () {
+                  Navigation.instance.navigate(Routes.addBookmark);
+                },
+              ),
             ),
           ],
         ),
