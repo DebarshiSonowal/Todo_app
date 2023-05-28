@@ -19,6 +19,7 @@ import 'widgets/add_daily_routine_normal_card.dart';
 class AddDailyRoutineNormal extends StatelessWidget {
   AddDailyRoutineNormal({Key? key}) : super(key: key);
   final titleController = TextEditingController();
+  final textController = TextEditingController();
   List<ReminderListItem> reminders = [];
   File? attachment;
 
@@ -31,7 +32,7 @@ class AddDailyRoutineNormal extends StatelessWidget {
         child: DailyRoutineAppBar(
           onTap: () {
             if (titleController.text.isNotEmpty &&
-                reminders.isNotEmpty &&
+                textController.text.isNotEmpty &&
                 attachment != null) {
               // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
               var item = DailyRoutineModel(
@@ -46,9 +47,9 @@ class AddDailyRoutineNormal extends StatelessWidget {
                 attachment!.path,
                 reminders,
                 1,
+                textController.text,
               );
-              Provider.of<Repository>(context, listen: false)
-                  .addDailyReminder(
+              Provider.of<Repository>(context, listen: false).addRecentDailyReminder(
                 item,
               );
               // if (Provider.of<Repository>(context, listen: false)
@@ -69,7 +70,7 @@ class AddDailyRoutineNormal extends StatelessWidget {
               //     item,
               //   );
               // }
-              Future.delayed(const Duration(seconds: 1), () {
+              Future.delayed(const Duration(seconds: 0), () {
                 Navigation.instance.navigate(
                   Routes.timeDatePicker,
                   args: Provider.of<Repository>(context, listen: false)
@@ -105,6 +106,7 @@ class AddDailyRoutineNormal extends StatelessWidget {
             children: [
               AddDailyRoutineNormalCard(
                 titleController: titleController,
+                textController:textController,
                 reminders: reminders,
                 imageUpdate: (File val) {
                   attachment = val;

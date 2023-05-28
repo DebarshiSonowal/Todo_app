@@ -31,6 +31,9 @@ class EssentialAppbar extends StatelessWidget {
                   fontFamily: "Roboto",
                 ),
               ),
+              SizedBox(
+                height: 0.7.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -80,7 +83,7 @@ class EssentialAppbar extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 4.h,
+                    height: 3.5.h,
                     width: 20.w,
                     child: DoneButton(
                       color: const Color(0xff213285),

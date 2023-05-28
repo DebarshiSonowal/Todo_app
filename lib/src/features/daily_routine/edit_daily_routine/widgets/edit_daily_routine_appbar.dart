@@ -25,7 +25,8 @@ class EditDailyRoutineAppBar extends StatelessWidget {
       preferredSize: Size.fromHeight(9.h),
       child: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(top: 1.h, right: 2.w, left: 2.w,bottom: 0.5.h),
+          padding:
+              EdgeInsets.only(top: 1.h, right: 2.w, left: 2.w, bottom: 0.5.h),
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
@@ -94,25 +95,35 @@ class EditDailyRoutineAppBar extends StatelessWidget {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 1.h,
+                                height: 0.8.h,
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigation.instance
-                                      .navigateAndReplace(Routes.dashboard);
+                                  Provider.of<Repository>(context,
+                                          listen: false)
+                                      .addDailyReminder(Provider.of<Repository>(
+                                              context,
+                                              listen: false)
+                                          .recentModel!);
+
+                                  Future.delayed(const Duration(seconds: 0),
+                                      () {
+                                    Navigation.instance
+                                        .navigateAndReplace(Routes.dashboard);
+                                  });
                                 },
                                 child: Container(
                                   decoration: const BoxDecoration(
                                     color: Constances.lightBlueBackground,
                                     borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
+                                      Radius.circular(20),
                                     ),
                                   ),
 
-                                  width: 20.w, // <-- Your width
-                                  // height: 2.h,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 1.w, vertical: 0.5.h),
+                                  height: 3.5.h,
+                                  width: 20.w,
+                                  // padding: EdgeInsets.symmetric(
+                                  //     horizontal: 1.w, vertical: 0.5.h),
                                   child: Center(
                                     child: Text(
                                       'Done',

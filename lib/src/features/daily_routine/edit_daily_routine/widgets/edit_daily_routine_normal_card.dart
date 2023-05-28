@@ -12,6 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/models/daily_routine_model.dart';
+import 'package:vishal_todo_app/src/widget/custom_text_editing_controller.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../constants/routes.dart';
@@ -19,43 +20,70 @@ import '../../../../models/reminder_list_item.dart';
 import '../../../../repository/repository.dart';
 import '../../../../services/Navigate.dart';
 import '../../../../widget/alert.dart';
+import '../../../../widget/bullet_formater.dart';
 import '../../../../widget/bullet_note_item_list_empty.dart';
 import '../../../../widget/bullet_note_item_list_not_empty.dart';
 import '../../../../widget/image_popup_body.dart';
 import '../../../../widget/routine_item_widget.dart';
 
-class EditDailyRoutineNormalCard extends StatelessWidget {
+class EditDailyRoutineNormalCard extends StatefulWidget {
   EditDailyRoutineNormalCard(
       {Key? key,
       required this.index,
       required this.titleController,
       required this.reminders,
       required this.updateImage,
-      required this.attachment})
+      required this.attachment,
+      required this.textController})
       : super(key: key);
   final int index;
   final TextEditingController titleController;
+  final CustomTextEditingController textController;
   final List<ReminderListItem> reminders;
   final Function(File) updateImage;
   final File? attachment;
+
+  @override
+  State<EditDailyRoutineNormalCard> createState() =>
+      _EditDailyRoutineNormalCardState();
+}
+
+class _EditDailyRoutineNormalCardState
+    extends State<EditDailyRoutineNormalCard> {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   final ImagePicker picker = ImagePicker();
+  late FocusNode _focusNode;
+  List<int> _lineIndices = [];
+  int? _previousFocusLineIndex;
 
-  // File? attachment;
-  // final titleController = TextEditingController();
-  // List<ReminderListItem> reminders = [];
+  @override
+  void initState() {
+    super.initState();
+    // _controller = TextEditingController();
+    _focusNode = FocusNode();
+    widget.titleController.text =
+        Provider.of<Repository>(context, listen: false)
+                .models[widget.index]
+                .title ??
+            "";
+    widget.textController.text = Provider.of<Repository>(context, listen: false)
+            .models[widget.index]
+            .text ??
+        "";
+    widget.textController.addListener(_handleTextChange1);
+  }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   titleController.dispose();
-  //   descController.dispose();
-  // }
+  @override
+  void dispose() {
+    // _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
-      var current = data.models[index];
+      // var current = data.models[index];
       return Stack(
         alignment: Alignment.bottomRight,
         children: [
@@ -89,7 +117,7 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                     width: double.infinity,
                     child: TextFormField(
                       // initialValue: current.title,
-                      controller: titleController,
+                      controller: widget.titleController,
                       maxLines: 2,
                       minLines: 1,
                       decoration: InputDecoration.collapsed(
@@ -124,17 +152,69 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     width: double.infinity,
-                    child: current.reminders.isNotEmpty
-                        ? BulletNoteItemListNotEmpty(
-                            current: current,
-                            index: index,
-                            type: 0,
-                          )
-                        : BulletNoteItemListEmpty(
-                            reminders: reminders,
-                            count: index,
-                            type: 0,
+                    child: TextFormField(
+                      autofocus: false,
+                      // focusNode: widget.focusNode??null,
+                      // maxLines: 1,
+                      controller: widget.textController,
+                      focusNode: _focusNode,
+                      onChanged: _handleTextChange,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      textInputAction: TextInputAction.newline,
+                      inputFormatters: [
+                        // BulletFormatter(),
+                      ],
+                      // onEditingComplete: () {
+                      //   // debugPrint("onEditingComplete1");
+                      //   if (textEditingController.text.isEmpty) {
+                      //     widget.remove();
+                      //   }
+                      // },
+                      // onFieldSubmitted: (val) {
+                      //   if (val.isNotEmpty) {
+                      //     setState(() {
+                      //       txt = val;
+                      //     });
+                      //     widget.updateList(
+                      //         val,
+                      //         timePicked == null
+                      //             ? widget.item.timeDate!
+                      //             : timePicked!.toDateTime());
+                      //   } else {
+                      //     widget.remove();
+                      //   }
+                      // },
+                      // minLines: 1,
+                      // initialValue: "${widget.item.title}",
+                      cursorColor: Colors.white,
+                      decoration: InputDecoration.collapsed(
+                        hintText: '',
+                        hintStyle:
+                            Theme.of(context).textTheme.headline4?.copyWith(
+                                  fontSize: 12.sp,
+                                  color: Colors.white60,
+                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: "Roboto",
+                                ),
+                      ),
+                      style: Theme.of(context).textTheme.headline4?.copyWith(
+                            fontSize: 12.sp,
+                            color: Colors.white,
+                            fontFamily: "Roboto",
                           ),
+                    ),
+                    // child: current.reminders.isNotEmpty
+                    //     ? BulletNoteItemListNotEmpty(
+                    //         current: current,
+                    //         index: index,
+                    //         type: 0,
+                    //       )
+                    //     : BulletNoteItemListEmpty(
+                    //         reminders: reminders,
+                    //         count: index,
+                    //         type: 0,
+                    //       ),
                   ),
                   SizedBox(
                     height: 2.h,
@@ -143,8 +223,8 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                     onTap: () {
                       showPhotoBottomSheet(getSelectedImage);
                     },
-                    child: data.models[index].image == null
-                        ? (attachment == null
+                    child: data.models[widget.index].image == null
+                        ? (widget.attachment == null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: SvgPicture.asset(
@@ -158,19 +238,19 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                             : CircleAvatar(
                                 backgroundColor: Colors.transparent,
                                 radius: 30.sp, // Image radius
-                                backgroundImage:
-                                    Image.file(File(attachment?.path ?? ""))
-                                        .image,
+                                backgroundImage: Image.file(
+                                        File(widget.attachment?.path ?? ""))
+                                    .image,
                               ))
-                        : (data.models[index].type == 1
+                        : (data.models[widget.index].type == 1
                             ? CircleAvatar(
                                 backgroundColor: Colors.transparent,
                                 radius: 30.sp, // Image radius
                                 backgroundImage: (Image.file(
-                                  File(data.models[index].image!),
+                                  File(data.models[widget.index].image!),
                                   errorBuilder: (error, str, _) {
                                     return Image.asset(
-                                      data.models[index].image!,
+                                      data.models[widget.index].image!,
                                     );
                                   },
                                 )).image,
@@ -181,10 +261,10 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
                                     border: Border.all(
                                         color: const Color(0xff50555C))),
                                 child: Image.asset(
-                                  data.models[index].image!,
+                                  data.models[widget.index].image!,
                                   errorBuilder: (error, str, _) {
                                     return Image.asset(
-                                      data.models[index].image!,
+                                      data.models[widget.index].image!,
                                     );
                                   },
                                 ),
@@ -211,6 +291,102 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
     });
   }
 
+  void _handleTextChange(String s) {
+    final newText =  widget.textController.text;
+    final lines = newText.split('\n');
+    final formattedLines = lines.asMap().entries.map((entry) {
+      final index = entry.key + 1;
+      final line = entry.value;
+      final trimmedLine = line.trim();
+      if (trimmedLine.isNotEmpty && trimmedLine.startsWith('$index.')) {
+        _lineIndices.add(index);
+        return line;
+      }
+      final bulletPoint = '$index. ';
+      _lineIndices.add(index);
+      return bulletPoint + line;
+    }).join('\n');
+
+    final cursorPosition =  widget.textController.selection;
+    final cursorOffset = cursorPosition.extentOffset;
+    final newCursorPosition = TextSelection.fromPosition(TextPosition(offset: cursorOffset));
+
+    final currentLineIndex = _getCurrentLineIndex(cursorOffset);
+    if (_previousFocusLineIndex != null && currentLineIndex == _previousFocusLineIndex) {
+      // Update text with formatted lines and maintain cursor position
+       widget.textController.updateText(formattedLines);
+      _updateCursorPosition(newCursorPosition);
+    } else {
+      // Update text with formatted lines and move cursor to previous focused line
+       widget.textController.updateText(formattedLines);
+      if (_previousFocusLineIndex != null) {
+        _moveCursorToLine(_previousFocusLineIndex!);
+      }
+      _previousFocusLineIndex = currentLineIndex; // Update previous focus line index
+    }
+  }
+  void _handleTextChange1() {
+    final newText =  widget.textController.text;
+    final lines = newText.split('\n');
+    final formattedLines = lines.asMap().entries.map((entry) {
+      final index = entry.key + 1;
+      final line = entry.value;
+      final trimmedLine = line.trim();
+      if (trimmedLine.isNotEmpty && trimmedLine.startsWith('$index.')) {
+        _lineIndices.add(index);
+        return line;
+      }
+      final bulletPoint = '$index. ';
+      _lineIndices.add(index);
+      return bulletPoint + line;
+    }).join('\n');
+
+    final cursorPosition =  widget.textController.selection;
+    final cursorOffset = cursorPosition.extentOffset;
+    final newCursorPosition = TextSelection.fromPosition(TextPosition(offset: cursorOffset));
+
+    final currentLineIndex = _getCurrentLineIndex(cursorOffset);
+    if (_previousFocusLineIndex != null && currentLineIndex == _previousFocusLineIndex) {
+      // Update text with formatted lines and maintain cursor position
+       widget.textController.updateText(formattedLines);
+      _updateCursorPosition(newCursorPosition);
+    } else {
+      // Update text with formatted lines and move cursor to previous focused line
+       widget.textController.updateText(formattedLines);
+      if (_previousFocusLineIndex != null) {
+        _moveCursorToLine(_previousFocusLineIndex!);
+      }
+      _previousFocusLineIndex = currentLineIndex; // Update previous focus line index
+    }
+  }
+
+  int _getCurrentLineIndex(int cursorOffset) {
+    final text =  widget.textController.text;
+    final textBeforeCursor = text.substring(0, cursorOffset);
+    final lines = textBeforeCursor.split('\n');
+    final currentLineIndex = lines.length;
+    return currentLineIndex;
+  }
+
+  void _moveCursorToLine(int lineIndex) {
+    final text =  widget.textController.text;
+    final lines = text.split('\n');
+    if (lineIndex >= 0 && lineIndex < lines.length) {
+      final lineStart = lines.sublist(0, lineIndex).join('\n').length + lineIndex;
+      final lineEnd = lineStart + lines[lineIndex].length;
+
+      final newCursorPosition = TextSelection.collapsed(offset: lineEnd);
+      _updateCursorPosition(newCursorPosition);
+    }
+  }
+
+  void _updateCursorPosition(TextSelection newCursorPosition) {
+    Future.delayed(Duration.zero, () {
+      if (mounted) {
+         widget.textController.selection = newCursorPosition;
+      }
+    });
+  }
   void showPhotoBottomSheet(Function(int) getImage) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -242,7 +418,7 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
           for (var i in pickedFile) {
             // setState(() {
             // widget.attachment = File(i.path);
-            updateImage(File(i.path));
+            widget.updateImage(File(i.path));
             // });
           }
         }
@@ -257,7 +433,7 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
         } else {
           final pickedFile = await ImagesPicker.pick();
           if (pickedFile != null) {
-            updateImage(File(pickedFile[0].path));
+            widget.updateImage(File(pickedFile[0].path));
           }
         }
       } else {
@@ -268,7 +444,7 @@ class EditDailyRoutineNormalCard extends StatelessWidget {
           final pickedFile =
               await picker.pickImage(source: ImageSource.gallery);
           if (pickedFile != null) {
-            updateImage(File(pickedFile.path));
+            widget.updateImage(File(pickedFile.path));
           }
         }
       }

@@ -15,6 +15,7 @@ import '../../../../constants/constants.dart';
 import '../../../../models/reminder_list_item.dart';
 import '../../../../services/Navigate.dart';
 import '../../../../widget/alert.dart';
+import '../../../../widget/bullet_formater.dart';
 import '../../../../widget/bullet_note_item_list_empty.dart';
 import '../../../../widget/image_popup_body.dart';
 import 'add_bullet_note_list_empty.dart';
@@ -24,9 +25,9 @@ class AddDailyRoutineNormalCard extends StatefulWidget {
       {Key? key,
       required this.titleController,
       required this.reminders,
-      required this.imageUpdate})
+      required this.imageUpdate, required this.textController})
       : super(key: key);
-  final TextEditingController titleController;
+  final TextEditingController titleController,textController;
   final List<ReminderListItem> reminders;
   final Function(File) imageUpdate;
 
@@ -47,6 +48,23 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
   //   descController.dispose();
   // }
   bool isDone = false;
+
+  late TextEditingController _controller;
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,17 +143,67 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   width: double.infinity,
-                  child: AddBulletNoteItemListEmpty(
-                    reminders: widget.reminders,
-                    onTap: (val) {
-                      setState(() {});
-                    },
-                    remove: (index) {
-                      // Provider.of<Repository>(context, listen: false)
-                      //     .removeDailyReminder(index);
-                      setState(() {});
-                    },
+                  child: TextFormField(
+                    autofocus: false,
+                    // focusNode: widget.focusNode??null,
+                    // maxLines: 1,
+                    controller: widget.textController,
+                    focusNode: _focusNode,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    textInputAction: TextInputAction.newline,
+                    inputFormatters: [
+                      BulletFormatter2(),
+                    ],
+                    // onEditingComplete: () {
+                    //   // debugPrint("onEditingComplete1");
+                    //   if (textEditingController.text.isEmpty) {
+                    //     widget.remove();
+                    //   }
+                    // },
+                    // onFieldSubmitted: (val) {
+                    //   if (val.isNotEmpty) {
+                    //     setState(() {
+                    //       txt = val;
+                    //     });
+                    //     widget.updateList(
+                    //         val,
+                    //         timePicked == null
+                    //             ? widget.item.timeDate!
+                    //             : timePicked!.toDateTime());
+                    //   } else {
+                    //     widget.remove();
+                    //   }
+                    // },
+                    // minLines: 1,
+                    // initialValue: "${widget.item.title}",
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration.collapsed(
+                      hintText: '',
+                      hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
+                        fontSize: 12.sp,
+                        color: Colors.white60,
+                        // fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto",
+                      ),
+                    ),
+                    style: Theme.of(context).textTheme.headline4?.copyWith(
+                      fontSize: 12.sp,
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                    ),
                   ),
+                  // child: AddBulletNoteItemListEmpty(
+                  //   reminders: widget.reminders,
+                  //   onTap: (val) {
+                  //     setState(() {});
+                  //   },
+                  //   remove: (index) {
+                  //     // Provider.of<Repository>(context, listen: false)
+                  //     //     .removeDailyReminder(index);
+                  //     setState(() {});
+                  //   },
+                  // ),
                 ),
                 SizedBox(
                   height: 2.h,
@@ -269,4 +337,6 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
           Navigation.instance.goBack();
         });
   }
+
 }
+

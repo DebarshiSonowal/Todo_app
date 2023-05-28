@@ -9,8 +9,8 @@ class PopUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 39.h,
-      width: 84.w,
+      height: 44.h,
+      width: 90.w,
       margin: EdgeInsets.only(
         right: 0.5.w,
         bottom: 2.h,
@@ -44,7 +44,7 @@ class PopUpBody extends StatelessWidget {
                         ?.copyWith(
                       color: Colors.black,
                       fontFamily: "Roboto",
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -76,7 +76,7 @@ class PopUpBody extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontFamily: "ABeeZee",
                       ),
                     ),
@@ -87,7 +87,7 @@ class PopUpBody extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontFamily: "ABeeZee",
                       ),
                     ),
@@ -98,7 +98,7 @@ class PopUpBody extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontFamily: "ABeeZee",
                       ),
                     ),
@@ -111,7 +111,7 @@ class PopUpBody extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(
                           color: Colors.black,
-                          fontSize: 10.sp,
+                          fontSize: 11.sp,
                           fontFamily: "ABeeZee",
                         ),
 
@@ -123,7 +123,7 @@ class PopUpBody extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.black,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -134,7 +134,7 @@ class PopUpBody extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.green,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -145,7 +145,7 @@ class PopUpBody extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.black,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -153,6 +153,7 @@ class PopUpBody extends StatelessWidget {
                       ),
                     ),
                     RichText(
+                      textAlign: TextAlign.center,
                       text: TextSpan(
                         // Note: Styles for TextSpans must be explicitly defined.
                         // Child text spans will inherit styles from parent
@@ -161,7 +162,7 @@ class PopUpBody extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(
                           color: Colors.black,
-                          fontSize: 10.sp,
+                          fontSize: 11.sp,
                           fontFamily: "ABeeZee",
                         ),
 
@@ -173,29 +174,51 @@ class PopUpBody extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.red,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
                           TextSpan(
-                            text: ",",
+                            text: ", ",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.black,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
                           TextSpan(
-                            text: " shortcut",
+                            text: "favorite tutorials",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                              color: Colors.blue,
-                              fontSize: 10.sp,
+                              color: const Color(0xff4BB8F9),
+                              fontSize: 11.sp,
+                              fontFamily: "ABeeZee",
+                            ),
+                          ),
+                          TextSpan(
+                            text: ", ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                              color: Colors.black,
+                              fontSize: 11.sp,
+                              fontFamily: "ABeeZee",
+                            ),
+                          ),
+                          TextSpan(
+                            text: " shortcut toolbar.",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                              color: Color(0xff223286),
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -221,6 +244,7 @@ class PopUpBody extends StatelessWidget {
                         .headlineSmall
                         ?.copyWith(
                       color: Colors.black,
+                      fontSize: 14.sp,
                       fontFamily: "Roboto",
                     ),
                   ),
@@ -231,6 +255,7 @@ class PopUpBody extends StatelessWidget {
                         .headlineSmall
                         ?.copyWith(
                       color: Colors.black,
+                      fontSize: 14.sp,
                       fontFamily: "Roboto",
                     ),
                   ),

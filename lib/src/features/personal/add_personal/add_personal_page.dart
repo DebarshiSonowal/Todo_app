@@ -74,7 +74,7 @@ class _AddPersonalPageState extends State<AddPersonalPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
+    Future.delayed(const Duration(milliseconds: 400), () {
       showMyDialog(context);
     });
   }

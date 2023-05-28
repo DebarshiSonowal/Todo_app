@@ -2,7 +2,7 @@ import 'reminder_list_item.dart';
 import 'timer_section_option_model.dart';
 
 class DailyRoutineModel {
-  String? title, titleTime, image;
+  String? title, titleTime, image,text;
   DateTime? dateTime;
   // TimerSelectionOptions? options;
   List<ReminderListItem> reminders = [];
@@ -17,6 +17,7 @@ class DailyRoutineModel {
     this.image,
     this.reminders,
     this.type,
+    this.text,
     // this.options,
   );
 

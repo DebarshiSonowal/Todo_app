@@ -46,6 +46,9 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
               child: Column(
                 children: [
                   //  showPhotoBottomSheet(getSelectedImage);
+                  SizedBox(
+                    height: 0.8.h,
+                  ),
                   Container(
                     margin: EdgeInsets.symmetric(
                       horizontal: 5.w,

@@ -10,6 +10,7 @@ import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
 import '../../../models/reminder_list_item.dart';
 import '../../../services/Navigate.dart';
+import '../../../widget/custom_text_editing_controller.dart';
 import '../../../widget/daily_routine_bar.dart';
 import 'widgets/edit_daily_routine_appbar.dart';
 import 'widgets/edit_daily_routine_normal_card.dart';
@@ -19,6 +20,7 @@ class EditDailyRoutine extends StatefulWidget {
   final int index;
   File? attachment;
   final titleController = TextEditingController();
+  final textController = CustomTextEditingController();
   final descController = TextEditingController();
 
   @override
@@ -35,11 +37,12 @@ class _EditDailyRoutineState extends State<EditDailyRoutine> {
     Future.delayed(const Duration(seconds: 1), () {
       setState(() => widget.titleController.text =
           Provider.of<Repository>(context, listen: false)
-              .models[widget.index]
-              .title ??
+                  .models[widget.index]
+                  .title ??
               "");
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,6 +93,7 @@ class _EditDailyRoutineState extends State<EditDailyRoutine> {
                   });
                 },
                 attachment: attachment,
+                textController: widget.textController,
               )
             ],
           ),

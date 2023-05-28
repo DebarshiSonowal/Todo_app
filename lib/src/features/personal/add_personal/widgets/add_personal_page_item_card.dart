@@ -57,35 +57,41 @@ class PersonalPageItemCard extends StatelessWidget {
         bottomOffsetHeight: 80.0,
 
         // Offset height to consider, for showing the menu item ( for example bottom navigation bar), so that the popup menu will be shown on top of selected item.
-        menuItems: <FocusedMenuItem>[
+        menuItems: [
           // Add Each FocusedMenuItem  for Menu Options
           FocusedMenuItem(
               backgroundColor: const Color(0xff4f545d),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              title: Column(
                 children: [
-                  SizedBox(
-                    width: 1.w,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 1.w,
+                      ),
+                      Image.asset(
+                        Constances.shareImage,
+                        color: Colors.white,
+                        fit: BoxFit.fitWidth,
+                        width: 6.w,
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Text(
+                        "Share Via",
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              color: Colors.white70,
+                              fontSize: 10.sp,
+                            ),
+                      ),
+                    ],
                   ),
-                  Image.asset(
-                    Constances.shareImage,
-                    color: Colors.white,
-                    fit: BoxFit.fitWidth,
-                    width: 6.w,
-                  ),
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                  Text(
-                    "Share Via",
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: Colors.white70,
-                          fontSize: 10.sp,
-                        ),
-                  ),
+
                 ],
               ),
               onPressed: () {}),
+
           FocusedMenuItem(
               backgroundColor: const Color(0xff4f545d),
               title: Row(

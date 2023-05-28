@@ -25,7 +25,8 @@ class NotesListItem extends StatelessWidget {
         dividerColor: Colors.white,
 
       ),
-      child: FocusedMenuHolder(
+      child:
+      FocusedMenuHolder(
         menuWidth: 37.w,
         blurSize: 1.0,
         menuItemExtent: 44,
@@ -46,7 +47,7 @@ class NotesListItem extends StatelessWidget {
         bottomOffsetHeight: 80.0,
 
         // Offset height to consider, for showing the menu item ( for example bottom navigation bar), so that the popup menu will be shown on top of selected item.
-        menuItems: <FocusedMenuItem>[
+        menuItems:[
           // Add Each FocusedMenuItem  for Menu Options
           FocusedMenuItem(
               backgroundColor: const Color(0xff4f545d),
@@ -75,6 +76,7 @@ class NotesListItem extends StatelessWidget {
                 ],
               ),
               onPressed: () {}),
+
           FocusedMenuItem(
               backgroundColor: const Color(0xff4f545d),
               title: Row(

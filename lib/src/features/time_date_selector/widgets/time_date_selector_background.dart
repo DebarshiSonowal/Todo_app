@@ -36,7 +36,7 @@ class timeDateSelectorBackground extends StatelessWidget {
       width: 100.w,
       padding: EdgeInsets.symmetric(
         horizontal: 4.w,
-        vertical: 2.h,
+        vertical: 1.h,
       ),
       color: Colors.transparent,
       child: SingleChildScrollView(

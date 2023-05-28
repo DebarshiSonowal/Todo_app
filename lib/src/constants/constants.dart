@@ -156,4 +156,8 @@ class Constances {
 
   static const optionImage = "assets/images/img_iconoirmorehorizcircle.svg";
   static const bellImage = "assets/images/bell.png";
+  static const alarmImage = "assets/images/alarm.png";
+  static const calendarImage2 = "assets/images/calendar.png";
+  static const uploadImage = "assets/images/upload.png";
+  static const trashImage = "assets/images/trash.png";
 }

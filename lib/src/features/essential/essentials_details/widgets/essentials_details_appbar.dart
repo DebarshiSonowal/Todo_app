@@ -110,7 +110,7 @@ class EssentialDetailsAppbar extends StatelessWidget {
     List<PopupMenuEntry<String>> items = [
       PopupMenuItem<String>(
         value: 'item1',
-        padding: EdgeInsets.symmetric(horizontal: 4.w,),
+        padding: EdgeInsets.symmetric(horizontal:4.w,),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -118,27 +118,27 @@ class EssentialDetailsAppbar extends StatelessWidget {
               Constances.shareImage,
               color: Colors.white,
               fit: BoxFit.fitWidth,
-              width: 7.w,
+              width: 4.5.w,
             ),
             SizedBox(
-              width: 2.w,
+              width: 8.w,
             ),
             Text(
               "Share Via",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white70,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                   ),
             ),
           ],
         ),
       ),
       PopupMenuDivider(
-        height: 0.5.h,
+        height: 1.h,
       ),
       PopupMenuItem<String>(
         value: 'item2',
-        padding: EdgeInsets.symmetric(horizontal: 4.w,),
+        padding: EdgeInsets.symmetric(horizontal:4.w,),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -146,10 +146,10 @@ class EssentialDetailsAppbar extends StatelessWidget {
               Constances.deleteImage,
               color: Colors.white,
               fit: BoxFit.fitWidth,
-              width: 7.w,
+              width: 4.5.w,
             ),
             SizedBox(
-              width: 2.w,
+              width: 8.w,
             ),
             Row(
               children: [
@@ -157,7 +157,7 @@ class EssentialDetailsAppbar extends StatelessWidget {
                   "Delete",
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: Colors.red,
-                        fontSize: 10.sp,
+                    fontSize: 12.sp,
                       ),
                 ),
               ],

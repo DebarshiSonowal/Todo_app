@@ -90,7 +90,7 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
             ),
 
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeIn,
               bottom: _isStackedItemVisible ? -100 : MediaQuery.of(context).size.height -870,
               left: 0.0,

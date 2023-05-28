@@ -50,7 +50,7 @@ class _EditEssentialPageState extends State<EditEssentialPage> {
           onTap: () {
             Provider.of<Repository>(context, listen: false)
                 .updateEssentials(essentialNotes!, widget.index);
-            Navigation.instance.navigateAndReplace(Routes.dashboard);
+            Navigation.instance.navigateAndReplace(Routes.essentialsList);
           },
         ),
       ),

@@ -58,20 +58,21 @@ class _PersonalTimerDatePageState extends State<PersonalTimerDatePage> {
               Provider.of<Repository>(context, listen: false).modifyPersonals(
                 widget.index,
                 DailyRoutineModel(
-                  titleController.text,
-                  DateFormat("hh:mm a").format(
+                    titleController.text,
+                    DateFormat("hh:mm a").format(
+                      DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, 12, 0),
+                    ),
                     DateTime(DateTime.now().year, DateTime.now().month,
                         DateTime.now().day, 12, 0),
-                  ),
-                  DateTime(DateTime.now().year, DateTime.now().month,
-                      DateTime.now().day, 12, 0),
-                  attachment!.path,
-                  reminders,
-                  1,
-                  // TimerSelectionOptions(
-                  //   "NA",10,false,
-                  // ),
-                ),
+                    attachment!.path,
+                    reminders,
+                    1,
+                    ""
+                    // TimerSelectionOptions(
+                    //   "NA",10,false,
+                    // ),
+                    ),
               );
               Future.delayed(const Duration(seconds: 1), () {
                 Navigation.instance.navigate(

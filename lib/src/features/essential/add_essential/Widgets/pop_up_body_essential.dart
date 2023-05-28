@@ -9,8 +9,8 @@ class PopUpBodyEssential extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 39.h,
-      width: 84.w,
+      height: 42.h,
+      width: 86.w,
       margin: EdgeInsets.only(
         top: 0.9.h,
         right: 0.5.w,
@@ -45,7 +45,7 @@ class PopUpBodyEssential extends StatelessWidget {
                         ?.copyWith(
                       color: Colors.black,
                       fontFamily: "Roboto",
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -77,7 +77,7 @@ class PopUpBodyEssential extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontFamily: "ABeeZee",
                       ),
                     ),
@@ -88,7 +88,7 @@ class PopUpBodyEssential extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontFamily: "ABeeZee",
                       ),
                     ),
@@ -99,7 +99,7 @@ class PopUpBodyEssential extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(
                         color: Colors.black,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontFamily: "ABeeZee",
                       ),
                     ),
@@ -112,7 +112,7 @@ class PopUpBodyEssential extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(
                           color: Colors.black,
-                          fontSize: 10.sp,
+                          fontSize: 11.sp,
                           fontFamily: "ABeeZee",
                         ),
 
@@ -124,7 +124,7 @@ class PopUpBodyEssential extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.black,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -135,7 +135,7 @@ class PopUpBodyEssential extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.green,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -146,7 +146,7 @@ class PopUpBodyEssential extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.black,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -162,7 +162,7 @@ class PopUpBodyEssential extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(
                           color: Colors.black,
-                          fontSize: 10.sp,
+                          fontSize: 11.sp,
                           fontFamily: "ABeeZee",
                         ),
 
@@ -174,7 +174,7 @@ class PopUpBodyEssential extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.red,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -185,7 +185,7 @@ class PopUpBodyEssential extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.black,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -196,7 +196,7 @@ class PopUpBodyEssential extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                               color: Colors.blue,
-                              fontSize: 10.sp,
+                              fontSize: 11.sp,
                               fontFamily: "ABeeZee",
                             ),
                           ),
@@ -222,6 +222,7 @@ class PopUpBodyEssential extends StatelessWidget {
                         .headlineSmall
                         ?.copyWith(
                       color: Colors.black,
+                      fontSize: 14.sp,
                       fontFamily: "Roboto",
                     ),
                   ),
@@ -232,6 +233,7 @@ class PopUpBodyEssential extends StatelessWidget {
                         .headlineSmall
                         ?.copyWith(
                       color: Colors.black,
+                      fontSize: 14.sp,
                       fontFamily: "Roboto",
                     ),
                   ),

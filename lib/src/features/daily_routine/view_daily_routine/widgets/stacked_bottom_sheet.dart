@@ -36,7 +36,7 @@ class StackedBottomSheet extends StatelessWidget {
           ),
           padding: EdgeInsets.symmetric(
             horizontal: 3.w,
-            vertical: 1.h,
+            vertical: 1.5.h,
           ),
           child: ListView.separated(
             shrinkWrap: true,
@@ -59,7 +59,8 @@ class StackedBottomSheet extends StatelessWidget {
                             DateTime.now().day, 12, 0),
                         item.image,
                         [],
-                        2),
+                        2,
+                        ""),
                   );
                   Future.delayed(
                       const Duration(seconds: 0),

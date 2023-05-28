@@ -46,21 +46,21 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   // }
   switch (settings.name) {
     case Routes.splashscreen:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const SplashScreen(),
       );
 
     //Main
     case Routes.dashboard:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const DashboardScreen(),
       );
     case Routes.showCalendar:
-      return FadeTransitionPageRouteBuilder(page: const ShowCalendar());
+      return RightLeftTransitionPageRouteBuilder(page: const ShowCalendar());
 
     //routine
     case Routes.dailyRoutine:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const DailyRoutinePage(),
       );
     // case Routes.addDailyRoutine:
@@ -68,36 +68,36 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //     page: const AddDailyRoutine(),
     //   );
     case Routes.addDailyRoutineNormal:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: AddDailyRoutineNormal(),
       );
     case Routes.timeDatePicker:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: TimeDateSelector(
           // title: settings.arguments as String,
           index: settings.arguments as int,
         ),
       );
     case Routes.editDailyRoutineNormal:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: EditDailyRoutine(
           index: settings.arguments as int,
         ),
       );
     case Routes.timePicker:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: TimerSelectedPage(
           index: settings.arguments as int,
         ),
       );
     case Routes.datePicker:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: DateSelectedPage(
           index: settings.arguments as int,
         ),
       );
     case Routes.editTimePicker:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: EditTimerSelected(
           index: settings.arguments as String,
         ),
@@ -105,35 +105,35 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     //personal
     case Routes.addPersonal:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const AddPersonalPage(),
       );
     case Routes.addPersonalInfo:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const PersonalEnterInfoPage(),
       );
     case Routes.personalDetails:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: PersonalDetails(
           index: settings.arguments as int,
         ),
       );
     case Routes.editPersonalInfo:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: EditPersonalInfoPage(index: settings.arguments as int),
       );
     case Routes.personalTimeDateSelector:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: PersonalTimerDatePage(index: settings.arguments as int),
       );
     case Routes.editTimePickerPersonal:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: EditTimerSelectedPersonal(
           index: settings.arguments as String,
         ),
       );
     case Routes.personalTimePicker:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: PersonalTimerSelectedPage(
           index: settings.arguments as int,
         ),
@@ -141,61 +141,61 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     //bookmark
     case Routes.bookmark:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const BookmarkListPage(),
       );
     case Routes.bookmarkList:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: BookmarkSublistPage(
           index: settings.arguments as int,
         ),
       );
     case Routes.addBookmark:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: AddBookmarkPage(),
       );
     case Routes.addBookmarkSubItem:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: AddBookmarkSubItemPage(
           index: settings.arguments as int,
         ),
       );
     case Routes.editBookmark:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: EditBookmarkPage(index: settings.arguments as String),
       );
 
     //essential
     case Routes.addEssentialPage:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const AddEssentialPage(),
       );
     case Routes.essentialsList:
-      return FadeTransitionPageRouteBuilder(page: const EssentialListPage());
+      return RightLeftTransitionPageRouteBuilder(page: const EssentialListPage());
     case Routes.essentialsDetails:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
           page: EssentialDetailsPage(index: settings.arguments as int));
     case Routes.essentialsEdit:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
           page: EditEssentialPage(index: settings.arguments as int));
 
     //quick
     case Routes.addQuickPage:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: AddQuickNotesPage(),
       );
     case Routes.quickNotesList:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: const QuickNotesPage(),
       );
     case Routes.editQuickNotes:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: EditQuickNotesPage(
           index: settings.arguments as int,
         ),
       );
     case Routes.addQuickNoteFromDate:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: AddQuickNoteFromDate(
           dateTime: settings.arguments as String,
         ),
@@ -203,14 +203,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     //ringtone
     case Routes.ringTonePicker:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: RingtonePickerScreen(
           input: settings.arguments as String,
         ),
       );
 
     default:
-      return FadeTransitionPageRouteBuilder(
+      return RightLeftTransitionPageRouteBuilder(
         page: Container(),
       );
   }

@@ -30,7 +30,6 @@ class TimeDateRoutineNormalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
-      var current = data.models[index];
       return Stack(
         alignment: Alignment.bottomRight,
         children: [
@@ -41,7 +40,7 @@ class TimeDateRoutineNormalCard extends StatelessWidget {
             ),
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: 2.w,
+                horizontal: 1.7.w,
                 vertical: 2.h,
               ),
               width: double.infinity,
@@ -63,9 +62,9 @@ class TimeDateRoutineNormalCard extends StatelessWidget {
                     ),
                     width: double.infinity,
                     child: Text(
-                      "${data.models[index].title}",
+                      "${data.recentModel?.title}",
                       style: Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 12.sp,
+                        fontSize: 14.sp,
                             color: Colors.white,
                             fontFamily: "Roboto",
                           ),
@@ -85,38 +84,45 @@ class TimeDateRoutineNormalCard extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     width: double.infinity,
-                    child: ListView.separated(
-                      itemBuilder: (context, position) {
-                        var item = data.models[index].reminders[position];
-                        return  Text(
-                          "${position + 1}. ${item.title}",
-                          style: Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 12.sp,
-                            color: Colors.white,
-                            fontFamily: "Roboto",
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          height: 0.5.h,
-                        );
-                      },
-                      itemCount: data.models[index].reminders.length,
-                    ),
+                    child: Text(
+                      data.recentModel?.text??"",
+                      style: Theme.of(context).textTheme.headline4?.copyWith(
+                      fontSize: 12.sp,
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                    ),),
+                    // child: ListView.separated(
+                    //   itemBuilder: (context, position) {
+                    //     var item = data.models[index].reminders[position];
+                    //     return  Text(
+                    //       "${position + 1}. ${item.title}",
+                    //       style: Theme.of(context).textTheme.headline4?.copyWith(
+                    //         fontSize: 12.sp,
+                    //         color: Colors.white,
+                    //         fontFamily: "Roboto",
+                    //       ),
+                    //     );
+                    //   },
+                    //   separatorBuilder: (context, index) {
+                    //     return SizedBox(
+                    //       height: 0.5.h,
+                    //     );
+                    //   },
+                    //   itemCount: data.models[index].reminders.length,
+                    // ),
                   ),
                   SizedBox(
                     height: 2.h,
                   ),
-                  data.models[index].type == 1
+                  data.recentModel?.type == 1
                       ? CircleAvatar(
                           backgroundColor: Colors.transparent,
                           radius: 30.sp, // Image radius
                           backgroundImage: (Image.file(
-                            File(data.models[index].image!),
+                            File(data.recentModel!.image!),
                             errorBuilder: (error, str, _) {
                               return Image.asset(
-                                data.models[index].image!,
+                                data.recentModel!.image!,
                               );
                             },
                           )).image,
@@ -129,10 +135,10 @@ class TimeDateRoutineNormalCard extends StatelessWidget {
                             ),
                           ),
                           child: Image.asset(
-                            data.models[index].image!,
+                            data.recentModel!.image!,
                             errorBuilder: (error, str, _) {
                               return Image.asset(
-                                data.models[index].image!,
+                                data.recentModel!.image!,
                               );
                             },
                           ),

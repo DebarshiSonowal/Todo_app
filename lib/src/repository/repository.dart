@@ -12,7 +12,7 @@ import '../models/quick_note.dart';
 
 class Repository extends ChangeNotifier {
   List<DailyRoutineModel> models = [], personals = [];
-
+  DailyRoutineModel? recentModel;
   List<Bookmark> bookmarks = [];
 
   List<EssentialNotes> essentials = [];
@@ -156,6 +156,10 @@ class Repository extends ChangeNotifier {
 
   void addDailyReminder(DailyRoutineModel model) {
     models.add(model);
+    notifyListeners();
+  }
+  void addRecentDailyReminder(DailyRoutineModel model) {
+    recentModel = model;
     notifyListeners();
   }
 

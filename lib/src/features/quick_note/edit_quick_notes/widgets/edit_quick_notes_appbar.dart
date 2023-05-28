@@ -91,6 +91,9 @@ class EditQuickNotesAppbar extends StatelessWidget {
                         // textTheme: TextTheme().apply(bodyColor: Colors.white),
                       ),
                       child: PopupMenuButton(
+                        offset:  Offset(
+                          35.w,9.h
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -104,7 +107,7 @@ class EditQuickNotesAppbar extends StatelessWidget {
                             value: 1,
                             onTap: () => onTapOptions(1),
                             child: SizedBox(
-                              width: 45.w,
+                              width: 44.w,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -125,12 +128,18 @@ class EditQuickNotesAppbar extends StatelessWidget {
                                   // SizedBox(
                                   //   width: 5.w,
                                   // ),
-                                  const Icon(
-                                    Icons.calendar_today_outlined,
-                                    color: Colors.white,
-                                    // fit: BoxFit.fitWidth,
-                                    // width: 6.w,
+                                  Image.asset(
+                                    Constances.calendarImage2,
+                                    // color: Colors.white,
+                                    fit: BoxFit.fitWidth,
+                                    width: 4.w,
                                   ),
+                                  // const Icon(
+                                  //   Icons.calendar_today_outlined,
+                                  //   color: Colors.white,
+                                  //   // fit: BoxFit.fitWidth,
+                                  //   // width: 6.w,
+                                  // ),
                                 ],
                               ),
                             ),
@@ -147,7 +156,7 @@ class EditQuickNotesAppbar extends StatelessWidget {
                             value: 2,
                             onTap: () => onTapOptions(2),
                             child: SizedBox(
-                              width: 45.w,
+                              width: 44.w,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -168,12 +177,18 @@ class EditQuickNotesAppbar extends StatelessWidget {
                                   // SizedBox(
                                   //   width: 21.5.w,
                                   // ),
-                                  const Icon(
-                                    Icons.alarm,
-                                    color: Colors.white,
-                                    // fit: BoxFit.fitWidth,
-                                    // width: 6.w,
+                                  Image.asset(
+                                    Constances.alarmImage,
+                                    // color: Colors.white,
+                                    fit: BoxFit.fitWidth,
+                                    width: 4.w,
                                   ),
+                                  // const Icon(
+                                  //   Icons.alarm,
+                                  //   color: Colors.white,
+                                  //   // fit: BoxFit.fitWidth,
+                                  //   // width: 6.w,
+                                  // ),
                                 ],
                               ),
                             ),
@@ -190,7 +205,7 @@ class EditQuickNotesAppbar extends StatelessWidget {
                             value: 3,
                             onTap: () => onTapOptions(3),
                             child: Container(
-                              width: 45.w,
+                              width: 44.w,
                               // padding: EdgeInsets.only(
                               //   left: 4.w,
                               // ),
@@ -214,12 +229,18 @@ class EditQuickNotesAppbar extends StatelessWidget {
                                   // SizedBox(
                                   //   width: 21.5.w,
                                   // ),
-                                  const Icon(
-                                    Icons.ios_share,
-                                    color: Colors.white,
-                                    // fit: BoxFit.fitWidth,
-                                    // width: 6.w,
+                                  Image.asset(
+                                    Constances.uploadImage,
+                                    // color: Colors.white,
+                                    fit: BoxFit.fitWidth,
+                                    width: 4.w,
                                   ),
+                                  // const Icon(
+                                  //   Icons.ios_share,
+                                  //   color: Colors.white,
+                                  //   // fit: BoxFit.fitWidth,
+                                  //   // width: 6.w,
+                                  // ),
                                 ],
                               ),
                             ),
@@ -236,7 +257,7 @@ class EditQuickNotesAppbar extends StatelessWidget {
                             onTap: () => onTapOptions(4),
                             value: 4,
                             child: SizedBox(
-                              width: 45.w,
+                              width: 44.w,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -258,11 +279,17 @@ class EditQuickNotesAppbar extends StatelessWidget {
                                   //   width: 19.w,
                                   // ),
                                   Image.asset(
-                                    Constances.deleteImage,
-                                    color: Colors.white,
+                                    Constances.trashImage,
+                                    // color: Colors.white,
                                     fit: BoxFit.fitWidth,
-                                    width: 6.w,
+                                    width: 4.w,
                                   ),
+                                  // Image.asset(
+                                  //   Constances.deleteImage,
+                                  //   color: Colors.white,
+                                  //   fit: BoxFit.fitWidth,
+                                  //   width: 6.w,
+                                  // ),
                                 ],
                               ),
                             ),

@@ -35,6 +35,9 @@ class PersonalDateTimeAppBar extends StatelessWidget {
                       ),
                 ),
                 SizedBox(
+                  height: 0.5.h,
+                ),
+                SizedBox(
                   height: 4.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +90,7 @@ class PersonalDateTimeAppBar extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 3.5.h,
-                        width: 18.w,
+                        width: 20.w,
                         child: Center(
                           child: DoneButton(
                             color: const Color(0xff213285),

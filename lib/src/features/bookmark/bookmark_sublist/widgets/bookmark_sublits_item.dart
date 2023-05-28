@@ -132,9 +132,7 @@ class BookmarkSublistItem extends StatelessWidget {
     List<PopupMenuEntry<String>> items = [
       PopupMenuItem<String>(
         value: 'item1',
-        padding: EdgeInsets.symmetric(
-          horizontal: 2.7.w,
-        ),
+        padding: EdgeInsets.symmetric(horizontal:4.w,),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -142,17 +140,17 @@ class BookmarkSublistItem extends StatelessWidget {
               Constances.shareImage,
               color: Colors.white,
               fit: BoxFit.fitWidth,
-              width: 6.w,
+              width: 4.5.w,
             ),
             SizedBox(
-              width: 2.w,
+              width: 8.w,
             ),
             Text(
               "Share Via",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.white70,
-                    fontSize: 10.sp,
-                  ),
+                color: Colors.white70,
+                fontSize: 12.sp,
+              ),
             ),
           ],
         ),
@@ -162,9 +160,7 @@ class BookmarkSublistItem extends StatelessWidget {
       ),
       PopupMenuItem<String>(
         value: 'item2',
-        padding: EdgeInsets.symmetric(
-          horizontal: 2.7.w,
-        ),
+        padding: EdgeInsets.symmetric(horizontal:4.w,),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -172,19 +168,19 @@ class BookmarkSublistItem extends StatelessWidget {
               Constances.deleteImage,
               color: Colors.white,
               fit: BoxFit.fitWidth,
-              width: 6.w,
+              width: 4.5.w,
             ),
             SizedBox(
-              width: 2.w,
+              width: 8.w,
             ),
             Row(
               children: [
                 Text(
                   "Delete",
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.red,
-                        fontSize: 10.sp,
-                      ),
+                    color: Colors.red,
+                    fontSize: 12.sp,
+                  ),
                 ),
               ],
             ),
@@ -209,6 +205,7 @@ class BookmarkSublistItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 7,
+      // color: const Color(0xff4f545d),
     );
 
     // Handle the selected menu item
