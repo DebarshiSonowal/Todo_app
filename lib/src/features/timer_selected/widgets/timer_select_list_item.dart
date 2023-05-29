@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
+import 'package:vishal_todo_app/src/services/notification_services.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
@@ -16,12 +17,13 @@ class TimerSelectListItem extends StatelessWidget {
     required this.item,
     required this.index,
     required this.num,
-    this.type,
+    this.type, required this.updateSwitch,
   });
 
   final int? type;
   final int index, num;
   final ReminderListItem item;
+  final Function(bool) updateSwitch;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +46,16 @@ class TimerSelectListItem extends StatelessWidget {
           },
           child: Text(
             'Edit',
-            style: Theme.of(context).textTheme.headline4?.copyWith(
-                  fontSize: 12.sp,
-                  color: Colors.white,
-                  fontFamily: "PublicSans",
-                  // fontWeight: FontWeight.bold,
-                ),
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline4
+                ?.copyWith(
+              fontSize: 12.sp,
+              color: Colors.white,
+              fontFamily: "PublicSans",
+              // fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         SizedBox(
@@ -62,12 +68,16 @@ class TimerSelectListItem extends StatelessWidget {
             children: [
               Text(
                 DateFormat("hh:mm").format(item.timeDate!),
-                style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 16.sp,
-                      color: item.isEnabled ? Colors.white : Colors.white38,
-                      fontFamily: "PublicSans",
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .headline4
+                    ?.copyWith(
+                  fontSize: 16.sp,
+                  color: item.isEnabled ? Colors.white : Colors.white38,
+                  fontFamily: "PublicSans",
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -77,12 +87,16 @@ class TimerSelectListItem extends StatelessWidget {
         ),
         Text(
           DateFormat("a").format(item.timeDate!),
-          style: Theme.of(context).textTheme.headline4?.copyWith(
-                fontSize: 12.sp,
-                color: item.isEnabled ? Colors.white : Colors.white38,
-                fontFamily: "PublicSans",
-                // fontWeight: FontWeight.bold,
-              ),
+          style: Theme
+              .of(context)
+              .textTheme
+              .headline4
+              ?.copyWith(
+            fontSize: 12.sp,
+            color: item.isEnabled ? Colors.white : Colors.white38,
+            fontFamily: "PublicSans",
+            // fontWeight: FontWeight.bold,
+          ),
         ),
         const Spacer(),
         CupertinoSwitch(
@@ -90,16 +104,17 @@ class TimerSelectListItem extends StatelessWidget {
           value: item.isEnabled,
           onChanged: (bool value) {
             debugPrint("${type}");
+            updateSwitch(value);
             if (type == null) {
-              Provider.of<Repository>(
-                context,
-                listen: false,
-              ).updateReminderListItemReminder(index, value, num);
+              // Provider.of<Repository>(
+              //   context,
+              //   listen: false,
+              // ).updateReminderListItemReminder(index, value, num);
             } else {
-              Provider.of<Repository>(
-                context,
-                listen: false,
-              ).updateReminderListItemReminderPersonal(index, value, num);
+              // Provider.of<Repository>(
+              //   context,
+              //   listen: false,
+              // ).updateReminderListItemReminderPersonal(index, value, num);
             }
           },
         ),

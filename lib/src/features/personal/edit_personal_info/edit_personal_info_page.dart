@@ -35,7 +35,16 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
   @override
   void initState() {
     super.initState();
-    loadDataIntoFields();
+    Future.delayed(const Duration(seconds: 0), () {
+      Provider.of<Repository>(context,listen: false).setRecent(Provider.of<Repository>(context, listen: false)
+          .personals[widget.index]);
+
+      Future.delayed(const Duration(seconds: 1), () {
+        debugPrint(
+            "asdad ${Provider.of<Repository>(context, listen: false).recentModel!.id} ${Provider.of<Repository>(context, listen: false).personals[widget.index].id}");
+        loadDataIntoFields();
+      });
+    });
   }
 
   @override
@@ -46,31 +55,47 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
         preferredSize: Size.fromHeight(9.h),
         child: AddPersonalInfoAppbar(
           savePersonal: () {
-            Provider.of<Repository>(context, listen: false).modifyPersonals(
-                widget.index,
-                DailyRoutineModel(
-                  titleController.text,
-                  DateFormat("hh:mm a").format(
-                    DateTime(DateTime.now().year, DateTime.now().month,
-                        DateTime.now().day, 12, 0),
-                  ),
-                  DateTime(DateTime.now().year, DateTime.now().month,
-                      DateTime.now().day, 12, 0),
-                  attachment!.path,
-                  reminders,
-                  1,
-                  "",
-                  // TimerSelectionOptions(
-                  //   "NA",10,false,
-                  // ),
-                ));
+            // Provider.of<Repository>(context, listen: false)
+            //     .addRecentDailyReminder(DailyRoutineModel(
+            //         titleController.text,
+            //         DateFormat("hh:mm a").format(
+            //           DateTime(DateTime.now().year, DateTime.now().month,
+            //               DateTime.now().day, 12, 0),
+            //         ),
+            //         DateTime(DateTime.now().year, DateTime.now().month,
+            //             DateTime.now().day, 12, 0),
+            //         attachment!.path,
+            //         reminders,
+            //         1,
+            //         ""
+            //         // TimerSelectionOptions(
+            //         //   "NA",
+            //         //   10,
+            //         //   false,
+            //         // ),
+            //         ));
+            // Provider.of<Repository>(context, listen: false).modifyPersonals(
+            //     widget.index,
+            //     DailyRoutineModel(
+            //       titleController.text,
+            //       DateFormat("hh:mm a").format(
+            //         DateTime(DateTime.now().year, DateTime.now().month,
+            //             DateTime.now().day, 12, 0),
+            //       ),
+            //       DateTime(DateTime.now().year, DateTime.now().month,
+            //           DateTime.now().day, 12, 0),
+            //       attachment!.path,
+            //       reminders,
+            //       1,
+            //       "",
+            //       // TimerSelectionOptions(
+            //       //   "NA",10,false,
+            //       // ),
+            //     ));
             Future.delayed(const Duration(seconds: 1), () {
               Navigation.instance.navigate(
                 Routes.personalTimeDateSelector,
-                args: Provider.of<Repository>(context, listen: false)
-                        .personals
-                        .length -
-                    1,
+                args: 2,
               );
             });
           },
@@ -122,7 +147,8 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
 
   void loadDataIntoFields() async {
     titleController.text = Provider.of<Repository>(context, listen: false)
-            .personals[widget.index]
+            // .personals[widget.index]
+            .recentModel!
             .title ??
         "";
 
@@ -131,20 +157,24 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
     //         .description ??
     //     "";
     attachment = File(Provider.of<Repository>(context, listen: false)
-            .personals[widget.index]
+            // .personals[widget.index]
+            .recentModel!
             .image ??
         "");
-    dateTime = DateFormat("dd MM yyyy | HH:mm a").format(
-        Provider.of<Repository>(context, listen: false)
-            .personals[widget.index]
+    dateTime = DateFormat("dd MM yyyy | HH:mm a")
+        .format(Provider.of<Repository>(context, listen: false)
+            // .personals[widget.index]
+            .recentModel!
             .dateTime!);
     reminders = Provider.of<Repository>(context, listen: false)
-            .personals[widget.index]
+            // .personals[widget.index]
+            .recentModel!
             .reminders ??
         [];
     setState(() {
       attachment = File(Provider.of<Repository>(context, listen: false)
-              .personals[widget.index]
+              // .personals[widget.index]
+              .recentModel!
               .image ??
           "");
     });

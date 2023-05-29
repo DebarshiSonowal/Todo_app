@@ -1,15 +1,23 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/helper/storage.dart';
 import 'package:vishal_todo_app/src/repository/repository.dart';
 import 'package:vishal_todo_app/src/services/Navigate.dart';
+import 'package:vishal_todo_app/src/services/notification_services.dart';
 import 'package:vishal_todo_app/src/services/routes.dart';
 import 'package:vishal_todo_app/src/theme/apptheme.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
+  NotificationService().initNotification();
   await Storage.instance.initializeStorage();
   runApp(const MyApp());
 }

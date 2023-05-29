@@ -14,10 +14,21 @@ class ReminderListItem {
     this.options,
   );
 
+
   ReminderListItem.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         time = json['time'],
-        timeDate = json['timeDate'],
+        timeDate = DateTime.parse(json['timeDate']??""),
         isEnabled = json['isEnabled'] ?? false,
-        options = json['options'];
+        options = TimerSelectionOptions.fromJson(json['options']);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'time': time,
+      'timeDate': timeDate?.toIso8601String()??"",
+      'isEnabled': isEnabled,
+      'options': options!.toJson(),
+    };
+  }
 }

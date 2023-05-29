@@ -43,7 +43,7 @@ class TimerSelectedPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TimeSelectorPageCard(index: index),
+              TimerSelectorPageCard(index: index),
             ],
           ),
         ),

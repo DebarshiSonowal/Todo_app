@@ -51,7 +51,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
                 attachment != null) {
               // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
               Provider.of<Repository>(context, listen: false)
-                  .addPersonal(DailyRoutineModel(
+                  .addRecentDailyReminder(DailyRoutineModel(
                 titleController.text,
                 DateFormat("hh:mm a").format(
                   DateTime(DateTime.now().year, DateTime.now().month,
@@ -70,10 +70,7 @@ class _PersonalEnterInfoPageState extends State<PersonalEnterInfoPage> {
               Future.delayed(const Duration(seconds: 1), () {
                 Navigation.instance.navigate(
                   Routes.personalTimeDateSelector,
-                  args: Provider.of<Repository>(context, listen: false)
-                          .personals
-                          .length -
-                      1,
+                  args: 1,
                   // index == 1 ? "Drink lemon water" : "Shower",
                 );
               });

@@ -32,7 +32,7 @@ class AddDailyRoutineNormal extends StatelessWidget {
         child: DailyRoutineAppBar(
           onTap: () {
             if (titleController.text.isNotEmpty &&
-                textController.text.isNotEmpty &&
+                // textController.text.isNotEmpty &&
                 attachment != null) {
               // debugPrint(DateFormat("hh:mm a").format(DateTime.now()));
               var item = DailyRoutineModel(
@@ -73,10 +73,7 @@ class AddDailyRoutineNormal extends StatelessWidget {
               Future.delayed(const Duration(seconds: 0), () {
                 Navigation.instance.navigate(
                   Routes.timeDatePicker,
-                  args: Provider.of<Repository>(context, listen: false)
-                          .models
-                          .length -
-                      1,
+                  args: 1,
                   // index == 1 ? "Drink lemon water" : "Shower",
                 );
               });

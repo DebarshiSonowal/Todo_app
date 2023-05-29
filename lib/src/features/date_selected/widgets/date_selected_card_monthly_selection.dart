@@ -7,10 +7,16 @@ import '../../../constants/constants.dart';
 
 class DateSelectedCardSelection extends StatelessWidget {
   const DateSelectedCardSelection(
-      {Key? key, required this.updateParent, required this.defaultTime})
+      {Key? key,
+      required this.updateParent,
+      required this.defaultTime,
+      required this.dates,
+      required this.refreshParent})
       : super(key: key);
   final Function(DateTime) updateParent;
   final DateTime defaultTime;
+  final List<DateTime> dates;
+  final Function refreshParent;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +26,19 @@ class DateSelectedCardSelection extends StatelessWidget {
       ),
       height: 40.h,
       child: MonthView(
+          onCellTap: (ev, date) {
+            if (isSelected(dates, date)) {
+              dates.remove(date);
+            } else {
+              dates.add(date);
+
+            }
+            refreshParent();
+          },
           cellAspectRatio: 2 / 2,
           onPageChange: (dateTime, index) {
             updateParent(dateTime);
+            refreshParent();
           },
           headerBuilder: (dateTime) {
             return Container(
@@ -34,7 +50,11 @@ class DateSelectedCardSelection extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset(Constances.arrow2Image,height: 10.sp,width: 10.sp,),
+                      Image.asset(
+                        Constances.arrow2Image,
+                        height: 10.sp,
+                        width: 10.sp,
+                      ),
                       Text(
                         DateFormat("MMM").format(dateTime),
                         style: Theme.of(context).textTheme.headline4?.copyWith(
@@ -43,7 +63,11 @@ class DateSelectedCardSelection extends StatelessWidget {
                               // fontWeight: FontWeight.bold,
                             ),
                       ),
-                      Image.asset(Constances.arrow1Image,height: 10.sp,width: 10.sp,),
+                      Image.asset(
+                        Constances.arrow1Image,
+                        height: 10.sp,
+                        width: 10.sp,
+                      ),
                     ],
                   ),
                   Padding(
@@ -63,9 +87,9 @@ class DateSelectedCardSelection extends StatelessWidget {
                 ? Container(
                     height: 2.h,
                     decoration: BoxDecoration(
-                      color: checkIfHoliday(dateTime)
+                      color: isSelected(dates,dateTime)?const Color(0xff3f4d99):(checkIfHoliday(dateTime)
                           ? Constances.calendarCellColor3
-                          : Constances.calendarCellColor4,
+                          : Constances.calendarCellColor4),
                       // border: Border.all(),
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       // shape: BoxShape.circle,
@@ -76,7 +100,7 @@ class DateSelectedCardSelection extends StatelessWidget {
                       child: Text(
                         "${dateTime.day}",
                         style: Theme.of(context).textTheme.headline5?.copyWith(
-                              color: Constances.cellTextColor,
+                              color:  isSelected(dates,dateTime)?Colors.white:Constances.cellTextColor,
                               fontFamily: "Rubik",
                               // fontWeight: FontWeight.bold,
                             ),
@@ -145,5 +169,12 @@ class DateSelectedCardSelection extends StatelessWidget {
       default:
         return false;
     }
+  }
+
+  bool isSelected(List<DateTime> dates, DateTime date) {
+    if (dates.contains(date)) {
+      return true;
+    }
+    return false;
   }
 }

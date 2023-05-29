@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/constants.dart';
+import '../../../services/notification_services.dart';
 import 'account_info_sheet.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
@@ -28,6 +29,7 @@ class CustomBottomAppBar extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 _showActionSheet(context);
+
               },
               child: SvgPicture.asset(
                 Constances.profileImage,

@@ -89,7 +89,8 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
             updateList: (string, dateTime) {
               if (type == 0) {
                 Provider.of<Repository>(context, listen: false)
-                    .addReminderListItem(
+                    // .addReminderListItem(
+                    .addReminderListItemRecent(
                   index,
                   ReminderListItem(
                     string,
@@ -109,7 +110,8 @@ class BulletNoteItemListNotEmpty extends StatelessWidget {
                 );
               } else {
                 Provider.of<Repository>(context, listen: false)
-                    .addReminderListItemPersonal(
+                    // .addReminderListItemPersonal(
+                    .addReminderListItemRecent(
                   index,
                   ReminderListItem(
                     string,

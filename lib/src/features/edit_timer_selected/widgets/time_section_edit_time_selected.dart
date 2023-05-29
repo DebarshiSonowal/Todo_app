@@ -27,7 +27,7 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
     required this.data,
     required this.updateParent,
     required this.num,
-    this.type,
+    this.type, required this.updateTimeSelection,
   });
 
   final int? type;
@@ -36,40 +36,65 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
   final Repository data;
   Time? timePicked;
   final Function updateParent;
+  final Function(int, int, DateTime) updateTimeSelection;
 
   void onTimeChanged(DateTime time, BuildContext context) {
     // timePicked = newTime;
     // alarmDateTime = timePicked!.toDateTime();
     // MaterialLocalizations.of(context).formatTimeOfDay(timePicked!);
+    updateTimeSelection(
+      index,
+      num,
+      DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        time.hour,
+        time.minute,
+        // timePicked!.second,
+      ),
+    );
     if (type == null) {
       debugPrint("${time.hour} ${time.minute}");
-      Provider.of<Repository>(context, listen: false).updateTimeSelection(
-        index,
-        num,
-        DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          time.hour,
-          time.minute,
-          // timePicked!.second,
-        ),
-      );
+      // Provider.of<Repository>(context, listen: false).updateTimeSelection(
+      //   index,
+      //   num,
+      //   DateTime(
+      //     DateTime.now().year,
+      //     DateTime.now().month,
+      //     DateTime.now().day,
+      //     time.hour,
+      //     time.minute,
+      //     // timePicked!.second,
+      //   ),
+      // );
+      // updateTimeSelection(
+      //   index,
+      //   num,
+      //   DateTime(
+      //     DateTime.now().year,
+      //     DateTime.now().month,
+      //     DateTime.now().day,
+      //     time.hour,
+      //     time.minute,
+      //     // timePicked!.second,
+      //   ),
+      // );
     } else {
       debugPrint("${time.hour} ${time.minute}");
-      Provider.of<Repository>(context, listen: false)
-          .updateTimeSelectionPersonal(
-        index,
-        num,
-        DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          time.hour,
-          time.minute,
-          // timePicked!.second,
-        ),
-      );
+      // Provider.of<Repository>(context, listen: false)
+      //     .updateTimeSelectionPersonal(
+      //   index,
+      //   num,
+      //   DateTime(
+      //     DateTime.now().year,
+      //     DateTime.now().month,
+      //     DateTime.now().day,
+      //     time.hour,
+      //     time.minute,
+      //     // timePicked!.second,
+      //   ),
+      // );
     }
     updateParent();
   }
@@ -271,7 +296,7 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
         hourTitle: 'Hour',
         minuteTitle: 'Minute',
         saveButtonText: 'Save',
-        minuteInterval: 5,
+        minuteInterval: 1,
         // maxHour: 12,
         // maxMinute: 60,
 
@@ -306,13 +331,14 @@ class TimerSectionEditTimeSelected extends StatelessWidget {
     );
     if (result != null) {
       if (!context.mounted) return;
-      debugPrint("picked: ${ result.hour} ${result.minute==0?00:result.minute}");
+      debugPrint(
+          "picked: ${result.hour} ${result.minute == 0 ? 00 : result.minute}");
       onTimeChanged(
           DateTime(
             DateTime.now().year,
             DateTime.now().month,
             DateTime.now().day,
-            result.hour, result.minute==0?00:result.minute,
+            result.hour, result.minute == 0 ? 00 : result.minute,
             // timePicked!.second,
           ),
           context);

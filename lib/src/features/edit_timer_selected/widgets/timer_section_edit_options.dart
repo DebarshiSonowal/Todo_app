@@ -24,13 +24,15 @@ class TimerSectionEditOptions extends StatefulWidget {
     required this.index1,
     required this.index2,
     this.type,
+    required this.saveData, required this.updateParent,
   });
 
   final int? type;
   final int index1, index2;
   final List<String> list;
   final TimerSelectionOptions options;
-
+  final Function(int index, int index2, int? type) saveData;
+  final Function updateParent;
   @override
   State<TimerSectionEditOptions> createState() =>
       _TimerSectionEditOptionsState();
@@ -67,10 +69,13 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {
-                      Navigation.instance.navigate(Routes.ringTonePicker,
+                    onTap: () async {
+                      final response = await Navigation.instance.navigate(Routes.ringTonePicker,
                           args:
-                              "${widget.type == null ? 1 : 2},${widget.index1},${widget.index2}");
+                          "${widget.type == null ? 1 : 2},${widget.index1},${widget.index2}");
+                      if(response==null){
+                        widget.updateParent();
+                      }
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,7 +151,7 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
             DoneButton(
               txt: "Save",
               onTap: () {
-                saveData(widget.index1, widget.index2, widget.type);
+                widget.saveData(widget.index1, widget.index2, widget.type);
                 // Navigation.instance.goBack();
               },
             ),
@@ -188,11 +193,11 @@ class _TimerSectionEditOptionsState extends State<TimerSectionEditOptions> {
     });
   }
 
-  void saveData(int index, int index2, int? type) {
-
-    Navigation.instance.goBack();
-  }
-  void goBack(int index, int index2, int? type){
+  // void saveData(int index, int index2, int? type) {
+  //
+  //   Navigation.instance.goBack();
+  // }
+  void goBack(int index, int index2, int? type) {
     if (type == null) {
       Provider.of<Repository>(context, listen: false).updateTimerOptions(
         TimerSelectionOptions(

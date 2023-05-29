@@ -50,12 +50,15 @@ class EditDailyRoutineNormalCard extends StatefulWidget {
 
 class _EditDailyRoutineNormalCardState
     extends State<EditDailyRoutineNormalCard> {
+
+
+
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   final ImagePicker picker = ImagePicker();
   late FocusNode _focusNode;
   List<int> _lineIndices = [];
   int? _previousFocusLineIndex;
-
+  List<String> _lines = [];
   @override
   void initState() {
     super.initState();
@@ -63,12 +66,10 @@ class _EditDailyRoutineNormalCardState
     _focusNode = FocusNode();
     widget.titleController.text =
         Provider.of<Repository>(context, listen: false)
-                .models[widget.index]
-                .title ??
+                .recentModel?.title ??
             "";
     widget.textController.text = Provider.of<Repository>(context, listen: false)
-            .models[widget.index]
-            .text ??
+        .recentModel?.text ??
         "";
     widget.textController.addListener(_handleTextChange1);
   }
@@ -152,69 +153,69 @@ class _EditDailyRoutineNormalCardState
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     width: double.infinity,
-                    child: TextFormField(
-                      autofocus: false,
-                      // focusNode: widget.focusNode??null,
-                      // maxLines: 1,
-                      controller: widget.textController,
-                      focusNode: _focusNode,
-                      onChanged: _handleTextChange,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      textInputAction: TextInputAction.newline,
-                      inputFormatters: [
-                        // BulletFormatter(),
-                      ],
-                      // onEditingComplete: () {
-                      //   // debugPrint("onEditingComplete1");
-                      //   if (textEditingController.text.isEmpty) {
-                      //     widget.remove();
-                      //   }
-                      // },
-                      // onFieldSubmitted: (val) {
-                      //   if (val.isNotEmpty) {
-                      //     setState(() {
-                      //       txt = val;
-                      //     });
-                      //     widget.updateList(
-                      //         val,
-                      //         timePicked == null
-                      //             ? widget.item.timeDate!
-                      //             : timePicked!.toDateTime());
-                      //   } else {
-                      //     widget.remove();
-                      //   }
-                      // },
-                      // minLines: 1,
-                      // initialValue: "${widget.item.title}",
-                      cursorColor: Colors.white,
-                      decoration: InputDecoration.collapsed(
-                        hintText: '',
-                        hintStyle:
-                            Theme.of(context).textTheme.headline4?.copyWith(
-                                  fontSize: 12.sp,
-                                  color: Colors.white60,
-                                  // fontWeight: FontWeight.bold,
-                                  fontFamily: "Roboto",
-                                ),
-                      ),
-                      style: Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 12.sp,
-                            color: Colors.white,
-                            fontFamily: "Roboto",
-                          ),
-                    ),
-                    // child: current.reminders.isNotEmpty
-                    //     ? BulletNoteItemListNotEmpty(
-                    //         current: current,
-                    //         index: index,
-                    //         type: 0,
-                    //       )
-                    //     : BulletNoteItemListEmpty(
-                    //         reminders: reminders,
-                    //         count: index,
-                    //         type: 0,
+                    // child: TextFormField(
+                    //   autofocus: false,
+                    //   // focusNode: widget.focusNode??null,
+                    //   // maxLines: 1,
+                    //   controller: widget.textController,
+                    //   focusNode: _focusNode,
+                    //   onChanged: _handleTextChange,
+                    //   keyboardType: TextInputType.multiline,
+                    //   maxLines: null,
+                    //   // textInputAction: TextInputAction.newline,
+                    //   // inputFormatters: [
+                    //   //   // BulletFormatter(),
+                    //   // ],
+                    //   // onEditingComplete: () {
+                    //   //   // debugPrint("onEditingComplete1");
+                    //   //   if (textEditingController.text.isEmpty) {
+                    //   //     widget.remove();
+                    //   //   }
+                    //   // },
+                    //   // onFieldSubmitted: (val) {
+                    //   //   if (val.isNotEmpty) {
+                    //   //     setState(() {
+                    //   //       txt = val;
+                    //   //     });
+                    //   //     widget.updateList(
+                    //   //         val,
+                    //   //         timePicked == null
+                    //   //             ? widget.item.timeDate!
+                    //   //             : timePicked!.toDateTime());
+                    //   //   } else {
+                    //   //     widget.remove();
+                    //   //   }
+                    //   // },
+                    //   // minLines: 1,
+                    //   // initialValue: "${widget.item.title}",
+                    //   cursorColor: Colors.white,
+                    //   decoration: InputDecoration.collapsed(
+                    //     hintText: '',
+                    //     hintStyle:
+                    //         Theme.of(context).textTheme.headline4?.copyWith(
+                    //               fontSize: 12.sp,
+                    //               color: Colors.white60,
+                    //               // fontWeight: FontWeight.bold,
+                    //               fontFamily: "Roboto",
+                    //             ),
+                    //   ),
+                    //   style: Theme.of(context).textTheme.headline4?.copyWith(
+                    //         fontSize: 12.sp,
+                    //         color: Colors.white,
+                    //         fontFamily: "Roboto",
                     //       ),
+                    // ),
+                    child: data.recentModel!.reminders.isNotEmpty
+                        ? BulletNoteItemListNotEmpty(
+                            current: data.recentModel!,
+                            index: widget.index,
+                            type: 0,
+                          )
+                        : BulletNoteItemListEmpty(
+                            reminders: data.recentModel!.reminders,
+                            count: widget.index,
+                            type: 0,
+                          ),
                   ),
                   SizedBox(
                     height: 2.h,
@@ -223,7 +224,7 @@ class _EditDailyRoutineNormalCardState
                     onTap: () {
                       showPhotoBottomSheet(getSelectedImage);
                     },
-                    child: data.models[widget.index].image == null
+                    child: data.recentModel?.image == null
                         ? (widget.attachment == null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
@@ -242,15 +243,15 @@ class _EditDailyRoutineNormalCardState
                                         File(widget.attachment?.path ?? ""))
                                     .image,
                               ))
-                        : (data.models[widget.index].type == 1
+                        : (data.recentModel?.type == 1
                             ? CircleAvatar(
                                 backgroundColor: Colors.transparent,
                                 radius: 30.sp, // Image radius
                                 backgroundImage: (Image.file(
-                                  File(data.models[widget.index].image!),
+                                  File(data.recentModel!.image!),
                                   errorBuilder: (error, str, _) {
                                     return Image.asset(
-                                      data.models[widget.index].image!,
+                                      data.recentModel!.image!,
                                     );
                                   },
                                 )).image,
@@ -261,10 +262,10 @@ class _EditDailyRoutineNormalCardState
                                     border: Border.all(
                                         color: const Color(0xff50555C))),
                                 child: Image.asset(
-                                  data.models[widget.index].image!,
+                                  data.recentModel!.image!,
                                   errorBuilder: (error, str, _) {
                                     return Image.asset(
-                                      data.models[widget.index].image!,
+                                      data.recentModel!.image!,
                                     );
                                   },
                                 ),
@@ -291,102 +292,75 @@ class _EditDailyRoutineNormalCardState
     });
   }
 
-  void _handleTextChange(String s) {
-    final newText =  widget.textController.text;
-    final lines = newText.split('\n');
-    final formattedLines = lines.asMap().entries.map((entry) {
-      final index = entry.key + 1;
-      final line = entry.value;
-      final trimmedLine = line.trim();
-      if (trimmedLine.isNotEmpty && trimmedLine.startsWith('$index.')) {
-        _lineIndices.add(index);
-        return line;
-      }
-      final bulletPoint = '$index. ';
-      _lineIndices.add(index);
-      return bulletPoint + line;
-    }).join('\n');
-
-    final cursorPosition =  widget.textController.selection;
-    final cursorOffset = cursorPosition.extentOffset;
-    final newCursorPosition = TextSelection.fromPosition(TextPosition(offset: cursorOffset));
-
-    final currentLineIndex = _getCurrentLineIndex(cursorOffset);
-    if (_previousFocusLineIndex != null && currentLineIndex == _previousFocusLineIndex) {
-      // Update text with formatted lines and maintain cursor position
-       widget.textController.updateText(formattedLines);
-      _updateCursorPosition(newCursorPosition);
-    } else {
-      // Update text with formatted lines and move cursor to previous focused line
-       widget.textController.updateText(formattedLines);
-      if (_previousFocusLineIndex != null) {
-        _moveCursorToLine(_previousFocusLineIndex!);
-      }
-      _previousFocusLineIndex = currentLineIndex; // Update previous focus line index
-    }
-  }
   void _handleTextChange1() {
-    final newText =  widget.textController.text;
-    final lines = newText.split('\n');
-    final formattedLines = lines.asMap().entries.map((entry) {
-      final index = entry.key + 1;
-      final line = entry.value;
+    final newText = widget.textController.text;
+    final newLines = newText.split('\n');
+    final formattedLines = <String>[];
+
+    for (int i = 0; i < newLines.length; i++) {
+      final line = newLines[i];
       final trimmedLine = line.trim();
-      if (trimmedLine.isNotEmpty && trimmedLine.startsWith('$index.')) {
-        _lineIndices.add(index);
-        return line;
-      }
-      final bulletPoint = '$index. ';
-      _lineIndices.add(index);
-      return bulletPoint + line;
-    }).join('\n');
+      final lineIndex = i + 1;
 
-    final cursorPosition =  widget.textController.selection;
-    final cursorOffset = cursorPosition.extentOffset;
-    final newCursorPosition = TextSelection.fromPosition(TextPosition(offset: cursorOffset));
-
-    final currentLineIndex = _getCurrentLineIndex(cursorOffset);
-    if (_previousFocusLineIndex != null && currentLineIndex == _previousFocusLineIndex) {
-      // Update text with formatted lines and maintain cursor position
-       widget.textController.updateText(formattedLines);
-      _updateCursorPosition(newCursorPosition);
-    } else {
-      // Update text with formatted lines and move cursor to previous focused line
-       widget.textController.updateText(formattedLines);
-      if (_previousFocusLineIndex != null) {
-        _moveCursorToLine(_previousFocusLineIndex!);
+      if (trimmedLine.isNotEmpty || i == newLines.length - 1) {
+        final bulletPoint = '• ';
+        formattedLines.add(bulletPoint + line);
+      } else {
+        formattedLines.add(line);
       }
-      _previousFocusLineIndex = currentLineIndex; // Update previous focus line index
     }
+
+    final formattedText = formattedLines.join('\n');
+
+    // Remove the listener temporarily to avoid triggering infinite loop
+    widget.textController.removeListener(_handleTextChange1);
+
+    // Update the text without triggering the listener
+    widget.textController.value = widget.textController.value.copyWith(
+      text: formattedText,
+      selection: TextSelection.collapsed(offset: formattedText.length),
+    );
+
+    // Add the listener back after updating the text
+    widget.textController.addListener(_handleTextChange1);
   }
 
-  int _getCurrentLineIndex(int cursorOffset) {
-    final text =  widget.textController.text;
-    final textBeforeCursor = text.substring(0, cursorOffset);
-    final lines = textBeforeCursor.split('\n');
-    final currentLineIndex = lines.length;
-    return currentLineIndex;
-  }
+  void _handleTextChange(String s) {
+    final newText = widget.textController.text;
+    final newLines = newText.split('\n');
+    final formattedLines = <String>[];
 
-  void _moveCursorToLine(int lineIndex) {
-    final text =  widget.textController.text;
-    final lines = text.split('\n');
-    if (lineIndex >= 0 && lineIndex < lines.length) {
-      final lineStart = lines.sublist(0, lineIndex).join('\n').length + lineIndex;
-      final lineEnd = lineStart + lines[lineIndex].length;
+    for (int i = 0; i < newLines.length; i++) {
+      final line = newLines[i];
+      final trimmedLine = line.trim();
+      final lineIndex = i + 1;
 
-      final newCursorPosition = TextSelection.collapsed(offset: lineEnd);
-      _updateCursorPosition(newCursorPosition);
-    }
-  }
-
-  void _updateCursorPosition(TextSelection newCursorPosition) {
-    Future.delayed(Duration.zero, () {
-      if (mounted) {
-         widget.textController.selection = newCursorPosition;
+      if (trimmedLine.isNotEmpty || i == newLines.length - 1) {
+        final bulletPoint = '• ';
+        formattedLines.add(bulletPoint + line);
+      } else {
+        formattedLines.add(line);
       }
-    });
+    }
+
+    final formattedText = formattedLines.join('\n');
+
+    // Remove the listener temporarily to avoid triggering infinite loop
+    widget.textController.removeListener(_handleTextChange1);
+
+    // Update the text without triggering the listener
+    widget.textController.value = widget.textController.value.copyWith(
+      text: formattedText,
+      selection: TextSelection.collapsed(offset: formattedText.length),
+    );
+
+    // Add the listener back after updating the text
+    widget.textController.addListener(_handleTextChange1);
   }
+
+
+
+
   void showPhotoBottomSheet(Function(int) getImage) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,

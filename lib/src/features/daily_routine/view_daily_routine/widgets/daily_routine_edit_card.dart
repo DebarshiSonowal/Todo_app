@@ -36,7 +36,8 @@ class DailyRoutineEditCard extends StatelessWidget {
             // An action can be bigger than the others.
             flex: 1,
             onPressed: (context) {
-              Provider.of<Repository>(context,listen: false).removeDailyReminder(index);
+              Provider.of<Repository>(context, listen: false)
+                  .removeDailyReminder(index);
               Fluttertoast.showToast(msg: "Removed Successfully");
             },
             backgroundColor: Colors.red,
@@ -85,11 +86,12 @@ class DailyRoutineEditCard extends StatelessWidget {
                       : Text(
                           DateFormat("|hh:mm a")
                               .format(item.dateTime ?? DateTime.now()),
-                          style: Theme.of(context).textTheme.headline4?.copyWith(
-                                fontSize: 10.sp,
-                                color: Colors.white70,
-                                // fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    fontSize: 10.sp,
+                                    color: Colors.white70,
+                                    // fontWeight: FontWeight.bold,
+                                  ),
                         ),
                   // const Spacer(),
                   SizedBox(
@@ -130,22 +132,24 @@ class DailyRoutineEditCard extends StatelessWidget {
                         flex: 3,
                         child: Text(
                           current.title ?? "",
-                          style: Theme.of(context).textTheme.headline4?.copyWith(
-                                fontSize: 10.sp,
-                                color: Colors.white70,
-                                fontFamily: "Roboto",
-                              ),
+                          style:
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    fontSize: 10.sp,
+                                    color: Colors.white70,
+                                    fontFamily: "Roboto",
+                                  ),
                         ),
                       ),
                       Expanded(
                         child: Text(
                           "| ${DateFormat("hh:mm a").format(current.timeDate!)}",
-                          style: Theme.of(context).textTheme.headline4?.copyWith(
-                                fontSize: 10.sp,
-                                color: Colors.white70,
-                                fontFamily: "Roboto",
-                                // fo ntWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.headline4?.copyWith(
+                                    fontSize: 10.sp,
+                                    color: Colors.white70,
+                                    fontFamily: "Roboto",
+                                    // fo ntWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ],
@@ -172,8 +176,20 @@ class DailyRoutineEditCard extends StatelessWidget {
                   ),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
+                    debugPrint(item.weekDays.toString());
                     return DateViewerDaily(
                       index: index,
+                      isIncludedWeekday: item.weekDays.contains(index - 1),
+                      isMonthly: item.monthly.where((element) {
+                        if (element.year == DateTime.now().year &&
+                            element.month == DateTime.now().month &&
+                            element.day == DateTime.now().day) {
+                          return true;
+                        }
+                        return false;
+                      }).isNotEmpty
+                          ? true
+                          : false,
                     );
                   },
                   separatorBuilder: (context, index) {

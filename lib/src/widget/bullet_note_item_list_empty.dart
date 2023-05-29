@@ -128,7 +128,8 @@ class BulletNoteItemListEmpty extends StatelessWidget {
               // });
               if (type == 0) {
                 Provider.of<Repository>(context, listen: false)
-                    .addReminderListItem(
+                    // .addReminderListItem(
+                    .addReminderListItemRecent(
                   count,
                   ReminderListItem(
                     string,
@@ -147,7 +148,8 @@ class BulletNoteItemListEmpty extends StatelessWidget {
                 );
               } else {
                 Provider.of<Repository>(context, listen: false)
-                    .addReminderListItemPersonal(
+                    // .addReminderListItemPersonal(
+                    .addReminderListItemRecent(
                   count,
                   ReminderListItem(
                     string,

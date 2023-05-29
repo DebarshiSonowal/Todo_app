@@ -84,32 +84,32 @@ class TimeDateRoutineNormalCard extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     width: double.infinity,
-                    child: Text(
-                      data.recentModel?.text??"",
-                      style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 12.sp,
-                      color: Colors.white,
-                      fontFamily: "Roboto",
-                    ),),
-                    // child: ListView.separated(
-                    //   itemBuilder: (context, position) {
-                    //     var item = data.models[index].reminders[position];
-                    //     return  Text(
-                    //       "${position + 1}. ${item.title}",
-                    //       style: Theme.of(context).textTheme.headline4?.copyWith(
-                    //         fontSize: 12.sp,
-                    //         color: Colors.white,
-                    //         fontFamily: "Roboto",
-                    //       ),
-                    //     );
-                    //   },
-                    //   separatorBuilder: (context, index) {
-                    //     return SizedBox(
-                    //       height: 0.5.h,
-                    //     );
-                    //   },
-                    //   itemCount: data.models[index].reminders.length,
-                    // ),
+                    // child: Text(
+                    //   data.recentModel?.text??"",
+                    //   style: Theme.of(context).textTheme.headline4?.copyWith(
+                    //   fontSize: 12.sp,
+                    //   color: Colors.white,
+                    //   fontFamily: "Roboto",
+                    // ),),
+                    child: ListView.separated(
+                      itemBuilder: (context, position) {
+                        var item = data.recentModel!.reminders[position];
+                        return  Text(
+                          "${position + 1}. ${item.title}",
+                          style: Theme.of(context).textTheme.headline4?.copyWith(
+                            fontSize: 12.sp,
+                            color: Colors.white,
+                            fontFamily: "Roboto",
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          height: 0.5.h,
+                        );
+                      },
+                      itemCount: data.recentModel!.reminders.length,
+                    ),
                   ),
                   SizedBox(
                     height: 2.h,

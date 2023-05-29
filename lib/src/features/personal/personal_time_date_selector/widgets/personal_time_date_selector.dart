@@ -51,7 +51,7 @@ class _PersonalTimeDateSelectorState extends State<PersonalTimeDateSelector> {
         preferredSize: Size.fromHeight(9.h),
         child: EditDailyRoutineAppBar(
           isDone: true,
-          index: widget.index,
+          index: 1,
         ),
       ),
       body: Container(

@@ -20,6 +20,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +86,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       bottomNavigationBar: const CustomBottomAppBar(),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  void fetchData() {
+    Provider.of<Repository>(context,listen: false).fetchData();
   }
 }
 

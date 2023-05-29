@@ -26,10 +26,12 @@ class AddEssentialPage extends StatefulWidget {
 
 class _AddEssentialPageState extends State<AddEssentialPage> {
   EssentialNotes item = EssentialNotes([], "");
+
   // List<String> bulletPoints = [];
   late FocusNode _focusNode;
   int? _editingIndex;
   List<FocusNode> _focusNodes = [];
+
   @override
   void initState() {
     super.initState();
@@ -59,12 +61,11 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
   void _addBulletPoint(String text) {
     setState(() {
       // bulletPoints.add(text);
-                  item.notes.add(EssentialNote(
-                    text,
-                    false,
-                  ));
-                  item.date = DateFormat("dd MMM yyyy")
-                      .format(DateTime.now());
+      item.notes.add(EssentialNote(
+        text,
+        false,
+      ));
+      item.date = DateFormat("dd MMM yyyy").format(DateTime.now());
       // _editingIndex = bulletPoints.length - 1;
       _editingIndex = item.notes.length - 1;
     });
@@ -92,10 +93,12 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
 
     _focusNodes[index].requestFocus();
   }
+
   BuildContext? _getItemBuildContext(int index) {
     final key = GlobalKey();
     return key.currentContext;
   }
+
   void _saveBulletPoint(int index, String text) {
     setState(() {
       if (text.isNotEmpty) {
@@ -154,17 +157,50 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   width: double.infinity,
-                  child: ListView.builder(
-
+                  child: ListView.separated(
                     itemCount: item.notes.length + 1,
                     itemBuilder: (context, index) {
                       // final focusNode = _focusNodes[index];
                       if (index == item.notes.length) {
-                        return ListTile(
-                          title: Row(
-                            children: [
-                              Text(
-                                "${index + 1}. ",
+                        return Row(
+                          children: [
+                            Text(
+                              "${index + 1}. ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4
+                                  ?.copyWith(
+                                    fontSize: 12.sp,
+                                    color: Colors.black,
+                                    fontFamily: "Roboto",
+                                  ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: TextField(
+                                maxLines: 1,
+                                focusNode: _focusNode,
+                                onSubmitted: (text) {
+                                  // _saveBulletPoint(index, text);
+                                  if (text.isNotEmpty) {
+                                    _addBulletPoint(text);
+                                  }
+                                  // _focusNode.requestFocus();
+                                },
+                                minLines: 1,
+                                // initialValue: "${item.title}",
+                                decoration: InputDecoration.collapsed(
+                                  hintText: index == 0 ? 'Necessary Item' : '',
+                                  hintStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      ?.copyWith(
+                                        fontSize: 12.sp,
+                                        color: Colors.black54,
+                                        // fontWeight: FontWeight.bold,
+                                        fontFamily: "Roboto",
+                                      ),
+                                ),
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline4
@@ -174,51 +210,67 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                                       fontFamily: "Roboto",
                                     ),
                               ),
-                              Expanded(
-                                flex: 3,
-                                child: TextField(
-                                  maxLines: 1,
-                                  focusNode: _focusNode,
-                                  onSubmitted: (text) {
-                                    // _saveBulletPoint(index, text);
-                                    if (text.isNotEmpty) {
-                                      _addBulletPoint(text);
-                                    }
-                                    // _focusNode.requestFocus();
-                                  },
-                                  minLines: 1,
-                                  // initialValue: "${item.title}",
-                                  decoration: InputDecoration.collapsed(
-                                    hintText:
-                                        index == 0 ? 'Necessary Item' : '',
-                                    hintStyle: Theme.of(context)
+                            ),
+                          ],
+                        );
+                      } else {
+                        return _editingIndex == index
+                            ? Row(
+                                children: [
+                                  Text(
+                                    "${index + 1}. ",
+                                    style: Theme.of(context)
                                         .textTheme
                                         .headline4
                                         ?.copyWith(
                                           fontSize: 12.sp,
-                                          color: Colors.black54,
-                                          // fontWeight: FontWeight.bold,
+                                          color: Colors.black,
                                           fontFamily: "Roboto",
                                         ),
                                   ),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4
-                                      ?.copyWith(
-                                        fontSize: 12.sp,
-                                        color: Colors.black,
-                                        fontFamily: "Roboto",
+                                  Expanded(
+                                    flex: 3,
+                                    child: TextField(
+                                      maxLines: 1,
+                                      focusNode: _focusNode,
+                                      autofocus: true,
+                                      controller: TextEditingController(
+                                          text: item.notes[index].title),
+                                      onSubmitted: (text) {
+                                        _saveBulletPoint(index, text);
+                                      },
+                                      minLines: 1,
+                                      // initialValue: "${item.title}",
+                                      decoration: InputDecoration.collapsed(
+                                        hintText:
+                                            index == 0 ? 'Necessary Item' : '',
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline4
+                                            ?.copyWith(
+                                              fontSize: 12.sp,
+                                              color: Colors.black54,
+                                              // fontWeight: FontWeight.bold,
+                                              fontFamily: "Roboto",
+                                            ),
                                       ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        return ListTile(
-                          // leading: Text('\u2022'),
-                          title: _editingIndex == index
-                              ? Row(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          ?.copyWith(
+                                            fontSize: 12.sp,
+                                            color: Colors.black,
+                                            fontFamily: "Roboto",
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  _editBulletPoint(index);
+                                },
+                                child: Row(
                                   children: [
                                     Text(
                                       "${index + 1}. ",
@@ -231,78 +283,26 @@ class _AddEssentialPageState extends State<AddEssentialPage> {
                                             fontFamily: "Roboto",
                                           ),
                                     ),
-                                    Expanded(
-                                      flex: 3,
-                                      child: TextField(
-                                        maxLines: 1,
-                                        focusNode: _focusNode,
-                                        autofocus: true,
-                                        controller: TextEditingController(
-                                            text: item.notes[index].title),
-                                        onSubmitted: (text) {
-                                          _saveBulletPoint(index, text);
-                                        },
-                                        minLines: 1,
-                                        // initialValue: "${item.title}",
-                                        decoration: InputDecoration.collapsed(
-                                          hintText: index == 0
-                                              ? 'Necessary Item'
-                                              : '',
-                                          hintStyle: Theme.of(context)
-                                              .textTheme
-                                              .headline4
-                                              ?.copyWith(
-                                                fontSize: 12.sp,
-                                                color: Colors.black54,
-                                                // fontWeight: FontWeight.bold,
-                                                fontFamily: "Roboto",
-                                              ),
-                                        ),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            ?.copyWith(
-                                              fontSize: 12.sp,
-                                              color: Colors.black,
-                                              fontFamily: "Roboto",
-                                            ),
-                                      ),
+                                    Text(
+                                      item.notes[index].title ?? "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          ?.copyWith(
+                                            fontSize: 12.sp,
+                                            color: Colors.black,
+                                            fontFamily: "Roboto",
+                                          ),
                                     ),
                                   ],
-                                )
-                              : GestureDetector(
-                                  onTap: () {
-                                    _editBulletPoint(index);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "${index + 1}. ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            ?.copyWith(
-                                              fontSize: 12.sp,
-                                              color: Colors.black,
-                                              fontFamily: "Roboto",
-                                            ),
-                                      ),
-                                      Text(
-                                        item.notes[index].title??"",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            ?.copyWith(
-                                              fontSize: 12.sp,
-                                              color: Colors.black,
-                                              fontFamily: "Roboto",
-                                            ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
-                        );
+                              );
                       }
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 1.h,
+                      );
                     },
                   )
 

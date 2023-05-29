@@ -34,11 +34,22 @@ class _EditDailyRoutineState extends State<EditDailyRoutine> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 0), () {
+      try {
+        Provider.of<Repository>(context,listen: false).setRecent(Provider.of<Repository>(context, listen: false)
+                  .models[widget.index]);
+      } catch (e) {
+        print(e);
+      }
+
+
       setState(() => widget.titleController.text =
-          Provider.of<Repository>(context, listen: false)
-                  .models[widget.index]
-                  .title ??
+          // Provider.of<Repository>(context, listen: false)
+          //         .models[widget.index]
+          //         .title ??
+              Provider.of<Repository>(context, listen: false)
+                  .recentModel
+                  ?.title ??
               "");
     });
   }
@@ -59,7 +70,7 @@ class _EditDailyRoutineState extends State<EditDailyRoutine> {
             Navigation.instance.navigate(
               Routes.timeDatePicker,
               // args: "Shower time"
-              args: widget.index,
+              args: 2,
             );
           },
         ),

@@ -33,16 +33,16 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
   // final descController = TextEditingController();
   List<ReminderListItem> reminders = [];
   bool _isStackedItemVisible = true;
-  double _designatedHeight = 400.0; // Height at which the transition should stop
+  double _designatedHeight =
+      400.0; // Height at which the transition should stop
 
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 100), () {
-      titleController.text = Provider.of<Repository>(context, listen: false)
-              .models[widget.index]
-              .title ??
-          "";
+      titleController.text =
+          Provider.of<Repository>(context, listen: false).recentModel?.title ??
+              "";
     });
     Future.delayed(const Duration(seconds: 0), () {
       FocusManager.instance.primaryFocus!.unfocus();
@@ -58,7 +58,7 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
       resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(9.h),
-        child: EditDailyRoutineAppBar(
+        child: TimeDateSelectorDailyRoutineAppBar(
           isDone: true,
           index: widget.index,
         ),
@@ -92,10 +92,12 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
             AnimatedPositioned(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeIn,
-              bottom: _isStackedItemVisible ? -100 : MediaQuery.of(context).size.height -870,
+              bottom: _isStackedItemVisible
+                  ? -100
+                  : MediaQuery.of(context).size.height - 870,
               left: 0.0,
               right: 0.0,
-              height: 25.h,
+              height: 30.h,
               child: StackedCardTimeDate(
                 index: widget.index,
               ),

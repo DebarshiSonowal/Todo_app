@@ -143,67 +143,67 @@ class _AddDailyRoutineNormalCardState extends State<AddDailyRoutineNormalCard> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   width: double.infinity,
-                  child: TextFormField(
-                    autofocus: false,
-                    // focusNode: widget.focusNode??null,
-                    // maxLines: 1,
-                    controller: widget.textController,
-                    focusNode: _focusNode,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    textInputAction: TextInputAction.newline,
-                    inputFormatters: [
-                      BulletFormatter2(),
-                    ],
-                    // onEditingComplete: () {
-                    //   // debugPrint("onEditingComplete1");
-                    //   if (textEditingController.text.isEmpty) {
-                    //     widget.remove();
-                    //   }
-                    // },
-                    // onFieldSubmitted: (val) {
-                    //   if (val.isNotEmpty) {
-                    //     setState(() {
-                    //       txt = val;
-                    //     });
-                    //     widget.updateList(
-                    //         val,
-                    //         timePicked == null
-                    //             ? widget.item.timeDate!
-                    //             : timePicked!.toDateTime());
-                    //   } else {
-                    //     widget.remove();
-                    //   }
-                    // },
-                    // minLines: 1,
-                    // initialValue: "${widget.item.title}",
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration.collapsed(
-                      hintText: '',
-                      hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
-                        fontSize: 12.sp,
-                        color: Colors.white60,
-                        // fontWeight: FontWeight.bold,
-                        fontFamily: "Roboto",
-                      ),
-                    ),
-                    style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontSize: 12.sp,
-                      color: Colors.white,
-                      fontFamily: "Roboto",
-                    ),
-                  ),
-                  // child: AddBulletNoteItemListEmpty(
-                  //   reminders: widget.reminders,
-                  //   onTap: (val) {
-                  //     setState(() {});
+                  // child: TextFormField(
+                  //   autofocus: false,
+                  //   // focusNode: widget.focusNode??null,
+                  //   maxLines: 1,
+                  //   controller: widget.textController,
+                  //   focusNode: _focusNode,
+                  //   keyboardType: TextInputType.multiline,
+                  //   // maxLines: null,
+                  //   // textInputAction: TextInputAction.newline,
+                  //   // inputFormatters: [
+                  //   //   BulletFormatter2(),
+                  //   // ],
+                  //   onEditingComplete: () {
+                  //     // debugPrint("onEditingComplete1");
+                  //     if (textEditingController.text.isEmpty) {
+                  //       widget.remove();
+                  //     }
                   //   },
-                  //   remove: (index) {
-                  //     // Provider.of<Repository>(context, listen: false)
-                  //     //     .removeDailyReminder(index);
-                  //     setState(() {});
+                  //   onFieldSubmitted: (val) {
+                  //     if (val.isNotEmpty) {
+                  //       setState(() {
+                  //         txt = val;
+                  //       });
+                  //       widget.updateList(
+                  //           val,
+                  //           timePicked == null
+                  //               ? widget.item.timeDate!
+                  //               : timePicked!.toDateTime());
+                  //     } else {
+                  //       widget.remove();
+                  //     }
                   //   },
+                  //   minLines: 1,
+                  //   initialValue: "${widget.item.title}",
+                  //   cursorColor: Colors.white,
+                  //   decoration: InputDecoration.collapsed(
+                  //     hintText: '',
+                  //     hintStyle: Theme.of(context).textTheme.headline4?.copyWith(
+                  //       fontSize: 12.sp,
+                  //       color: Colors.white60,
+                  //       // fontWeight: FontWeight.bold,
+                  //       fontFamily: "Roboto",
+                  //     ),
+                  //   ),
+                  //   style: Theme.of(context).textTheme.headline4?.copyWith(
+                  //     fontSize: 12.sp,
+                  //     color: Colors.white,
+                  //     fontFamily: "Roboto",
+                  //   ),
                   // ),
+                  child: AddBulletNoteItemListEmpty(
+                    reminders: widget.reminders,
+                    onTap: (val) {
+                      setState(() {});
+                    },
+                    remove: (index) {
+                      // Provider.of<Repository>(context, listen: false)
+                      //     .removeDailyReminder(index);
+                      setState(() {});
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 2.h,

@@ -25,6 +25,7 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
       ),
       child: Container(
         width: 100.w,
+        // height: 25.h,
         decoration: const BoxDecoration(
           gradient: Constances.gradient,
           borderRadius: BorderRadius.only(
@@ -66,11 +67,11 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
                     Text(
                       'Timer',
                       style: Theme.of(context).textTheme.headline4?.copyWith(
-                            fontSize: 11.2.sp,
-                            color: Colors.black,
-                            fontFamily: "PublicSans",
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontSize: 11.2.sp,
+                        color: Colors.black,
+                        fontFamily: "PublicSans",
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -117,6 +118,87 @@ class PersonalStackedCardTimeDate extends StatelessWidget {
             )
           ],
         ),
+        // child: Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     GestureDetector(
+        //       onTap: () {
+        //         Navigation.instance
+        //             .navigate(Routes.personalTimePicker, args: index);
+        //       },
+        //       child: Container(
+        //         decoration: const BoxDecoration(
+        //           color: Colors.white,
+        //           borderRadius: BorderRadius.all(
+        //             Radius.circular(10.0),
+        //           ),
+        //         ),
+        //         padding: EdgeInsets.symmetric(
+        //           horizontal: 10.w,
+        //           vertical: 1.h,
+        //         ),
+        //         child: Column(
+        //           mainAxisSize: MainAxisSize.min,
+        //           children: [
+        //             SvgPicture.asset(
+        //               Constances.alarmIcon,
+        //               fit: BoxFit.fill,
+        //               width: 9.w,
+        //             ),
+        //             Text(
+        //               'Timer',
+        //               style: Theme.of(context).textTheme.headline4?.copyWith(
+        //                     fontSize: 11.2.sp,
+        //                     color: Colors.black,
+        //                     fontFamily: "PublicSans",
+        //                     fontWeight: FontWeight.bold,
+        //                   ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     ),
+        //     GestureDetector(
+        //       onTap: () {
+        //         Navigation.instance.navigate(Routes.datePicker, args: index);
+        //       },
+        //       child: Container(
+        //         decoration: const BoxDecoration(
+        //           color: Colors.white,
+        //           borderRadius: BorderRadius.all(
+        //             Radius.circular(10.0),
+        //           ),
+        //         ),
+        //         padding: EdgeInsets.symmetric(
+        //           horizontal: 11.w,
+        //           vertical: 1.2.h,
+        //         ),
+        //         child: Column(
+        //           mainAxisSize: MainAxisSize.min,
+        //           children: [
+        //             Image.asset(
+        //               Constances.calendarImage,
+        //               fit: BoxFit.fill,
+        //               width: 7.6.w,
+        //             ),
+        //             SizedBox(
+        //               height: 0.4.h,
+        //             ),
+        //             Text(
+        //               'Daily',
+        //               style: Theme.of(context).textTheme.headline4?.copyWith(
+        //                 fontSize: 11.2.sp,
+        //                 color: Colors.black,
+        //                 fontFamily: "PublicSans",
+        //                 fontWeight: FontWeight.bold,
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     )
+        //   ],
+        // ),
       ),
     );
   }

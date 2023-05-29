@@ -104,6 +104,8 @@ class AddCardPersonalPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return PersonalDateViewerDaily(
                       index: index,
+                      isIncludedWeekday: false,
+                      isMonthly: false,
                     );
                   },
                   separatorBuilder: (context, index) {

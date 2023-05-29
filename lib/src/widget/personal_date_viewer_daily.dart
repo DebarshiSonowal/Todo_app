@@ -7,10 +7,16 @@ import '../models/reminder_list_item.dart';
 import '../repository/repository.dart';
 
 class PersonalDateViewerDaily extends StatefulWidget {
-  const PersonalDateViewerDaily({Key? key, required this.index, this.type})
-      : super(key: key);
+  const PersonalDateViewerDaily({
+    Key? key,
+    required this.index,
+    this.type,
+    required this.isIncludedWeekday,
+    required this.isMonthly,
+  }) : super(key: key);
   final int index;
   final int? type;
+  final bool isIncludedWeekday, isMonthly;
 
   @override
   State<PersonalDateViewerDaily> createState() =>
@@ -28,12 +34,15 @@ class _PersonalDateViewerDailyState extends State<PersonalDateViewerDaily> {
           top: widget.type == null ? 0 : 2.w,
         ),
         decoration: BoxDecoration(
-          borderRadius: (selected == widget.index)
-              ? const BorderRadius.all(
-                  Radius.circular(5),
-                )
-              : null,
-          color: Colors.transparent,
+          shape: BoxShape.circle,
+          // borderRadius: (selected == widget.index)
+          //     ? const BorderRadius.all(
+          //         Radius.circular(5),
+          //       )
+          //     : null,
+          color: (widget.isIncludedWeekday || widget.isMonthly)
+              ?const Color(0xff757a89)
+              :Colors.transparent ,
           border: Border.all(color: Colors.transparent),
         ),
         // width: 4.w,

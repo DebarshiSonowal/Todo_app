@@ -325,68 +325,102 @@ class _RingtonePickerScreenState extends State<RingtonePickerScreen> {
 
   getValueOfSwitch(int parse, int parse2, int parse3, Repository data) {
     if (parse == 1) {
-      return data.models[parse2].reminders[parse3].options?.vibration ?? false;
+      return Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false;
+      // return data.models[parse2].reminders[parse3].options?.vibration ?? false;
     }
-    return data.personals[parse2].reminders[parse3].options?.vibration ?? false;
+    return Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false;
+    // return data.personals[parse2].reminders[parse3].options?.vibration ?? false;
   }
 
   getValueOfSlider(int parse, int parse2, int parse3, Repository data) {
     if (parse == 1) {
+      return Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10;
       return data.models[parse2].reminders[parse3].options?.volume ?? 10;
     }
+    return Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10;
     return data.personals[parse2].reminders[parse3].options?.volume ?? 10;
   }
 
   void updateSlider(
       int parse, int parse2, int parse3, double value, Repository data) {
-    if (parse == 1) {
-      Provider.of<Repository>(context, listen: false).updateTimerOptions(
-        TimerSelectionOptions(
-          data.models[parse2].reminders[parse3].options?.ringtone ?? "NA",
-          value,
-          data.models[parse2].reminders[parse3].options?.vibration ?? false,
-        ),
-        parse2,
-        parse3,
-      );
-    } else {
-      Provider.of<Repository>(context, listen: false)
-          .updateTimerOptionsPersonal(
-        TimerSelectionOptions(
-          data.personals[parse2].reminders[parse3].options?.ringtone ?? "NA",
-          value,
-          data.personals[parse2].reminders[parse3].options?.vibration ?? false,
-        ),
-        parse2,
-        parse3,
-      );
-    }
+    Provider.of<Repository>(context, listen: false).updateTimerOptionsRecent(
+      TimerSelectionOptions(
+        Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ?? "NA",
+        // data.models[parse2].reminders[parse3].options?.ringtone ?? "NA",
+        value,
+        Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false,
+        // data.models[parse2].reminders[parse3].options?.vibration ?? false,
+      ),
+      parse2,
+      parse3,
+    );
+    // if (parse == 1) {
+    //   Provider.of<Repository>(context, listen: false).updateTimerOptions(
+    //     TimerSelectionOptions(
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ?? "NA",
+    //       // data.models[parse2].reminders[parse3].options?.ringtone ?? "NA",
+    //       value,
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false,
+    //       // data.models[parse2].reminders[parse3].options?.vibration ?? false,
+    //     ),
+    //     parse2,
+    //     parse3,
+    //   );
+    // } else {
+    //   Provider.of<Repository>(context, listen: false)
+    //       .updateTimerOptionsPersonal(
+    //     TimerSelectionOptions(
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ?? "NA",
+    //       // data.personals[parse2].reminders[parse3].options?.ringtone ?? "NA",
+    //       value,
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false,
+    //       // data.personals[parse2].reminders[parse3].options?.vibration ?? false,
+    //     ),
+    //     parse2,
+    //     parse3,
+    //   );
+    // }
   }
 
   void updateSwitch(
       int parse, int parse2, int parse3, Repository data, bool value) {
-    if (parse == 1) {
-      Provider.of<Repository>(context, listen: false).updateTimerOptions(
-        TimerSelectionOptions(
-          data.models[parse2].reminders[parse3].options?.ringtone ?? "NA",
-          data.models[parse2].reminders[parse3].options?.volume ?? 10,
-          value,
-        ),
-        parse2,
-        parse3,
-      );
-    } else {
-      Provider.of<Repository>(context, listen: false)
-          .updateTimerOptionsPersonal(
-        TimerSelectionOptions(
-          data.personals[parse2].reminders[parse3].options?.ringtone ?? "NA",
-          data.personals[parse2].reminders[parse3].options?.volume ?? 10,
-          value,
-        ),
-        parse2,
-        parse3,
-      );
-    }
+    Provider.of<Repository>(context, listen: false).updateTimerOptionsRecent(
+      TimerSelectionOptions(
+        Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ?? "NA",
+        // data.models[parse2].reminders[parse3].options?.ringtone ?? "NA",
+        Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10,
+        // data.models[parse2].reminders[parse3].options?.volume ?? 10,
+        value,
+      ),
+      parse2,
+      parse3,
+    );
+    // if (parse == 1) {
+    //   Provider.of<Repository>(context, listen: false).updateTimerOptions(
+    //     TimerSelectionOptions(
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ?? "NA",
+    //       // data.models[parse2].reminders[parse3].options?.ringtone ?? "NA",
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10,
+    //       // data.models[parse2].reminders[parse3].options?.volume ?? 10,
+    //       value,
+    //     ),
+    //     parse2,
+    //     parse3,
+    //   );
+    // } else {
+    //   Provider.of<Repository>(context, listen: false)
+    //       .updateTimerOptionsPersonal(
+    //     TimerSelectionOptions(
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ?? "NA",
+    //       // data.personals[parse2].reminders[parse3].options?.ringtone ?? "NA",
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10,
+    //       // data.personals[parse2].reminders[parse3].options?.volume ?? 10,
+    //       value,
+    //     ),
+    //     parse2,
+    //     parse3,
+    //   );
+    // }
   }
 
   Future<List<String>> getAlertList() async {
@@ -400,37 +434,54 @@ class _RingtonePickerScreenState extends State<RingtonePickerScreen> {
 
   updateVolume(
       int parse, int parse2, int parse3, Repository data, String item) {
-    if (parse == 1) {
-      Provider.of<Repository>(context, listen: false).updateTimerOptions(
-        TimerSelectionOptions(
-          item,
-          data.models[parse2].reminders[parse3].options?.volume ?? 10,
-          data.models[parse2].reminders[parse3].options?.vibration ?? false,
-        ),
-        parse2,
-        parse3,
-      );
-    } else {
-      Provider.of<Repository>(context, listen: false)
-          .updateTimerOptionsPersonal(
-        TimerSelectionOptions(
-          item,
-          data.models[parse2].reminders[parse3].options?.volume ?? 10,
-          data.models[parse2].reminders[parse3].options?.vibration ?? false,
-        ),
-        parse2,
-        parse3,
-      );
-    }
+    Provider.of<Repository>(context, listen: false).updateTimerOptionsRecent(
+      TimerSelectionOptions(
+        item,
+        Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10,
+        // data.models[parse2].reminders[parse3].options?.volume ?? 10,
+        Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false,
+        // data.models[parse2].reminders[parse3].options?.vibration ?? false,
+      ),
+      parse2,
+      parse3,
+    );
+    // if (parse == 1) {
+    //   Provider.of<Repository>(context, listen: false).updateTimerOptions(
+    //     TimerSelectionOptions(
+    //       item,
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10,
+    //       // data.models[parse2].reminders[parse3].options?.volume ?? 10,
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false,
+    //       // data.models[parse2].reminders[parse3].options?.vibration ?? false,
+    //     ),
+    //     parse2,
+    //     parse3,
+    //   );
+    // } else {
+    //   Provider.of<Repository>(context, listen: false)
+    //       .updateTimerOptionsPersonal(
+    //     TimerSelectionOptions(
+    //       item,
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.volume ?? 10,
+    //       // data.models[parse2].reminders[parse3].options?.volume ?? 10,
+    //       Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.vibration ?? false,
+    //       // data.models[parse2].reminders[parse3].options?.vibration ?? false,
+    //     ),
+    //     parse2,
+    //     parse3,
+    //   );
+    // }
   }
 
   ifSelected(int parse, int parse2, int parse3, Repository data, String item) {
     if (parse == 1) {
-      return (data.models[parse2].reminders[parse3].options?.ringtone ??
+      return (Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ??
+      // return (data.models[parse2].reminders[parse3].options?.ringtone ??
               "NA") ==
           item;
     }
-    return (data.personals[parse2].reminders[parse3].options?.ringtone ??
+    // return (data.personals[parse2].reminders[parse3].options?.ringtone ??
+        return (Provider.of<Repository>(context, listen: false).recentModel!.reminders[parse3].options?.ringtone ??
             "NA") ==
         item;
   }

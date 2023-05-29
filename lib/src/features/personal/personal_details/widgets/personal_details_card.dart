@@ -161,8 +161,19 @@ class PersonalDetailsCard extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return DateViewerDaily(
-                          index: index,
                           type: 1,
+                          index: index,
+                          isIncludedWeekday: item.weekDays.contains(index - 1),
+                          isMonthly: item.monthly.where((element) {
+                            if (element.year == DateTime.now().year &&
+                                element.month == DateTime.now().month &&
+                                element.day == DateTime.now().day) {
+                              return true;
+                            }
+                            return false;
+                          }).isNotEmpty
+                              ? true
+                              : false,
                         );
                       },
                       separatorBuilder: (context, index) {

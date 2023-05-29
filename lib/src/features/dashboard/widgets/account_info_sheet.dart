@@ -32,6 +32,22 @@ class accountInfoSheet extends StatelessWidget {
             ),
           ),
           CupertinoActionSheetAction(
+            /// This parameter indicates the action would be a default
+            /// defualt behavior, turns the action's text to bold text.
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Vikki',
+              style: Theme.of(context).textTheme.headline3?.copyWith(
+                color: Colors.white,
+                fontFamily: "PublicSans",
+                // fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          CupertinoActionSheetAction(
             onPressed: () {
               Navigator.pop(context);
             },

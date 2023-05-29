@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 import '../../../constants/constants.dart';
 import '../../../repository/repository.dart';
@@ -26,6 +27,20 @@ class _DateSelectedCardState extends State<DateSelectedCard> {
   bool selectedDaily = true;
   var listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   DateTime defaultTime = DateTime.now();
+  List<int> days = [];
+  List<DateTime> dates = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 500),(){
+      days = Provider.of<Repository>(context, listen: false).recentModel?.weekDays??[];
+      dates = Provider.of<Repository>(context, listen: false).recentModel?.monthly??[];
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,21 +151,37 @@ class _DateSelectedCardState extends State<DateSelectedCard> {
                 height: 1.h,
               ),
               selectedDaily
-                  ? DateSelectedCardDailySection(listOfDays: listOfDays)
+                  ? DateSelectedCardDailySection(
+                      listOfDays: listOfDays,
+                      days: days,
+                      updateParent: () {
+                        setState(() {});
+                      },
+                    )
                   : DateSelectedCardSelection(
                       updateParent: (val) {
                         setState(() {
                           defaultTime = val;
                         });
                       },
+                      refreshParent: () {
+                        setState(() {});
+                      },
                       defaultTime: defaultTime,
+                      dates: dates,
                     ),
               SizedBox(
                 height: 1.h,
               ),
               DoneButton(
                 txt: "Save",
-                onTap: () {},
+                onTap: () {
+                  Provider.of<Repository>(context, listen: false)
+                      .updateDailyRoutineCalendarWeekly(days, dates);
+                  Future.delayed(const Duration(milliseconds: 500),(){
+                    Navigation.instance.goBack();
+                  });
+                },
               ),
             ],
           ),

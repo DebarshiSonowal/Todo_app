@@ -47,7 +47,7 @@ class StackedBottomSheet extends StatelessWidget {
                 item: item,
                 onTap: () {
                   Provider.of<Repository>(context, listen: false)
-                      .addDailyReminder(
+                      .addRecentDailyReminder(
                     DailyRoutineModel(
                         item.name,
                         // DateFormat("hh:mm a").format(DateTime.now()),
@@ -67,10 +67,7 @@ class StackedBottomSheet extends StatelessWidget {
                       () => Navigation.instance.navigate(
                             Routes.editDailyRoutineNormal,
                             args:
-                                Provider.of<Repository>(context, listen: false)
-                                        .models
-                                        .length -
-                                    1,
+                                    2,
                             // index == 1 ? "Drink lemon water" : "Shower",
                           ));
                   // Navigation.instance.navigate(Routes.addDailyRoutineNormal);

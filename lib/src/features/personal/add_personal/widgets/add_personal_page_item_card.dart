@@ -361,6 +361,17 @@ class MainCard extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return PersonalDateViewerDaily(
                     index: index,
+                    isIncludedWeekday: data.weekDays.contains(index - 1),
+                    isMonthly: data.monthly.where((element) {
+                      if (element.year == DateTime.now().year &&
+                          element.month == DateTime.now().month &&
+                          element.day == DateTime.now().day) {
+                        return true;
+                      }
+                      return false;
+                    }).isNotEmpty
+                        ? true
+                        : false,
                   );
                 },
                 separatorBuilder: (context, index) {

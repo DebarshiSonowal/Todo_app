@@ -4,15 +4,37 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../constants/routes.dart';
+import '../../../../models/reminder_list_item.dart';
 import '../../../../repository/repository.dart';
 import '../../../../services/Navigate.dart';
 import '../../../../widget/done_button.dart';
 import '../../../timer_selected/widgets/time_selector_page_card.dart';
 import '../../../timer_selected/widgets/timer_select_list_item.dart';
 
-class PersonalTimerSelectorPage extends StatelessWidget {
-  const PersonalTimerSelectorPage({Key? key, required this.index}) : super(key: key);
+
+class PersonalTimerSelectorPage extends StatefulWidget {
+  const PersonalTimerSelectorPage({Key? key, required this.index})
+      : super(key: key);
   final int index;
+  @override
+  State<PersonalTimerSelectorPage> createState() => _PersonalTimerSelectorPageState();
+}
+
+class _PersonalTimerSelectorPageState extends State<PersonalTimerSelectorPage> {
+
+  List<ReminderListItem> reminders = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 0), () {
+      reminders = Provider.of<Repository>(context, listen: false)
+          .recentModel
+          ?.reminders ??
+          [];
+      setState(() {});
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -53,21 +75,34 @@ class PersonalTimerSelectorPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, num) {
-                  var item = data.personals[index].reminders[num];
+                  var item = reminders[num];
                   return TimerSelectListItem(
-                      item: item, index: index, num: num,type: 1,);
+                    item: item,
+                    index: widget.index,
+                    num: num,
+                    type: 1,
+                    updateSwitch: (bool val) {
+                      setState(() {
+                        item.isEnabled = val;
+                      });
+                    },
+                  );
                 },
                 separatorBuilder: (context, index) {
                   return const CustomDivider();
                 },
-                itemCount: data.personals[index].reminders.length,
+                itemCount: reminders.length,
               ),
               SizedBox(
                 height: 3.h,
               ),
               DoneButton(
                 onTap: () {
-                  Navigation.instance.navigateAndReplace(Routes.dashboard);
+                  Provider.of<Repository>(context, listen: false)
+                      .updateRemindersRecent(reminders);
+                  Future.delayed(const Duration(seconds: 1), () {
+                    Navigation.instance.goBack();
+                  });
                 },
               ),
               SizedBox(

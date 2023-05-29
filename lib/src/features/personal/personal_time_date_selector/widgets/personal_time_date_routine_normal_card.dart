@@ -23,7 +23,7 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Repository>(builder: (context, data, _) {
-      var current = data.personals[index];
+      // var current = data.personals[index];
       return Stack(
         alignment: Alignment.bottomRight,
         children: [
@@ -33,11 +33,9 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Container(
-              padding: EdgeInsets.only(
-                // horizontal: 2.w,
-                // vertical: 2.h,
-                bottom: 1.5.h,
-              ),
+              // height: 100.h,
+              // width: 100.w,
+
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Constances.blueBackground,
@@ -64,7 +62,7 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
                     ),
                     width: double.infinity,
                     child: Text(
-                      "${data.personals[index].title}",
+                      "${data.recentModel!.title}",
                       style: Theme.of(context).textTheme.headline4?.copyWith(
                             fontSize: 12.sp,
                             color: Colors.white,
@@ -91,7 +89,7 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
                     width: double.infinity,
                     child: ListView.separated(
                       itemBuilder: (context, position) {
-                        var item = data.personals[index].reminders[position];
+                        var item = data.recentModel!.reminders[position];
                         return Text(
                           "${position + 1}. ${item.title}",
                           style:
@@ -107,21 +105,21 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
                           height: 0.5.h,
                         );
                       },
-                      itemCount: data.personals[index].reminders.length,
+                      itemCount: data.recentModel!.reminders.length,
                     ),
                   ),
                   SizedBox(
                     height: 1.h,
                   ),
-                  data.personals[index].type == 1
+                  data.recentModel!.type == 1
                       ? CircleAvatar(
                           backgroundColor: Colors.transparent,
                           radius: 30.sp, // Image radius
                           backgroundImage: (Image.file(
-                            File(data.personals[index].image!),
+                            File(data.recentModel!.image!),
                             errorBuilder: (error, str, _) {
                               return Image.asset(
-                                data.personals[index].image!,
+                                data.recentModel!.image!,
                               );
                             },
                           )).image,
@@ -134,14 +132,17 @@ class PersonalTimeDateRoutineNormalCard extends StatelessWidget {
                             ),
                           ),
                           child: Image.asset(
-                            data.personals[index].image!,
+                            data.recentModel!.image!,
                             errorBuilder: (error, str, _) {
                               return Image.asset(
-                                data.personals[index].image!,
+                                data.recentModel!.image!,
                               );
                             },
                           ),
                         ),
+                  SizedBox(
+                    height: 1.h,
+                  ),
                 ],
               ),
             ),

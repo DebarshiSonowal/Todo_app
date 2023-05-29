@@ -4,18 +4,35 @@ import 'package:sizer/sizer.dart';
 import 'package:vishal_todo_app/src/constants/routes.dart';
 
 import '../../../constants/constants.dart';
+import '../../../models/reminder_list_item.dart';
 import '../../../repository/repository.dart';
 import '../../../services/Navigate.dart';
 import '../../../widget/done_button.dart';
 import 'timer_select_list_item.dart';
 
-class TimeSelectorPageCard extends StatelessWidget {
-  const TimeSelectorPageCard({
-    super.key,
-    required this.index,
-  });
-
+class TimerSelectorPageCard extends StatefulWidget {
   final int index;
+
+  const TimerSelectorPageCard({super.key, required this.index});
+
+  @override
+  State<TimerSelectorPageCard> createState() => _TimerSelectorPageCardState();
+}
+
+class _TimerSelectorPageCardState extends State<TimerSelectorPageCard> {
+  List<ReminderListItem> reminders = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 0), () {
+      reminders = Provider.of<Repository>(context, listen: false)
+              .recentModel
+              ?.reminders ??
+          [];
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,25 +74,34 @@ class TimeSelectorPageCard extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, num) {
-                  var item = data.models[index].reminders[num];
+                  var item = reminders[num];
                   return TimerSelectListItem(
                     item: item,
-                    index: index,
+                    index: widget.index,
                     num: num,
+                    updateSwitch: (bool val) {
+                      setState(() {
+                        item.isEnabled = val;
+                      });
+                    },
                     // type: 1,
                   );
                 },
                 separatorBuilder: (context, index) {
                   return const CustomDivider();
                 },
-                itemCount: data.models[index].reminders.length,
+                itemCount: reminders.length,
               ),
               SizedBox(
                 height: 3.h,
               ),
               DoneButton(
                 onTap: () {
-                  Navigation.instance.goBack();
+                  Provider.of<Repository>(context, listen: false)
+                      .updateRemindersRecent(reminders);
+                  Future.delayed(const Duration(seconds: 1), () {
+                    Navigation.instance.goBack();
+                  });
                 },
               ),
               SizedBox(
