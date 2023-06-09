@@ -97,7 +97,7 @@ class _TimeDateSelectorState extends State<TimeDateSelector> {
                   : MediaQuery.of(context).size.height - 870,
               left: 0.0,
               right: 0.0,
-              height: 30.h,
+              height: 20.h,
               child: StackedCardTimeDate(
                 index: widget.index,
               ),

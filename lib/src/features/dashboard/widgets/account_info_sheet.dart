@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vishal_todo_app/src/constants/routes.dart';
+import 'package:vishal_todo_app/src/services/Navigate.dart';
 
 class accountInfoSheet extends StatelessWidget {
   const accountInfoSheet({
@@ -49,7 +51,7 @@ class accountInfoSheet extends StatelessWidget {
           ),
           CupertinoActionSheetAction(
             onPressed: () {
-              Navigator.pop(context);
+              Navigation.instance.navigate(Routes.loginPage);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

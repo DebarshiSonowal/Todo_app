@@ -160,4 +160,6 @@ class Constances {
   static const calendarImage2 = "assets/images/calendar.png";
   static const uploadImage = "assets/images/upload.png";
   static const trashImage = "assets/images/trash.png";
+
+  static const  loginBackground = Color(0xffa6b4e0);
 }

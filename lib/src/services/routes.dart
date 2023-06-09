@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_todo_app/src/features/dashboard/dashboard_screen.dart';
 import 'package:vishal_todo_app/src/features/essential/essential_list/essential_list_page.dart';
+import 'package:vishal_todo_app/src/features/login_page/login_page.dart';
 import 'package:vishal_todo_app/src/features/ringtone_picker/ringtone_picker.dart';
 
 // import 'package:vishal_todo_app/src/features/essentials_edit/essentials_details_page.dart';
@@ -10,6 +11,7 @@ import '../constants/routes.dart';
 // import '../features/daily_routine/daily_routine_page.dart';
 import '../features/bookmark/add_bookmark/add_bookmark_page.dart';
 import '../features/bookmark/add_bookmark_sublist_item/add_bookmark_list_item.dart';
+
 // import '../features/daily_routine/add_daily_routine/add_daily_routine.dart';
 import '../features/daily_routine/add_daily_routine_normal/add_daily_routine_normal.dart';
 import '../features/essential/add_essential/add_essential_page.dart';
@@ -171,7 +173,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         page: const AddEssentialPage(),
       );
     case Routes.essentialsList:
-      return RightLeftTransitionPageRouteBuilder(page: const EssentialListPage());
+      return RightLeftTransitionPageRouteBuilder(
+          page: const EssentialListPage());
     case Routes.essentialsDetails:
       return RightLeftTransitionPageRouteBuilder(
           page: EssentialDetailsPage(index: settings.arguments as int));
@@ -207,6 +210,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         page: RingtonePickerScreen(
           input: settings.arguments as String,
         ),
+      );
+
+    //login
+    case Routes.loginPage:
+      return RightLeftTransitionPageRouteBuilder(
+        page: LoginPage(),
       );
 
     default:
